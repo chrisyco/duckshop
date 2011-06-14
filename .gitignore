@@ -1,0 +1,28 @@
+# Most/all of this is ripped off Bukkit :D
+
+# JARs shouldn't be under SCM
+*.jar
+
+# Eclipse stuff
+/.classpath
+/.project
+/.settings
+
+# NetBeans
+/nbproject
+
+# Maven
+/build.xml
+/target
+
+# vim
+.*.sw[a-p]
+
+# Various other potential build files
+/build
+/bin
+/dist
+/manifest.mf
+
+# Mac filesystem dust
+/.DS_Store

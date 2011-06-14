@@ -1,0 +1,786 @@
+########################################################################
+###### item_aliases.yml: Item aliases used by SignTraderWithDucks ######
+########################################################################
+#                                                                      #
+#  *  Plurals are added automatically.                                 #
+#                                                                      #
+#  *  Short names *should* be limited to 6 characters. This can be     #
+#     loosened for rare/unstackable items (e.g. locked chests).        #
+#                                                                      #
+########################################################################
+0:
+  aliases: [air]
+  canonical_name: Air
+  short_name: air
+1:
+  aliases: [stone, smoothstone]
+  canonical_name: Stone
+  short_name: stone
+2:
+  aliases: [grass, grassydirt]
+  canonical_name: Grass
+  short_name: grass
+3:
+  aliases: [dirt]
+  canonical_name: Dirt
+  short_name: dirt
+4:
+  aliases: [cobblestone, cobble, cblstone, cbl]
+  canonical_name: Cobblestone
+  short_name: cobble
+5:
+  aliases: [woodenplank, woodplank, plank]
+  canonical_name: Wooden Planks
+  short_name: plank
+6:
+  aliases: [sapling, saplng]
+  canonical_name: Sapling
+  short_name: saplng
+7:
+  aliases: [bedrock, bedrck, bdrock, brock, adminium]
+  canonical_name: Bedrock
+  short_name: bdrock
+8:
+  aliases: [water]
+  canonical_name: Water
+  short_name: water
+9:
+  aliases: [stationarywater, stillwater, swater]
+  canonical_name: Stationary Water
+  short_name: swater
+10:
+  aliases: [lava]
+  canonical_name: Lava
+  short_name: lava
+11:
+  aliases: [stationarylava, stilllava, slava]
+  canonical_name: Stationary Lava
+  short_name: slava
+12:
+  aliases: [sand]
+  canonical_name: Sand
+  short_name: sand
+13:
+  aliases: [gravel]
+  canonical_name: Gravel
+  short_name: gravel
+14:
+  aliases: [goldore, gldore, gore]
+  canonical_name: Gold Ore
+  short_name: gldore
+15:
+  aliases: [ironore, irnore, iore]
+  canonical_name: Iron Ore
+  short_name: irnore
+16:
+  aliases: [coalore, clore, core]
+  canonical_name: Coal Ore
+  short_name: clore
+17:
+  aliases: [wood]
+  canonical_name: Wood
+  short_name: wood
+18:
+  aliases: [leaves, leaf, branches, foliage, shrubbery]
+  canonical_name: Leaves
+  short_name: leaves
+19:
+  aliases: [sponge]
+  canonical_name: Sponge
+  short_name: sponge
+20:
+  aliases: [glass]
+  canonical_name: Glass
+  short_name: glass
+21:
+  aliases: [lapislazuliore, llore]
+  canonical_name: Lapis Lazuli Ore
+  short_name: llore
+22:
+  aliases: [lapislazuliblock, llblock, llblk]
+  canonical_name: Lapis Lazuli Block
+  short_name: llblk
+23:
+  aliases: [dispenser, dispense, dspnsr]
+  canonical_name: Dispenser
+  short_name: dspnsr
+24:
+  aliases: [sandstone, sndstn, sstone]
+  canonical_name: Sandstone
+  short_name: sstone
+25:
+  aliases: [noteblock, noteblk, note]
+  canonical_name: Note Block
+  short_name: note
+26:
+  aliases: [bedblock, bedblk]
+  canonical_name: Bed Block
+  short_name: bedblk
+27:
+  aliases: [poweredrail, goldrail, prail]
+  canonical_name: Powered Rail
+  short_name: prail
+28:
+  aliases: [detectorrail, redrail, rrail]
+  canonical_name: Detector Rail
+  short_name: drail
+30:
+  aliases: [web]
+  canonical_name: Web
+  short_name: web
+35:
+  aliases: [wool, cloth, sheephair]
+  canonical_name: Wool
+  short_name: wool
+37:
+  aliases: [dandelion, yellowflower, yflower, flower, yflwr, flwr]
+  canonical_name: Dandelion
+  short_name: yflwr
+38:
+  aliases: [rose, redflower, rflower, rflwr]
+  canonical_name: Rose
+  short_name: rflwr
+39:
+  aliases: [brownmushroom, mushroom, bmushroom, bmshrm]
+  canonical_name: Brown Mushroom
+  short_name: bmshrm
+40:
+  aliases: [redmushroom, rmushroom, rmshrm]
+  canonical_name: Red Mushroom
+  short_name: rmshrm
+41:
+  aliases: [goldblock, goldblk, gblock, gldblk, gldblock, gblk]
+  canonical_name: Gold Block
+  short_name: gldblk
+42:
+  aliases: [ironblock, ironblk, iblock, irnblk, irnblock, iblk]
+  canonical_name: Iron Block
+  short_name: irnblk
+43:
+  aliases: [doubleslab, dblslab, dblslb]
+  canonical_name: Double Slab
+  short_name: dblslb
+44:
+  aliases: [slab]
+  canonical_name: Slab
+  short_name: slab
+45:
+  aliases: [brickblock, brickblk, brkblk]
+  canonical_name: Brick Block
+  short_name: brkblk
+46:
+  aliases: [tnt, dynamite, bomb]
+  canonical_name: Generic Explosive (often incorrectly named TNT)
+  short_name: tnt
+47:
+  aliases: [bookshelf, bookshlf, bkshlf]
+  canonical_name: Bookshelf
+  short_name: bkshlf
+48:
+  aliases: [mossstone, mossycobble, moss]
+  canonical_name: Moss Stone
+  short_name: moss
+49:
+  aliases: [obsidian, obsdn]
+  canonical_name: Obsidian
+  short_name: obsdn
+50:
+  aliases: [torch]
+  canonical_name: Torch
+  short_name: torch
+51:
+  aliases: [fire]
+  canonical_name: Fire
+  short_name: fire
+52:
+  aliases: [monsterspawner, mobspawner, mobspawn, mspawn, spawn]
+  canonical_name: Monster Spawner
+  short_name: mspawn
+53:
+  aliases: [woodenstair, woodstair, wstair]
+  canonical_name: Wooden Stairs
+  short_name: wstair
+54:
+  aliases: [chest, woodenchest, woodchest]
+  canonical_name: Chest
+  short_name: chest
+55:
+  aliases: [redstonewire, redwire]
+  canonical_name: Redstone Wire
+  short_name: rwire
+56:
+  aliases: [diamondore, dore, dmdore, dmndore]
+  canonical_name: Diamond Ore
+  short_name: dmdore
+57:
+  aliases: [diamondblock, diamondblk, dmndblock, dmndblk, dmdblock, dmdblk, dblock, dblk]
+  canonical_name: Diamond Block
+  short_name: dmdblk
+58:
+  aliases: [craftingtable, crafttbl, table, workbench]
+  canonical_name: Crafting Table
+  short_name: table
+59:
+  aliases: [seedblk, sdblk]
+  canonical_name: Seed Block
+  short_name: sdblk
+60:
+  aliases: [farmland, frmlnd, tilleddirt, tilldirt, dirtwithbenefits]
+  canonical_name: Farmland
+  short_name: frmlnd
+61:
+  aliases: [furnace, frnace]
+  canonical_name: Furnace
+  short_name: frnace
+62:
+  aliases: [burningfurnace, bfurnace, bfrnace, bfrnce]
+  canonical_name: Burning Furnace
+  short_name: bfrnce
+63:
+  aliases: [signpost, signblk, sgnpst]
+  canonical_name: Sign Post Block
+  short_name: sgnpst
+64:
+  aliases: [woodendoorblk, wooddoorblk, wdoorblk, wdrblk halfdoor]
+  canonical_name: Wooden Door Block
+  short_name: wdrblk
+65:
+  aliases: [ladder, woodenladder, woodladder, wladder]
+  canonical_name: Ladder
+  short_name: ladder
+66:
+  aliases: [rail, ironrail, irail, track, irontrack, itrack]
+  canonical_name: Rail
+  short_name: rail
+67:
+  aliases: [cobblestonestair, cobblestair, cblstair, cstair]
+  canonical_name: Cobblestone Stair
+  short_name: cstair
+68:
+  aliases: [wallsign, wallsignblk, wlsign]
+  canonical_name: Wall Sign Block
+  short_name: wlsign
+69:
+  aliases: [lever, redstonelever, redlever, rlever]
+  canonical_name: Lever
+  short_name: lever
+70:
+  aliases: [stonepressureplate, stoneplate, splate, stonepp]
+  canonical_name: Stone Pressure Plate
+  short_name: splate
+71:
+  aliases: [irondoorblk, idoorblk, idrblk]
+  canonical_name: Iron Door Block
+  short_name: idrblk
+72:
+  aliases: [woodenpressureplate, woodpressureplate, woodplate, woodpp, wplate]
+  canonical_name: Wooden Pressure Plate
+  short_name: wplate
+73:
+  aliases: [redstoneore, redore, rore]
+  canonical_name: Redstone Ore
+  short_name: redore
+74:
+  aliases: [glowingredstoneore, glowingredore, gredore, grdore]
+  canonical_name: Glowing Redstone Ore
+  short_name: grdore
+75:
+  aliases: [redstonetorchoff, redtorchoff, rtorchoff]
+  canonical_name: Redstone Torch (Off)
+  short_name: rtorchoff
+76:
+  aliases: [redstonetorch, redtorch, rtorch]
+  canonical_name: Redstone Torch
+  short_name: rtorch
+77:
+  aliases: [stonebutton, stonebtn, sbutton, sbtn, button, btn]
+  canonical_name: Stone Button
+  short_name: button
+78:
+  aliases: [snow, snowdirt, winterdirt]
+  canonical_name: Snow
+  short_name: snow
+79:
+  aliases: [ice, solidwater, frozenwater]
+  canonical_name: Ice
+  short_name: ice
+80:
+  aliases: [snowblock, snowblk, snwblk]
+  canonical_name: Snow Block
+  short_name: snwblk
+81:
+  aliases: [cactus, cacti, saguaro]
+  canonical_name: Cactus
+  short_name: cactus
+82:
+  aliases: [clayblock, clayblk, clyblk]
+  canonical_name: Clay Block
+  short_name: clyblk
+83:
+  aliases: [sugarcaneblk, caneblk, reedblk, cneblk]
+  canonical_name: Sugar Cane Block
+  short_name: cneblk
+84:
+  aliases: [jukebox, musicbox, ipod, jukebx]
+  canonical_name: Jukebox
+  short_name: jukebx
+85:
+  aliases: [fence, fencepost, woodenfence, woodfence, wfence]
+  canonical_name: Fence
+  short_name: fence
+86:
+  aliases: [pumpkin, pumpkn, buttercup, watermelon, melon]
+  canonical_name: Pumpkin
+  short_name: pumpkn
+87:
+  aliases: [netherrack, netherrock, netherstone, hellrock, hellstone, bloodrock, bloodstone]
+  canonical_name: Netherrack
+  short_name: nrack
+88:
+  aliases: [soulsand, ssand, slowsand, quicksand, mud, hellmud, nethermud]
+  canonical_name: Soul Sand
+  short_name: ssand
+89:
+  aliases: [glowstone, glowstoneblock, glowstoneblk, gstone, lightstone]
+  canonical_name: Glowstone
+  short_name: gstone
+90:
+  aliases: [portal]
+  canonical_name: Portal
+  short_name: portal
+91:
+  aliases: [jackolantern, lantern, pumpkinlight, lantrn, lntrn]
+  canonical_name: Jack-o-lantern
+  short_name: lntrn
+92:
+  aliases: [cakeblock, cakeblk, ckeblk]
+  canonical_name: Cake Block
+  short_name: ckeblk
+93:
+  aliases: [repeateroff, repeatoff, diodeoff, rptroff]
+  canonical_name: Redstone Repeater (Off)
+  short_name: repeatoff
+94:
+  aliases: [repeateron, repeaton, diodeon, rptron]
+  canonical_name: Redstone Repeater
+  short_name: repeat
+95:
+  aliases: [lockedchest]
+  canonical_name: Locked Chest
+  short_name: lockedchest
+256:
+  aliases: [ironshovel, ishovel, ishovl, ironspade, ispade]
+  canonical_name: Iron Shovel
+  short_name: ishovl
+257:
+  aliases: [ironpickaxe, ipickaxe, ironpick, ipick]
+  canonical_name: Iron Pickaxe
+  short_name: ipick
+258:
+  aliases: [ironaxe, iaxe]
+  canonical_name: Iron Axe
+  short_name: iaxe
+259:
+  aliases: [flintandsteel, flintnsteel, flintsteel, flntstl, lighter]
+  canonical_name: Flint and Steel
+  short_name: flntstl
+260:
+  aliases: [apple]
+  canonical_name: Apple
+  short_name: apple
+261:
+  aliases: [bow]
+  canonical_name: Bow
+  short_name: bow
+262:
+  aliases: [arrow]
+  canonical_name: Arrow
+  short_name: arrow
+263:
+  aliases: [coal, charcoal]
+  canonical_name: Coal
+  short_name: coal
+264:
+  aliases: [diamond, dmnd, dmd, supercompressedcoal]
+  canonical_name: Diamond
+  short_name: dmnd
+265:
+  aliases: [ironingot, iron, iingot]
+  canonical_name: Iron Ingot
+  short_name: iron
+266:
+  aliases: [goldingot, gold, gingot]
+  canonical_name: Gold Ingot
+  short_name: gold
+267:
+  aliases: [ironsword, isword]
+  canonical_name: Iron Sword
+  short_name: isword
+268:
+  aliases: [woodensword, woodsword, wsword]
+  canonical_name: Wooden Sword
+  short_name: wsword
+269:
+  aliases: [woodenshovel, woodshovel, wshovel, wshovl woodenspade, woodspade, wspade]
+  canonical_name: Wooden Shovel
+  short_name: wshovl
+270:
+  aliases: [woodenpickaxe, woodpickaxe, wpickaxe, woodenpick, woodpick, wpick]
+  canonical_name: Wooden Pickaxe
+  short_name: wpick
+271:
+  aliases: [woodenaxe, woodaxe, waxe]
+  canonical_name: Wooden Axe
+  short_name: waxe
+272:
+  aliases: [stonesword, ssword]
+  canonical_name: Stone Sword
+  short_name: ssword
+273:
+  aliases: [stoneshovel, sshovel, sshovl, stonespade, sspade]
+  canonical_name: Stone Shovel
+  short_name: sshovl
+274:
+  aliases: [stonepickaxe, spickaxe, stonepick, spick]
+  canonical_name: Stone Pickaxe
+  short_name: spick
+275:
+  aliases: [stoneaxe, saxe]
+  canonical_name: Stone Axe
+  short_name: saxe
+276:
+  aliases: [diamondsword, dsword]
+  canonical_name: Diamond Sword
+  short_name: dsword
+277:
+  aliases: [diamondshovel, dshovel, dshovl, diamondspade, dspade]
+  canonical_name: Diamond Shovel
+  short_name: dshovl
+278:
+  aliases: [diamondpickaxe, dpickaxe, diamondpick, dpick]
+  canonical_name: Diamond Pickaxe
+  short_name: dpickaxe
+279:
+  aliases: [diamondaxe, daxe]
+  canonical_name: Diamond Axe
+  short_name: daxe
+280:
+  aliases: [stick]
+  canonical_name: Stick
+  short_name: stick
+281:
+  aliases: [bowl]
+  canonical_name: Bowl
+  short_name: bowl
+282:
+  aliases: [mushroomsoup, soup]
+  canonical_name: Mushroom Soup
+  short_name: soup
+283:
+  aliases: [goldsword, gsword]
+  canonical_name: Gold Sword
+  short_name: gsword
+284:
+  aliases: [goldshovel, gshovel, gshovl, goldspade, gspade]
+  canonical_name: Gold Shovel
+  short_name: gshovl
+285:
+  aliases: [goldpickaxe, gpickaxe, goldpick, gpick]
+  canonical_name: Gold Pickaxe
+  short_name: gpick
+286:
+  aliases: [goldaxe, gaxe]
+  canonical_name: Gold Axe
+  short_name: gaxe
+287:
+  aliases: [string]
+  canonical_name: String
+  short_name: string
+288:
+  aliases: [feather, birdhair]
+  canonical_name: Feather
+  short_name: feather
+289:
+  aliases: [gunpowder, powder]
+  canonical_name: Gunpowder
+  short_name: powder
+290:
+  aliases: [woodenhoe, woodhoe, wdhoe, whoe]
+  canonical_name: Wooden Hoe
+  short_name: wdhoe
+291:
+  aliases: [stonehoe, stnhoe, shoe]
+  canonical_name: Stone Hoe
+  short_name: stnhoe
+292:
+  aliases: [ironhoe, irnhoe, ihoe]
+  canonical_name: ironhoe
+  short_name: irnhoe
+293:
+  aliases: [diamondhoe, dmdhoe, dhoe]
+  canonical_name: Diamond Hoe
+  short_name: dmdhoe
+294:
+  aliases: [goldhoe, gldhoe, ghoe]
+  canonical_name: Gold Hoe
+  short_name: gldhoe
+295:
+  aliases: [seed]
+  canonical_name: Seed
+  short_name: seed
+296:
+  aliases: [wheat, grain]
+  canonical_name: Wheat
+  short_name: wheat
+297:
+  aliases: [bread]
+  canonical_name: Bread
+  short_name: bread
+298:
+  aliases: [leathercap, lcap, leatherhelmet, lhelmet, lhelm]
+  canonical_name: Leather Cap
+  short_name: lcap
+299:
+  aliases: [leathertunic, ltunic, leatherchest, lchest]
+  canonical_name: Leather Tunic
+  short_name: ltunic
+300:
+  aliases: [leatherpant, lpant, leatherleg, lleg]
+  canonical_name: Leather Pant
+  short_name: lpant
+301:
+  aliases: [leatherboot, lboot]
+  canonical_name: Leather Boot
+  short_name: lboot
+302:
+  aliases: [chainhelmet, chelmet, chelm]
+  canonical_name: Chain Helmet
+  short_name: chelm
+303:
+  aliases: [chainchest, cchest]
+  canonical_name: Chain Chestplate
+  short_name: cchest
+304:
+  aliases: [chainleg, cleg]
+  canonical_name: Chain Leggings
+  short_name: cleg
+305:
+  aliases: [chainboot, cboot]
+  canonical_name: Chain Boots
+  short_name: cboot
+306:
+  aliases: [ironhelmet, ihelmet, ihelm]
+  canonical_name: Iron Helmet
+  short_name: ihelm
+307:
+  aliases: [ironchest, ichest]
+  canonical_name: Iron Chestplate
+  short_name: ichest
+308:
+  aliases: [ironleg, ileg]
+  canonical_name: Iron Leggings
+  short_name: ileg
+309:
+  aliases: [ironboot, iboot]
+  canonical_name: Iron Boots
+  short_name: iboot
+310:
+  aliases: [diamondhelmet, dhelmet]
+  canonical_name: Diamond Helmet
+  short_name: dhelm
+311:
+  aliases: [diamondchest, dchest]
+  canonical_name: Diamond Chestplate
+  short_name: dchest
+312:
+  aliases: [diamondleg, dleg]
+  canonical_name: Diamond Leg
+  short_name: dleg
+313:
+  aliases: [diamondboot, dboot]
+  canonical_name: Diamond Boot
+  short_name: dboot
+314:
+  aliases: [goldhelmet, ghelmet, ghelm]
+  canonical_name: Gold Helmet
+  short_name: ghelm
+315:
+  aliases: [goldchest, gchest]
+  canonical_name: Gold Chest
+  short_name: gchest
+316:
+  aliases: [goldleg, gleg]
+  canonical_name: Gold Leggings
+  short_name: gleg
+317:
+  aliases: [goldboot, gboot]
+  canonical_name: Gold Boots
+  short_name: gboot
+318:
+  aliases: [flint]
+  canonical_name: Flint
+  short_name: flint
+319:
+  aliases: [rawporkchop, porkchop, rawpork, pork]
+  canonical_name: Raw Porkchop
+  short_name: pork
+320:
+  aliases: [cookedporkchop, cookedpork, cookpork, cpork]
+  canonical_name: Cooked Porkchop
+  short_name: cpork
+321:
+  aliases: [painting, picture, pting, pntng, pic]
+  canonical_name: Painting
+  short_name: pntng
+322:
+  aliases: [goldenapple, goldapple, gapple]
+  canonical_name: Golden Apple
+  short_name: gapple
+323:
+  aliases: [sign, signitem, woodensign, woodsign, wsign]
+  canonical_name: Sign
+  short_name: sign
+324:
+  aliases: [woodendoor, wooddoor, wdoor, door]
+  canonical_name: Wooden Door
+  short_name: wdoor
+325:
+  aliases: [bucket, bkt]
+  canonical_name: Bucket
+  short_name: bucket
+326:
+  aliases: [waterbucket, waterbkt, wbkt]
+  canonical_name: Water Bucket
+  short_name: wbkt
+327:
+  aliases: [lavabucket, lavabkt, lbkt]
+  canonical_name: Lava Bucket
+  short_name: lbkt
+328:
+  aliases: [minecart, cart]
+  canonical_name: Minecart
+  short_name: cart
+329:
+  aliases: [saddle]
+  canonical_name: Saddle
+  short_name: saddle
+330:
+  aliases: [irondoor, idoor]
+  canonical_name: Iron Door
+  short_name: idoor
+331:
+  aliases: [redstone, redstonedust, reddust, rstone, rdust]
+  canonical_name: Redstone Dust
+  short_name: rdust
+332:
+  aliases: [snowball, snowbl]
+  canonical_name: Snowball
+  short_name: snowbl
+333:
+  aliases: [boat]
+  canonical_name: Boat
+  short_name: boat
+334:
+  aliases: [leather, cowskin]
+  canonical_name: Leather
+  short_name: leather
+335:
+  aliases: [milk, milkbkt, cowjuice]
+  canonical_name: Milk Bucket
+  short_name: milk
+336:
+  aliases: [claybrick, brick]
+  canonical_name: Clay Brick
+  short_name: brick
+337:
+  aliases: [clay]
+  canonical_name: Clay
+  short_name: clay
+338:
+  aliases: [sugarcane, cane, reed]
+  canonical_name: Sugar Cane
+  short_name: cane
+339:
+  aliases: [paper]
+  canonical_name: Paper
+  short_name: paper
+340:
+  aliases: [book]
+  canonical_name: Book
+  short_name: book
+341:
+  aliases: [slimeball, slime]
+  canonical_name: Slimeball
+  short_name: slime
+342:
+  aliases: [storageminecart, storagecart, storecart, scart]
+  canonical_name: Storage Minecart
+  short_name: scart
+343:
+  aliases: [poweredminecart, poweredcart, powercart, pcart]
+  canonical_name: Powered Minecart
+  short_name: pcart
+344:
+  aliases: [egg, unbornchicken]
+  canonical_name: Egg
+  short_name: egg
+345:
+  aliases: [compass, cmpass, compss, cmpss]
+  canonical_name: Compass
+  short_name: cmpss
+346:
+  aliases: [fishingrod, fishrod, rod]
+  canonical_name: Fishing Rod
+  short_name: rod
+347:
+  aliases: [clock, watch]
+  canonical_name: Clock
+  short_name: clock
+348:
+  aliases: [glowstonedust, gstonedust, glowdust, gdust]
+  canonical_name: Glowstone Dust
+  short_name: gdust
+349:
+  aliases: [rawfish, rfish, fish]
+  canonical_name: Raw Fish
+  short_name: fish
+350:
+  aliases: [cookedfish, cookfish, cfish]
+  canonical_name: Cooked Fish
+  short_name: cfish
+351:
+  aliases: [dye]
+  canonical_name: Dye (any color)
+  short_name: dye
+352:
+  aliases: [bone]
+  canonical_name: Bone
+  short_name: bone
+353:
+  aliases: [sugar]
+  canonical_name: Sugar
+  short_name: sugar
+354:
+  aliases: [cake]
+  canonical_name: Cake
+  short_name: cake
+355:
+  aliases: [bed]
+  canonical_name: Bed
+  short_name: bed
+356:
+  aliases: [redstonerepeater, repeater, repeat, diode]
+  canonical_name: Redstone Repeater
+  short_name: repeat
+357:
+  aliases: [cookie, biscuit]
+  canonical_name: Cookie
+  short_name: cookie
+2256:
+  aliases: [goldmusicdisc, golddisc, gdisc]
+  canonical_name: Gold Music Disc
+  short_name: godisc
+2257:
+  aliases: [greenmusicdisc, greendisc]
+  canonical_name: Green Music Disc
+  short_name: grdisc

@@ -1,0 +1,30 @@
+# Most or all of this is ripped of Bukkit :D
+
+syntax: glob
+
+# JARs shouldn't be under SCM
+*.jar
+
+# Eclipse stuff
+.classpath
+.project
+.settings
+
+# NetBeans
+nbproject
+
+# Maven
+build.xml
+target
+
+# vim
+.*.sw[a-p]
+
+# various other potential build files
+build
+bin
+dist
+manifest.mf
+
+# Mac crap
+.DS_Store
