@@ -63,7 +63,9 @@ public class SignTraderPlayerListener extends PlayerListener {
                                    block.getLocation(),
                                    state.getLines());
         } catch(InvalidSyntaxException ex) {
-            log.severe("SYNTAX ERROR!!! WOBUFFET!!!");
+            // Do nothing!
+        } catch(PermissionsException ex) {
+            player.sendMessage("You're not allowed to use this sign for some reason.");
         }
         if(sign != null) {
             try {
@@ -84,11 +86,14 @@ public class SignTraderPlayerListener extends PlayerListener {
             TradingSign sign = null;
             try {
                 sign = new TradingSign(plugin,
-                                       player,
+                                       null, // There is no placingPlayer as the sign is being marked, not placed.
                                        block.getLocation(),
                                        state.getLines());
             } catch(InvalidSyntaxException ex) {
                 player.sendMessage("That's not a valid trading sign.");
+            } catch(PermissionsException ex) {
+                // See above note on placingPlayer
+                throw new RuntimeException(ex);
             }
             if(sign != null) {
                 player.sendMessage("Now left click a chest to connect it.");

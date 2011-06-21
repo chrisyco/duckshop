@@ -10,6 +10,7 @@ import tk.kirlian.util.CustomLogger;
 import tk.kirlian.util.Misc;
 import tk.kirlian.SignTraderWithDucks.*;
 import tk.kirlian.SignTraderWithDucks.errors.*;
+import tk.kirlian.SignTraderWithDucks.permissions.*;
 import tk.kirlian.SignTraderWithDucks.trading.*;
 
 /**
@@ -25,14 +26,15 @@ public class TradingSign {
     private SignLine buyerToSeller, sellerToBuyer;
 
     /**
-     * Create a new TradingSign instance.
+     * Create a new TradingSign instance. The placing player may be null
+     * if unknown.
      *
      * @throws InvalidSyntaxException if the lines cannot be parsed.
      * @throws PermissionsException if the placing player does not have
      *         permission to place trading signs.
      */
     public TradingSign(SignTraderPlugin plugin, Player placingPlayer, Location signLocation, String[] lines)
-      throws InvalidSyntaxException {
+      throws InvalidSyntaxException, PermissionsException {
         this.plugin = plugin;
         this.log = plugin.log;
         this.placingPlayer = placingPlayer;
@@ -49,6 +51,10 @@ public class TradingSign {
                 throw new InvalidSyntaxException();
             }
         }
+
+        PermissionsProvider permissions = PermissionsProvider.getBest();
+        String permissionsNode = "SignTrader.place." + (global ? "global" : "personal");
+        permissions.throwIfCannot(placingPlayer, permissionsNode);
 
         // Parse the two middle lines
         SignLine line1 = SignLine.fromString(lines[1]);
@@ -163,8 +169,15 @@ public class TradingSign {
 
     /**
      * Called when the sign is destroyed.
+     *
+     * @throws PermissionsException if player is not allowed to break
+     *         another player's sign.
      */
-    public void destroy() {
+    public void destroy(Player breakingPlayer) throws PermissionsException {
+        // Players must have special permissions to break other player's signs
+        if(!breakingPlayer.getName().equals(owner.getName())) {
+            PermissionsProvider.getBest().throwIfCannot(breakingPlayer, "SignTrader.break." + (global ? "global" : "personal"));
+        }
         SignManager.getInstance(plugin).removeChestLocation(signLocation);
     }
 }

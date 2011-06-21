@@ -30,7 +30,7 @@ public class PriorityProviderManager<P extends Provider> implements ProviderMana
      * @return the best {@link Provider}, or if there are no available
      *         providers, null.
      */
-    public P getBestProvider() {
+    public P getBest() {
         P provider = queue.peek();
         if(provider == null || !provider.isAvailable()) {
             return null;
