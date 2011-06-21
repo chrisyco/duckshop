@@ -18,14 +18,17 @@ Building
 
 2. Install the latest JDK_ and Maven_.
 
-3. Download the latest `Bukkit JAR`_ and put it in the same folder as
-   the pom.xml file.
+3. In a Unix terminal, type::
 
-4. In a terminal, type::
-
+       tools/grab-dependencies.sh
        mvn package
 
-5. After the compilation has finished, copy the newly created JAR file
+   The first command downloads Bukkit_ and Register_ and installs it in
+   Maven's plugin system. The second command compiles the actual plugin.
+
+   If you use Windows, go to a pillow factory and get stuffed.
+
+4. After the compilation has finished, copy the newly created JAR file
    from the ``target`` directory to your CraftBukkit plugins folder.
 
 Usage
@@ -36,7 +39,7 @@ Coming soon!
 .. _Bukkit: http://www.bukkit.org/
 .. _JDK: http://www.oracle.com/technetwork/java/javase/downloads/index.html
 .. _Maven: http://maven.apache.org/
-.. _Bukkit JAR: http://ci.bukkit.org/job/dev-Bukkit/lastSuccessfulBuild/artifact/target/bukkit-0.0.1-SNAPSHOT.jar
+.. _Register: http://forums.bukkit.org/threads/16849/
 
 .. |--| unicode:: U+2013 .. en dash
 .. |---| unicode:: U+2014 .. em dash
