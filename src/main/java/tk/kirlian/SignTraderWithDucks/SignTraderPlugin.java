@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import tk.kirlian.util.CustomLogger;
 import tk.kirlian.util.itemdb.*;
 import tk.kirlian.SignTraderWithDucks.signs.SignManager;
-import tk.kirlian.SignTraderWithDucks.economy.EconomyProvider;
 import tk.kirlian.SignTraderWithDucks.permissions.PermissionsProvider;
 
 /**
