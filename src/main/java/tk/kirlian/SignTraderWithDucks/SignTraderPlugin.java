@@ -1,5 +1,6 @@
 package tk.kirlian.SignTraderWithDucks;
 
+import com.nijikokun.register.payment.Method;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.server.ServerListener;
@@ -25,6 +26,7 @@ public class SignTraderPlugin extends JavaPlugin {
     public SignTraderPlayerListener playerListener; // Needed by SignTraderCommand
     private SignTraderServerListener serverListener;
     private SignManager signManager;
+    public Method economyMethod; // Needed by various inventory adapters
 
     @Override
     public void onEnable() {

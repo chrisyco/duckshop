@@ -3,6 +3,7 @@ package tk.kirlian.SignTraderWithDucks.trading;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
+import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
 import tk.kirlian.SignTraderWithDucks.signs.SignItem;
 
 /**
@@ -10,7 +11,8 @@ import tk.kirlian.SignTraderWithDucks.signs.SignItem;
  * @see InventoryAdapter
  */
 public class PlayerInventoryAdapter extends InventoryAdapter {
-    public PlayerInventoryAdapter(Player player) {
+    public PlayerInventoryAdapter(SignTraderPlugin plugin, Player player) {
+        super(plugin);
         setPlayer(player);
         setInventory(player.getInventory());
     }

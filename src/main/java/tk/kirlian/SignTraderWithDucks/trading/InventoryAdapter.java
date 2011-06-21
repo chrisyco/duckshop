@@ -1,12 +1,13 @@
 package tk.kirlian.SignTraderWithDucks.trading;
 
+import com.nijikokun.register.payment.Method.MethodAccount;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.entity.Player;
 import java.util.Map;
 
-import tk.kirlian.SignTraderWithDucks.economy.EconomyProvider;
+import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
 import tk.kirlian.SignTraderWithDucks.signs.SignItem;
 
 /**
@@ -24,6 +25,18 @@ public abstract class InventoryAdapter extends TradeAdapter {
      * The Player that receives and pays any money required by this adapter.
      */
     protected Player player;
+
+    /**
+     * The Account associated with the Player.
+     */
+    protected MethodAccount account;
+
+    /**
+     * Creates a new InventoryAdapter instance.
+     */
+    public InventoryAdapter(SignTraderPlugin plugin) {
+        super(plugin);
+    }
 
     /**
      * Get the Inventory which is used by this adapter.
@@ -55,6 +68,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
      */
     public void setPlayer(Player player) {
         this.player = player;
+        this.account = plugin.economyMethod.getAccount(player.getName());
     }
 
     @Override
@@ -64,7 +78,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
 
     @Override
     public boolean canSubtractMoney(double amount) {
-        return (EconomyProvider.getManager().getBestProvider().getMoney(player) >= amount);
+        return account.hasEnough(amount);
     }
 
     @Override
@@ -72,7 +86,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
         if(!canAddMoney(amount)) {
             throw new IllegalArgumentException("Too much money");
         } else {
-            EconomyProvider.getManager().getBestProvider().addMoney(player, amount);
+            account.add(amount);
         }
     }
 
@@ -81,7 +95,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
         if(!canSubtractMoney(amount)) {
             throw new IllegalArgumentException("Not enough money");
         } else {
-            EconomyProvider.getManager().getBestProvider().subtractMoney(player, amount);
+            account.subtract(amount);
         }
     }
 

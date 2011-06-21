@@ -1,5 +1,6 @@
 package tk.kirlian.SignTraderWithDucks.trading;
 
+import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
 import tk.kirlian.SignTraderWithDucks.signs.SignItem;
 
 /**
@@ -7,6 +8,15 @@ import tk.kirlian.SignTraderWithDucks.signs.SignItem;
  * seller, a buyer, or a global sign.
  */
 public abstract class TradeAdapter {
+    protected SignTraderPlugin plugin;
+
+    /**
+     * Create a new TradeAdapter instance.
+     */
+    public TradeAdapter(SignTraderPlugin plugin) {
+        this.plugin = plugin;
+    }
+
     public final boolean canAddSignItem(SignItem item) {
         if(item.isMoney()) {
             return canAddMoney(item.getAmount());

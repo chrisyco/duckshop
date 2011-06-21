@@ -97,11 +97,11 @@ public class TradingSign {
      */
     public TradeAdapter getAdapter() throws InvalidChestException {
         if(global) {
-            return new GlobalSignAdapter();
+            return new GlobalSignAdapter(plugin);
         } else {
             Location chestLocation = getChestLocation();
             if(chestLocation != null) {
-                return new ChestInventoryAdapter(owner, chestLocation);
+                return new ChestInventoryAdapter(plugin, owner, chestLocation);
             } else {
                 throw new InvalidChestException();
             }

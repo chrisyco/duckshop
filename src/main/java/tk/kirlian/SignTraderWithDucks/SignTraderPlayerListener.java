@@ -67,7 +67,7 @@ public class SignTraderPlayerListener extends PlayerListener {
         }
         if(sign != null) {
             try {
-                sign.tradeWith(new PlayerInventoryAdapter(player));
+                sign.tradeWith(new PlayerInventoryAdapter(plugin, player));
             } catch(InvalidChestException ex) {
                 player.sendMessage("Invalid chest. Make sure it is connected properly.");
             } catch(CannotTradeException ex) {
