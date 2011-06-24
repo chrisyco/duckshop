@@ -8,9 +8,9 @@ import java.util.Comparator;
  */
 public class PriorityProviderComparator implements Comparator<Provider> {
     public int compare(Provider o1, Provider o2) {
-        if(!o1.isAvailable() && o2.isAvailable()) {
+        if(o1.isAvailable() && !o2.isAvailable()) {
             return -1;
-        } else if(o1.isAvailable() && !o2.isAvailable()) {
+        } else if(!o1.isAvailable() && o2.isAvailable()) {
             return 1;
         } else {
             return o1.getPriority() - o2.getPriority();
