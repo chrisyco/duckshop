@@ -2,23 +2,28 @@ package tk.kirlian.SignTraderWithDucks.permissions;
 
 import org.bukkit.entity.Player;
 
-import tk.kirlian.util.provider.PriorityProviderManager;
-import tk.kirlian.util.Misc;
+import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
+import java.util.logging.Logger;
 
 /**
  * A fallback permissions handler that only lets admins do anything.
  * @see PermissionsProvider
  */
 public class OpsOnlyPermissionsProvider extends PermissionsProvider {
-    private static final OpsOnlyPermissionsProvider provider
-        = new OpsOnlyPermissionsProvider();
+    private static OpsOnlyPermissionsProvider provider;
+    private SignTraderPlugin plugin;
+    private Logger log;
 
-    private OpsOnlyPermissionsProvider() {
+    private OpsOnlyPermissionsProvider(SignTraderPlugin plugin) {
+        this.plugin = plugin;
+        this.log = log;
         System.out.println("WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOBUFFET!!!");
-        //PermissionsProvider.getManager().register(this);
     }
 
-    public static OpsOnlyPermissionsProvider getInstance() {
+    public static OpsOnlyPermissionsProvider getInstance(SignTraderPlugin plugin) {
+        if(provider == null) {
+            provider = new OpsOnlyPermissionsProvider(plugin);
+        }
         return provider;
     }
 

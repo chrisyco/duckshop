@@ -10,3 +10,6 @@ install "Bukkit" $name org.bukkit bukkit 0.0.1-SNAPSHOT
 
 name=$(download 'https://github.com/iConomy/Register/raw/master/dist/Register.jar')
 install "Register" $name com.iConomy Register LATEST
+
+name=$(download 'http://www.theyeticave.net/downloads/permissions/3.1.5/Permissions.jar')
+install "Permissions" $name com.nijikokun.bukkit Permissions 3.1.5

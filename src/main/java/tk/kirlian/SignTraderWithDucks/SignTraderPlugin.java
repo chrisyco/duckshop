@@ -53,6 +53,10 @@ public class SignTraderPlugin extends JavaPlugin {
         // Initialize the sign manager
         signManager = SignManager.getInstance(this);
 
+        // Initialize Permissions
+        PermissionsProvider permissionsProvider = PermissionsProvider.getBest(this);
+        log.info("Using " + permissionsProvider.getName() + " for permissions.");
+
         // Register commands
         getCommand(SignTraderCommand.COMMAND_NAME).setExecutor(new SignTraderCommand(this));
 

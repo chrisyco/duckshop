@@ -3,8 +3,8 @@ package tk.kirlian.SignTraderWithDucks.permissions;
 import org.bukkit.entity.Player;
 
 import tk.kirlian.util.provider.Provider;
-import tk.kirlian.util.provider.ProviderManager;
 import tk.kirlian.util.provider.PriorityProviderManager;
+import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
 import tk.kirlian.SignTraderWithDucks.errors.PermissionsException;
 
 /**
@@ -16,11 +16,12 @@ public abstract class PermissionsProvider implements Provider {
     /**
      * Get the {@link PriorityProviderManager} for this class.
      */
-    public static PriorityProviderManager<PermissionsProvider> getManager() {
+    public static PriorityProviderManager<PermissionsProvider> getManager(SignTraderPlugin plugin) {
         if(manager == null) {
             manager = new PriorityProviderManager<PermissionsProvider>();
             /* vvv Add new providers below vvv */
-            manager.register(OpsOnlyPermissionsProvider.getInstance());
+            manager.register(OpsOnlyPermissionsProvider.getInstance(plugin));
+            manager.register(TheYetiPermissionsProvider.getInstance(plugin));
             /* ^^^ Add new providers above ^^^ */
         }
         return manager;
@@ -29,8 +30,8 @@ public abstract class PermissionsProvider implements Provider {
     /**
      * Convenience method to get the best permissions provider.
      */
-    public static PermissionsProvider getBest() {
-        return getManager().getBest();
+    public static PermissionsProvider getBest(SignTraderPlugin plugin) {
+        return getManager(plugin).getBest();
     }
 
     /**
