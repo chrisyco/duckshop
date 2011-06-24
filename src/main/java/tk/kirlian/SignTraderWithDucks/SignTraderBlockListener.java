@@ -37,6 +37,7 @@ public class SignTraderBlockListener extends BlockListener {
             // Do nothing
         } catch(PermissionsException ex) {
             // Science fiction allusions FTW
+            event.setCancelled(true);
             event.getPlayer().sendMessage("I'm sorry, " + event.getPlayer().getName() +". I'm afraid I can't do that.");
         }
         if(sign != null) {
@@ -68,6 +69,7 @@ public class SignTraderBlockListener extends BlockListener {
                 try {
                     sign.destroy(event.getPlayer());
                 } catch(PermissionsException ex) {
+                    event.setCancelled(true);
                     event.getPlayer().sendMessage(ex.getMessage());
                 }
             }

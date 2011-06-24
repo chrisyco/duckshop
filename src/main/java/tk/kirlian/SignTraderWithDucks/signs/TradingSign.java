@@ -52,9 +52,11 @@ public class TradingSign {
             }
         }
 
-        PermissionsProvider permissions = PermissionsProvider.getBest();
-        String permissionsNode = "SignTrader.place." + (global ? "global" : "personal");
-        permissions.throwIfCannot(placingPlayer, permissionsNode);
+        if(placingPlayer != null) {
+            PermissionsProvider permissions = PermissionsProvider.getBest(plugin);
+            String permissionsNode = "SignTrader.create." + (global ? "global" : "personal");
+            permissions.throwIfCannot(placingPlayer, permissionsNode);
+        }
 
         // Parse the two middle lines
         SignLine line1 = SignLine.fromString(lines[1]);
@@ -175,8 +177,8 @@ public class TradingSign {
      */
     public void destroy(Player breakingPlayer) throws PermissionsException {
         // Players must have special permissions to break other player's signs
-        if(!breakingPlayer.getName().equals(owner.getName())) {
-            PermissionsProvider.getBest().throwIfCannot(breakingPlayer, "SignTrader.break." + (global ? "global" : "personal"));
+        if(global || !breakingPlayer.getName().equals(owner.getName())) {
+            PermissionsProvider.getBest(plugin).throwIfCannot(breakingPlayer, "SignTrader.break." + (global ? "global" : "personal"));
         }
         SignManager.getInstance(plugin).removeChestLocation(signLocation);
     }
