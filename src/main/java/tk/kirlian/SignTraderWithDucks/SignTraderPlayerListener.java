@@ -15,7 +15,6 @@ import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.logging.Logger;
-import tk.kirlian.util.CustomLogger;
 import tk.kirlian.SignTraderWithDucks.errors.*;
 import tk.kirlian.SignTraderWithDucks.signs.*;
 import tk.kirlian.SignTraderWithDucks.trading.*;

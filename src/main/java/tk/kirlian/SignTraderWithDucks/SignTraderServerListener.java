@@ -7,7 +7,6 @@ import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.event.server.ServerListener;
 
 import java.util.logging.Logger;
-import tk.kirlian.util.CustomLogger;
 
 /**
  * Listens for events such as loading and unloading another plugin.

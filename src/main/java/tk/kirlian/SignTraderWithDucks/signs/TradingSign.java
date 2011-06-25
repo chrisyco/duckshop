@@ -6,7 +6,6 @@ import org.bukkit.block.Sign;
 import org.bukkit.event.block.SignChangeEvent;
 
 import java.util.logging.Logger;
-import tk.kirlian.util.CustomLogger;
 import tk.kirlian.util.Locations;
 import tk.kirlian.SignTraderWithDucks.*;
 import tk.kirlian.SignTraderWithDucks.errors.*;

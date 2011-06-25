@@ -9,7 +9,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 import java.util.logging.Logger;
-import tk.kirlian.util.CustomLogger;
 import tk.kirlian.SignTraderWithDucks.errors.*;
 import tk.kirlian.SignTraderWithDucks.signs.*;
 import tk.kirlian.SignTraderWithDucks.trading.*;

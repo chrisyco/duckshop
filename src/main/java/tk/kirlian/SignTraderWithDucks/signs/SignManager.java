@@ -14,7 +14,6 @@ import java.io.FileNotFoundException;
 
 import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
 import java.util.logging.Logger;
-import tk.kirlian.util.CustomLogger;
 import tk.kirlian.util.Locations;
 
 /**
@@ -24,10 +23,12 @@ public class SignManager {
     private final static String CHESTS_FILE_NAME = "chests.properties";
     private final static String CHESTS_FILE_COMMENT = "This file is used internally to store sign-chest links.\nFormat is signLocation=chestLocation\nDo not edit unless you know what you are doing.";
     private static SignManager instance;
+
     private SignTraderPlugin plugin;
     private Logger log;
     private Map<Location, Location> chestLocations;
     private File propertiesFile;
+
     private SignManager(SignTraderPlugin plugin) {
         this.plugin = plugin;
         this.log = plugin.log;
@@ -35,6 +36,7 @@ public class SignManager {
         this.propertiesFile = new File(plugin.getDataFolder(), CHESTS_FILE_NAME);
         load();
     }
+
     /**
      * Return an instance, or create it if it does not exist.
      *
@@ -47,17 +49,7 @@ public class SignManager {
         }
         return instance;
     }
-    /**
-     * Return an instance if it has already been created.
-     *
-     * @throws NullPointerException if it has not been created yet.
-     */
-    /*public static SignManager getInstance() {
-        if(instance == null) {
-            throw new NullPointerException("SignManager must be initialized with getInstance(SignTraderPlugin) first");
-        }
-        return instance;
-    }*/
+
     /**
      * Get the location of the Chest connected with a Sign.
      *
@@ -66,18 +58,21 @@ public class SignManager {
     public Location getChestLocation(Location signLocation) {
         return chestLocations.get(signLocation);
     }
+
     /**
      * Set the location of the Chest connected with a Sign.
      */
     public void setChestLocation(Location signLocation, Location chestLocation) {
         chestLocations.put(signLocation, chestLocation);
     }
+
     /**
      * Removes the location of the Chest connected with a Sign, if present.
      */
     public void removeChestLocation(Location signLocation) {
         chestLocations.remove(signLocation);
     }
+
     /**
      * Reads chest links from a properties file.
      */
@@ -101,6 +96,7 @@ public class SignManager {
             log.warning("Could not load chest link file.");
         }
     }
+
     /**
      * Writes chest links to a properties file.
      */
