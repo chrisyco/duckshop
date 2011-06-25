@@ -65,15 +65,18 @@ public class SignTraderPlayerListener extends PlayerListener {
         } catch(InvalidSyntaxException ex) {
             // Do nothing!
         } catch(PermissionsException ex) {
-            player.sendMessage("You're not allowed to use this sign for some reason.");
+            // See above note on placingPlayer
+            throw new RuntimeException(ex);
         }
         if(sign != null) {
             try {
-                sign.tradeWith(new PlayerInventoryAdapter(plugin, player));
+                sign.tradeWith(player);
             } catch(InvalidChestException ex) {
                 player.sendMessage("Invalid chest. Make sure it is connected properly.");
             } catch(CannotTradeException ex) {
                 player.sendMessage("Oh noes! Cannot trade!");
+            } catch(PermissionsException ex) {
+                player.sendMessage("You're not allowed to use this for some reason.");
             }
             return true;
         } else {
