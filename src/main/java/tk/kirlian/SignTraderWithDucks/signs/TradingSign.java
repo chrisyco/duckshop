@@ -54,7 +54,7 @@ public class TradingSign {
 
         if(placingPlayer != null) {
             PermissionsProvider permissions = PermissionsProvider.getBest(plugin);
-            String permissionsNode = "SignTrader.create." + (global ? "global" : "personal");
+            String permissionsNode = "SignTrader.create." + globalToString();
             permissions.throwIfCannot(placingPlayer, permissionsNode);
         }
 
@@ -125,6 +125,9 @@ public class TradingSign {
 
     /**
      * Attempt to trade with another TradeAdapter.
+     *
+     * @throws InvalidChestException if the chest is invalid (duh)
+     * @throws CannotTradeException if any party doesn't have enough to trade
      */
     public void tradeWith(final TradeAdapter buyerAdapter)
       throws InvalidChestException, CannotTradeException {
@@ -141,6 +144,23 @@ public class TradingSign {
         } else {
             throw new CannotTradeException();
         }
+    }
+
+    /**
+     * Attempt to trade with a Player.
+     *
+     * @throws InvalidChestException if the chest is invalid (duh)
+     * @throws CannotTradeException if any party doesn't have enough to trade
+     * @throws PermissionsException if the player doesn't have "use" permissions
+     */
+    public void tradeWith(final Player buyer)
+      throws InvalidChestException, CannotTradeException, PermissionsException {
+        PermissionsProvider.getBest(plugin).throwIfCannot(buyer, "SignTrader.use." + globalToString());
+        tradeWith(new PlayerInventoryAdapter(plugin, buyer));
+    }
+
+    public String globalToString() {
+        return (global ? "global" : "personal");
     }
 
     /**
@@ -176,7 +196,7 @@ public class TradingSign {
     public void destroy(Player breakingPlayer) throws PermissionsException {
         // Players must have special permissions to break other player's signs
         if(global || !breakingPlayer.getName().equals(owner.getName())) {
-            PermissionsProvider.getBest(plugin).throwIfCannot(breakingPlayer, "SignTrader.break." + (global ? "global" : "personal"));
+            PermissionsProvider.getBest(plugin).throwIfCannot(breakingPlayer, "SignTrader.break." + globalToString());
         }
         SignManager.getInstance(plugin).removeChestLocation(signLocation);
     }
