@@ -51,6 +51,10 @@ public class SignTraderPlugin extends JavaPlugin {
         pm.registerEvent(Event.Type.PLUGIN_DISABLE, serverListener, Event.Priority.Normal, this);
 
         // Initialize the sign manager
+        log.info("Initializing sign manager...");
+        if(!getDataFolder().mkdirs()) {
+            log.warning("Could not create data folder. Stuff may fail later.");
+        }
         signManager = SignManager.getInstance(this);
 
         // Initialize Permissions
@@ -70,5 +74,6 @@ public class SignTraderPlugin extends JavaPlugin {
         final String version = getDescription().getVersion();
         log.info("Version " + version + " disabled. " +
                  "Have a nice day!");
+        signManager.store();
     }
 }
