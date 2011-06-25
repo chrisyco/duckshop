@@ -7,9 +7,9 @@ import org.bukkit.Server;
 import org.bukkit.World;
 
 /**
- * Random functions that don't fit anywhere else.
+ * Functions to convert Locations to Strings and vice versa.
  */
-public class Misc {
+public class Locations {
     private static final String integerRegex = "([+-]?\\d+)";
     private static final Pattern locationRegex = Pattern.compile(
         "\\s*" + "((\\w+)\\s*:)?" +
@@ -18,9 +18,10 @@ public class Misc {
         "\\s*" + integerRegex + "\\s*");
     /**
      * Try to parse a {@link Location} object in the form "WorldName:X,Y,Z".
-     * @return A Location object, or null.
+     *
+     * @throws IllegalArgumentException if the location string is invalid.
      */
-    public static Location parseLocation(final Server server, final World defaultWorld, final String locationString) {
+    public static Location parseLocation(final Server server, final String locationString) {
         Matcher matcher = locationRegex.matcher(locationString);
         if(matcher.matches()) {
             World world = null;
@@ -28,14 +29,14 @@ public class Misc {
                 world = server.getWorld(matcher.group(2));
             }
             if(world == null) {
-                world = defaultWorld;
+                throw new IllegalArgumentException("Invalid world name");
             }
             int x = Integer.parseInt(matcher.group(3));
             int y = Integer.parseInt(matcher.group(4));
             int z = Integer.parseInt(matcher.group(5));
             return new Location(world, x, y, z);
         } else {
-            return null;
+            throw new IllegalArgumentException("Invalid location");
         }
     }
 
@@ -43,7 +44,7 @@ public class Misc {
      * Convert a {@link Location} object to a string that can be parsed
      * by {@link #parseLocation(Server, World, String)}.
      */
-    public static String locationToString(Location location) {
+    public static String toString(Location location) {
         StringBuilder s = new StringBuilder(32);
         if(location.getWorld() != null) {
             s.append(location.getWorld().getName());

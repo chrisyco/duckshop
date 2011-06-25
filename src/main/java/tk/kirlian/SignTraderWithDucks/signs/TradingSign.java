@@ -7,7 +7,7 @@ import org.bukkit.event.block.SignChangeEvent;
 
 import java.util.logging.Logger;
 import tk.kirlian.util.CustomLogger;
-import tk.kirlian.util.Misc;
+import tk.kirlian.util.Locations;
 import tk.kirlian.SignTraderWithDucks.*;
 import tk.kirlian.SignTraderWithDucks.errors.*;
 import tk.kirlian.SignTraderWithDucks.permissions.*;
@@ -72,8 +72,6 @@ public class TradingSign {
         } else {
             throw new InvalidSyntaxException();
         }
-
-        //this.chestLocation = Misc.parseLocation(plugin.getServer(), signLocation.getWorld(), lines[3]);
     }
 
     public String[] writeToStringArray(String[] lines) {
@@ -153,7 +151,7 @@ public class TradingSign {
      */
     public String toString() {
         Location chestLocation = getChestLocation();
-        return "TradingSign: Global=" + global + "; " + buyerToSeller + "; " + sellerToBuyer + "; Chest=" + (chestLocation != null ? Misc.locationToString(chestLocation) : "<null>");
+        return "TradingSign: Global=" + global + "; " + buyerToSeller + "; " + sellerToBuyer + "; Chest=" + (chestLocation != null ? Locations.toString(chestLocation) : "<null>");
     }
 
     public Location getSignLocation() {
