@@ -59,7 +59,7 @@ public class SignTraderPlayerListener extends PlayerListener {
         TradingSign sign = null;
         try {
             sign = new TradingSign(plugin,
-                                   player,
+                                   null, // There is no placingPlayer as the sign is being used, not placed
                                    block.getLocation(),
                                    state.getLines());
         } catch(InvalidSyntaxException ex) {

@@ -33,6 +33,11 @@ public class SignTraderPlugin extends JavaPlugin {
         // isn't loaded until now
         log = CustomLogger.getLogger(getDescription().getName());
 
+        // I don't know where to put this, so it's going here!
+        if(!getDataFolder().mkdirs()) {
+            log.warning("Could not create data folder. Stuff may fail later.");
+        }
+
         // Load the ItemDB beforehand, so if it fails, it fails now, and
         // not in the obscure depths of the sign handling code :)
         ItemDB itemDB = ItemDB.getInstance();
@@ -52,9 +57,6 @@ public class SignTraderPlugin extends JavaPlugin {
 
         // Initialize the sign manager
         log.info("Initializing sign manager...");
-        if(!getDataFolder().mkdirs()) {
-            log.warning("Could not create data folder. Stuff may fail later.");
-        }
         signManager = SignManager.getInstance(this);
 
         // Initialize Permissions
