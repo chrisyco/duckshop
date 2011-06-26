@@ -18,7 +18,6 @@ import tk.kirlian.SignTraderWithDucks.trading.*;
 public class TradingSign {
     private SignTraderPlugin plugin;
     private Logger log;
-    private Player placingPlayer;
     private Player owner;
     private Location signLocation;
     private boolean global;
@@ -36,7 +35,6 @@ public class TradingSign {
       throws InvalidSyntaxException, PermissionsException {
         this.plugin = plugin;
         this.log = plugin.log;
-        this.placingPlayer = placingPlayer;
         this.signLocation = signLocation;
 
         for(int i = 0; i < lines.length; ++i) {
@@ -45,16 +43,14 @@ public class TradingSign {
 
         this.global = lines[0].equalsIgnoreCase("[Global]");
         if(!global) {
-            owner = plugin.getServer().getPlayer(lines[0]);
+            this.owner = plugin.getServer().getPlayer(lines[0]);
             if(owner == null) {
                 throw new InvalidSyntaxException();
             }
         }
 
         if(placingPlayer != null) {
-            PermissionsProvider permissions = PermissionsProvider.getBest(plugin);
-            String permissionsNode = "SignTrader.create." + globalToString();
-            permissions.throwIfCannot(placingPlayer, permissionsNode);
+            PermissionsProvider.getBest(plugin).throwIfCannot(placingPlayer, "SignTrader.create." + getActionType(placingPlayer));
         }
 
         // Parse the two middle lines
@@ -70,6 +66,19 @@ public class TradingSign {
             sellerToBuyer = line1;
         } else {
             throw new InvalidSyntaxException();
+        }
+    }
+
+    /**
+     * Utility method for permissions checking.
+     */
+    private String getActionType(Player actingPlayer) {
+        if(global) {
+            return "global";
+        } else if(owner.equals(actingPlayer)) {
+            return "personal";
+        } else {
+            return "other";
         }
     }
 
@@ -163,12 +172,8 @@ public class TradingSign {
      */
     public void tradeWith(final Player buyer)
       throws InvalidChestException, CannotTradeException, ChestProtectionException, PermissionsException {
-        PermissionsProvider.getBest(plugin).throwIfCannot(buyer, "SignTrader.use." + globalToString());
+        PermissionsProvider.getBest(plugin).throwIfCannot(buyer, "SignTrader.use." + getActionType(buyer));
         tradeWith(new PlayerInventoryAdapter(plugin, buyer));
-    }
-
-    public String globalToString() {
-        return (global ? "global" : "personal");
     }
 
     /**
@@ -202,10 +207,7 @@ public class TradingSign {
      *         another player's sign.
      */
     public void destroy(Player breakingPlayer) throws PermissionsException {
-        // Players must have special permissions to break other player's signs
-        if(global || !breakingPlayer.getName().equals(owner.getName())) {
-            PermissionsProvider.getBest(plugin).throwIfCannot(breakingPlayer, "SignTrader.break." + globalToString());
-        }
+        PermissionsProvider.getBest(plugin).throwIfCannot(breakingPlayer, "SignTrader.break." + getActionType(breakingPlayer));
         SignManager.getInstance(plugin).removeChestLocation(signLocation);
     }
 }

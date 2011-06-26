@@ -23,19 +23,23 @@ Permissions Nodes
 
 These are **case-sensitive**, so make sure they're typed in correctly!
 
-``SignTrader.use.personal``, ``SignTrader.use.global``
-    Use personal and global signs, respectively.
-``SignTrader.create.personal``, ``SignTrader.create.global``
-    Create trading signs.
-``SignTrader.break.personal``, ``SignTrader.break.global``
-    Break trading signs. A player who has the ``break.personal``
-    permission would be able to break other player's signs. Note that
-    anyone with build rights can always break their own signs.
+* ``SignTrader.use.<type>``
+* ``SignTrader.create.<type>``
+* ``SignTrader.break.<type>``
 
-For example, average player would have these permissions:
+``<type>`` is replaced by either ``personal``, ``global`` or ``other``.
+"Personal" affects their own signs. "Global" affects global signs (see
+below). "Other" affects other people's personal signs. So someone with
+``SignTrader.create.other`` permission would be allowed to create signs
+with other people's names on them, and someone with
+``SignTrader.break.other`` would be allowed to break other people's
+signs.
+
+For example, an average player would have these permissions:
 
 * ``SignTrader.use.*``
 * ``SignTrader.create.personal``
+* ``SignTrader.break.personal``
 
 Usage
 =====
