@@ -73,6 +73,11 @@ public class TradingSign {
         }
     }
 
+    /**
+     * Update a String array with the contents of this TradingSign.
+     *
+     * @throws IllegalArgumentException if the array is not of length 4.
+     */
     public String[] writeToStringArray(String[] lines) {
         if(lines.length != 4) {
             throw new IllegalArgumentException("String array must be of length 4");
@@ -90,6 +95,8 @@ public class TradingSign {
 
     /**
      * Update a sign through a {@link SignChangeEvent}.
+     *
+     * This is a convenient wrapper around {@link #writeToStringArray(String[])}.
      */
     public void updateSign(SignChangeEvent event) {
         writeToStringArray(event.getLines());

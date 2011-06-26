@@ -42,7 +42,7 @@ public class Locations {
 
     /**
      * Convert a {@link Location} object to a string that can be parsed
-     * by {@link #parseLocation(Server, World, String)}.
+     * by {@link #parseLocation(Server, String)}.
      */
     public static String toString(Location location) {
         StringBuilder s = new StringBuilder(32);
