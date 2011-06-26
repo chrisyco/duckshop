@@ -72,6 +72,8 @@ public class SignTraderPlayerListener extends PlayerListener {
                 sign.tradeWith(player);
             } catch(InvalidChestException ex) {
                 player.sendMessage("Invalid chest. Make sure it is connected properly.");
+            } catch(ChestProtectionException ex) {
+                player.sendMessage("The owner of the sign doesn't have access to the connected chest.");
             } catch(CannotTradeException ex) {
                 player.sendMessage("Oh noes! Cannot trade!");
             } catch(PermissionsException ex) {

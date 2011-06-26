@@ -100,7 +100,7 @@ public class TradingSign {
      *
      * @see TradeAdapter
      */
-    public TradeAdapter getAdapter() throws InvalidChestException {
+    public TradeAdapter getAdapter() throws InvalidChestException, ChestProtectionException {
         if(global) {
             return new GlobalSignAdapter(plugin);
         } else {
@@ -127,9 +127,10 @@ public class TradingSign {
      *
      * @throws InvalidChestException if the chest is invalid (duh)
      * @throws CannotTradeException if any party doesn't have enough to trade
+     * @throws ChestProtectionException if the chest is protected
      */
     public void tradeWith(final TradeAdapter buyerAdapter)
-      throws InvalidChestException, CannotTradeException {
+      throws InvalidChestException, CannotTradeException, ChestProtectionException {
         final TradeAdapter sellerAdapter = getAdapter();
         // ARGH!!!
         if(sellerAdapter.canAddSignItem(buyerToSeller.getItem()) &&
@@ -150,10 +151,11 @@ public class TradingSign {
      *
      * @throws InvalidChestException if the chest is invalid (duh)
      * @throws CannotTradeException if any party doesn't have enough to trade
+     * @throws ChestProtectionException if the chest is protected
      * @throws PermissionsException if the player doesn't have "use" permissions
      */
     public void tradeWith(final Player buyer)
-      throws InvalidChestException, CannotTradeException, PermissionsException {
+      throws InvalidChestException, CannotTradeException, ChestProtectionException, PermissionsException {
         PermissionsProvider.getBest(plugin).throwIfCannot(buyer, "SignTrader.use." + globalToString());
         tradeWith(new PlayerInventoryAdapter(plugin, buyer));
     }
