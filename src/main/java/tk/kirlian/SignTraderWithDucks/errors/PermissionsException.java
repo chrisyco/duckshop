@@ -10,10 +10,4 @@ public class PermissionsException extends SignTraderException {
     public PermissionsException(String message) {
         super(message);
     }
-    public PermissionsException(String message, Throwable cause) {
-        super(message, cause);
-    }
-    public PermissionsException(Throwable cause) {
-        super(cause);
-    }
 }

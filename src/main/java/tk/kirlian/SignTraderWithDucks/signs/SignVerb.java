@@ -14,7 +14,7 @@ public enum SignVerb {
         try {
             return SignVerb.valueOf(StringTools.capitalizeFirstLetter(name));
         } catch(IllegalArgumentException ex) {
-            throw new InvalidSyntaxException(ex);
+            throw new InvalidSyntaxException();
         }
     }
 }

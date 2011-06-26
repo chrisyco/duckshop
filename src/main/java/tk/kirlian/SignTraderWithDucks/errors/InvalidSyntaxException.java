@@ -10,10 +10,4 @@ public class InvalidSyntaxException extends SignTraderException {
     public InvalidSyntaxException(String message) {
         super(message);
     }
-    public InvalidSyntaxException(String message, Throwable cause) {
-        super(message, cause);
-    }
-    public InvalidSyntaxException(Throwable cause) {
-        super(cause);
-    }
 }
