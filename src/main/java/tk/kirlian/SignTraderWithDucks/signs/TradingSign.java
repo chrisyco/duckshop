@@ -3,7 +3,6 @@ package tk.kirlian.SignTraderWithDucks.signs;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.block.Sign;
-import org.bukkit.event.block.SignChangeEvent;
 
 import java.util.logging.Logger;
 import tk.kirlian.util.Locations;
@@ -89,15 +88,6 @@ public class TradingSign {
         lines[2] = buyerToSeller.toString();
         lines[3] = "";
         return lines;
-    }
-
-    /**
-     * Update a sign through a {@link SignChangeEvent}.
-     *
-     * This is a convenient wrapper around {@link #writeToStringArray(String[])}.
-     */
-    public void updateSign(SignChangeEvent event) {
-        writeToStringArray(event.getLines());
     }
 
     /**
