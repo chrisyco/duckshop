@@ -13,18 +13,21 @@ public class StringTools {
      * @return The concatenation of the items in the collection,
      * separated by the delimiter.
      */
-    public static <T>
-    String join(final Collection<T> objs, final String delimiter) {
-        if (objs == null || objs.isEmpty()) {
+    public static String join(Iterable<? extends Object> list, String separator) {
+        Iterator<? extends Object> iter;
+        if(list == null) {
             return "";
         } else {
-            Iterator<T> iter = objs.iterator();
-            StringBuilder buffer = new StringBuilder(iter.next().toString());
-            while(iter.hasNext()) {
-                buffer.append(delimiter).append(iter.next().toString());
+            iter = list.iterator();
+            if(!iter.hasNext()) {
+                return "";
             }
-            return buffer.toString();
         }
+        StringBuilder buffer = new StringBuilder(String.valueOf(iter.next()));
+        while(iter.hasNext()) {
+            buffer.append(separator).append(iter.next());
+        }
+        return buffer.toString();
     }
 
     /**
