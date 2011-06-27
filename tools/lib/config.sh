@@ -2,6 +2,8 @@
 
 CONFIG_SH=1
 
-WGET=wget
+TMPDIR=$(dirname $0)/tmp
+
+WGET="wget -N"
 MAVEN=mvn
 LOG="$(basename $0 .sh).log"

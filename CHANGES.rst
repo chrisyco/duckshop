@@ -10,6 +10,10 @@
 * Changed sign format to make it more concise. The ``SignLine`` and
   ``SignVerb`` classes are redundant and have been removed.
 
+* Cleaned up sign updating code.
+
+* Fixed dependency downloader to only download files once.
+
 2
 =
 

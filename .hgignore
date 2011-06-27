@@ -6,7 +6,7 @@ syntax: glob
 *.jar
 
 # Chris Wong's Super Awesome Dependency Downloader
-*.log
+tools/tmp
 
 # Eclipse stuff
 .classpath

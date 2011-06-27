@@ -3,6 +3,9 @@
 . $(dirname $0)/lib/config.sh
 . $(dirname $0)/lib/depends.sh
 
+mkdir -p $TMPDIR
+cd $TMPDIR
+
 echo "Chris Wong's Super Awesome Dependency Downloader!" | tee "$LOG"
 
 name=$(download 'http://ci.bukkit.org/job/dev-Bukkit/lastSuccessfulBuild/artifact/target/bukkit-0.0.1-SNAPSHOT.jar')

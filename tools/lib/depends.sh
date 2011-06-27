@@ -15,15 +15,22 @@ error() {
 }
 
 download() {
-    info "Downloading $1..."
-    file=$(tempfile) || error "Could not open temporary file"
-    $WGET $1 -O $file >>"$LOG" 2>&1
+    url=$1
+    info "Downloading $url..."
+    file=$(basename $url)
+    if [ -f $file ]
+    then
+        echo $file
+        info "$file has already been downloaded, skipping"
+        exit 0
+    fi
+    $WGET $url >>"$LOG" 2>&1
     if [ $? -eq 0 ]
     then
         echo $file
         info "... Done!"
     else
-        error "Could not download file $1"
+        error "Could not download file $url"
     fi
 }
 
@@ -36,7 +43,6 @@ install() {
                          -Dpackaging=jar >>"$LOG" 2>&1
     if [ $? -eq 0 ]
     then
-        rm $name
         info "... Done!"
     else
         error "Could not install $1"

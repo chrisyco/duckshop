@@ -6,6 +6,9 @@
 create fully automated shops with signs, with an emphasis on usability,
 customizability and extensibility. And ducks.
 
+.. contents::
+   :depth: 2
+
 Installation
 ============
 
