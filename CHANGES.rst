@@ -10,6 +10,9 @@
 * Changed sign format to make it more concise. The ``SignLine`` and
   ``SignVerb`` classes are redundant and have been removed.
 
+* If the first line is left blank, it is automatically set to the player
+  who placed the sign.
+
 * Cleaned up sign updating code.
 
 * Fixed dependency downloader to only download files once.

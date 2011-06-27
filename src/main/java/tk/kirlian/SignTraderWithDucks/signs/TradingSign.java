@@ -42,7 +42,11 @@ public class TradingSign {
 
         this.global = lines[0].equalsIgnoreCase("[Global]");
         if(!global) {
-            this.owner = plugin.getServer().getPlayer(lines[0]);
+            if(lines[0].length() == 0 || lines[0].equalsIgnoreCase("[Personal]")) {
+                this.owner = placingPlayer;
+            } else {
+                this.owner = plugin.getServer().getPlayer(lines[0]);
+            }
             if(owner == null) {
                 throw new InvalidSyntaxException();
             }
