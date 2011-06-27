@@ -50,7 +50,7 @@ public class TradingSign {
         }
 
         if(placingPlayer != null) {
-            PermissionsProvider.getBest(plugin).throwIfCannot(placingPlayer, "SignTrader.create." + getActionType(placingPlayer));
+            PermissionsProvider.getBest(plugin).throwIfCannot(placingPlayer, "create." + getActionType(placingPlayer));
         }
 
         // Parse the two middle lines
@@ -172,7 +172,7 @@ public class TradingSign {
      */
     public void tradeWith(final Player buyer)
       throws InvalidChestException, CannotTradeException, ChestProtectionException, PermissionsException {
-        PermissionsProvider.getBest(plugin).throwIfCannot(buyer, "SignTrader.use." + getActionType(buyer));
+        PermissionsProvider.getBest(plugin).throwIfCannot(buyer, "use." + getActionType(buyer));
         tradeWith(new PlayerInventoryAdapter(plugin, buyer));
     }
 
@@ -207,7 +207,7 @@ public class TradingSign {
      *         another player's sign.
      */
     public void destroy(Player breakingPlayer) throws PermissionsException {
-        PermissionsProvider.getBest(plugin).throwIfCannot(breakingPlayer, "SignTrader.break." + getActionType(breakingPlayer));
+        PermissionsProvider.getBest(plugin).throwIfCannot(breakingPlayer, "break." + getActionType(breakingPlayer));
         SignManager.getInstance(plugin).removeChestLocation(signLocation);
     }
 }

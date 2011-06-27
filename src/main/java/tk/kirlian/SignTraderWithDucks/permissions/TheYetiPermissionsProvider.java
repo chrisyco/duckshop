@@ -13,6 +13,7 @@ import java.util.logging.Logger;
  * @see PermissionsProvider
  */
 public class TheYetiPermissionsProvider extends PermissionsProvider {
+    private static final String PERMISSIONS_PREFIX = "SignTrader.";
     private static TheYetiPermissionsProvider provider;
     private SignTraderPlugin plugin;
     private PermissionHandler permissionHandler;
@@ -53,6 +54,6 @@ public class TheYetiPermissionsProvider extends PermissionsProvider {
     }
 
     public boolean playerHasPermission(Player player, String permission) {
-        return permissionHandler.has(player, permission);
+        return permissionHandler.has(player, PERMISSIONS_PREFIX + permission);
     }
 }

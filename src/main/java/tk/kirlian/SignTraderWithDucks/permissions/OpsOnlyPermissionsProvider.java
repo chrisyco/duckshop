@@ -17,7 +17,6 @@ public class OpsOnlyPermissionsProvider extends PermissionsProvider {
     private OpsOnlyPermissionsProvider(SignTraderPlugin plugin) {
         this.plugin = plugin;
         this.log = log;
-        System.out.println("WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOBUFFET!!!");
     }
 
     public static OpsOnlyPermissionsProvider getInstance(SignTraderPlugin plugin) {
