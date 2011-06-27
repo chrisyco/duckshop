@@ -21,7 +21,7 @@ public class TradingSign {
     private Player owner;
     private Location signLocation;
     private boolean global;
-    private SignLine buyerToSeller, sellerToBuyer;
+    private SignItem sellerToBuyer, buyerToSeller;
 
     /**
      * Create a new TradingSign instance. The placing player may be null
@@ -54,19 +54,8 @@ public class TradingSign {
         }
 
         // Parse the two middle lines
-        SignLine line1 = SignLine.fromString(lines[1]);
-        SignLine line2 = SignLine.fromString(lines[2]);
-        if(line1.getVerb().equals(SignVerb.Give) &&
-           line2.getVerb().equals(SignVerb.Take)) {
-            buyerToSeller = line1;
-            sellerToBuyer = line2;
-        } else if(line1.getVerb().equals(SignVerb.Take) &&
-                  line2.getVerb().equals(SignVerb.Give)) {
-            buyerToSeller = line2;
-            sellerToBuyer = line1;
-        } else {
-            throw new InvalidSyntaxException();
-        }
+        sellerToBuyer = SignItem.fromString(lines[1]);
+        buyerToSeller = SignItem.fromString(lines[2]);
     }
 
     /**
@@ -96,8 +85,8 @@ public class TradingSign {
         } else {
             lines[0] = owner.getName();
         }
-        lines[1] = buyerToSeller.toString();
-        lines[2] = sellerToBuyer.toString();
+        lines[1] = sellerToBuyer.toString();
+        lines[2] = buyerToSeller.toString();
         lines[3] = "";
         return lines;
     }
@@ -149,14 +138,14 @@ public class TradingSign {
       throws InvalidChestException, CannotTradeException, ChestProtectionException {
         final TradeAdapter sellerAdapter = getAdapter();
         // ARGH!!!
-        if(sellerAdapter.canAddSignItem(buyerToSeller.getItem()) &&
-           sellerAdapter.canSubtractSignItem(sellerToBuyer.getItem()) &&
-           buyerAdapter.canAddSignItem(sellerToBuyer.getItem()) &&
-           buyerAdapter.canSubtractSignItem(buyerToSeller.getItem())) {
-            sellerAdapter.addSignItem(buyerToSeller.getItem());
-            sellerAdapter.subtractSignItem(sellerToBuyer.getItem());
-            buyerAdapter.addSignItem(sellerToBuyer.getItem());
-            buyerAdapter.subtractSignItem(buyerToSeller.getItem());
+        if(sellerAdapter.canAddSignItem(buyerToSeller) &&
+           sellerAdapter.canSubtractSignItem(sellerToBuyer) &&
+           buyerAdapter.canAddSignItem(sellerToBuyer) &&
+           buyerAdapter.canSubtractSignItem(buyerToSeller)) {
+            sellerAdapter.addSignItem(buyerToSeller);
+            sellerAdapter.subtractSignItem(sellerToBuyer);
+            buyerAdapter.addSignItem(sellerToBuyer);
+            buyerAdapter.subtractSignItem(buyerToSeller);
         } else {
             throw new CannotTradeException();
         }
@@ -184,7 +173,7 @@ public class TradingSign {
      */
     public String toString() {
         Location chestLocation = getChestLocation();
-        return "TradingSign: Global=" + global + "; " + buyerToSeller + "; " + sellerToBuyer + "; Chest=" + (chestLocation != null ? Locations.toString(chestLocation) : "<null>");
+        return "TradingSign: Global=" + global + "; " + sellerToBuyer + "; " + buyerToSeller + "; Chest=" + (chestLocation != null ? Locations.toString(chestLocation) : "<null>");
     }
 
     public Location getSignLocation() {

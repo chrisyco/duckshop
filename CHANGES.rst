@@ -4,6 +4,12 @@
 
 ..
 
+3
+=
+
+* Changed sign format to make it more concise. The ``SignLine`` and
+  ``SignVerb`` classes are redundant and have been removed.
+
 2
 =
 

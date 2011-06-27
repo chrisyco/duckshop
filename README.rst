@@ -46,20 +46,25 @@ Usage
 
 ..
 
+Using a Shop
+------------
+
+To use someone else's shop sign, right click on the sign.
+
 Writing the Sign
 ----------------
 
 To create a shop, place a sign in this format::
 
     <your name>
-    Give <something>
-    Take <something>
+    <seller to buyer>
+    <buyer to seller>
     <blank line>
 
-replacing ``<your name>`` with your username and ``<something>`` with an
-item such as "1 sshovel" or "$52". If you did this correctly, you should
-receive a helpful message. If you didn't receive the helpful message,
-break the sign and try again.
+replacing ``<your name>`` with your username and the two middle lines
+with two items such as "1 sshovel" or "$52". If you did this correctly,
+you should receive a helpful message. If you didn't receive the helpful
+message, break the sign and try again.
 
 If you have the ``SignTrader.create.global`` permission, you can create
 "global" signs by replacing your name with ``[Global]``. Global signs
@@ -70,37 +75,38 @@ For example, if Rachel, being the entrepreneurial type, wanted to sell
 iron swords at $12 each::
 
     Rachel
-    Give $12
-    Take 1 isword
+    1 isword
+    $12
+
+This means Rachel will receive $12 and the person who clicks the sign
+will receive an iron sword.
 
 Or, if Peter, the up-and-coming master builder, wanted to buy wooden
 planks at $2 for four::
 
     Peter
-    Give 4 plank
-    Take $2
+    $2
+    4 plank
+
+Peter will receive 4 planks and the sign clicker will receive $2.
 
 Or, if Tim was feeling poor and wanted donations::
 
     Tim
-    Give $5
-    Take $0
+    $0
+    $5
 
 Or, if Violet was feeling rather kind and wanted to give free dirt::
 
     Violet
-    Take 64 dirt
-    Give $0
-
-.. tip::
-   You can swap the order of the Give and Take lines, as long as they
-   are both present.
+    64 dirt
+    $0
 
 Or, if Wally the admin needed to get rid of slimes::
 
     [Global]
-    Give 1 slime
-    Take $1
+    $1
+    1 slime
 
 Connecting the Chest
 --------------------
