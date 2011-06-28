@@ -39,9 +39,6 @@ public class SignManager {
 
     /**
      * Return an instance, or create it if it does not exist.
-     *
-     * This must be called at least once before {@link #getInstance()}
-     * is called.
      */
     public static SignManager getInstance(SignTraderPlugin plugin) {
         if(instance == null) {

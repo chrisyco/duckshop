@@ -8,7 +8,7 @@ import tk.kirlian.util.itemdb.*;
 import tk.kirlian.SignTraderWithDucks.errors.*;
 
 /**
- * Represents an item to be traded in a {@link SignLine}.
+ * Represents an item to be traded in a {@link TradingSign}.
  */
 public class SignItem implements Serializable {
     /**
