@@ -4,6 +4,15 @@
 
 ..
 
+4
+=
+
+Bugfix release.
+
+* Fixed plugin complaining when data folder already exists.
+
+* Used Bukkit's Maven repo instead of installing it manually
+
 3
 =
 
