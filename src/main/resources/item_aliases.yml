@@ -29,7 +29,7 @@
   canonical_name: Cobblestone
   short_name: cobble
 5:
-  aliases: [woodenplank, woodplank, plank]
+  aliases: [woodenplank, woodplank, wplank, plank]
   canonical_name: Wooden Planks
   short_name: plank
 6:
@@ -37,7 +37,7 @@
   canonical_name: Sapling
   short_name: saplng
 7:
-  aliases: [bedrock, bedrck, bdrock, brock, adminium]
+  aliases: [bedrock, bdrock, brock, adminium]
   canonical_name: Bedrock
   short_name: bdrock
 8:
@@ -101,9 +101,9 @@
   canonical_name: Lapis Lazuli Block
   short_name: llblk
 23:
-  aliases: [dispenser, dispense, dspnsr]
+  aliases: [dispenser, dispense, dspnsr, rdspnsr]
   canonical_name: Dispenser
-  short_name: dspnsr
+  short_name: rdspnsr
 24:
   aliases: [sandstone, sndstn, sstone]
   canonical_name: Sandstone
@@ -111,7 +111,7 @@
 25:
   aliases: [noteblock, noteblk, note]
   canonical_name: Note Block
-  short_name: note
+  short_name: noteblk
 26:
   aliases: [bedblock, bedblk]
   canonical_name: Bed Block
@@ -159,7 +159,7 @@
 43:
   aliases: [doubleslab, dblslab, dblslb]
   canonical_name: Double Slab
-  short_name: dblslb
+  short_name: dblslab
 44:
   aliases: [slab]
   canonical_name: Slab
@@ -205,7 +205,7 @@
   canonical_name: Chest
   short_name: chest
 55:
-  aliases: [redstonewire, redwire]
+  aliases: [redstonewire, redwire, rwire]
   canonical_name: Redstone Wire
   short_name: rwire
 56:
@@ -217,7 +217,7 @@
   canonical_name: Diamond Block
   short_name: dmdblk
 58:
-  aliases: [craftingtable, crafttbl, table, workbench]
+  aliases: [craftingtable, crafttbl, table, ctable, workbench]
   canonical_name: Crafting Table
   short_name: table
 59:
@@ -307,7 +307,7 @@
 80:
   aliases: [snowblock, snowblk, snwblk]
   canonical_name: Snow Block
-  short_name: snwblk
+  short_name: snowblk
 81:
   aliases: [cactus, cacti, saguaro]
   canonical_name: Cactus
@@ -315,15 +315,15 @@
 82:
   aliases: [clayblock, clayblk, clyblk]
   canonical_name: Clay Block
-  short_name: clyblk
+  short_name: clayblk
 83:
   aliases: [sugarcaneblk, caneblk, reedblk, cneblk]
   canonical_name: Sugar Cane Block
-  short_name: cneblk
+  short_name: caneblk
 84:
   aliases: [jukebox, musicbox, ipod, jukebx]
   canonical_name: Jukebox
-  short_name: jukebx
+  short_name: jukebox
 85:
   aliases: [fence, fencepost, woodenfence, woodfence, wfence]
   canonical_name: Fence
@@ -331,7 +331,7 @@
 86:
   aliases: [pumpkin, pumpkn, buttercup, watermelon, melon]
   canonical_name: Pumpkin
-  short_name: pumpkn
+  short_name: pumpkin
 87:
   aliases: [netherrack, netherrock, netherstone, hellrock, hellstone, bloodrock, bloodstone]
   canonical_name: Netherrack
@@ -351,19 +351,19 @@
 91:
   aliases: [jackolantern, lantern, pumpkinlight, lantrn, lntrn]
   canonical_name: Jack-o-lantern
-  short_name: lntrn
+  short_name: lantern
 92:
   aliases: [cakeblock, cakeblk, ckeblk]
   canonical_name: Cake Block
-  short_name: ckeblk
+  short_name: cakeblk
 93:
-  aliases: [repeateroff, repeatoff, diodeoff, rptroff]
+  aliases: [repeatoff, rrepeatoff, diodeoff, rdiodeoff, rptroff, rrptroff]
   canonical_name: Redstone Repeater (Off)
-  short_name: repeatoff
+  short_name: rdiodeoff
 94:
-  aliases: [repeateron, repeaton, diodeon, rptron]
-  canonical_name: Redstone Repeater
-  short_name: repeat
+  aliases: [repeaton, rrepeaton, diodeon, rdiodeon, rptron, rrptron]
+  canonical_name: Redstone Repeater (On)
+  short_name: rdiodeon
 95:
   aliases: [lockedchest]
   canonical_name: Locked Chest
@@ -371,7 +371,7 @@
 256:
   aliases: [ironshovel, ishovel, ishovl, ironspade, ispade]
   canonical_name: Iron Shovel
-  short_name: ishovl
+  short_name: ishovel
 257:
   aliases: [ironpickaxe, ipickaxe, ironpick, ipick]
   canonical_name: Iron Pickaxe
@@ -421,9 +421,9 @@
   canonical_name: Wooden Sword
   short_name: wsword
 269:
-  aliases: [woodenshovel, woodshovel, wshovel, wshovl woodenspade, woodspade, wspade]
+  aliases: [woodenshovel, woodshovel, wshovel, wshovl, woodenspade, woodspade, wspade]
   canonical_name: Wooden Shovel
-  short_name: wshovl
+  short_name: wshovel
 270:
   aliases: [woodenpickaxe, woodpickaxe, wpickaxe, woodenpick, woodpick, wpick]
   canonical_name: Wooden Pickaxe
@@ -439,7 +439,7 @@
 273:
   aliases: [stoneshovel, sshovel, sshovl, stonespade, sspade]
   canonical_name: Stone Shovel
-  short_name: sshovl
+  short_name: sshovel
 274:
   aliases: [stonepickaxe, spickaxe, stonepick, spick]
   canonical_name: Stone Pickaxe
@@ -455,11 +455,11 @@
 277:
   aliases: [diamondshovel, dshovel, dshovl, diamondspade, dspade]
   canonical_name: Diamond Shovel
-  short_name: dshovl
+  short_name: dshovel
 278:
   aliases: [diamondpickaxe, dpickaxe, diamondpick, dpick]
   canonical_name: Diamond Pickaxe
-  short_name: dpickaxe
+  short_name: dpick
 279:
   aliases: [diamondaxe, daxe]
   canonical_name: Diamond Axe
@@ -483,7 +483,7 @@
 284:
   aliases: [goldshovel, gshovel, gshovl, goldspade, gspade]
   canonical_name: Gold Shovel
-  short_name: gshovl
+  short_name: gshovel
 285:
   aliases: [goldpickaxe, gpickaxe, goldpick, gpick]
   canonical_name: Gold Pickaxe
@@ -769,9 +769,9 @@
   canonical_name: Bed
   short_name: bed
 356:
-  aliases: [redstonerepeater, repeater, repeat, diode]
+  aliases: [repeat, rrepeat, diode, rdiode, rptr, rrptr]
   canonical_name: Redstone Repeater
-  short_name: repeat
+  short_name: rdiode
 357:
   aliases: [cookie, biscuit]
   canonical_name: Cookie
