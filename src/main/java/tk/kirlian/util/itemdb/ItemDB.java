@@ -16,6 +16,7 @@ public class ItemDB {
     private static ItemDB instance;
     private Map<Integer, ItemDefinition> byItemId;
     private Map<String, ItemDefinition> byAlias;
+
     private ItemDB() {
         byItemId = new HashMap<Integer, ItemDefinition>();
         byAlias = new HashMap<String, ItemDefinition>();
@@ -35,10 +36,8 @@ public class ItemDB {
                 byAlias.put(alias, item);
             }
         }
-        /*for(Map.Entry<String, ItemDefinition> entry : byAlias.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue().getCanonicalName());
-        }*/
     }
+
     /**
      * Get an instance of this class, or create it if none exists.
      */
@@ -48,12 +47,14 @@ public class ItemDB {
         }
         return instance;
     }
+
     /**
      * Get the ItemDefinition which has this data value.
      */
     public ItemDefinition getItemById(final Integer id) {
         return byItemId.get(id);
     }
+
     /**
      * Get the ItemDefinition with this alias.
      */
