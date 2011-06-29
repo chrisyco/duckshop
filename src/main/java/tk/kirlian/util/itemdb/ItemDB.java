@@ -58,6 +58,12 @@ public class ItemDB {
      * Get the ItemDefinition with this alias.
      */
     public ItemDefinition getItemByAlias(final String alias) {
-        return byAlias.get(alias);
+        String aliasLower = alias.toLowerCase();
+        ItemDefinition def = byAlias.get(aliasLower);
+        // If plural, remove the suffix 's'
+        if(def == null && aliasLower.charAt(aliasLower.length()-1) == 's') {
+            def = byAlias.get(aliasLower.substring(0, aliasLower.length()-1));
+        }
+        return def;
     }
 }

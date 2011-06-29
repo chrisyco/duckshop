@@ -4,6 +4,16 @@
 
 ..
 
+5
+=
+
+* Now supports MiXedCAse item names and pluralS.
+
+4a
+==
+
+* Fixed version number. Don't ask.
+
 4
 =
 
