@@ -34,8 +34,14 @@ public class SignTraderPlugin extends JavaPlugin {
         log = CustomLogger.getLogger(getDescription().getName());
 
         // I don't know where to put this, so it's going here!
-        if(!getDataFolder().mkdirs()) {
-            log.warning("Could not create data folder. Stuff may fail later.");
+        if(getDataFolder().isDirectory()) {
+            log.info("Data folder already exists -- very nice.");
+        } else {
+            if(getDataFolder().mkdirs()) {
+                log.info("Created data folder.");
+            } else {
+                log.warning("Could not create data folder. Stuff may fail later.");
+            }
         }
 
         // Load the ItemDB beforehand, so if it fails, it fails now, and
