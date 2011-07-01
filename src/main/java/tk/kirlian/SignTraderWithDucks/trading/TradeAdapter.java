@@ -1,7 +1,7 @@
 package tk.kirlian.SignTraderWithDucks.trading;
 
 import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
-import tk.kirlian.SignTraderWithDucks.items.Item;
+import tk.kirlian.SignTraderWithDucks.items.*;
 
 /**
  * An object representing something which can trade -- whether it be a
@@ -13,41 +13,47 @@ public abstract class TradeAdapter {
     /**
      * Create a new TradeAdapter instance.
      */
-    public TradeAdapter(SignTraderPlugin plugin) {
+    protected TradeAdapter(SignTraderPlugin plugin) {
         this.plugin = plugin;
     }
 
     public final boolean canAddItem(Item item) {
-        if(item.isMoney()) {
-            return canAddMoney(item.getAmount());
+        if(item instanceof Money) {
+            return canAddMoney((Money)item);
+        } else if(item instanceof TangibleItem) {
+            return canAddTangibleItem((TangibleItem)item);
         } else {
-            return canAddTangibleItem(item.getItemId(), item.getAmount(), item.getDamage());
+            throw new IllegalArgumentException("unknown Item type");
         }
     }
 
     public final boolean canSubtractItem(Item item) {
-        if(item.isMoney()) {
-            return canSubtractMoney(item.getAmount());
+        if(item instanceof Money) {
+            return canSubtractMoney((Money)item);
+        } else if(item instanceof TangibleItem) {
+            return canSubtractTangibleItem((TangibleItem)item);
         } else {
-            return canSubtractTangibleItem(item.getItemId(), item.getAmount(), item.getDamage());
+            throw new IllegalArgumentException("unknown Item type");
         }
     }
 
-    public final void addItem(Item item)
-      throws IllegalArgumentException {
-        if(item.isMoney()) {
-            addMoney(item.getAmount());
+    public final void addItem(Item item) {
+        if(item instanceof Money) {
+            addMoney((Money)item);
+        } else if(item instanceof TangibleItem) {
+            addTangibleItem((TangibleItem)item);
         } else {
-            addTangibleItem(item.getItemId(), item.getAmount(), item.getDamage());
+            throw new IllegalArgumentException("unknown Item type");
         }
     }
 
-    public final void subtractItem(Item item)
-      throws IllegalArgumentException {
-        if(item.isMoney()) {
-            subtractMoney(item.getAmount());
+    public final void subtractItem(Item item) {
+        if(item instanceof Money) {
+            subtractMoney((Money)item);
+        } else if(item instanceof TangibleItem) {
+            subtractTangibleItem((TangibleItem)item);
         } else {
-            subtractTangibleItem(item.getItemId(), item.getAmount(), item.getDamage());
+            throw new IllegalArgumentException("unknown Item type");
         }
     }
 
@@ -55,29 +61,29 @@ public abstract class TradeAdapter {
      * Despite what some people think, it's actually possible to have
      * too much money.
      */
-    public abstract boolean canAddMoney(double amount);
+    public abstract boolean canAddMoney(Money money);
 
     /**
      * Figure out whether the target of this adapter has enough money or not.
      */
-    public abstract boolean canSubtractMoney(double amount);
+    public abstract boolean canSubtractMoney(Money money);
 
     /**
      * Return true if the inventory has enough space, otherwise false.
      */
-    public abstract boolean canAddTangibleItem(int itemId, int amount, short damage);
+    public abstract boolean canAddTangibleItem(TangibleItem tangibleItem);
 
     /**
      * Is there enough?
      */
-    public abstract boolean canSubtractTangibleItem(int itemId, int amount, short damage);
+    public abstract boolean canSubtractTangibleItem(TangibleItem tangibleItem);
 
-    public abstract void addMoney(double amount)
+    public abstract void addMoney(Money money)
         throws IllegalArgumentException;
-    public abstract void subtractMoney(double amount)
+    public abstract void subtractMoney(Money money)
         throws IllegalArgumentException;
-    public abstract void addTangibleItem(int itemId, int amount, short damage)
+    public abstract void addTangibleItem(TangibleItem tangibleItem)
         throws IllegalArgumentException;
-    public abstract void subtractTangibleItem(int itemId, int amount, short damage)
+    public abstract void subtractTangibleItem(TangibleItem tangibleItem)
         throws IllegalArgumentException;
 }

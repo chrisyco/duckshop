@@ -4,6 +4,14 @@
 
 ..
 
+7
+=
+
+* Implemented floating point money values (e.g. $1.5, $0.01).
+
+* Split SignItem class into the two classes TangibleItem and Money to
+  allow for floating point money values and integer item amounts.
+
 6
 =
 

@@ -1,7 +1,7 @@
 package tk.kirlian.SignTraderWithDucks.trading;
 
 import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
-import tk.kirlian.SignTraderWithDucks.items.Item;
+import tk.kirlian.SignTraderWithDucks.items.*;
 
 /**
  * Global trade signs have unlimited supplies of everything. Its
@@ -15,20 +15,20 @@ public class GlobalSignAdapter extends TradeAdapter {
     public GlobalSignAdapter(SignTraderPlugin plugin) {
         super(plugin);
     }
-    public boolean canAddMoney(double amount) {
+    public boolean canAddMoney(Money money) {
         return true;
     }
-    public boolean canSubtractMoney(double amount) {
+    public boolean canSubtractMoney(Money money) {
         return true;
     }
-    public boolean canAddTangibleItem(int itemId, int amount, short damage) {
+    public boolean canAddTangibleItem(TangibleItem tangibleItem) {
         return true;
     }
-    public boolean canSubtractTangibleItem(int itemId, int amount, short damage) {
+    public boolean canSubtractTangibleItem(TangibleItem tangibleItem) {
         return true;
     }
-    public void addMoney(double amount) {}
-    public void subtractMoney(double amount) {}
-    public void addTangibleItem(int itemId, int amount, short damage) {}
-    public void subtractTangibleItem(int itemId, int amount, short damage) {}
+    public void addMoney(Money money) {}
+    public void subtractMoney(Money money) {}
+    public void addTangibleItem(TangibleItem tangibleItem) {}
+    public void subtractTangibleItem(TangibleItem tangibleItem) {}
 }

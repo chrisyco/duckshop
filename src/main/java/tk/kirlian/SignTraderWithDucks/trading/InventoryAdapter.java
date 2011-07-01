@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import java.util.Map;
 
 import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
-import tk.kirlian.SignTraderWithDucks.items.Item;
+import tk.kirlian.SignTraderWithDucks.items.*;
 
 /**
  * TradeAdapter that works with things that have inventories -- such as
@@ -72,47 +72,47 @@ public abstract class InventoryAdapter extends TradeAdapter {
     }
 
     @Override
-    public boolean canAddMoney(double amount) {
+    public boolean canAddMoney(Money money) {
         return true;
     }
 
     @Override
-    public boolean canSubtractMoney(double amount) {
-        return account.hasEnough(amount);
+    public boolean canSubtractMoney(Money money) {
+        return account.hasEnough(money.getAmount());
     }
 
     @Override
-    public void addMoney(double amount) throws IllegalArgumentException {
-        if(!canAddMoney(amount)) {
+    public void addMoney(Money money) throws IllegalArgumentException {
+        if(!canAddMoney(money)) {
             throw new IllegalArgumentException("Too much money");
         } else {
-            account.add(amount);
+            account.add(money.getAmount());
         }
     }
 
     @Override
-    public void subtractMoney(double amount) throws IllegalArgumentException {
-        if(!canSubtractMoney(amount)) {
+    public void subtractMoney(Money money) throws IllegalArgumentException {
+        if(!canSubtractMoney(money)) {
             throw new IllegalArgumentException("Not enough money");
         } else {
-            account.subtract(amount);
+            account.subtract(money.getAmount());
         }
     }
 
     @Override
-    public boolean canAddTangibleItem(int itemId, int amount, short damage) {
+    public boolean canAddTangibleItem(TangibleItem addItem) {
         int total = 0;
         int size = inventory.getSize();
-        int maxStackSize = Material.getMaterial(itemId).getMaxStackSize();
-        ItemStack item;
+        int maxStackSize = Material.getMaterial(addItem.getItemId()).getMaxStackSize();
+        ItemStack invItem;
         for(int i = 0; i < size; ++i) {
-            item = inventory.getItem(i);
-            if(item.getTypeId() == itemId && item.getDurability() == damage) {
-                total += maxStackSize - item.getAmount();
-            } else if(item.getType() == Material.AIR) {
+            invItem = inventory.getItem(i);
+            if(invItem.getTypeId() == addItem.getItemId() && invItem.getDurability() == addItem.getDamage()) {
+                total += maxStackSize - invItem.getAmount();
+            } else if(invItem.getType() == Material.AIR) {
                 total += maxStackSize;
             }
-            if(total >= amount) {
+            if(total >= addItem.getAmount()) {
                 return true;
             }
         }
@@ -120,15 +120,15 @@ public abstract class InventoryAdapter extends TradeAdapter {
     }
 
     @Override
-    public boolean canSubtractTangibleItem(int itemId, int amount, short damage) {
+    public boolean canSubtractTangibleItem(TangibleItem subItem) {
         int total = 0;
         int size = inventory.getSize();
-        ItemStack item;
+        ItemStack invItem;
         for(int i = 0; i < size; ++i) {
-            item = inventory.getItem(i);
-            if(item.getTypeId() == itemId && item.getDurability() == damage) {
-                total += item.getAmount();
-                if(total >= amount) {
+            invItem = inventory.getItem(i);
+            if(invItem.getTypeId() == subItem.getItemId() && invItem.getDurability() == subItem.getDamage()) {
+                total += invItem.getAmount();
+                if(total >= subItem.getAmount()) {
                     return true;
                 }
             }
@@ -137,43 +137,23 @@ public abstract class InventoryAdapter extends TradeAdapter {
     }
 
     @Override
-    public void addTangibleItem(int itemId, int amount, short damage) throws IllegalArgumentException {
-        if(!canAddTangibleItem(itemId, amount, damage)) {
+    public void addTangibleItem(TangibleItem addItem) throws IllegalArgumentException {
+        if(!canAddTangibleItem(addItem)) {
             throw new IllegalArgumentException("Inventory full");
         } else {
-            int leftover = amount;
-            int size = inventory.getSize();
-            int maxStackSize = Material.getMaterial(itemId).getMaxStackSize();
-            ItemStack item;
-            for(int i = 0; i < size; ++i) {
-                item = inventory.getItem(i);
-                if(item.getTypeId() == itemId && item.getDurability() == damage && item.getAmount() < maxStackSize) {
-                    if(item.getAmount() + leftover >= maxStackSize) {
-                        leftover -= maxStackSize - item.getAmount();
-                        item.setAmount(maxStackSize);
-                    } else {
-                        item.setAmount(item.getAmount() + leftover);
-                        break;
-                    }
-                } else if(item.getType() == Material.AIR) {
-                    if(leftover > maxStackSize) {
-                        leftover -= maxStackSize;
-                        inventory.setItem(i, new ItemStack(itemId, maxStackSize, damage));
-                    } else {
-                        inventory.setItem(i, new ItemStack(itemId, leftover, damage));
-                        break;
-                    }
-                }
+            Map<Integer, ItemStack> leftover = inventory.addItem(addItem.toItemStack());
+            if(leftover.size() > 0) {
+                System.err.println(leftover.size() + " items disappeared!");
             }
         }
     }
 
     @Override
-    public void subtractTangibleItem(int itemId, int amount, short damage) throws IllegalArgumentException {
-        if(!canSubtractTangibleItem(itemId, amount, damage)) {
+    public void subtractTangibleItem(TangibleItem subItem) throws IllegalArgumentException {
+        if(!canSubtractTangibleItem(subItem)) {
             throw new IllegalArgumentException("Inventory empty");
         } else {
-            Map<Integer, ItemStack> leftover = inventory.removeItem(new ItemStack(itemId, amount));
+            Map<Integer, ItemStack> leftover = inventory.removeItem(subItem.toItemStack());
             if(leftover.size() > 0) {
                 System.err.println(leftover.size() + " items disappeared!");
             }
