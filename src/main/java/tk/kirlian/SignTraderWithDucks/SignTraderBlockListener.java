@@ -41,7 +41,7 @@ public class SignTraderBlockListener extends BlockListener {
         }
         if(sign != null) {
             sign.writeToStringArray(event.getLines());
-            event.getPlayer().sendMessage("Created sign! Yay!");
+            event.getPlayer().sendMessage("Created sign successfully.");
             if(!sign.isGlobal()) {
                 event.getPlayer().sendMessage("Type \"/signtrader link\" to connect this sign with a chest.");
             }

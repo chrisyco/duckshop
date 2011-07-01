@@ -126,7 +126,6 @@ public class TangibleItem extends Item {
         for(int i = 0; i < quotient; ++i) {
             stacks[i] = new ItemStack(itemId, maxStackSize, damage);
         }
-        for(ItemStack stack : stacks) System.out.println(stack.toString());
         return stacks;
     }
 

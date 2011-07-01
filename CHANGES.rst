@@ -12,6 +12,8 @@
 * Split SignItem class into the two classes TangibleItem and Money to
   allow for floating point money values and integer item amounts.
 
+* Removed "yay"s because everyone kept complaining about them :D
+
 6
 =
 

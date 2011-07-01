@@ -111,7 +111,7 @@ public class SignTraderPlayerListener extends PlayerListener {
         if(playerLinkSign.containsKey(player)) {
             TradingSign sign = playerLinkSign.get(player);
             sign.setChestLocation(block.getLocation());
-            player.sendMessage("Sign connected successfully! Yay!");
+            player.sendMessage("Sign connected successfully.");
             cancelLink(player);
         }
     }

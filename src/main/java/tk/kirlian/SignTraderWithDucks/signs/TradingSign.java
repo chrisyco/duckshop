@@ -181,7 +181,6 @@ public class TradingSign {
 
     public void setChestLocation(Location chestLocation) {
         SignManager.getInstance(plugin).setChestLocation(signLocation, chestLocation);
-        log.info("Set chest location to " + chestLocation);
     }
 
     /**
