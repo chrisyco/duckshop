@@ -1,6 +1,9 @@
 package tk.kirlian.SignTraderWithDucks.items;
 
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import java.util.List;
+import java.util.LinkedList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -104,10 +107,27 @@ public class TangibleItem extends Item {
     }
 
     /**
-     * Create an eqivalent Bukkit ItemStack.
+     * Create an array of ItemStacks with the same data as this object,
+     * but grouped into stacks.
      */
-    public ItemStack toItemStack() {
-        return new ItemStack(itemId, amount, damage);
+    public ItemStack[] toItemStacks() {
+        int maxStackSize = Material.getMaterial(itemId).getMaxStackSize();
+        int leftover = amount;
+        ItemStack[] stacks;
+        int quotient = amount / maxStackSize;
+        if(amount % maxStackSize == 0) {
+            stacks = new ItemStack[quotient];
+        } else {
+            // If it cannot be divided evenly, the last cell will
+            // contain the part left over
+            stacks = new ItemStack[quotient+1];
+            stacks[quotient] = new ItemStack(itemId, amount % maxStackSize, damage);
+        }
+        for(int i = 0; i < quotient; ++i) {
+            stacks[i] = new ItemStack(itemId, maxStackSize, damage);
+        }
+        for(ItemStack stack : stacks) System.out.println(stack.toString());
+        return stacks;
     }
 
     @Override

@@ -72,14 +72,17 @@ aren't associated with a player; they spawn items automatically rather
 than drawing from a chest.
 
 For example, if Rachel, being the entrepreneurial type, wanted to sell
-iron swords at $12 each::
+iron swords at $12.50 each::
 
     Rachel
     1 isword
-    $12
+    $12.50
 
-This means Rachel will receive $12 and the person who clicks the sign
+This means Rachel will receive $12.50 and the person who clicks the sign
 will receive an iron sword.
+
+.. note::
+   Floating point money values only work in version 7 or newer.
 
 Or, if Peter, the up-and-coming master builder, wanted to buy wooden
 planks at $2 for four::
@@ -105,7 +108,7 @@ Or, if Violet was feeling rather kind and wanted to give free dirt::
 Or, if Wally the admin needed to get rid of slimes::
 
     [Global]
-    $1
+    $0.25
     1 slime
 
 Connecting the Chest

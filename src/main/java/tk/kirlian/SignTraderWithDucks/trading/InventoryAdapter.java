@@ -141,7 +141,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
         if(!canAddTangibleItem(addItem)) {
             throw new IllegalArgumentException("Inventory full");
         } else {
-            Map<Integer, ItemStack> leftover = inventory.addItem(addItem.toItemStack());
+            Map<Integer, ItemStack> leftover = inventory.addItem(addItem.toItemStacks());
             if(leftover.size() > 0) {
                 System.err.println(leftover.size() + " items disappeared!");
             }
@@ -153,7 +153,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
         if(!canSubtractTangibleItem(subItem)) {
             throw new IllegalArgumentException("Inventory empty");
         } else {
-            Map<Integer, ItemStack> leftover = inventory.removeItem(subItem.toItemStack());
+            Map<Integer, ItemStack> leftover = inventory.removeItem(subItem.toItemStacks());
             if(leftover.size() > 0) {
                 System.err.println(leftover.size() + " items disappeared!");
             }
