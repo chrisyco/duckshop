@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import java.util.Map;
 
 import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
-import tk.kirlian.SignTraderWithDucks.signs.SignItem;
+import tk.kirlian.SignTraderWithDucks.items.Item;
 
 /**
  * TradeAdapter that works with things that have inventories -- such as
@@ -100,7 +100,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
     }
 
     @Override
-    public boolean canAddItem(int itemId, int amount, short damage) {
+    public boolean canAddTangibleItem(int itemId, int amount, short damage) {
         int total = 0;
         int size = inventory.getSize();
         int maxStackSize = Material.getMaterial(itemId).getMaxStackSize();
@@ -120,7 +120,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
     }
 
     @Override
-    public boolean canSubtractItem(int itemId, int amount, short damage) {
+    public boolean canSubtractTangibleItem(int itemId, int amount, short damage) {
         int total = 0;
         int size = inventory.getSize();
         ItemStack item;
@@ -137,8 +137,8 @@ public abstract class InventoryAdapter extends TradeAdapter {
     }
 
     @Override
-    public void addItem(int itemId, int amount, short damage) throws IllegalArgumentException {
-        if(!canAddItem(itemId, amount, damage)) {
+    public void addTangibleItem(int itemId, int amount, short damage) throws IllegalArgumentException {
+        if(!canAddTangibleItem(itemId, amount, damage)) {
             throw new IllegalArgumentException("Inventory full");
         } else {
             int leftover = amount;
@@ -169,8 +169,8 @@ public abstract class InventoryAdapter extends TradeAdapter {
     }
 
     @Override
-    public void subtractItem(int itemId, int amount, short damage) throws IllegalArgumentException {
-        if(!canSubtractItem(itemId, amount, damage)) {
+    public void subtractTangibleItem(int itemId, int amount, short damage) throws IllegalArgumentException {
+        if(!canSubtractTangibleItem(itemId, amount, damage)) {
             throw new IllegalArgumentException("Inventory empty");
         } else {
             Map<Integer, ItemStack> leftover = inventory.removeItem(new ItemStack(itemId, amount));

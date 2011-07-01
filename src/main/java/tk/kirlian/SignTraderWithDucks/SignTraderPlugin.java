@@ -12,7 +12,7 @@ import org.bukkit.plugin.PluginManager;
 
 import java.util.logging.Logger;
 import tk.kirlian.util.CustomLogger;
-import tk.kirlian.util.itemdb.*;
+import tk.kirlian.SignTraderWithDucks.items.ItemDB;
 import tk.kirlian.SignTraderWithDucks.signs.SignManager;
 import tk.kirlian.SignTraderWithDucks.permissions.PermissionsProvider;
 

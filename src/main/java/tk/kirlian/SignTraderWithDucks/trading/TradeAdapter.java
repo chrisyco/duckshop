@@ -1,7 +1,7 @@
 package tk.kirlian.SignTraderWithDucks.trading;
 
 import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
-import tk.kirlian.SignTraderWithDucks.signs.SignItem;
+import tk.kirlian.SignTraderWithDucks.items.Item;
 
 /**
  * An object representing something which can trade -- whether it be a
@@ -17,37 +17,37 @@ public abstract class TradeAdapter {
         this.plugin = plugin;
     }
 
-    public final boolean canAddSignItem(SignItem item) {
+    public final boolean canAddItem(Item item) {
         if(item.isMoney()) {
             return canAddMoney(item.getAmount());
         } else {
-            return canAddItem(item.getItemId(), item.getAmount(), item.getDamage());
+            return canAddTangibleItem(item.getItemId(), item.getAmount(), item.getDamage());
         }
     }
 
-    public final boolean canSubtractSignItem(SignItem item) {
+    public final boolean canSubtractItem(Item item) {
         if(item.isMoney()) {
             return canSubtractMoney(item.getAmount());
         } else {
-            return canSubtractItem(item.getItemId(), item.getAmount(), item.getDamage());
+            return canSubtractTangibleItem(item.getItemId(), item.getAmount(), item.getDamage());
         }
     }
 
-    public final void addSignItem(SignItem item)
+    public final void addItem(Item item)
       throws IllegalArgumentException {
         if(item.isMoney()) {
             addMoney(item.getAmount());
         } else {
-            addItem(item.getItemId(), item.getAmount(), item.getDamage());
+            addTangibleItem(item.getItemId(), item.getAmount(), item.getDamage());
         }
     }
 
-    public final void subtractSignItem(SignItem item)
+    public final void subtractItem(Item item)
       throws IllegalArgumentException {
         if(item.isMoney()) {
             subtractMoney(item.getAmount());
         } else {
-            subtractItem(item.getItemId(), item.getAmount(), item.getDamage());
+            subtractTangibleItem(item.getItemId(), item.getAmount(), item.getDamage());
         }
     }
 
@@ -65,19 +65,19 @@ public abstract class TradeAdapter {
     /**
      * Return true if the inventory has enough space, otherwise false.
      */
-    public abstract boolean canAddItem(int itemId, int amount, short damage);
+    public abstract boolean canAddTangibleItem(int itemId, int amount, short damage);
 
     /**
      * Is there enough?
      */
-    public abstract boolean canSubtractItem(int itemId, int amount, short damage);
+    public abstract boolean canSubtractTangibleItem(int itemId, int amount, short damage);
 
     public abstract void addMoney(double amount)
         throws IllegalArgumentException;
     public abstract void subtractMoney(double amount)
         throws IllegalArgumentException;
-    public abstract void addItem(int itemId, int amount, short damage)
+    public abstract void addTangibleItem(int itemId, int amount, short damage)
         throws IllegalArgumentException;
-    public abstract void subtractItem(int itemId, int amount, short damage)
+    public abstract void subtractTangibleItem(int itemId, int amount, short damage)
         throws IllegalArgumentException;
 }

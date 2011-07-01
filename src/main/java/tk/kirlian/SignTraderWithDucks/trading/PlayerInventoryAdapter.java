@@ -4,7 +4,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
-import tk.kirlian.SignTraderWithDucks.signs.SignItem;
 
 /**
  * Extends the InventoryAdapter to support players.
@@ -18,14 +17,14 @@ public class PlayerInventoryAdapter extends InventoryAdapter {
     }
 
     @Override
-    public void addItem(int itemId, int amount, short damage) throws IllegalArgumentException {
-        super.addItem(itemId, amount, damage);
+    public void addTangibleItem(int itemId, int amount, short damage) throws IllegalArgumentException {
+        super.addTangibleItem(itemId, amount, damage);
         player.updateInventory();
     }
 
     @Override
-    public void subtractItem(int itemId, int amount, short damage) throws IllegalArgumentException {
-        super.subtractItem(itemId, amount, damage);
+    public void subtractTangibleItem(int itemId, int amount, short damage) throws IllegalArgumentException {
+        super.subtractTangibleItem(itemId, amount, damage);
         player.updateInventory();
     }
 }

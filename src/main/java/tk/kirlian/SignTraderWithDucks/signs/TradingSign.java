@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import tk.kirlian.util.Locations;
 import tk.kirlian.SignTraderWithDucks.*;
 import tk.kirlian.SignTraderWithDucks.errors.*;
+import tk.kirlian.SignTraderWithDucks.items.*;
 import tk.kirlian.SignTraderWithDucks.permissions.*;
 import tk.kirlian.SignTraderWithDucks.trading.*;
 
@@ -20,7 +21,7 @@ public class TradingSign {
     private Player owner;
     private Location signLocation;
     private boolean global;
-    private SignItem sellerToBuyer, buyerToSeller;
+    private Item sellerToBuyer, buyerToSeller;
 
     /**
      * Create a new TradingSign instance. The placing player may be null
@@ -57,8 +58,8 @@ public class TradingSign {
         }
 
         // Parse the two middle lines
-        sellerToBuyer = SignItem.fromString(lines[1]);
-        buyerToSeller = SignItem.fromString(lines[2]);
+        sellerToBuyer = Item.fromString(lines[1]);
+        buyerToSeller = Item.fromString(lines[2]);
     }
 
     /**
@@ -132,14 +133,14 @@ public class TradingSign {
       throws InvalidChestException, CannotTradeException, ChestProtectionException {
         final TradeAdapter sellerAdapter = getAdapter();
         // ARGH!!!
-        if(sellerAdapter.canAddSignItem(buyerToSeller) &&
-           sellerAdapter.canSubtractSignItem(sellerToBuyer) &&
-           buyerAdapter.canAddSignItem(sellerToBuyer) &&
-           buyerAdapter.canSubtractSignItem(buyerToSeller)) {
-            sellerAdapter.addSignItem(buyerToSeller);
-            sellerAdapter.subtractSignItem(sellerToBuyer);
-            buyerAdapter.addSignItem(sellerToBuyer);
-            buyerAdapter.subtractSignItem(buyerToSeller);
+        if(sellerAdapter.canAddItem(buyerToSeller) &&
+           sellerAdapter.canSubtractItem(sellerToBuyer) &&
+           buyerAdapter.canAddItem(sellerToBuyer) &&
+           buyerAdapter.canSubtractItem(buyerToSeller)) {
+            sellerAdapter.addItem(buyerToSeller);
+            sellerAdapter.subtractItem(sellerToBuyer);
+            buyerAdapter.addItem(sellerToBuyer);
+            buyerAdapter.subtractItem(buyerToSeller);
         } else {
             throw new CannotTradeException();
         }

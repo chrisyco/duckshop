@@ -1,16 +1,16 @@
-package tk.kirlian.SignTraderWithDucks.signs;
+package tk.kirlian.SignTraderWithDucks.items;
 
 import java.io.Serializable;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-import tk.kirlian.util.itemdb.*;
+import tk.kirlian.SignTraderWithDucks.*;
 import tk.kirlian.SignTraderWithDucks.errors.*;
 
 /**
  * Represents an item to be traded in a {@link TradingSign}.
  */
-public class SignItem implements Serializable {
+public class Item implements Serializable {
     /**
      * An item ID that represents money, rather than a tangible item.
      */
@@ -25,12 +25,12 @@ public class SignItem implements Serializable {
     private boolean hasDamage;
 
     /**
-     * Create a new SignItem instance.
+     * Create a new Item instance.
      * <p>
      * The item string is not parsed; it is simply kept so it can be
      * later retrieved by {@link #getOriginalString()}.
      */
-    public SignItem(final int itemId, final int amount, final short damage, final String itemString) {
+    public Item(final int itemId, final int amount, final short damage, final String itemString) {
         this.itemId = itemId;
         this.amount = amount;
         this.damage = damage;
@@ -39,12 +39,12 @@ public class SignItem implements Serializable {
     }
 
     /**
-     * Create a new SignItem instance without a damage value.
+     * Create a new Item instance without a damage value.
      * <p>
      * The item string is not parsed; it is simply kept so it can be
      * later retrieved by {@link #getOriginalString()}.
      */
-    public SignItem(final int itemId, final int amount, final String itemString) {
+    public Item(final int itemId, final int amount, final String itemString) {
         this.itemId = itemId;
         this.amount = amount;
         this.damage = 0;
@@ -53,23 +53,23 @@ public class SignItem implements Serializable {
     }
 
     /**
-     * Create a new SignItem instance.
+     * Create a new Item instance.
      */
-    public SignItem(final int itemId, final int amount, final short damage) {
+    public Item(final int itemId, final int amount, final short damage) {
         this(itemId, amount, damage, "");
     }
 
     /**
-     * Create a new SignItem instance without a damage value.
+     * Create a new Item instance without a damage value.
      */
-    public SignItem(final int itemId, final int amount) {
+    public Item(final int itemId, final int amount) {
         this(itemId, amount, "");
     }
 
     /**
      * Parse a single line from a TradingSign.
      */
-    public static SignItem fromString(final String itemString)
+    public static Item fromString(final String itemString)
       throws InvalidSyntaxException {
         int itemId;
         int amount;
@@ -98,11 +98,11 @@ public class SignItem implements Serializable {
             // Money
             } else if(matcher.group(2) == null && matcher.group(3) == null) {
                 amount = Integer.parseInt(matcher.group(1));
-                itemId = SignItem.MONEY;
+                itemId = MONEY;
             } else {
                 throw new InvalidSyntaxException();
             }
-            return new SignItem(itemId, amount, (short)0, itemString);
+            return new Item(itemId, amount, (short)0, itemString);
         } else {
             throw new InvalidSyntaxException();
         }
@@ -123,13 +123,13 @@ public class SignItem implements Serializable {
     /**
      * Create a normalized human readable representation of this object.
      * <p>
-     * It is normalized as in any two equivalent SignItem objects would
+     * It is normalized as in any two equivalent Item objects would
      * have the same String.
      * <p>
      * The resulting String can be passed back to {@link #fromString(String)}.
      */
     public String toString() {
-        if(itemId == SignItem.MONEY) {
+        if(itemId == MONEY) {
             return "$" + amount;
         } else {
             return amount + " " + itemDB.getItemById(itemId).getShortName();
@@ -169,6 +169,6 @@ public class SignItem implements Serializable {
      * Return whether this represents money, or a tangible item.
      */
     public boolean isMoney() {
-        return (itemId == SignItem.MONEY);
+        return (itemId == MONEY);
     }
 }

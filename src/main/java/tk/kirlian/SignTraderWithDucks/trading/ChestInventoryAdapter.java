@@ -10,7 +10,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.block.BlockFace;
 
 import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
-import tk.kirlian.SignTraderWithDucks.signs.SignItem;
+import tk.kirlian.SignTraderWithDucks.items.Item;
 import tk.kirlian.SignTraderWithDucks.errors.*;
 
 /**
