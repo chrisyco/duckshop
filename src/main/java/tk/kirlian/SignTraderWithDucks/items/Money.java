@@ -1,5 +1,8 @@
 package tk.kirlian.SignTraderWithDucks.items;
 
+import java.util.Arrays;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -13,7 +16,14 @@ public class Money extends Item {
     /**
      * The format for money: a dollar sign, then a floating point number.
      */
-    private static Pattern moneyPattern = Pattern.compile("\\$((\\d*\\.)?\\d+)");
+    private static final Pattern moneyPattern = Pattern.compile("\\$((\\d*\\.)?\\d+)");
+
+    /**
+     * The set of words that mean "nothing".
+     * <p>
+     * Overkill? I think not!
+     */
+    private static final Set<String> nothingAliases = new HashSet<String>(Arrays.asList(new String[] {"nothing", "free"}));
 
     private double amount;
 
@@ -41,12 +51,16 @@ public class Money extends Item {
      */
     public static Money fromString(final String itemString)
       throws InvalidSyntaxException {
-        Matcher matcher = moneyPattern.matcher(itemString);
-        if(matcher.matches()) {
-            double amount = Double.parseDouble(matcher.group(1));
-            return new Money(amount);
+        if(nothingAliases.contains(itemString.toLowerCase())) {
+            return new Money(0.0);
         } else {
-            throw new InvalidSyntaxException();
+            Matcher matcher = moneyPattern.matcher(itemString);
+            if(matcher.matches()) {
+                double amount = Double.parseDouble(matcher.group(1));
+                return new Money(amount);
+            } else {
+                throw new InvalidSyntaxException();
+            }
         }
     }
 
@@ -59,6 +73,10 @@ public class Money extends Item {
 
     @Override
     public String toString() {
-        return "$" + amount;
+        if(amount == 0.0) {
+            return "nothing";
+        } else {
+            return "$" + amount;
+        }
     }
 }
