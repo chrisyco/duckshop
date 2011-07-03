@@ -9,6 +9,7 @@ import java.util.Map;
 
 import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
 import tk.kirlian.SignTraderWithDucks.items.*;
+import tk.kirlian.util.DummyEconomy;
 
 /**
  * TradeAdapter that works with things that have inventories -- such as
@@ -73,7 +74,8 @@ public abstract class InventoryAdapter extends TradeAdapter {
 
     @Override
     public boolean canAddMoney(Money money) {
-        return true;
+        // This is absolutely disgusting
+        return (money.getAmount() == 0.0 || !(account instanceof DummyEconomy.DummyAccount));
     }
 
     @Override

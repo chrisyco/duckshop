@@ -7,6 +7,7 @@ import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.event.server.ServerListener;
 
 import java.util.logging.Logger;
+import tk.kirlian.util.DummyEconomy;
 
 /**
  * Listens for events such as loading and unloading another plugin.
@@ -19,6 +20,7 @@ public class SignTraderServerListener extends ServerListener {
     public SignTraderServerListener(SignTraderPlugin plugin) {
         this.log = plugin.log;
         this.plugin = plugin;
+        plugin.economyMethod = DummyEconomy.getInstance();
     }
 
     // Many thanks to Nijikokun for this code.
@@ -26,7 +28,7 @@ public class SignTraderServerListener extends ServerListener {
     @Override
     public void onPluginDisable(PluginDisableEvent event) {
         if(methods != null && methods.hasMethod() && methods.checkDisabled(event.getPlugin())) {
-            plugin.economyMethod = null;
+            plugin.economyMethod = DummyEconomy.getInstance();
             log.info("Economy system disabled. Money transactions will now fail like a skydiving elephant.");
         }
     }

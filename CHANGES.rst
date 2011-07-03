@@ -4,6 +4,13 @@
 
 ..
 
+8
+=
+
+* Modified to work even without an economy plugin. Without an economy
+  plugin, signs will only support barter or giving/receiving items for
+  free.
+
 7
 =
 
