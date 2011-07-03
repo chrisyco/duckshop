@@ -11,6 +11,8 @@
   plugin, signs will only support barter or giving/receiving items for
   free.
 
+* Added support for "nothing" and "free" as aliases for $0.
+
 7
 =
 

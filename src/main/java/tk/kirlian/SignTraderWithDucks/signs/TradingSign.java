@@ -115,7 +115,7 @@ public class TradingSign {
 
     /**
      * Return whether this sign is <i>global</i>.
-     *
+     * <p>
      * A sign is global if it is not associated with a player.
      */
      public boolean isGlobal() {
@@ -162,7 +162,7 @@ public class TradingSign {
 
     /**
      * Create a human-readable representation of this TradingSign.
-     *
+     * <p>
      * Do not use this for updating the actual sign; to do this, use
      * updateSign() and writeToStringArray().
      */

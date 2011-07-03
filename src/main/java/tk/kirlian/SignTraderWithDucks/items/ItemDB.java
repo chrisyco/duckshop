@@ -8,7 +8,7 @@ import org.yaml.snakeyaml.constructor.SafeConstructor;
 
 /**
  * A database of Minecraft items and their data values and names.
- *
+ * <p>
  * The item data is loaded from a the file resource
  * <code>item_aliases.yml</code>.
  */
