@@ -6,9 +6,9 @@ import org.bukkit.Server;
 
 /**
  * A dummy economy plugin.
- *
+ * <p>
  * Useful for emergencies, especially skydiving elephants.
- *
+ * <p>
  * All the methods throw an {@link UnsupportedOperationException} if
  * the caller tries to do anything that involves modifying the account
  * e.g. adding a non-zero amount.
