@@ -133,13 +133,13 @@
   canonical_name: Wool
   short_name: wool
 37:
-  aliases: [dandelion, yellowflower, yflower, flower, yflwr, flwr]
+  aliases: [dandelion, dandy, yellowflower, yflower, flower, yflwr, flwr]
   canonical_name: Dandelion
-  short_name: yflwr
+  short_name: yflower
 38:
   aliases: [rose, redflower, rflower, rflwr]
   canonical_name: Rose
-  short_name: rflwr
+  short_name: rflower
 39:
   aliases: [brownmushroom, mushroom, bmushroom, bmshrm]
   canonical_name: Brown Mushroom
@@ -151,11 +151,11 @@
 41:
   aliases: [goldblock, goldblk, gblock, gldblk, gldblock, gblk]
   canonical_name: Gold Block
-  short_name: gldblk
+  short_name: goldblk
 42:
   aliases: [ironblock, ironblk, iblock, irnblk, irnblock, iblk]
   canonical_name: Iron Block
-  short_name: irnblk
+  short_name: ironblk
 43:
   aliases: [doubleslab, dblslab, dblslb]
   canonical_name: Double Slab
@@ -167,7 +167,7 @@
 45:
   aliases: [brickblock, brickblk, brkblk]
   canonical_name: Brick Block
-  short_name: brkblk
+  short_name: brickblk
 46:
   aliases: [tnt, dynamite, bomb]
   canonical_name: Generic Explosive (often incorrectly named TNT)
@@ -183,7 +183,7 @@
 49:
   aliases: [obsidian, obsdn]
   canonical_name: Obsidian
-  short_name: obsdn
+  short_name: obsidian
 50:
   aliases: [torch]
   canonical_name: Torch
@@ -223,27 +223,27 @@
 59:
   aliases: [seedblk, sdblk]
   canonical_name: Seed Block
-  short_name: sdblk
+  short_name: seedblk
 60:
   aliases: [farmland, frmlnd, tilleddirt, tilldirt, dirtwithbenefits]
   canonical_name: Farmland
-  short_name: frmlnd
+  short_name: farmland
 61:
   aliases: [furnace, frnace]
   canonical_name: Furnace
-  short_name: frnace
+  short_name: furnace
 62:
   aliases: [burningfurnace, bfurnace, bfrnace, bfrnce]
   canonical_name: Burning Furnace
-  short_name: bfrnce
+  short_name: bfurnace
 63:
   aliases: [signpost, signblk, sgnpst]
   canonical_name: Sign Post Block
-  short_name: sgnpst
+  short_name: signpost
 64:
-  aliases: [woodendoorblk, wooddoorblk, wdoorblk, wdrblk halfdoor]
+  aliases: [woodendoorblk, wooddoorblk, wdoorblk, wdrblk, halfdoor]
   canonical_name: Wooden Door Block
-  short_name: wdrblk
+  short_name: wdoorblk
 65:
   aliases: [ladder, woodenladder, woodladder, wladder]
   canonical_name: Ladder
@@ -259,11 +259,11 @@
 68:
   aliases: [wallsign, wallsignblk, wlsign]
   canonical_name: Wall Sign Block
-  short_name: wlsign
+  short_name: wallsign
 69:
   aliases: [lever, redstonelever, redlever, rlever]
   canonical_name: Lever
-  short_name: lever
+  short_name: rlever
 70:
   aliases: [stonepressureplate, stoneplate, splate, stonepp]
   canonical_name: Stone Pressure Plate
@@ -271,7 +271,7 @@
 71:
   aliases: [irondoorblk, idoorblk, idrblk]
   canonical_name: Iron Door Block
-  short_name: idrblk
+  short_name: idoorblk
 72:
   aliases: [woodenpressureplate, woodpressureplate, woodplate, woodpp, wplate]
   canonical_name: Wooden Pressure Plate
@@ -283,7 +283,7 @@
 74:
   aliases: [glowingredstoneore, glowingredore, gredore, grdore]
   canonical_name: Glowing Redstone Ore
-  short_name: grdore
+  short_name: gredore
 75:
   aliases: [redstonetorchoff, redtorchoff, rtorchoff]
   canonical_name: Redstone Torch (Off)
@@ -365,7 +365,7 @@
   canonical_name: Redstone Repeater (On)
   short_name: rdiodeon
 95:
-  aliases: [lockedchest]
+  aliases: [lockedchest, lchest]
   canonical_name: Locked Chest
   short_name: lockedchest
 256:
@@ -403,7 +403,7 @@
 264:
   aliases: [diamond, dmnd, dmd, supercompressedcoal]
   canonical_name: Diamond
-  short_name: dmnd
+  short_name: diamond
 265:
   aliases: [ironingot, iron, iingot]
   canonical_name: Iron Ingot
@@ -507,15 +507,15 @@
 290:
   aliases: [woodenhoe, woodhoe, wdhoe, whoe]
   canonical_name: Wooden Hoe
-  short_name: wdhoe
+  short_name: woodhoe
 291:
   aliases: [stonehoe, stnhoe, shoe]
   canonical_name: Stone Hoe
-  short_name: stnhoe
+  short_name: stonehoe
 292:
   aliases: [ironhoe, irnhoe, ihoe]
   canonical_name: ironhoe
-  short_name: irnhoe
+  short_name: ironhoe
 293:
   aliases: [diamondhoe, dmdhoe, dhoe]
   canonical_name: Diamond Hoe
@@ -523,7 +523,7 @@
 294:
   aliases: [goldhoe, gldhoe, ghoe]
   canonical_name: Gold Hoe
-  short_name: gldhoe
+  short_name: goldhoe
 295:
   aliases: [seed]
   canonical_name: Seed
@@ -631,7 +631,7 @@
 321:
   aliases: [painting, picture, pting, pntng, pic]
   canonical_name: Painting
-  short_name: pntng
+  short_name: painting
 322:
   aliases: [goldenapple, goldapple, gapple]
   canonical_name: Golden Apple
@@ -649,15 +649,15 @@
   canonical_name: Bucket
   short_name: bucket
 326:
-  aliases: [waterbucket, waterbkt, wbkt]
+  aliases: [waterbucket, waterbkt, wbucket, wbkt]
   canonical_name: Water Bucket
-  short_name: wbkt
+  short_name: waterbkt
 327:
-  aliases: [lavabucket, lavabkt, lbkt]
+  aliases: [lavabucket, lavabkt, lbucket, lbkt]
   canonical_name: Lava Bucket
-  short_name: lbkt
+  short_name: lavabkt
 328:
-  aliases: [minecart, cart]
+  aliases: [minecart, mcart, cart]
   canonical_name: Minecart
   short_name: cart
 329:
@@ -675,7 +675,7 @@
 332:
   aliases: [snowball, snowbl]
   canonical_name: Snowball
-  short_name: snowbl
+  short_name: snowball
 333:
   aliases: [boat]
   canonical_name: Boat
@@ -727,11 +727,11 @@
 345:
   aliases: [compass, cmpass, compss, cmpss]
   canonical_name: Compass
-  short_name: cmpss
+  short_name: compass
 346:
   aliases: [fishingrod, fishrod, rod]
   canonical_name: Fishing Rod
-  short_name: rod
+  short_name: fishrod
 347:
   aliases: [clock, watch]
   canonical_name: Clock
