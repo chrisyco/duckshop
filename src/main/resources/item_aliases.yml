@@ -4,7 +4,7 @@
 #                                                                      #
 #  *  Plurals are added automatically.                                 #
 #                                                                      #
-#  *  Short names *should* be limited to 6 characters. This can be     #
+#  *  Short names *should* be limited to 8 characters. This can be     #
 #     loosened for rare/unstackable items (e.g. locked chests).        #
 #                                                                      #
 ########################################################################
@@ -103,7 +103,7 @@
 23:
   aliases: [dispenser, dispense, dspnsr, rdspnsr]
   canonical_name: Dispenser
-  short_name: rdspnsr
+  short_name: dispenser
 24:
   aliases: [sandstone, sndstn, sstone]
   canonical_name: Sandstone
@@ -121,17 +121,41 @@
   canonical_name: Powered Rail
   short_name: prail
 28:
-  aliases: [detectorrail, redrail, rrail]
+  aliases: [detectorrail, redrail, rrail, drail]
   canonical_name: Detector Rail
   short_name: drail
+29:
+  aliases: [stickypiston, spiston, spstn]
+  canonical_name: Sticky Piston
+  short_name: spiston
 30:
-  aliases: [web]
-  canonical_name: Web
-  short_name: web
+  aliases: [cobweb, web]
+  canonical_name: Cobweb
+  short_name: cobweb
+31:
+  aliases: [tallgrass, tgrass]
+  canonical_name: Tall Grass
+  short_name: tgrass
+32:
+  aliases: [deadshrub, dshrub]
+  canonical_name: Dead Shrub
+  short_name: dshrub
+33:
+  aliases: [piston, pstn]
+  canonical_name: Piston
+  short_name: piston
+34:
+  aliases: [pistonext, pstnext]
+  canonical_name: Piston Extension
+  short_name: pstnext
 35:
   aliases: [wool, cloth, sheephair]
   canonical_name: Wool
   short_name: wool
+36:
+  aliases: [bmbp]
+  canonical_name: Block Moved By Piston
+  short_name: bmbp
 37:
   aliases: [dandelion, dandy, yellowflower, yflower, flower, yflwr, flwr]
   canonical_name: Dandelion
@@ -263,7 +287,7 @@
 69:
   aliases: [lever, redstonelever, redlever, rlever]
   canonical_name: Lever
-  short_name: rlever
+  short_name: lever
 70:
   aliases: [stonepressureplate, stoneplate, splate, stonepp]
   canonical_name: Stone Pressure Plate
@@ -359,15 +383,19 @@
 93:
   aliases: [repeatoff, rrepeatoff, diodeoff, rdiodeoff, rptroff, rrptroff]
   canonical_name: Redstone Repeater (Off)
-  short_name: rdiodeoff
+  short_name: diodeoff
 94:
   aliases: [repeaton, rrepeaton, diodeon, rdiodeon, rptron, rrptron]
   canonical_name: Redstone Repeater (On)
-  short_name: rdiodeon
+  short_name: diodeon
 95:
-  aliases: [lockedchest, lchest]
+  aliases: [lockedchest]
   canonical_name: Locked Chest
   short_name: lockedchest
+96:
+  aliases: [trapdoor, tdoor, hatch]
+  canonical_name: Trapdoor
+  short_name: trapdoor
 256:
   aliases: [ironshovel, ishovel, ishovl, ironspade, ispade]
   canonical_name: Iron Shovel
@@ -375,7 +403,7 @@
 257:
   aliases: [ironpickaxe, ipickaxe, ironpick, ipick]
   canonical_name: Iron Pickaxe
-  short_name: ipick
+  short_name: ipickaxe
 258:
   aliases: [ironaxe, iaxe]
   canonical_name: Iron Axe
@@ -427,7 +455,7 @@
 270:
   aliases: [woodenpickaxe, woodpickaxe, wpickaxe, woodenpick, woodpick, wpick]
   canonical_name: Wooden Pickaxe
-  short_name: wpick
+  short_name: wpickaxe
 271:
   aliases: [woodenaxe, woodaxe, waxe]
   canonical_name: Wooden Axe
@@ -443,7 +471,7 @@
 274:
   aliases: [stonepickaxe, spickaxe, stonepick, spick]
   canonical_name: Stone Pickaxe
-  short_name: spick
+  short_name: spickaxe
 275:
   aliases: [stoneaxe, saxe]
   canonical_name: Stone Axe
@@ -459,7 +487,7 @@
 278:
   aliases: [diamondpickaxe, dpickaxe, diamondpick, dpick]
   canonical_name: Diamond Pickaxe
-  short_name: dpick
+  short_name: dpickaxe
 279:
   aliases: [diamondaxe, daxe]
   canonical_name: Diamond Axe
@@ -487,7 +515,7 @@
 285:
   aliases: [goldpickaxe, gpickaxe, goldpick, gpick]
   canonical_name: Gold Pickaxe
-  short_name: gpick
+  short_name: gpickaxe
 286:
   aliases: [goldaxe, gaxe]
   canonical_name: Gold Axe
@@ -555,7 +583,7 @@
 302:
   aliases: [chainhelmet, chelmet, chelm]
   canonical_name: Chain Helmet
-  short_name: chelm
+  short_name: chelmet
 303:
   aliases: [chainchest, cchest]
   canonical_name: Chain Chestplate
@@ -571,7 +599,7 @@
 306:
   aliases: [ironhelmet, ihelmet, ihelm]
   canonical_name: Iron Helmet
-  short_name: ihelm
+  short_name: ihelmet
 307:
   aliases: [ironchest, ichest]
   canonical_name: Iron Chestplate
@@ -587,7 +615,7 @@
 310:
   aliases: [diamondhelmet, dhelmet]
   canonical_name: Diamond Helmet
-  short_name: dhelm
+  short_name: dhelmet
 311:
   aliases: [diamondchest, dchest]
   canonical_name: Diamond Chestplate
@@ -603,7 +631,7 @@
 314:
   aliases: [goldhelmet, ghelmet, ghelm]
   canonical_name: Gold Helmet
-  short_name: ghelm
+  short_name: ghelmet
 315:
   aliases: [goldchest, gchest]
   canonical_name: Gold Chest
@@ -671,7 +699,7 @@
 331:
   aliases: [redstone, redstonedust, reddust, rstone, rdust]
   canonical_name: Redstone Dust
-  short_name: rdust
+  short_name: redstone
 332:
   aliases: [snowball, snowbl]
   canonical_name: Snowball
@@ -685,11 +713,11 @@
   canonical_name: Leather
   short_name: leather
 335:
-  aliases: [milk, milkbkt, cowjuice]
+  aliases: [milk, milkbkt, mbucket, mbkt, cowjuice]
   canonical_name: Milk Bucket
-  short_name: milk
+  short_name: milkbkt
 336:
-  aliases: [claybrick, brick]
+  aliases: [claybrick, cbrick, brick]
   canonical_name: Clay Brick
   short_name: brick
 337:
@@ -769,13 +797,21 @@
   canonical_name: Bed
   short_name: bed
 356:
-  aliases: [repeat, rrepeat, diode, rdiode, rptr, rrptr]
+  aliases: [repeat, rrepeat, repeater, rrepeater, diode, rdiode, rptr, rrptr]
   canonical_name: Redstone Repeater
-  short_name: rdiode
+  short_name: diode
 357:
   aliases: [cookie, biscuit]
   canonical_name: Cookie
   short_name: cookie
+358:
+  aliases: [map]
+  canonical_name: Map
+  short_name: map
+359:
+  aliases: [shear, ishear, clipper]
+  canonical_name: Shears
+  short_name: shears
 2256:
   aliases: [goldmusicdisc, golddisc, gdisc]
   canonical_name: Gold Music Disc
