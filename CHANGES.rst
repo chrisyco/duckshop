@@ -4,6 +4,13 @@
 
 ..
 
+9
+=
+
+* Finally added 1.6 and 1.7 item names :D
+
+* Removed redundant JUnit dependency.
+
 8
 =
 
