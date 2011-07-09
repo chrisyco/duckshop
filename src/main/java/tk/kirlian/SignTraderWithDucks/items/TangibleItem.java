@@ -16,9 +16,9 @@ import tk.kirlian.SignTraderWithDucks.errors.*;
 public class TangibleItem extends Item {
     /**
      * The format for a tangible item: the amount as an integer, then a
-     * space, then the item name.
+     * space, then the item name, then an optional durability value.
      */
-    private static final Pattern tangibleItemPattern = Pattern.compile("(\\d+)\\s+(.+)");
+    private static final Pattern tangibleItemPattern = Pattern.compile("(\\d+)\\s+(.+?)\\s*(\\d*)");
     private static final ItemDB itemDB = ItemDB.getInstance();
 
     private int itemId;
@@ -70,7 +70,13 @@ public class TangibleItem extends Item {
                     itemId = itemDfn.getId();
                 }
             }
-            return new TangibleItem(itemId, amount, (short)0);
+            short damage;
+            try {
+                damage = Short.parseShort(matcher.group(3));
+            } catch(NumberFormatException ex) {
+                damage = (short)0;
+            }
+            return new TangibleItem(itemId, amount, damage, itemString);
         } else {
             throw new InvalidSyntaxException();
         }
@@ -143,6 +149,13 @@ public class TangibleItem extends Item {
 
     @Override
     public String toString() {
-        return amount + " " + itemDB.getItemById(itemId).getShortName();
+        StringBuilder buffer = new StringBuilder(15);
+        buffer.append(Integer.toString(amount));
+        buffer.append(" ");
+        buffer.append(itemDB.getItemById(itemId).getShortName());
+        if(damage != 0) {
+            buffer.append(Short.toString(damage));
+        }
+        return buffer.toString();
     }
 }
