@@ -72,6 +72,21 @@ public class Money extends Item {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Money) {
+            Money other = (Money)obj;
+            return (this.amount == other.amount);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return (int)(amount * 100);
+    }
+
+    @Override
     public String toString() {
         if(amount == 0.0) {
             return "nothing";

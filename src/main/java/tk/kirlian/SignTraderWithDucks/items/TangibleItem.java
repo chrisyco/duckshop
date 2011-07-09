@@ -24,7 +24,6 @@ public class TangibleItem extends Item {
     private int itemId;
     private int amount;
     private short damage;
-    private boolean hasDamage;
 
     /**
      * Create a new TangibleItem instance.
@@ -99,14 +98,6 @@ public class TangibleItem extends Item {
     }
 
     /**
-     * Return whether a damage value was specified when the object was
-     * constructed.
-     */
-    public boolean hasDamage() {
-        return hasDamage;
-    }
-
-    /**
      * Create an array of ItemStacks with the same data as this object,
      * but grouped into stacks.
      */
@@ -127,6 +118,27 @@ public class TangibleItem extends Item {
             stacks[i] = new ItemStack(itemId, maxStackSize, damage);
         }
         return stacks;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof TangibleItem) {
+            TangibleItem other = (TangibleItem)obj;
+            return (this.itemId == other.itemId && this.damage == other.damage);
+        } else if(obj instanceof ItemStack) {
+            ItemStack other = (ItemStack)obj;
+            return (this.itemId == other.getTypeId() && this.damage == other.getDurability());
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = itemId - 199;
+        hash = hash * 887 + damage;
+        hash = hash * 887 + amount;
+        return hash;
     }
 
     @Override
