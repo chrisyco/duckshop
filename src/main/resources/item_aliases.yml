@@ -34,12 +34,24 @@
   short_name: plank
 6:
   aliases: [sapling, saplng]
-  canonical_name: Sapling
-  short_name: saplng
+  canonical_name: Oak Sapling
+  short_name: sapling
+  subtypes:
+    0:
+      aliases: [sapling, saplng, oaksapling, osapling]
+      canonical_name: Oak Sapling
+      short_name: sapling
+    1:
+      aliases: [birchsapling, bsapling]
+      canonical_name: Birch Sapling
+      short_name: bsapling
+    2:
+      aliases: [darksapling, redsapling, sprucesapling, pinesapling, dsapling, rsapling, ssapling, psapling]
+      canonical_name: Spruce/Pine Sapling
 7:
   aliases: [bedrock, bdrock, brock, adminium]
   canonical_name: Bedrock
-  short_name: bdrock
+  short_name: bedrock
 8:
   aliases: [water]
   canonical_name: Water
@@ -67,23 +79,49 @@
 14:
   aliases: [goldore, gldore, gore]
   canonical_name: Gold Ore
-  short_name: gldore
+  short_name: goldore
 15:
   aliases: [ironore, irnore, iore]
   canonical_name: Iron Ore
-  short_name: irnore
+  short_name: ironore
 16:
   aliases: [coalore, clore, core]
   canonical_name: Coal Ore
-  short_name: clore
+  short_name: coalore
 17:
-  aliases: [wood]
-  canonical_name: Wood
+  aliases: [wood, oakwood, owood]
+  canonical_name: Oak Wood
   short_name: wood
+  subtypes:
+    0:
+      aliases: [wood, oakwood, owood]
+      canonical_name: Oak Wood
+      short_name: wood
+    1:
+      aliases: [darkwood, redwood, sprucewood, pinewood, dwood, rwood, swood, pwood]
+      canonical_name: Spruce/Pine Wood
+      short_name: dwood
+    2:
+      aliases: [birchwood, lightwood, whitewood, bwood, lwood, wwood]
+      canonical_name: Birch Wood
+      short_name: bwood
 18:
-  aliases: [leaves, leaf, branches, foliage, shrubbery]
+  aliases: [leaves, branches, foliage, shrubbery]
   canonical_name: Leaves
   short_name: leaves
+  subtypes:
+    0:
+      aliases: [leaves, branches, foliage, shrubbery]
+      canonical_name: Oak Leaves
+      short_name: leaves
+    1:
+      aliases: [darkleaves, redleaves, spruceleaves, pineleaves, dleaves, rleaves, sleaves, pleaves]
+      canonical_name: Spruce/Pine Wood
+      short_name: dleaves
+    2:
+      aliases: [birchleaves, lightleaves, whiteleaves, bleaves, lleaves, wleaves]
+      canonical_name: Birch Leaves
+      short_name: bleaves
 19:
   aliases: [sponge]
   canonical_name: Sponge
@@ -136,6 +174,19 @@
   aliases: [tallgrass, tgrass]
   canonical_name: Tall Grass
   short_name: tgrass
+  subtypes:
+    0:
+      aliases: [deadtallgrass, dtallgrass, deadtgrass, dtgrass]
+      canonical_name: Dead Tall Grass
+      short_name: dtgrass
+    1:
+      aliases: [tallgrass, tgrass]
+      canonical_name: Tall Grass
+      short_name: tgrass
+    2:
+      aliases: [fern]
+      canonical_name: Fern
+      short_name: fern
 32:
   aliases: [deadshrub, dshrub]
   canonical_name: Dead Shrub
@@ -152,6 +203,71 @@
   aliases: [wool, cloth, sheephair]
   canonical_name: Wool
   short_name: wool
+  subtypes:
+    0:
+      aliases: [wool, whitewool, whtewool, wwool, cloth, sheephair]
+      canonical_name: White Wool
+      short_name: wool
+    1:
+      aliases: [orangewool, orngwool, owool]
+      canonical_name: Orange Wool
+      short_name: orngwool
+    2:
+      aliases: [magentawool, mgtawool, mwool, fuchsiawool, fcsawool, fwool]
+      canonical_name: Magenta Wool
+      short_name: mgtawool
+    3:
+      aliases: [lbluewool, lbluwool, lbwool]
+      canonical_name: Light Blue Wool
+      short_name: lbluwool
+    4:
+      aliases: [yellowwool, yelowool, ywool]
+      canonical_name: Yellow Wool
+      short_name: yelowool
+    5:
+      aliases: [lgreenwool, lgrnwool, limewool, lwool]
+      canonical_name: Light Green Wool
+      short_name: limewool
+    6:
+      aliases: [pinkwool, pkwool]
+      canonical_name: Pink Wool
+      short_name: pinkwool
+    7:
+      aliases: [graywool, greywool]
+      canonical_name: Gray Wool
+      short_name: graywool
+    8:
+      aliases: [lgraywool, lgrywool, lgreywool]
+      canonical_name: Light Gray Wool
+      short_name: lgrywool
+    9:
+      aliases: [cyanwool, cwool]
+      canonical_name: Cyan Wool
+      short_name: cyanwool
+    10:
+      aliases: [purplewool, pplewool]
+      canonical_name: Purple Wool
+      short_name: pplewool
+    11:
+      aliases: [bluewool]
+      canonical_name: Blue Wool
+      short_name: bluewool
+    12:
+      aliases: [brownwool, brunwool, brwnwool]
+      canonical_name: Brown Wool
+      short_name: brwnwool
+    13:
+      aliases: [dgreenwool, dgrnwool]
+      canonical_name: Dark Green Wool
+      short_name: dgrnwool
+    14:
+      aliases: [redwool, rwool]
+      canonical_name: Red Wool
+      short_name: redwool
+    15:
+      aliases: [blackwool, blckwool]
+      canonical_name: Black Wool
+      short_name: blckwool
 36:
   aliases: [bmbp]
   canonical_name: Block Moved By Piston
@@ -184,10 +300,44 @@
   aliases: [doubleslab, dblslab, dblslb]
   canonical_name: Double Slab
   short_name: dblslab
+  subtypes:
+    0:
+      aliases: [stonedblslab, sdblslab]
+      canonical_name: Stone Double Slab
+      short_name: sdblslab
+    1:
+      aliases: [sstonedblslab, ssdblslab]
+      canonical_name: Sandstone Double Slab
+      short_name: ssdblslab
+    2:
+      aliases: [wooddblslab, wdblslab]
+      canonical_name: Wooden Double Slab
+      short_name: wdblslab
+    3:
+      aliases: [cobbledblslab, cbldblslab, cdblslab]
+      canonical_name: Cobblestone Double Slab
+      short_name: cdblslab
 44:
   aliases: [slab]
   canonical_name: Slab
   short_name: slab
+  subtypes:
+    0:
+      aliases: [stoneslab, sslab]
+      canonical_name: Stone Slab
+      short_name: sslab
+    1:
+      aliases: [sstoneslab, ssslab]
+      canonical_name: Sandstone Slab
+      short_name: ssslab
+    2:
+      aliases: [woodslab, wslab]
+      canonical_name: Wooden Slab
+      short_name: wslab
+    3:
+      aliases: [cobbleslab, cblslab, cslab]
+      canonical_name: Cobblestone Slab
+      short_name: cslab
 45:
   aliases: [brickblock, brickblk, brkblk]
   canonical_name: Brick Block
@@ -425,9 +575,18 @@
   canonical_name: Arrow
   short_name: arrow
 263:
-  aliases: [coal, charcoal]
+  aliases: [coal]
   canonical_name: Coal
   short_name: coal
+  subtypes:
+    0:
+      aliases: [coal]
+      canonical_name: Coal
+      short_name: coal
+    1:
+      aliases: [charcoal, ccoal]
+      canonical_name: Charcoal
+      short_name: charcoal
 264:
   aliases: [diamond, dmnd, dmd, supercompressedcoal]
   canonical_name: Diamond
@@ -778,8 +937,73 @@
   short_name: cfish
 351:
   aliases: [dye]
-  canonical_name: Dye (any color)
+  canonical_name: Dye
   short_name: dye
+  subtypes:
+    0:
+      aliases: [inksac, blackdye, blckdye]
+      canonical_name: Ink Sac
+      short_name: inksac
+    1:
+      aliases: [rosered, reddye, rdye]
+      canonical_name: Rose Red
+      short_name: rosered
+    2:
+      aliases: [cactusgreen, cactusdye, greendye, grndye]
+      canonical_name: Cactus Green
+      short_name: grndye
+    3:
+      aliases: [cocoabean, cocoa, browndye, brundye, brwndye]
+      canonical_name: Cocoa Beans
+      short_name: cocoa
+    4:
+      aliases: [lapislazuli, ll, lapis, llazuli, bluedye]
+      canonical_name: Lapis Lazuli
+      short_name: llazuli
+    5:
+      aliases: [purpledye, ppledye]
+      canonical_name: Purple Dye
+      short_name: ppledye
+    6:
+      aliases: [cyandye, cdye]
+      canonical_name: Cyan Dye
+      short_name: cyandye
+    7:
+      aliases: [lgraydye, lgrydye]
+      canonical_name: Light Gray Dye
+      short_name: lgraydye
+    8:
+      aliases: [graydye]
+      canonical_name: Gray Dye
+      short_name: graydye
+    9:
+      aliases: [pinkdye]
+      canonical_name: Pink Dye
+      short_name: pinkdye
+    10:
+      aliases: [limedye, ldye, lgreendye, lgrndye]
+      canonical_name: Lime Dye
+      short_name: limedye
+    11:
+      aliases: [yellowdye, yelodye, ydye]
+      canonical_name: Dandelion Yellow
+      short_name: yelodye
+    12:
+      aliases: [lbluedye]
+      canonical_name: Light Blue Dye
+      short_name: lbluedye
+    13:
+      aliases: [magentadye, mgtadye, mdye]
+      canonical_name: Magenta Dye
+      short_name: mgtadye
+    14:
+      aliases: [orangedye, orngdye, odye]
+      canonical_name: Orange Dye
+      short_name: orngdye
+    15:
+      aliases: [bonemeal, whitedye, whtedye, wdye]
+      canonical_name: Bone Meal
+      short_name: bonemeal
 352:
   aliases: [bone]
   canonical_name: Bone
