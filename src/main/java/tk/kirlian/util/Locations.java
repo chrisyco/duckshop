@@ -16,6 +16,9 @@ public class Locations {
         "\\s*" + integerRegex + "\\s*" + "," +
         "\\s*" + integerRegex + "\\s*" + "," +
         "\\s*" + integerRegex + "\\s*");
+
+    private Locations() {}
+
     /**
      * Try to parse a {@link Location} object in the form "WorldName:X,Y,Z".
      *

@@ -10,6 +10,7 @@ import java.util.Map;
 import tk.kirlian.DuckShop.DuckShop;
 import tk.kirlian.DuckShop.items.*;
 import tk.kirlian.util.DummyEconomy;
+import tk.kirlian.util.Inventories;
 
 /**
  * TradeAdapter that works with things that have inventories -- such as
@@ -143,9 +144,9 @@ public abstract class InventoryAdapter extends TradeAdapter {
         if(!canAddTangibleItem(addItem)) {
             throw new IllegalArgumentException("Inventory full");
         } else {
-            Map<Integer, ItemStack> leftover = inventory.addItem(addItem.toItemStacks());
+            Map<Integer, ItemStack> leftover = inventory.addItem(addItem.toItemStackArray());
             if(leftover.size() > 0) {
-                System.err.println(leftover.size() + " items disappeared!");
+                throw new RuntimeException(leftover.size() + " items disappeared!");
             }
         }
     }
@@ -155,9 +156,9 @@ public abstract class InventoryAdapter extends TradeAdapter {
         if(!canSubtractTangibleItem(subItem)) {
             throw new IllegalArgumentException("Inventory empty");
         } else {
-            Map<Integer, ItemStack> leftover = inventory.removeItem(subItem.toItemStacks());
-            if(leftover.size() > 0) {
-                System.err.println(leftover.size() + " items disappeared!");
+            int leftover = Inventories.removeItem(inventory, subItem.toItemStack());
+            if(leftover > 0) {
+                throw new RuntimeException(leftover + " items disappeared!");
             }
         }
     }

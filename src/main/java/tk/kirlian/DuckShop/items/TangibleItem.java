@@ -104,10 +104,17 @@ public class TangibleItem extends Item {
     }
 
     /**
+     * Create a single ItemStack corresponding to this object.
+     */
+    public ItemStack toItemStack() {
+        return new ItemStack(itemId, amount, damage);
+    }
+
+    /**
      * Create an array of ItemStacks with the same data as this object,
      * but grouped into stacks.
      */
-    public ItemStack[] toItemStacks() {
+    public ItemStack[] toItemStackArray() {
         int maxStackSize = Material.getMaterial(itemId).getMaxStackSize();
         int leftover = amount;
         ItemStack[] stacks;
