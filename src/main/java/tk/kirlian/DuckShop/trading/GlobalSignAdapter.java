@@ -1,7 +1,7 @@
-package tk.kirlian.SignTraderWithDucks.trading;
+package tk.kirlian.DuckShop.trading;
 
-import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
-import tk.kirlian.SignTraderWithDucks.items.*;
+import tk.kirlian.DuckShop.DuckShop;
+import tk.kirlian.DuckShop.items.*;
 
 /**
  * Global trade signs have unlimited supplies of everything. Its
@@ -12,7 +12,7 @@ public class GlobalSignAdapter extends TradeAdapter {
     /**
      * Creates a new GlobalSignAdapter instance.
      */
-    public GlobalSignAdapter(SignTraderPlugin plugin) {
+    public GlobalSignAdapter(DuckShop plugin) {
         super(plugin);
     }
     public boolean canAddMoney(Money money) {

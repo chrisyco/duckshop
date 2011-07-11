@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>tk.kirlian.SignTraderWithDucks</groupId>
-  <artifactId>SignTraderWithDucks</artifactId>
+  <groupId>tk.kirlian</groupId>
+  <artifactId>DuckShop</artifactId>
   <version>10-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>SignTraderWithDucks</name>
+  <name>DuckShop</name>
   <url>http://kirlian.tk/</url>
 
   <properties>

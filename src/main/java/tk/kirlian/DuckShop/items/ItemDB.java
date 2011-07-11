@@ -1,4 +1,4 @@
-package tk.kirlian.SignTraderWithDucks.items;
+package tk.kirlian.DuckShop.items;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package tk.kirlian.SignTraderWithDucks.signs;
+package tk.kirlian.DuckShop.signs;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -6,17 +6,17 @@ import org.bukkit.block.Sign;
 
 import java.util.logging.Logger;
 import tk.kirlian.util.Locations;
-import tk.kirlian.SignTraderWithDucks.*;
-import tk.kirlian.SignTraderWithDucks.errors.*;
-import tk.kirlian.SignTraderWithDucks.items.*;
-import tk.kirlian.SignTraderWithDucks.permissions.*;
-import tk.kirlian.SignTraderWithDucks.trading.*;
+import tk.kirlian.DuckShop.*;
+import tk.kirlian.DuckShop.errors.*;
+import tk.kirlian.DuckShop.items.*;
+import tk.kirlian.DuckShop.permissions.*;
+import tk.kirlian.DuckShop.trading.*;
 
 /**
  * Represents a sign that can be used as a shop.
  */
 public class TradingSign {
-    private SignTraderPlugin plugin;
+    private DuckShop plugin;
     private Logger log;
     private Player owner;
     private Location signLocation;
@@ -31,7 +31,7 @@ public class TradingSign {
      * @throws PermissionsException if the placing player does not have
      *         permission to place trading signs.
      */
-    public TradingSign(SignTraderPlugin plugin, Player placingPlayer, Location signLocation, String[] lines)
+    public TradingSign(DuckShop plugin, Player placingPlayer, Location signLocation, String[] lines)
       throws InvalidSyntaxException, PermissionsException {
         this.plugin = plugin;
         this.log = plugin.log;

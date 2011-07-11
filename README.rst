@@ -1,9 +1,9 @@
-======================================================
- SignTraderWithDucks |--| like SignTrader, but better
-======================================================
+===================================
+ DuckShop |--| trading with ducks!
+===================================
 
-**SignTraderWithDucks** is a simple plugin for Bukkit_ that lets you
-create fully automated shops with signs, with an emphasis on usability,
+**DuckShop** is a simple plugin for Bukkit_ that lets you create fully
+automated shops with signs, with an emphasis on usability,
 customizability and extensibility. And ducks.
 
 Installation
@@ -23,23 +23,23 @@ Permissions Nodes
 
 These are **case-sensitive**, so make sure they're typed in correctly!
 
-* ``SignTrader.use.<type>``
-* ``SignTrader.create.<type>``
-* ``SignTrader.break.<type>``
+* ``DuckShop.use.<type>``
+* ``DuckShop.create.<type>``
+* ``DuckShop.break.<type>``
 
 ``<type>`` is replaced by either ``personal``, ``global`` or ``other``.
 "Personal" affects their own signs. "Global" affects global signs (see
 below). "Other" affects other people's personal signs. So someone with
-``SignTrader.create.other`` permission would be allowed to create signs
+``DuckShop.create.other`` permission would be allowed to create signs
 with other people's names on them, and someone with
-``SignTrader.break.other`` would be allowed to break other people's
+``DuckShop.break.other`` would be allowed to break other people's
 signs.
 
 For example, an average player would have these permissions:
 
-* ``SignTrader.use.*``
-* ``SignTrader.create.personal``
-* ``SignTrader.break.personal``
+* ``DuckShop.use.*``
+* ``DuckShop.create.personal``
+* ``DuckShop.break.personal``
 
 Usage
 =====
@@ -66,7 +66,7 @@ with two items such as "1 sshovel" or "$52". If you did this correctly,
 you should receive a helpful message. If you didn't receive the helpful
 message, break the sign and try again.
 
-If you have the ``SignTrader.create.global`` permission, you can create
+If you have the ``DuckShop.create.global`` permission, you can create
 "global" signs by replacing your name with ``[Global]``. Global signs
 aren't associated with a player; they spawn items automatically rather
 than drawing from a chest.
@@ -117,7 +117,7 @@ Connecting the Chest
 Unless your sign is set to ``[Global]``, where items are created out of
 thin air, you would need connect your sign to a chest.
 
-To connect a sign to a chest, type ``/signtrader link``. Then follow the
+To connect a sign to a chest, type ``/duckshop link``. Then follow the
 on-screen instructions to complete the link. Links are saved
 automatically, so you only need to connect it once.
 

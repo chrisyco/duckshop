@@ -1,11 +1,11 @@
-package tk.kirlian.SignTraderWithDucks.permissions;
+package tk.kirlian.DuckShop.permissions;
 
 import com.nijiko.permissions.PermissionHandler;
 import com.nijikokun.bukkit.Permissions.Permissions;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.entity.Player;
 
-import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
+import tk.kirlian.DuckShop.DuckShop;
 import java.util.logging.Logger;
 
 /**
@@ -13,13 +13,13 @@ import java.util.logging.Logger;
  * @see PermissionsProvider
  */
 public class TheYetiPermissionsProvider extends PermissionsProvider {
-    private static final String PERMISSIONS_PREFIX = "SignTrader.";
+    private static final String PERMISSIONS_PREFIX = "DuckShop.";
     private static TheYetiPermissionsProvider provider;
-    private SignTraderPlugin plugin;
+    private DuckShop plugin;
     private PermissionHandler permissionHandler;
     private Logger log;
 
-    private TheYetiPermissionsProvider(SignTraderPlugin plugin) {
+    private TheYetiPermissionsProvider(DuckShop plugin) {
         this.plugin = plugin;
         this.log = plugin.log;
         Plugin permissionsPlugin = plugin.getServer().getPluginManager().getPlugin("Permissions");
@@ -34,7 +34,7 @@ public class TheYetiPermissionsProvider extends PermissionsProvider {
         }
     }
 
-    public static TheYetiPermissionsProvider getInstance(SignTraderPlugin plugin) {
+    public static TheYetiPermissionsProvider getInstance(DuckShop plugin) {
         if(provider == null) {
             provider = new TheYetiPermissionsProvider(plugin);
         }

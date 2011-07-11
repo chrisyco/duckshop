@@ -1,11 +1,11 @@
-package tk.kirlian.SignTraderWithDucks.permissions;
+package tk.kirlian.DuckShop.permissions;
 
 import org.bukkit.entity.Player;
 
 import tk.kirlian.util.provider.Provider;
 import tk.kirlian.util.provider.PriorityProviderManager;
-import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
-import tk.kirlian.SignTraderWithDucks.errors.PermissionsException;
+import tk.kirlian.DuckShop.DuckShop;
+import tk.kirlian.DuckShop.errors.PermissionsException;
 
 /**
  * Provides a consistent interface to various ways of deciding permissions.
@@ -16,7 +16,7 @@ public abstract class PermissionsProvider implements Provider {
     /**
      * Get the {@link PriorityProviderManager} for this class.
      */
-    public static PriorityProviderManager<PermissionsProvider> getManager(SignTraderPlugin plugin) {
+    public static PriorityProviderManager<PermissionsProvider> getManager(DuckShop plugin) {
         if(manager == null) {
             manager = new PriorityProviderManager<PermissionsProvider>();
             /* vvv Add new providers below vvv */
@@ -30,7 +30,7 @@ public abstract class PermissionsProvider implements Provider {
     /**
      * Convenience method to get the best permissions provider.
      */
-    public static PermissionsProvider getBest(SignTraderPlugin plugin) {
+    public static PermissionsProvider getBest(DuckShop plugin) {
         return getManager(plugin).getBest();
     }
 

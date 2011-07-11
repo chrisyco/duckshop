@@ -1,4 +1,4 @@
-package tk.kirlian.SignTraderWithDucks.trading;
+package tk.kirlian.DuckShop.trading;
 
 import com.nijikokun.register.payment.Method.MethodAccount;
 import org.bukkit.Material;
@@ -7,8 +7,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.entity.Player;
 import java.util.Map;
 
-import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
-import tk.kirlian.SignTraderWithDucks.items.*;
+import tk.kirlian.DuckShop.DuckShop;
+import tk.kirlian.DuckShop.items.*;
 import tk.kirlian.util.DummyEconomy;
 
 /**
@@ -35,7 +35,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
     /**
      * Creates a new InventoryAdapter instance.
      */
-    public InventoryAdapter(SignTraderPlugin plugin) {
+    public InventoryAdapter(DuckShop plugin) {
         super(plugin);
     }
 

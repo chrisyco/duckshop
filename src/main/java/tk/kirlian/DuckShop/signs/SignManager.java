@@ -1,4 +1,4 @@
-package tk.kirlian.SignTraderWithDucks.signs;
+package tk.kirlian.DuckShop.signs;
 
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
-import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
+import tk.kirlian.DuckShop.DuckShop;
 import java.util.logging.Logger;
 import tk.kirlian.util.Locations;
 
@@ -24,12 +24,12 @@ public class SignManager {
     private final static String CHESTS_FILE_COMMENT = "This file is used internally to store sign-chest links.\nFormat is signLocation=chestLocation\nDo not edit unless you know what you are doing.";
     private static SignManager instance;
 
-    private SignTraderPlugin plugin;
+    private DuckShop plugin;
     private Logger log;
     private Map<Location, Location> chestLocations;
     private File propertiesFile;
 
-    private SignManager(SignTraderPlugin plugin) {
+    private SignManager(DuckShop plugin) {
         this.plugin = plugin;
         this.log = plugin.log;
         this.chestLocations = new HashMap<Location, Location>();
@@ -40,7 +40,7 @@ public class SignManager {
     /**
      * Return an instance, or create it if it does not exist.
      */
-    public static SignManager getInstance(SignTraderPlugin plugin) {
+    public static SignManager getInstance(DuckShop plugin) {
         if(instance == null) {
             instance = new SignManager(plugin);
         }

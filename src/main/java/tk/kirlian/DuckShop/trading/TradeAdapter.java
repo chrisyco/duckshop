@@ -1,19 +1,19 @@
-package tk.kirlian.SignTraderWithDucks.trading;
+package tk.kirlian.DuckShop.trading;
 
-import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
-import tk.kirlian.SignTraderWithDucks.items.*;
+import tk.kirlian.DuckShop.DuckShop;
+import tk.kirlian.DuckShop.items.*;
 
 /**
  * An object representing something which can trade -- whether it be a
  * seller, a buyer, or a global sign.
  */
 public abstract class TradeAdapter {
-    protected SignTraderPlugin plugin;
+    protected DuckShop plugin;
 
     /**
      * Create a new TradeAdapter instance.
      */
-    protected TradeAdapter(SignTraderPlugin plugin) {
+    protected TradeAdapter(DuckShop plugin) {
         this.plugin = plugin;
     }
 

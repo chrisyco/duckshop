@@ -1,9 +1,9 @@
-package tk.kirlian.SignTraderWithDucks.items;
+package tk.kirlian.DuckShop.items;
 
 import java.io.Serializable;
 
-import tk.kirlian.SignTraderWithDucks.*;
-import tk.kirlian.SignTraderWithDucks.errors.*;
+import tk.kirlian.DuckShop.*;
+import tk.kirlian.DuckShop.errors.*;
 
 /**
  * Represents an item to be traded.

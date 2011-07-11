@@ -1,8 +1,8 @@
-package tk.kirlian.SignTraderWithDucks.permissions;
+package tk.kirlian.DuckShop.permissions;
 
 import org.bukkit.entity.Player;
 
-import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
+import tk.kirlian.DuckShop.DuckShop;
 import java.util.logging.Logger;
 
 /**
@@ -11,15 +11,15 @@ import java.util.logging.Logger;
  */
 public class OpsOnlyPermissionsProvider extends PermissionsProvider {
     private static OpsOnlyPermissionsProvider provider;
-    private SignTraderPlugin plugin;
+    private DuckShop plugin;
     private Logger log;
 
-    private OpsOnlyPermissionsProvider(SignTraderPlugin plugin) {
+    private OpsOnlyPermissionsProvider(DuckShop plugin) {
         this.plugin = plugin;
         this.log = log;
     }
 
-    public static OpsOnlyPermissionsProvider getInstance(SignTraderPlugin plugin) {
+    public static OpsOnlyPermissionsProvider getInstance(DuckShop plugin) {
         if(provider == null) {
             provider = new OpsOnlyPermissionsProvider(plugin);
         }

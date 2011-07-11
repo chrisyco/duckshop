@@ -1,9 +1,9 @@
-package tk.kirlian.SignTraderWithDucks.errors;
+package tk.kirlian.DuckShop.errors;
 
 /**
  * Thrown to indicate someone doesn't have permission to do something.
  */
-public class PermissionsException extends SignTraderException {
+public class PermissionsException extends DuckShopException {
     public PermissionsException() {
         super();
     }

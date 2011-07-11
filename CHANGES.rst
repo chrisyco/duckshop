@@ -4,6 +4,13 @@
 
 ..
 
+10
+==
+
+* Implemented damage values!
+
+* Changed name from SignTraderWithDucks to DuckShop.
+
 9
 =
 

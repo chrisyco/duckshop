@@ -1,17 +1,17 @@
-package tk.kirlian.SignTraderWithDucks.trading;
+package tk.kirlian.DuckShop.trading;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
-import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
-import tk.kirlian.SignTraderWithDucks.items.*;
+import tk.kirlian.DuckShop.DuckShop;
+import tk.kirlian.DuckShop.items.*;
 
 /**
  * Extends the InventoryAdapter to support players.
  * @see InventoryAdapter
  */
 public class PlayerInventoryAdapter extends InventoryAdapter {
-    public PlayerInventoryAdapter(SignTraderPlugin plugin, Player player) {
+    public PlayerInventoryAdapter(DuckShop plugin, Player player) {
         super(plugin);
         setPlayer(player);
         setInventory(player.getInventory());

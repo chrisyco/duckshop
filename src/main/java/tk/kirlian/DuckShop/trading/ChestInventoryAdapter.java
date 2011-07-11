@@ -1,4 +1,4 @@
-package tk.kirlian.SignTraderWithDucks.trading;
+package tk.kirlian.DuckShop.trading;
 
 import org.bukkit.Location;
 import org.bukkit.block.BlockState;
@@ -9,9 +9,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.block.Action;
 import org.bukkit.block.BlockFace;
 
-import tk.kirlian.SignTraderWithDucks.SignTraderPlugin;
-import tk.kirlian.SignTraderWithDucks.items.Item;
-import tk.kirlian.SignTraderWithDucks.errors.*;
+import tk.kirlian.DuckShop.DuckShop;
+import tk.kirlian.DuckShop.items.Item;
+import tk.kirlian.DuckShop.errors.*;
 
 /**
  * Extends the InventoryAdapter to support chests.
@@ -39,7 +39,7 @@ public class ChestInventoryAdapter extends InventoryAdapter {
      * @throws InvalidChestException if the location doesn't point to a chest
      * @throws ChestProtectionException if the chest is protected
      */
-    public ChestInventoryAdapter(SignTraderPlugin plugin, Player owner, Chest chest)
+    public ChestInventoryAdapter(DuckShop plugin, Player owner, Chest chest)
       throws ChestProtectionException {
         super(plugin);
         initialize(owner, chest);
@@ -51,7 +51,7 @@ public class ChestInventoryAdapter extends InventoryAdapter {
      * @throws InvalidChestException if the location doesn't point to a chest
      * @throws ChestProtectionException if the chest is protected
      */
-    public ChestInventoryAdapter(SignTraderPlugin plugin, Player owner, Location chestLocation)
+    public ChestInventoryAdapter(DuckShop plugin, Player owner, Location chestLocation)
       throws InvalidChestException, ChestProtectionException {
         super(plugin);
         BlockState state = chestLocation.getBlock().getState();

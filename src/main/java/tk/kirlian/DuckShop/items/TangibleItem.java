@@ -1,4 +1,4 @@
-package tk.kirlian.SignTraderWithDucks.items;
+package tk.kirlian.DuckShop.items;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -7,8 +7,8 @@ import java.util.LinkedList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-import tk.kirlian.SignTraderWithDucks.*;
-import tk.kirlian.SignTraderWithDucks.errors.*;
+import tk.kirlian.DuckShop.*;
+import tk.kirlian.DuckShop.errors.*;
 
 /**
  * Represents a tangible item, rather than money.
