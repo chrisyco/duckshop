@@ -69,7 +69,7 @@ public class DuckShopBlockListener extends BlockListener {
                     sign.destroy(event.getPlayer());
                 } catch(PermissionsException ex) {
                     event.setCancelled(true);
-                    event.getPlayer().sendMessage(ex.getMessage());
+                    event.getPlayer().sendMessage("You can't break this!");
                 }
             }
         }
