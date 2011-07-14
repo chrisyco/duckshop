@@ -13,6 +13,8 @@ Pop the JAR in your plugins folder.
 
 You will also need an economy plugin such as iConomy_. Other plugins
 should work; for a list of supported plugins go to the Register_ page.
+If no economy plugins are installed, trades that do not involve money
+(giving/receiving items) will still work.
 
 You should also install `Permissions 3`_. If Permissions is not
 installed, it would default to ops only for everything, which isn't very
@@ -62,14 +64,17 @@ To create a shop, place a sign in this format::
     <blank line>
 
 replacing ``<your name>`` with your username and the two middle lines
-with two items such as "1 sshovel" or "$52". If you did this correctly,
-you should receive a helpful message. If you didn't receive the helpful
-message, break the sign and try again.
+with two items such as "1 sshovel" or "$52". If the username is left
+blank, it will be filled in automatically. Once you've placed the sign,
+it should display a helpful message.
 
 If you have the ``DuckShop.create.global`` permission, you can create
 "global" signs by replacing your name with ``[Global]``. Global signs
 aren't associated with a player; they spawn items automatically rather
 than drawing from a chest.
+
+"Nothing" and "free" mean the same thing as $0, and can be used
+interchangably.
 
 For example, if Rachel, being the entrepreneurial type, wanted to sell
 iron swords at $12.50 each::
@@ -96,20 +101,35 @@ Peter will receive 4 planks and the sign clicker will receive $2.
 Or, if Tim was feeling poor and wanted donations::
 
     Tim
-    $0
+    nothing
     $5
 
 Or, if Violet was feeling rather kind and wanted to give free dirt::
 
     Violet
     64 dirt
-    $0
+    free
 
 Or, if Wally the admin needed to get rid of slimes::
 
     [Global]
     $0.25
     1 slime
+
+Damage Values
+'''''''''''''
+
+Since version 10, you can specify damage values by appending a number to
+the item name, e.g.::
+
+    Bob
+    1 wool6
+    $1
+
+for selling pink wool.
+
+If no damage value is specified, it will default to 0. A nice side
+effect of this is that it is impossible to trade used tools or armor.
 
 Connecting the Chest
 --------------------
@@ -138,8 +158,8 @@ Building
        tools/grab-dependencies.sh
        mvn package
 
-   The first command downloads Bukkit_, Register_ and `Permissions 3`_
-   and installs them in Maven's dependency system. The second command
+   The first command downloads Register_ and `Permissions 3`_ and
+   installs them in Maven's dependency system. The second command
    compiles the actual plugin.
 
    If you use Windows, go to a pillow factory and get stuffed.
