@@ -4,6 +4,15 @@
 
 ..
 
+12
+==
+
+* Checks if an item ID actually refers to a real item :D
+
+* Parses and displays raw item IDs correctly.
+
+* More helpful comments in the parsing code.
+
 11
 ==
 
