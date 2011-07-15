@@ -1,10 +1,13 @@
 package tk.kirlian.DuckShop.items;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.SafeConstructor;
+import tk.kirlian.util.Pair;
 
 /**
  * A database of Minecraft items and their data values and names.
@@ -14,26 +17,34 @@ import org.yaml.snakeyaml.constructor.SafeConstructor;
  */
 public class ItemDB {
     private static ItemDB instance;
-    private Map<Integer, ItemDefinition> byItemId;
+    private Map<Pair<Integer, Short>, ItemDefinition> byIdDamagePair;
     private Map<String, ItemDefinition> byAlias;
 
     private ItemDB() {
-        byItemId = new HashMap<Integer, ItemDefinition>();
+        byIdDamagePair = new HashMap<Pair<Integer, Short>, ItemDefinition>();
         byAlias = new HashMap<String, ItemDefinition>();
-        // This is absolutely disgusting :D
         Yaml yaml = new Yaml(new SafeConstructor());
-        Map<Integer, Map<String, Object>> doc =
+        // This is absolutely disgusting :D
+        Map<Integer, Map<String, Object>> document =
             (Map<Integer, Map<String, Object>>) yaml.load(getClass().getResourceAsStream("/item_aliases.yml"));
-        for(Map.Entry<Integer, Map<String, Object>> entry : doc.entrySet()) {
-            Map<String, Object> itemData = entry.getValue();
+
+        for(Map.Entry<Integer, Map<String, Object>> entry : document.entrySet()) {
             Integer id = entry.getKey();
-            String canonicalName = (String) itemData.get("canonical_name");
-            String shortName = (String) itemData.get("short_name");
-            List<String> aliases = (List<String>) itemData.get("aliases");
-            ItemDefinition item = new ItemDefinition(id, canonicalName, shortName, aliases);
-            byItemId.put(id, item);
-            for(String alias : aliases) {
-                byAlias.put(alias, item);
+            Map<String, Object> itemData = entry.getValue();
+
+            // Multiple durability values such as wool
+            if(itemData.containsKey("subtypes")) {
+                Map<Integer, Map<String, Object>> subtypes =
+                    (Map<Integer, Map<String, Object>>) itemData.get("subtypes");
+                for(Map.Entry<Integer, Map<String, Object>> subentry : subtypes.entrySet()) {
+                    Short durability = subentry.getKey().shortValue();
+                    ItemDefinition item = fromMap(id, durability, subentry.getValue());
+                    addItemDefinition(item);
+                }
+            // Items without specific durability values
+            } else {
+                ItemDefinition item = fromMap(id, (short)0, itemData);
+                addItemDefinition(item);
             }
         }
     }
@@ -48,11 +59,33 @@ public class ItemDB {
         return instance;
     }
 
+    private static ItemDefinition fromMap(Integer typeId, Short durability, Map<String, Object> map) {
+        String canonicalName = (String) map.get("canonical_name");
+        String shortName = (String) map.get("short_name");
+        List<String> aliases = (List<String>) map.get("aliases");
+        return new ItemDefinition(typeId, durability, canonicalName, shortName, aliases);
+    }
+
+    /**
+     * Add an ItemDefinition to the database.
+     */
+    private void addItemDefinition(ItemDefinition item) {
+        byIdDamagePair.put(item.getKey(), item);
+        for(String alias : item.getAliases()) {
+            byAlias.put(alias, item);
+        }
+    }
+
     /**
      * Get the ItemDefinition which has this data value.
      */
-    public ItemDefinition getItemById(final Integer id) {
-        return byItemId.get(id);
+    public ItemDefinition getItemById(final Integer typeId, final Short durability) {
+        ItemDefinition item = byIdDamagePair.get(new Pair<Integer, Short>(typeId, durability));
+        if(item == null) {
+            ItemDefinition defaultItem = byIdDamagePair.get(new Pair<Integer, Short>(typeId, (short)0));
+            item = new ItemDefinition(typeId, durability, defaultItem.getCanonicalName(), defaultItem.getShortName(), (Set<String>)Collections.EMPTY_SET);
+        }
+        return item;
     }
 
     /**

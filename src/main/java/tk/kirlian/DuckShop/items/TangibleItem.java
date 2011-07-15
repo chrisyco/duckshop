@@ -59,6 +59,7 @@ public class TangibleItem extends Item {
             int amount = Integer.parseInt(matcher.group(1));
             String itemName = matcher.group(2);
             int itemId;
+            short damage = 0;
             try {
                 itemId = Integer.parseInt(itemName);
             } catch(NumberFormatException ex) {
@@ -68,13 +69,13 @@ public class TangibleItem extends Item {
                     throw new InvalidSyntaxException();
                 } else {
                     itemId = itemDfn.getId();
+                    damage = itemDfn.getDamage();
                 }
             }
-            short damage;
             try {
                 damage = Short.parseShort(matcher.group(3));
             } catch(NumberFormatException ex) {
-                damage = (short)0;
+                // Do nothing
             }
             return new TangibleItem(itemId, amount, damage, itemString);
         } else {
@@ -157,10 +158,11 @@ public class TangibleItem extends Item {
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder(15);
+        ItemDefinition itemDfn = itemDB.getItemById(itemId, damage);
         buffer.append(Integer.toString(amount));
         buffer.append(" ");
-        buffer.append(itemDB.getItemById(itemId).getShortName());
-        if(damage != 0) {
+        buffer.append(itemDfn.getShortName());
+        if(itemDfn.getDamage() != damage) {
             buffer.append(Short.toString(damage));
         }
         return buffer.toString();

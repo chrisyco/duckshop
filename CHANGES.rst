@@ -4,6 +4,11 @@
 
 ..
 
+11
+==
+
+* Implemented special names for damage values, e.g. bluewool and inksac.
+
 10
 ==
 
