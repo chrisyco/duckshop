@@ -92,7 +92,7 @@ public class ItemDB {
      * Get the ItemDefinition with this alias.
      */
     public ItemDefinition getItemByAlias(final String alias) {
-        String aliasLower = alias.toLowerCase();
+        String aliasLower = alias.toLowerCase().replace(" ", "");
         ItemDefinition def = byAlias.get(aliasLower);
         // If plural, remove the suffix 's'
         if(def == null && aliasLower.charAt(aliasLower.length()-1) == 's') {
