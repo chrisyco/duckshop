@@ -78,18 +78,17 @@ public class ItemDB {
 
     /**
      * Get the ItemDefinition which has this data value.
+     *
+     * @return an ItemDefinition if found, otherwise null.
      */
     public ItemDefinition getItemById(final Integer typeId, final Short durability) {
-        ItemDefinition item = byIdDamagePair.get(new Pair<Integer, Short>(typeId, durability));
-        if(item == null) {
-            ItemDefinition defaultItem = byIdDamagePair.get(new Pair<Integer, Short>(typeId, (short)0));
-            item = new ItemDefinition(typeId, durability, defaultItem.getCanonicalName(), defaultItem.getShortName(), (Set<String>)Collections.EMPTY_SET);
-        }
-        return item;
+        return byIdDamagePair.get(new Pair<Integer, Short>(typeId, durability));
     }
 
     /**
      * Get the ItemDefinition with this alias.
+     *
+     * @return an ItemDefinition if found, otherwise null.
      */
     public ItemDefinition getItemByAlias(final String alias) {
         String aliasLower = alias.toLowerCase().replace(" ", "");

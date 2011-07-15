@@ -158,12 +158,24 @@ public class TangibleItem extends Item {
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder(15);
-        ItemDefinition itemDfn = itemDB.getItemById(itemId, damage);
         buffer.append(Integer.toString(amount));
         buffer.append(" ");
-        buffer.append(itemDfn.getShortName());
-        if(itemDfn.getDamage() != damage) {
-            buffer.append(Short.toString(damage));
+        ItemDefinition itemDfn = itemDB.getItemById(itemId, damage);
+        if(itemDfn != null) {
+            // If there is a specific name for this, use it
+            buffer.append(itemDfn.getShortName());
+        } else {
+            // Otherwise, use the generic name + damage value
+            itemDfn = itemDB.getItemById(itemId, (short)0);
+            if(itemDfn != null) {
+                buffer.append(itemDfn.getShortName());
+                buffer.append(Short.toString(damage));
+            } else {
+                // If there isn't even a generic name, just use the ID
+                buffer.append(Integer.toString(itemId));
+                buffer.append(" ");
+                buffer.append(Short.toString(damage));
+            }
         }
         return buffer.toString();
     }
