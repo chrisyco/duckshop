@@ -18,7 +18,7 @@ public class TangibleItem extends Item {
      * The format for a tangible item: the amount as an integer, then a
      * space, then the item name, then an optional durability value.
      */
-    private static final Pattern tangibleItemPattern = Pattern.compile("(\\d+)\\s+(.+?)\\s*(\\d*)");
+    private static final Pattern tangibleItemPattern = Pattern.compile("(\\d+)\\s+(\\w+|\\d+)\\s*(\\d*)");
     private static final ItemDB itemDB = ItemDB.getInstance();
 
     private int itemId;
@@ -60,6 +60,7 @@ public class TangibleItem extends Item {
             String itemName = matcher.group(2);
             int itemId;
             short damage = 0;
+            // Try parsing it as an item ID first
             try {
                 itemId = Integer.parseInt(itemName);
             } catch(NumberFormatException ex) {
@@ -72,11 +73,17 @@ public class TangibleItem extends Item {
                     damage = itemDfn.getDamage();
                 }
             }
+            // If there's another number after that, it's a damage value
             try {
                 damage = Short.parseShort(matcher.group(3));
             } catch(NumberFormatException ex) {
-                // Do nothing
+                // Do nothing -- keep the damage value from the code above
             }
+            // Check if it's actually a real item
+            if(Material.getMaterial(itemId) == null) {
+                throw new InvalidSyntaxException();
+            }
+            // Create the object!
             return new TangibleItem(itemId, amount, damage, itemString);
         } else {
             throw new InvalidSyntaxException();
@@ -173,8 +180,10 @@ public class TangibleItem extends Item {
             } else {
                 // If there isn't even a generic name, just use the ID
                 buffer.append(Integer.toString(itemId));
-                buffer.append(" ");
-                buffer.append(Short.toString(damage));
+                if(damage != 0) {
+                    buffer.append(" ");
+                    buffer.append(Short.toString(damage));
+                }
             }
         }
         return buffer.toString();
