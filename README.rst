@@ -126,7 +126,8 @@ the item name, e.g.::
     1 wool6
     $1
 
-for selling pink wool.
+for selling pink wool. Since version 11, you can also use names such as
+``pinkwool``, just like normal items.
 
 If no damage value is specified, it will default to 0. A nice side
 effect of this is that it is impossible to trade used tools or armor.
