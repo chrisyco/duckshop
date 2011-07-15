@@ -3,7 +3,7 @@ package tk.kirlian.util;
 /**
  * A pair of related objects.
  *
- * @see http://stackoverflow.com/questions/156275/what-is-the-equivalent-of-the-c-pairl-r-in-java
+ * @see <a href="http://stackoverflow.com/questions/156275/">Stack Overflow: What is the equivalent of the C++ Pair&lt;L,R&gt; in Java?</a>
  */
 public class Pair<A, B> {
     private A first;
