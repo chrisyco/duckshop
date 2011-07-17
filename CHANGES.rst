@@ -4,6 +4,13 @@
 
 ..
 
+13
+==
+
+* Handles world names with spaces and numbers correctly.
+
+* Improved logging messages.
+
 12
 ==
 
