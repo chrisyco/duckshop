@@ -82,11 +82,14 @@ public class SignManager {
             } finally {
                 in.close();
             }
+            int entriesLoaded = 0;
             for(Map.Entry<Object, Object> entry : properties.entrySet()) {
                 Location signLocation = Locations.parseLocation(plugin.getServer(), (String)entry.getKey());
                 Location chestLocation = Locations.parseLocation(plugin.getServer(), (String)entry.getValue());
                 chestLocations.put(signLocation, chestLocation);
+                ++entriesLoaded;
             }
+            log.info("Loaded " + entriesLoaded + " chest link(s).");
         } catch(FileNotFoundException ex) {
             log.warning("Chest link file does not exist. This is probably the first time you've used this plugin.");
         } catch(IOException ex) {
@@ -101,14 +104,17 @@ public class SignManager {
         try {
             FileOutputStream out = new FileOutputStream(propertiesFile);
             Properties properties = new Properties();
+            int entriesStored = 0;
             for(Map.Entry<Location, Location> entry : chestLocations.entrySet()) {
                 properties.setProperty(Locations.toString(entry.getKey()), Locations.toString(entry.getValue()));
+                ++entriesStored;
             }
             try {
                 properties.store(out, CHESTS_FILE_COMMENT);
             } finally {
                 out.close();
             }
+            log.info("Stored " + entriesStored + " chest link(s).");
         } catch(IOException ex) {
             ex.printStackTrace();
             log.warning("Could not write chest link file. Any personal signs will need to be reconnected.");

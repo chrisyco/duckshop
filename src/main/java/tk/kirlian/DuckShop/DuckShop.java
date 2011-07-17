@@ -34,9 +34,7 @@ public class DuckShop extends JavaPlugin {
         log = CustomLogger.getLogger(getDescription().getName());
 
         // I don't know where to put this, so it's going here!
-        if(getDataFolder().isDirectory()) {
-            log.info("Data folder already exists -- very nice.");
-        } else {
+        if(!getDataFolder().isDirectory()) {
             if(getDataFolder().mkdirs()) {
                 log.info("Created data folder.");
             } else {
@@ -62,7 +60,6 @@ public class DuckShop extends JavaPlugin {
         pm.registerEvent(Event.Type.PLUGIN_DISABLE, serverListener, Event.Priority.Normal, this);
 
         // Initialize the sign manager
-        log.info("Initializing sign manager...");
         signManager = SignManager.getInstance(this);
 
         // Initialize Permissions

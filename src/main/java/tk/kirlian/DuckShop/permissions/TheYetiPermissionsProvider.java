@@ -27,9 +27,9 @@ public class TheYetiPermissionsProvider extends PermissionsProvider {
         if (this.permissionHandler == null) {
             if (permissionsPlugin != null) {
                 this.permissionHandler = ((Permissions) permissionsPlugin).getHandler();
-                log.info("Hooked into Permissions!");
+                log.info("Permissions plugin detected!");
             } else {
-                log.info("Permissions system not detected.");
+                log.warning("Permissions system not found.");
             }
         }
     }
