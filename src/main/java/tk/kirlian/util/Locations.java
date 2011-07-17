@@ -12,7 +12,7 @@ import org.bukkit.World;
 public class Locations {
     private static final String integerRegex = "([+-]?\\d+)";
     private static final Pattern locationRegex = Pattern.compile(
-        "\\s*" + "((\\w+)\\s*:)?" +
+        "\\s*" + "((.+?)\\s*:)?" +
         "\\s*" + integerRegex + "\\s*" + "," +
         "\\s*" + integerRegex + "\\s*" + "," +
         "\\s*" + integerRegex + "\\s*");
