@@ -26,6 +26,7 @@ public class DuckShopBlockListener extends BlockListener {
 
     @Override
     public void onSignChange(SignChangeEvent event) {
+        if(event.isCancelled()) return;
         TradingSign sign = null;
         try {
             sign = new TradingSign(plugin,
@@ -49,6 +50,7 @@ public class DuckShopBlockListener extends BlockListener {
     }
 
     public void onBlockBreak(BlockBreakEvent event) {
+        if(event.isCancelled()) return;
         Block block = event.getBlock();
         if(block.getState() instanceof Sign) {
             TradingSign sign = null;
