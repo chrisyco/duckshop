@@ -4,6 +4,14 @@
 
 ..
 
+14
+==
+
+* Fixed bug where someone without ``create`` permissions would not be
+  able to place non-trading signs.
+
+* Modified block listener to ignore cancelled events.
+
 13
 ==
 
