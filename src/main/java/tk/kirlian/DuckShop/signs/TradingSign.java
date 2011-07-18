@@ -28,8 +28,8 @@ public class TradingSign {
      * if unknown.
      *
      * @throws InvalidSyntaxException if the lines cannot be parsed.
-     * @throws PermissionsException if the placing player does not have
-     *         permission to place trading signs.
+     * @throws PermissionsException if the syntax is valid, but the
+     *         placing player does not have the required permissions.
      */
     public TradingSign(DuckShop plugin, Player placingPlayer, Location signLocation, String[] lines)
       throws InvalidSyntaxException, PermissionsException {
@@ -53,13 +53,15 @@ public class TradingSign {
             }
         }
 
-        if(placingPlayer != null) {
-            PermissionsProvider.getBest(plugin).throwIfCannot(placingPlayer, "create." + getActionType(placingPlayer));
-        }
-
         // Parse the two middle lines
         sellerToBuyer = Item.fromString(lines[1]);
         buyerToSeller = Item.fromString(lines[2]);
+
+        // Do permissions check at the end, after trying to parse
+        // So players who don't have permissions can still place non-trading signs
+        if(placingPlayer != null) {
+            PermissionsProvider.getBest(plugin).throwIfCannot(placingPlayer, "create." + getActionType(placingPlayer));
+        }
     }
 
     /**
