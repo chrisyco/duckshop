@@ -21,17 +21,17 @@ public abstract class InventoryAdapter extends TradeAdapter {
     /**
      * The Inventory to be used by this adapter.
      */
-    protected Inventory inventory;
+    private Inventory inventory;
 
     /**
-     * The Player that receives and pays any money required by this adapter.
+     * The name of the player that receives and pays any money required by this adapter.
      */
-    protected Player player;
+    private String playerName;
 
     /**
-     * The Account associated with the Player.
+     * The Account associated with the player.
      */
-    protected MethodAccount account;
+    private MethodAccount account;
 
     /**
      * Creates a new InventoryAdapter instance.
@@ -57,20 +57,27 @@ public abstract class InventoryAdapter extends TradeAdapter {
     }
 
     /**
-     * Get the Player which is used by this adapter.
-     * @see Player
+     * Get the player name which is used by this adapter.
      */
-    public Player getPlayer() {
-        return player;
+    public String getPlayerName() {
+        return playerName;
     }
 
     /**
-     * Set the Player to be used by this adapter.
-     * @see Player
+     * Set the player name to be used by this adapter.
      */
-    public void setPlayer(Player player) {
-        this.player = player;
-        this.account = plugin.economyMethod.getAccount(player.getName());
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+        this.account = plugin.economyMethod.getAccount(playerName);
+    }
+
+    /**
+     * Get the Player which is used by this adapter.
+     *
+     * @return the Player object, or null if the player is offline.
+     */
+    public Player getPlayer() {
+        return plugin.getServer().getPlayer(playerName);
     }
 
     @Override

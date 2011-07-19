@@ -18,7 +18,7 @@ import tk.kirlian.DuckShop.trading.*;
 public class TradingSign {
     private DuckShop plugin;
     private Logger log;
-    private Player owner;
+    private String ownerName;
     private Location signLocation;
     private boolean global;
     private Item sellerToBuyer, buyerToSeller;
@@ -37,19 +37,29 @@ public class TradingSign {
         this.log = plugin.log;
         this.signLocation = signLocation;
 
+        // Trim whitespace
         for(int i = 0; i < lines.length; ++i) {
             lines[i] = lines[i].trim();
         }
 
+        // Check if global or personal
         this.global = lines[0].equalsIgnoreCase("[Global]");
         if(!global) {
+            // If name is blank, use the placing player's name
             if(lines[0].length() == 0 || lines[0].equalsIgnoreCase("[Personal]")) {
-                this.owner = placingPlayer;
+                if(placingPlayer != null) {
+                    this.ownerName = placingPlayer.getName();
+                } else {
+                    throw new InvalidSyntaxException();
+                }
+            // Otherwise, use the name written on the sign
             } else {
-                this.owner = plugin.getServer().getPlayer(lines[0]);
-            }
-            if(owner == null) {
-                throw new InvalidSyntaxException();
+                this.ownerName = lines[0];
+                // Normalize the name to use correct capitalization
+                Player owner = plugin.getServer().getPlayer(ownerName);
+                if(owner != null) {
+                    this.ownerName = owner.getName();
+                }
             }
         }
 
@@ -70,7 +80,7 @@ public class TradingSign {
     private String getActionType(Player actingPlayer) {
         if(global) {
             return "global";
-        } else if(owner.equals(actingPlayer)) {
+        } else if(ownerName.equalsIgnoreCase(actingPlayer.getName())) {
             return "personal";
         } else {
             return "other";
@@ -89,7 +99,7 @@ public class TradingSign {
         if(global) {
             lines[0] = "[Global]";
         } else {
-            lines[0] = owner.getName();
+            lines[0] = ownerName;
         }
         lines[1] = sellerToBuyer.toString();
         lines[2] = buyerToSeller.toString();
@@ -108,7 +118,7 @@ public class TradingSign {
         } else {
             Location chestLocation = getChestLocation();
             if(chestLocation != null) {
-                return new ChestInventoryAdapter(plugin, owner, chestLocation);
+                return new ChestInventoryAdapter(plugin, ownerName, chestLocation);
             } else {
                 throw new InvalidChestException();
             }
@@ -159,7 +169,7 @@ public class TradingSign {
     public void tradeWith(final Player buyer)
       throws InvalidChestException, CannotTradeException, ChestProtectionException, PermissionsException {
         PermissionsProvider.getBest(plugin).throwIfCannot(buyer, "use." + getActionType(buyer));
-        tradeWith(new PlayerInventoryAdapter(plugin, buyer));
+        tradeWith(new PlayerInventoryAdapter(plugin, buyer.getName()));
     }
 
     /**

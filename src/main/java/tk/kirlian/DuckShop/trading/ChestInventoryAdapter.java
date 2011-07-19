@@ -18,17 +18,18 @@ import tk.kirlian.DuckShop.errors.*;
  * @see InventoryAdapter
  */
 public class ChestInventoryAdapter extends InventoryAdapter {
-    private void initialize(Player owner, Chest chest)
+    private void initialize(String ownerName, Chest chest)
       throws ChestProtectionException {
+        setPlayerName(ownerName);
+        setInventory(chest.getInventory());
+
         // Test if the owner of the sign can access the chest
-        PlayerInteractEvent event = new PlayerInteractEvent(owner, Action.RIGHT_CLICK_BLOCK, null, chest.getBlock(), BlockFace.SELF);
+        PlayerInteractEvent event = new PlayerInteractEvent(getPlayer(), Action.RIGHT_CLICK_BLOCK, null, chest.getBlock(), BlockFace.SELF);
         plugin.getServer().getPluginManager().callEvent(event);
+
         // A chest protection plugin would usually cancel a right-click
         // event on a protected chest
-        if(!event.isCancelled()) {
-            setPlayer(owner);
-            setInventory(chest.getInventory());
-        } else {
+        if(event.isCancelled()) {
             throw new ChestProtectionException();
         }
     }
@@ -39,10 +40,10 @@ public class ChestInventoryAdapter extends InventoryAdapter {
      * @throws InvalidChestException if the location doesn't point to a chest
      * @throws ChestProtectionException if the chest is protected
      */
-    public ChestInventoryAdapter(DuckShop plugin, Player owner, Chest chest)
+    public ChestInventoryAdapter(DuckShop plugin, String ownerName, Chest chest)
       throws ChestProtectionException {
         super(plugin);
-        initialize(owner, chest);
+        initialize(ownerName, chest);
     }
 
     /**
@@ -51,12 +52,12 @@ public class ChestInventoryAdapter extends InventoryAdapter {
      * @throws InvalidChestException if the location doesn't point to a chest
      * @throws ChestProtectionException if the chest is protected
      */
-    public ChestInventoryAdapter(DuckShop plugin, Player owner, Location chestLocation)
+    public ChestInventoryAdapter(DuckShop plugin, String ownerName, Location chestLocation)
       throws InvalidChestException, ChestProtectionException {
         super(plugin);
         BlockState state = chestLocation.getBlock().getState();
         if(state instanceof Chest) {
-            initialize(owner, (Chest)state);
+            initialize(ownerName, (Chest)state);
         } else {
             throw new InvalidChestException();
         }
