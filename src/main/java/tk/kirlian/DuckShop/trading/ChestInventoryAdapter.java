@@ -23,14 +23,16 @@ public class ChestInventoryAdapter extends InventoryAdapter {
         setPlayerName(ownerName);
         setInventory(chest.getInventory());
 
-        // Test if the owner of the sign can access the chest
-        PlayerInteractEvent event = new PlayerInteractEvent(getPlayer(), Action.RIGHT_CLICK_BLOCK, null, chest.getBlock(), BlockFace.SELF);
-        plugin.getServer().getPluginManager().callEvent(event);
+        if(getPlayer() != null) {
+            // Test if the owner of the sign can access the chest
+            PlayerInteractEvent event = new PlayerInteractEvent(getPlayer(), Action.RIGHT_CLICK_BLOCK, null, chest.getBlock(), BlockFace.SELF);
+            plugin.getServer().getPluginManager().callEvent(event);
 
-        // A chest protection plugin would usually cancel a right-click
-        // event on a protected chest
-        if(event.isCancelled()) {
-            throw new ChestProtectionException();
+            // A chest protection plugin would usually cancel a right-click
+            // event on a protected chest
+            if(event.isCancelled()) {
+                throw new ChestProtectionException();
+            }
         }
     }
 
