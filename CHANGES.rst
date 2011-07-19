@@ -4,6 +4,15 @@
 
 ..
 
+15
+==
+
+* Fixed issue where signs would not work if their owner was offline.
+
+* Plugged NullPointerException when checking if a chest is protected.
+  Currently, chest protection only works if the owner of the sign is
+  online.
+
 14
 ==
 
