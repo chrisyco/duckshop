@@ -4,6 +4,14 @@
 
 ..
 
+16
+==
+
+* Completely overhauled the chest protection module. Only Lockette is
+  currently supported -- LWC support coming soon!
+
+* Retired the Super Awesome Dependency Downloader.
+
 15
 ==
 
