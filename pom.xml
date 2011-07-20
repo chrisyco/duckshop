@@ -15,29 +15,55 @@
   </properties>
 
   <repositories>
+    <!-- Repository for Bukkit -->
     <repository>
       <id>bukkit-repo</id>
       <url>http://repo.bukkit.org/artifactory/repo</url>
     </repository>
+
+    <!-- sk89q's repository -->
+    <repository>
+      <id>sk89q-repo</id>
+      <url>http://mvn2.sk89q.com/repo</url>
+    </repository>
+
+    <!-- Don't use this too often, as XA21X pays for every megabyte -->
+    <repository>
+      <id>xa21x-repo</id>
+      <url>http://xlipse.thruhere.net/~chris/repo</url>
+    </repository>
   </repositories>
 
   <dependencies>
+    <!-- Bukkit -->
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
       <version>0.0.1-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
+
+    <!-- Nijikokun's Register -->
     <dependency>
-      <groupId>com.iConomy</groupId>
-      <artifactId>Register</artifactId>
-      <version>LATEST</version>
+      <groupId>com.iconomy</groupId>
+      <artifactId>register</artifactId>
+      <version>git3368c57b</version>
       <scope>compile</scope>
     </dependency>
+
+    <!-- Acru's Lockette -->
     <dependency>
-      <groupId>com.nijikokun.bukkit</groupId>
-      <artifactId>Permissions</artifactId>
-      <version>3.1.5</version>
+      <groupId>org.yi.acru</groupId>
+      <artifactId>lockette</artifactId>
+      <version>1.3.8</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- sk89q's dummy Permissions compatibility layer -->
+    <dependency>
+      <groupId>com.sk89q</groupId>
+      <artifactId>dummypermscompat</artifactId>
+      <version>1.2</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
@@ -58,7 +84,7 @@
         <configuration>
         </configuration>
       </plugin>
-      <!-- This is used to package Register in the final JAR -->
+      <!-- Bundle dependencies in the final JAR -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
@@ -72,7 +98,7 @@
             <configuration>
               <artifactSet>
                 <includes>
-                  <include>com.iConomy:Register</include>
+                  <include>com.iconomy:register</include>
                 </includes>
               </artifactSet>
             </configuration>
