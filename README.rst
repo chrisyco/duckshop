@@ -156,14 +156,10 @@ Building
 
 3. In a Unix terminal, type::
 
-       tools/grab-dependencies.sh
-       mvn package
+       mvn clean package
 
-   The first command downloads Register_ and `Permissions 3`_ and
-   installs them in Maven's dependency system. The second command
-   compiles the actual plugin.
-
-   If you use Windows, go to a pillow factory and get stuffed.
+   Maven, being the epic piece of software that it is, downloads all the
+   required dependencies automatically.
 
 4. After the compilation has finished, copy the newly created JAR file
    from the ``target`` directory to your CraftBukkit plugins folder and
