@@ -12,6 +12,8 @@ import org.bukkit.plugin.PluginManager;
 
 import java.util.logging.Logger;
 import tk.kirlian.util.CustomLogger;
+import tk.kirlian.util.StringTools;
+import tk.kirlian.util.protection.ProtectionManager;
 import tk.kirlian.DuckShop.items.ItemDB;
 import tk.kirlian.DuckShop.signs.SignManager;
 import tk.kirlian.DuckShop.permissions.PermissionsProvider;
@@ -26,6 +28,7 @@ public class DuckShop extends JavaPlugin {
     private DuckShopServerListener serverListener;
     private SignManager signManager;
     public Method economyMethod; // Needed by various inventory adapters
+    public ProtectionManager protectionManager; // Needed by ChestInventoryAdapter
 
     @Override
     public void onEnable() {
@@ -65,6 +68,14 @@ public class DuckShop extends JavaPlugin {
         // Initialize Permissions
         PermissionsProvider permissionsProvider = PermissionsProvider.getBest(this);
         log.info("Using " + permissionsProvider.getName() + " for permissions.");
+
+        // Initialize chest protection
+        protectionManager = new ProtectionManager(this);
+        if(protectionManager.isEnabled()) {
+            log.info("Using " + StringTools.join(protectionManager.getEnabledMethods(), ", ") + " for chest protection.");
+        } else {
+            log.info("No chest protection found.");
+        }
 
         // Register commands
         getCommand(DuckShopCommand.COMMAND_NAME).setExecutor(new DuckShopCommand(this));
