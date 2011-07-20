@@ -16,7 +16,7 @@ public class OpsOnlyPermissionsProvider extends PermissionsProvider {
 
     private OpsOnlyPermissionsProvider(DuckShop plugin) {
         this.plugin = plugin;
-        this.log = log;
+        this.log = plugin.log;
     }
 
     public static OpsOnlyPermissionsProvider getInstance(DuckShop plugin) {
