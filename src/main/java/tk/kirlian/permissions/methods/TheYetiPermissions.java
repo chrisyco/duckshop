@@ -1,27 +1,26 @@
-package tk.kirlian.DuckShop.permissions;
+package tk.kirlian.permissions.methods;
 
 import com.nijiko.permissions.PermissionHandler;
 import com.nijikokun.bukkit.Permissions.Permissions;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.entity.Player;
-
-import tk.kirlian.DuckShop.DuckShop;
 import java.util.logging.Logger;
+import tk.kirlian.permissions.PermissionsMethod;
+import tk.kirlian.permissions.PermissionsException;
 
 /**
  * Permissions handler that uses Permissions by TheYeti.
- * @see PermissionsProvider
+ * @see PermissionsMethod
  */
-public class TheYetiPermissionsProvider extends PermissionsProvider {
+public class TheYetiPermissions implements PermissionsMethod {
     private static final String PERMISSIONS_PREFIX = "DuckShop.";
-    private static TheYetiPermissionsProvider provider;
-    private DuckShop plugin;
+    private Plugin plugin;
     private PermissionHandler permissionHandler;
     private Logger log;
 
-    private TheYetiPermissionsProvider(DuckShop plugin) {
+    public TheYetiPermissions(Plugin plugin, Logger log) {
         this.plugin = plugin;
-        this.log = plugin.log;
+        this.log = log;
         Plugin permissionsPlugin = plugin.getServer().getPluginManager().getPlugin("Permissions");
 
         if (this.permissionHandler == null) {
@@ -34,26 +33,31 @@ public class TheYetiPermissionsProvider extends PermissionsProvider {
         }
     }
 
-    public static TheYetiPermissionsProvider getInstance(DuckShop plugin) {
-        if(provider == null) {
-            provider = new TheYetiPermissionsProvider(plugin);
-        }
-        return provider;
-    }
-
-    public String getName() {
+    @Override
+    public String toString() {
         return "TheYeti";
     }
 
+    @Override
     public int getPriority() {
         return 1;
     }
 
+    @Override
     public boolean isAvailable() {
         return (permissionHandler != null);
     }
 
+    @Override
     public boolean playerHasPermission(Player player, String permission) {
         return permissionHandler.has(player, PERMISSIONS_PREFIX + permission);
+    }
+
+    @Override
+    public void throwIfCannot(Player player, String permission)
+      throws PermissionsException {
+        if(!playerHasPermission(player, permission)) {
+            throw new PermissionsException(player, permission);
+        }
     }
 }

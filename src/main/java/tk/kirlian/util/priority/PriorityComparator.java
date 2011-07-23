@@ -1,13 +1,13 @@
-package tk.kirlian.util.provider;
+package tk.kirlian.util.priority;
 
 import java.util.Comparator;
 
 /**
- * A {@link Comparator} that compares {@link Provider}s based on their priority.
- * @see Provider#getPriority()
+ * A Comparator that compares {@link Prioritizable}s based on their priority.
+ * @see Prioritizable#getPriority()
  */
-public class PriorityProviderComparator implements Comparator<Provider> {
-    public int compare(Provider o1, Provider o2) {
+public class PriorityComparator implements Comparator<Prioritizable> {
+    public int compare(Prioritizable o1, Prioritizable o2) {
         if(o1.isAvailable() && !o2.isAvailable()) {
             return -1;
         } else if(!o1.isAvailable() && o2.isAvailable()) {

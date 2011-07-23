@@ -11,6 +11,7 @@ import org.bukkit.event.block.SignChangeEvent;
 import java.util.logging.Logger;
 import tk.kirlian.DuckShop.errors.*;
 import tk.kirlian.DuckShop.signs.*;
+import tk.kirlian.permissions.PermissionsException;
 
 /**
  * Listens for block events -- like placing a sign.

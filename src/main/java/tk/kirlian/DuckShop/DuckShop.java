@@ -15,20 +15,23 @@ import tk.kirlian.util.CustomLogger;
 import tk.kirlian.util.StringTools;
 import tk.kirlian.util.protection.ProtectionManager;
 import tk.kirlian.DuckShop.items.ItemDB;
+import tk.kirlian.permissions.PermissionsManager;
+import tk.kirlian.permissions.PermissionsMethod;
 import tk.kirlian.DuckShop.signs.SignManager;
-import tk.kirlian.DuckShop.permissions.PermissionsProvider;
 
 /**
  * A Bukkit plugin that allows fully automated shops using signs!
  */
 public class DuckShop extends JavaPlugin {
-    public Logger log;
     private DuckShopBlockListener blockListener;
-    public DuckShopPlayerListener playerListener; // Needed by DuckShopCommand
     private DuckShopServerListener serverListener;
     private SignManager signManager;
+
+    public Logger log;
+    public DuckShopPlayerListener playerListener; // Needed by DuckShopCommand
     public Method economyMethod; // Needed by various inventory adapters
-    public ProtectionManager protectionManager; // Needed by ChestInventoryAdapter
+    public ProtectionManager protection; // Needed by ChestInventoryAdapter
+    public PermissionsManager permissions; // Needed by TradingSign
 
     @Override
     public void onEnable() {
@@ -66,13 +69,14 @@ public class DuckShop extends JavaPlugin {
         signManager = SignManager.getInstance(this);
 
         // Initialize Permissions
-        PermissionsProvider permissionsProvider = PermissionsProvider.getBest(this);
-        log.info("Using " + permissionsProvider.getName() + " for permissions.");
+        permissions = new PermissionsManager(this, log);
+        PermissionsMethod permissionsMethod = permissions.getBest();
+        log.info("Using " + permissionsMethod + " for permissions.");
 
         // Initialize chest protection
-        protectionManager = new ProtectionManager(this);
-        if(protectionManager.isEnabled()) {
-            log.info("Using " + StringTools.join(protectionManager.getEnabledMethods(), ", ") + " for chest protection.");
+        protection = new ProtectionManager(this);
+        if(protection.isEnabled()) {
+            log.info("Using " + StringTools.join(protection.getEnabledMethods(), ", ") + " for chest protection.");
         } else {
             log.info("No chest protection found.");
         }

@@ -23,7 +23,7 @@ public class ChestInventoryAdapter extends InventoryAdapter {
         setPlayerName(ownerName);
         setInventory(chest.getInventory());
 
-        if(!plugin.protectionManager.canAccess(ownerName, chest.getBlock())) {
+        if(!plugin.protection.canAccess(ownerName, chest.getBlock())) {
             throw new ChestProtectionException();
         }
     }

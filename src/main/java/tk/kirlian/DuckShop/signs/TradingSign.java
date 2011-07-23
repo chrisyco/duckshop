@@ -5,11 +5,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.block.Sign;
 
 import java.util.logging.Logger;
+import tk.kirlian.permissions.*;
 import tk.kirlian.util.Locations;
 import tk.kirlian.DuckShop.*;
 import tk.kirlian.DuckShop.errors.*;
 import tk.kirlian.DuckShop.items.*;
-import tk.kirlian.DuckShop.permissions.*;
 import tk.kirlian.DuckShop.trading.*;
 
 /**
@@ -70,7 +70,7 @@ public class TradingSign {
         // Do permissions check at the end, after trying to parse
         // So players who don't have permissions can still place non-trading signs
         if(placingPlayer != null) {
-            PermissionsProvider.getBest(plugin).throwIfCannot(placingPlayer, "create." + getActionType(placingPlayer));
+            plugin.permissions.getBest().throwIfCannot(placingPlayer, "create." + getActionType(placingPlayer));
         }
     }
 
@@ -168,7 +168,7 @@ public class TradingSign {
      */
     public void tradeWith(final Player buyer)
       throws InvalidChestException, CannotTradeException, ChestProtectionException, PermissionsException {
-        PermissionsProvider.getBest(plugin).throwIfCannot(buyer, "use." + getActionType(buyer));
+        plugin.permissions.getBest().throwIfCannot(buyer, "use." + getActionType(buyer));
         tradeWith(new PlayerInventoryAdapter(plugin, buyer.getName()));
     }
 
@@ -202,7 +202,7 @@ public class TradingSign {
      *         another player's sign.
      */
     public void destroy(Player breakingPlayer) throws PermissionsException {
-        PermissionsProvider.getBest(plugin).throwIfCannot(breakingPlayer, "break." + getActionType(breakingPlayer));
+        plugin.permissions.getBest().throwIfCannot(breakingPlayer, "break." + getActionType(breakingPlayer));
         SignManager.getInstance(plugin).removeChestLocation(signLocation);
     }
 }

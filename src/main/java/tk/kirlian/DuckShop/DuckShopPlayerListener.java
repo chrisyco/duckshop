@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import tk.kirlian.DuckShop.errors.*;
 import tk.kirlian.DuckShop.signs.*;
 import tk.kirlian.DuckShop.trading.*;
+import tk.kirlian.permissions.PermissionsException;
 
 /**
  * Listens for player events -- such as clicking a sign.
