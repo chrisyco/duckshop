@@ -4,6 +4,13 @@
 
 ..
 
+17
+==
+
+* Fixed issue #4: Cannot parse item names such as "wool3" and "mspawn50".
+
+* Refactored chest protection and permissions system.
+
 16
 ==
 
