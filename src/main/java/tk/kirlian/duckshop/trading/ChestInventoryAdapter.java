@@ -1,4 +1,4 @@
-package tk.kirlian.DuckShop.trading;
+package tk.kirlian.duckshop.trading;
 
 import org.bukkit.Location;
 import org.bukkit.block.BlockState;
@@ -9,9 +9,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.block.Action;
 import org.bukkit.block.BlockFace;
 
-import tk.kirlian.DuckShop.DuckShop;
-import tk.kirlian.DuckShop.items.Item;
-import tk.kirlian.DuckShop.errors.*;
+import tk.kirlian.duckshop.DuckShop;
+import tk.kirlian.duckshop.items.Item;
+import tk.kirlian.duckshop.errors.*;
 
 /**
  * Extends the InventoryAdapter to support chests.

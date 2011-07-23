@@ -1,7 +1,7 @@
-package tk.kirlian.DuckShop.trading;
+package tk.kirlian.duckshop.trading;
 
-import tk.kirlian.DuckShop.DuckShop;
-import tk.kirlian.DuckShop.items.*;
+import tk.kirlian.duckshop.DuckShop;
+import tk.kirlian.duckshop.items.*;
 
 /**
  * An object representing something which can trade -- whether it be a

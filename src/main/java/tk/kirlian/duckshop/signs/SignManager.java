@@ -1,4 +1,4 @@
-package tk.kirlian.DuckShop.signs;
+package tk.kirlian.duckshop.signs;
 
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
-import tk.kirlian.DuckShop.DuckShop;
+import tk.kirlian.duckshop.DuckShop;
 import java.util.logging.Logger;
 import tk.kirlian.util.Locations;
 

@@ -1,4 +1,4 @@
-package tk.kirlian.DuckShop;
+package tk.kirlian.duckshop;
 
 import com.nijikokun.register.payment.Method;
 import org.bukkit.event.block.BlockListener;
@@ -16,13 +16,15 @@ import tk.kirlian.util.StringTools;
 import tk.kirlian.protection.ProtectionManager;
 import tk.kirlian.permissions.PermissionsManager;
 import tk.kirlian.permissions.PermissionsMethod;
-import tk.kirlian.DuckShop.items.ItemDB;
-import tk.kirlian.DuckShop.signs.SignManager;
+import tk.kirlian.duckshop.items.ItemDB;
+import tk.kirlian.duckshop.signs.SignManager;
 
 /**
  * A Bukkit plugin that allows fully automated shops using signs!
  */
 public class DuckShop extends JavaPlugin {
+    private static final String PERMISSIONS_PREFIX = "DuckShop.";
+
     private DuckShopBlockListener blockListener;
     private DuckShopServerListener serverListener;
     private SignManager signManager;
@@ -69,7 +71,7 @@ public class DuckShop extends JavaPlugin {
         signManager = SignManager.getInstance(this);
 
         // Initialize Permissions
-        permissions = new PermissionsManager(this, log);
+        permissions = new PermissionsManager(this, log, PERMISSIONS_PREFIX);
         PermissionsMethod permissionsMethod = permissions.getBest();
         log.info("Using " + permissionsMethod + " for permissions.");
 

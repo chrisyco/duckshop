@@ -1,4 +1,4 @@
-package tk.kirlian.DuckShop.errors;
+package tk.kirlian.duckshop.errors;
 
 /**
  * Thrown when a string cannot be parsed, usually in a TradingSign.

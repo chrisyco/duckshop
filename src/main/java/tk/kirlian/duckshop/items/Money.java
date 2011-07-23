@@ -1,4 +1,4 @@
-package tk.kirlian.DuckShop.items;
+package tk.kirlian.duckshop.items;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-import tk.kirlian.DuckShop.*;
-import tk.kirlian.DuckShop.errors.*;
+import tk.kirlian.duckshop.*;
+import tk.kirlian.duckshop.errors.*;
 
 /**
  * Represents money as a floating point value.

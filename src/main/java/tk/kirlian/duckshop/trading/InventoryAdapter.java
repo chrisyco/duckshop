@@ -1,4 +1,4 @@
-package tk.kirlian.DuckShop.trading;
+package tk.kirlian.duckshop.trading;
 
 import com.nijikokun.register.payment.Method.MethodAccount;
 import org.bukkit.Material;
@@ -7,8 +7,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.entity.Player;
 import java.util.Map;
 
-import tk.kirlian.DuckShop.DuckShop;
-import tk.kirlian.DuckShop.items.*;
+import tk.kirlian.duckshop.DuckShop;
+import tk.kirlian.duckshop.items.*;
 import tk.kirlian.util.DummyEconomy;
 import tk.kirlian.util.Inventories;
 

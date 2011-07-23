@@ -1,4 +1,4 @@
-package tk.kirlian.DuckShop.errors;
+package tk.kirlian.duckshop.errors;
 
 /**
  * Thrown to indicate a chest is protected and cannot be accessed.

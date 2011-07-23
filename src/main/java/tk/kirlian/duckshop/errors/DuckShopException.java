@@ -1,4 +1,4 @@
-package tk.kirlian.DuckShop.errors;
+package tk.kirlian.duckshop.errors;
 
 /**
  * An exception somehow relating to DuckShop.

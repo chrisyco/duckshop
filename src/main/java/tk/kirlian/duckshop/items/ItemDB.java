@@ -1,4 +1,4 @@
-package tk.kirlian.DuckShop.items;
+package tk.kirlian.duckshop.items;
 
 import java.util.Collections;
 import java.util.List;

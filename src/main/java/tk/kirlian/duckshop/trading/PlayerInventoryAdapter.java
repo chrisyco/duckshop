@@ -1,10 +1,10 @@
-package tk.kirlian.DuckShop.trading;
+package tk.kirlian.duckshop.trading;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
-import tk.kirlian.DuckShop.DuckShop;
-import tk.kirlian.DuckShop.items.*;
+import tk.kirlian.duckshop.DuckShop;
+import tk.kirlian.duckshop.items.*;
 
 /**
  * Extends the InventoryAdapter to support players.

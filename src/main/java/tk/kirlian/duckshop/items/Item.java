@@ -1,9 +1,9 @@
-package tk.kirlian.DuckShop.items;
+package tk.kirlian.duckshop.items;
 
 import java.io.Serializable;
 
-import tk.kirlian.DuckShop.*;
-import tk.kirlian.DuckShop.errors.*;
+import tk.kirlian.duckshop.*;
+import tk.kirlian.duckshop.errors.*;
 
 /**
  * Represents an item to be traded.

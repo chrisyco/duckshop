@@ -1,4 +1,4 @@
-package tk.kirlian.DuckShop;
+package tk.kirlian.duckshop;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -15,9 +15,9 @@ import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.logging.Logger;
-import tk.kirlian.DuckShop.errors.*;
-import tk.kirlian.DuckShop.signs.*;
-import tk.kirlian.DuckShop.trading.*;
+import tk.kirlian.duckshop.errors.*;
+import tk.kirlian.duckshop.signs.*;
+import tk.kirlian.duckshop.trading.*;
 import tk.kirlian.permissions.PermissionsException;
 
 /**

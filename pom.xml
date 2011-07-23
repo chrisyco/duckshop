@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>tk.kirlian</groupId>
-  <artifactId>DuckShop</artifactId>
+  <artifactId>duckshop</artifactId>
   <version>16</version>
   <packaging>jar</packaging>
 

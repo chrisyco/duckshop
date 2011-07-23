@@ -1,4 +1,4 @@
-package tk.kirlian.DuckShop;
+package tk.kirlian.duckshop;
 
 import com.nijikokun.register.payment.Method;
 import com.nijikokun.register.payment.Methods;

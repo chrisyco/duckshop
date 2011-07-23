@@ -1,4 +1,4 @@
-package tk.kirlian.DuckShop.signs;
+package tk.kirlian.duckshop.signs;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -7,10 +7,10 @@ import org.bukkit.block.Sign;
 import java.util.logging.Logger;
 import tk.kirlian.permissions.*;
 import tk.kirlian.util.Locations;
-import tk.kirlian.DuckShop.*;
-import tk.kirlian.DuckShop.errors.*;
-import tk.kirlian.DuckShop.items.*;
-import tk.kirlian.DuckShop.trading.*;
+import tk.kirlian.duckshop.*;
+import tk.kirlian.duckshop.errors.*;
+import tk.kirlian.duckshop.items.*;
+import tk.kirlian.duckshop.trading.*;
 
 /**
  * Represents a sign that can be used as a shop.
