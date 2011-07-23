@@ -18,7 +18,7 @@ public class TangibleItem extends Item {
      * The format for a tangible item: the amount as an integer, then a
      * space, then the item name, then an optional durability value.
      */
-    private static final Pattern tangibleItemPattern = Pattern.compile("(\\d+)\\s+(\\w+|\\d+)\\s*(\\d*)");
+    private static final Pattern tangibleItemPattern = Pattern.compile("(\\d+)\\s+([A-Za-z_]+|\\d+)\\s*(\\d*)");
     private static final ItemDB itemDB = ItemDB.getInstance();
 
     private int itemId;
