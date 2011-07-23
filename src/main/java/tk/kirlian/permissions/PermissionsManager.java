@@ -9,11 +9,11 @@ import tk.kirlian.permissions.methods.*;
 public class PermissionsManager {
     private PriorityQueue<PermissionsMethod> queue;
 
-    public PermissionsManager(Plugin plugin, Logger log) {
+    public PermissionsManager(Plugin plugin, Logger log, String prefix) {
         queue = new PriorityQueue<PermissionsMethod>(4, new PriorityComparator());
         /* vvv Add new methods below vvv */
         registerMethod(new OpsOnlyPermissions(plugin, log));
-        registerMethod(new TheYetiPermissions(plugin, log));
+        registerMethod(new TheYetiPermissions(plugin, log, prefix));
         /* ^^^ Add new providers above ^^^ */
     }
 

@@ -13,14 +13,15 @@ import tk.kirlian.permissions.PermissionsException;
  * @see PermissionsMethod
  */
 public class TheYetiPermissions implements PermissionsMethod {
-    private static final String PERMISSIONS_PREFIX = "DuckShop.";
     private Plugin plugin;
     private PermissionHandler permissionHandler;
     private Logger log;
+    private String prefix;
 
-    public TheYetiPermissions(Plugin plugin, Logger log) {
+    public TheYetiPermissions(Plugin plugin, Logger log, String prefix) {
         this.plugin = plugin;
         this.log = log;
+        this.prefix = prefix;
         Plugin permissionsPlugin = plugin.getServer().getPluginManager().getPlugin("Permissions");
 
         if (this.permissionHandler == null) {
@@ -50,7 +51,7 @@ public class TheYetiPermissions implements PermissionsMethod {
 
     @Override
     public boolean playerHasPermission(Player player, String permission) {
-        return permissionHandler.has(player, PERMISSIONS_PREFIX + permission);
+        return permissionHandler.has(player, prefix + permission);
     }
 
     @Override
