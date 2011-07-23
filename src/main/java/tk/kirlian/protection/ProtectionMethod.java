@@ -1,4 +1,4 @@
-package tk.kirlian.util.protection;
+package tk.kirlian.protection;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

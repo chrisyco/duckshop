@@ -1,11 +1,11 @@
-package tk.kirlian.util.protection;
+package tk.kirlian.protection;
 
 import java.util.List;
 import java.util.LinkedList;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import tk.kirlian.util.protection.methods.*;
+import tk.kirlian.protection.methods.*;
 
 /**
  * Manages multiple {@link ProtectionMethod}s.

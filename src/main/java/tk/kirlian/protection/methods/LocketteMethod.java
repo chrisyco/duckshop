@@ -1,10 +1,10 @@
-package tk.kirlian.util.protection.methods;
+package tk.kirlian.protection.methods;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.yi.acru.bukkit.Lockette.Lockette;
-import tk.kirlian.util.protection.ProtectionMethod;
+import tk.kirlian.protection.ProtectionMethod;
 
 /**
  * Support for Lockette by Acru Jovian.

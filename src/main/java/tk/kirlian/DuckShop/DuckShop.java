@@ -13,10 +13,10 @@ import org.bukkit.plugin.PluginManager;
 import java.util.logging.Logger;
 import tk.kirlian.util.CustomLogger;
 import tk.kirlian.util.StringTools;
-import tk.kirlian.util.protection.ProtectionManager;
-import tk.kirlian.DuckShop.items.ItemDB;
+import tk.kirlian.protection.ProtectionManager;
 import tk.kirlian.permissions.PermissionsManager;
 import tk.kirlian.permissions.PermissionsMethod;
+import tk.kirlian.DuckShop.items.ItemDB;
 import tk.kirlian.DuckShop.signs.SignManager;
 
 /**
