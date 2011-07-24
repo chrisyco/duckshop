@@ -3,13 +3,16 @@
 # JARs shouldn't be under SCM
 *.jar
 
-# Chris Wong's Super Awesome Dependency Downloader
-/tools/tmp
-
 # Eclipse stuff
 /.classpath
 /.project
 /.settings
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
 
 # NetBeans
 /nbproject
