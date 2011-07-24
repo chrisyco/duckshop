@@ -1,23 +1,18 @@
 package tk.kirlian.duckshop;
 
 import com.nijikokun.register.payment.Method;
-import org.bukkit.event.block.BlockListener;
-import org.bukkit.event.player.PlayerListener;
-import org.bukkit.event.server.ServerListener;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
-
-import java.util.logging.Logger;
-import tk.kirlian.util.CustomLogger;
-import tk.kirlian.util.StringTools;
-import tk.kirlian.protection.ProtectionManager;
-import tk.kirlian.permissions.PermissionsManager;
-import tk.kirlian.permissions.PermissionsMethod;
+import org.bukkit.plugin.java.JavaPlugin;
 import tk.kirlian.duckshop.items.ItemDB;
 import tk.kirlian.duckshop.signs.SignManager;
+import tk.kirlian.permissions.PermissionsManager;
+import tk.kirlian.permissions.PermissionsMethod;
+import tk.kirlian.protection.ProtectionManager;
+import tk.kirlian.util.CustomLogger;
+import tk.kirlian.util.StringTools;
+
+import java.util.logging.Logger;
 
 /**
  * A Bukkit plugin that allows fully automated shops using signs!

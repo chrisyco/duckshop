@@ -1,13 +1,12 @@
 package tk.kirlian.duckshop.items;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
+import tk.kirlian.duckshop.errors.InvalidSyntaxException;
 
-import tk.kirlian.duckshop.*;
-import tk.kirlian.duckshop.errors.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Represents money as a floating point value.
@@ -23,9 +22,9 @@ public class Money extends Item {
      * <p>
      * Overkill? I think not!
      */
-    private static final Set<String> nothingAliases = new HashSet<String>(Arrays.asList(new String[] {"nothing", "free"}));
+    private static final Set<String> nothingAliases = new HashSet<String>(Arrays.asList("nothing", "free"));
 
-    private double amount;
+    private final double amount;
 
     /**
      * Create a new Money instance.
@@ -48,6 +47,8 @@ public class Money extends Item {
 
     /**
      * Parse a Money instance from a String.
+     *
+     * @throws InvalidSyntaxException if the string cannot be parsed.
      */
     public static Money fromString(final String itemString)
       throws InvalidSyntaxException {

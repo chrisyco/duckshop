@@ -1,25 +1,24 @@
 package tk.kirlian.protection;
 
-import java.util.List;
-import java.util.LinkedList;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import tk.kirlian.protection.methods.*;
+import org.bukkit.plugin.Plugin;
+import tk.kirlian.protection.methods.LocketteMethod;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Manages multiple {@link ProtectionMethod}s.
  */
 public class ProtectionManager {
-    private Plugin plugin;
     private List<ProtectionMethod> methods;
 
     public ProtectionManager(Plugin plugin) {
-        this.plugin = plugin;
         this.methods = new LinkedList<ProtectionMethod>();
         // vvv Add methods below vvv
         registerMethod(new LocketteMethod(plugin));
-        //registerMethod(new FailMethod(plugin)); // Testing only
+        //registerMethod(new FailMethod()); // Testing only
         // ^^^ Add methods above ^^^
     }
 

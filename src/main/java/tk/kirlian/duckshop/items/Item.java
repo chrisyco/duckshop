@@ -1,15 +1,14 @@
 package tk.kirlian.duckshop.items;
 
-import java.io.Serializable;
+import tk.kirlian.duckshop.errors.InvalidSyntaxException;
 
-import tk.kirlian.duckshop.*;
-import tk.kirlian.duckshop.errors.*;
+import java.io.Serializable;
 
 /**
  * Represents an item to be traded.
  */
 public abstract class Item implements Serializable {
-    private String itemString;
+    private final String itemString;
 
     /**
      * Create a new Item instance.
@@ -30,6 +29,8 @@ public abstract class Item implements Serializable {
 
     /**
      * Parse a single line from a TradingSign.
+     *
+     * @throws InvalidSyntaxException if the item cannot be parsed.
      */
     public static Item fromString(final String itemString)
       throws InvalidSyntaxException {
@@ -37,11 +38,7 @@ public abstract class Item implements Serializable {
         try {
             return TangibleItem.fromString(itemString);
         } catch(InvalidSyntaxException ex) {
-            try {
-                return Money.fromString(itemString);
-            } catch(InvalidSyntaxException ey) {
-                throw ey;
-            }
+            return Money.fromString(itemString);
         }
     }
 

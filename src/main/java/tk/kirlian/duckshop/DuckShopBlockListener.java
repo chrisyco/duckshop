@@ -1,17 +1,15 @@
 package tk.kirlian.duckshop;
 
-import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockListener;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.SignChangeEvent;
+import tk.kirlian.duckshop.errors.InvalidSyntaxException;
+import tk.kirlian.duckshop.signs.TradingSign;
+import tk.kirlian.permissions.PermissionsException;
 
 import java.util.logging.Logger;
-import tk.kirlian.duckshop.errors.*;
-import tk.kirlian.duckshop.signs.*;
-import tk.kirlian.permissions.PermissionsException;
 
 /**
  * Listens for block events -- like placing a sign.

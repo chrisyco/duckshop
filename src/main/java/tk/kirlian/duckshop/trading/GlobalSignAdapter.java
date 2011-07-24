@@ -1,7 +1,8 @@
 package tk.kirlian.duckshop.trading;
 
 import tk.kirlian.duckshop.DuckShop;
-import tk.kirlian.duckshop.items.*;
+import tk.kirlian.duckshop.items.Money;
+import tk.kirlian.duckshop.items.TangibleItem;
 
 /**
  * Global trade signs have unlimited supplies of everything. Its

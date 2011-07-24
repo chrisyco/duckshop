@@ -2,15 +2,20 @@ package tk.kirlian.duckshop.signs;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.block.Sign;
+import tk.kirlian.duckshop.DuckShop;
+import tk.kirlian.duckshop.errors.CannotTradeException;
+import tk.kirlian.duckshop.errors.ChestProtectionException;
+import tk.kirlian.duckshop.errors.InvalidChestException;
+import tk.kirlian.duckshop.errors.InvalidSyntaxException;
+import tk.kirlian.duckshop.items.Item;
+import tk.kirlian.duckshop.trading.ChestInventoryAdapter;
+import tk.kirlian.duckshop.trading.GlobalSignAdapter;
+import tk.kirlian.duckshop.trading.PlayerInventoryAdapter;
+import tk.kirlian.duckshop.trading.TradeAdapter;
+import tk.kirlian.permissions.PermissionsException;
+import tk.kirlian.util.Locations;
 
 import java.util.logging.Logger;
-import tk.kirlian.permissions.*;
-import tk.kirlian.util.Locations;
-import tk.kirlian.duckshop.*;
-import tk.kirlian.duckshop.errors.*;
-import tk.kirlian.duckshop.items.*;
-import tk.kirlian.duckshop.trading.*;
 
 /**
  * Represents a sign that can be used as a shop.
@@ -92,7 +97,7 @@ public class TradingSign {
      *
      * @throws IllegalArgumentException if the array is not of length 4.
      */
-    public String[] writeToStringArray(String[] lines) {
+    public void writeToStringArray(String[] lines) {
         if(lines.length != 4) {
             throw new IllegalArgumentException("String array must be of length 4");
         }
@@ -104,11 +109,13 @@ public class TradingSign {
         lines[1] = sellerToBuyer.toString();
         lines[2] = buyerToSeller.toString();
         lines[3] = "";
-        return lines;
     }
 
     /**
      * Return a TradeAdapter corresponding to this sign.
+     *
+     * @throws InvalidChestException if it requires a chest, but is not connected to one.
+     * @throws ChestProtectionException if the owner does not have access to the chest.
      *
      * @see TradeAdapter
      */

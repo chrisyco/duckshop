@@ -1,24 +1,23 @@
 package tk.kirlian.duckshop;
 
-import java.util.Map;
-import java.util.HashMap;
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerInteractEvent;
-
-import java.util.logging.Logger;
-import tk.kirlian.duckshop.errors.*;
-import tk.kirlian.duckshop.signs.*;
-import tk.kirlian.duckshop.trading.*;
+import org.bukkit.event.player.PlayerListener;
+import tk.kirlian.duckshop.errors.CannotTradeException;
+import tk.kirlian.duckshop.errors.ChestProtectionException;
+import tk.kirlian.duckshop.errors.InvalidChestException;
+import tk.kirlian.duckshop.errors.InvalidSyntaxException;
+import tk.kirlian.duckshop.signs.TradingSign;
 import tk.kirlian.permissions.PermissionsException;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * Listens for player events -- such as clicking a sign.
@@ -28,7 +27,7 @@ public class DuckShopPlayerListener extends PlayerListener {
     private final Logger log;
 
     public Map<Player, Boolean> playerStartedLink = new HashMap<Player, Boolean>();
-    public Map<Player, TradingSign> playerLinkSign = new HashMap<Player, TradingSign>();
+    private Map<Player, TradingSign> playerLinkSign = new HashMap<Player, TradingSign>();
 
     public DuckShopPlayerListener(DuckShop plugin) {
         this.log = plugin.log;

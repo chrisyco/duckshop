@@ -2,24 +2,23 @@ package tk.kirlian.permissions.methods;
 
 import com.nijiko.permissions.PermissionHandler;
 import com.nijikokun.bukkit.Permissions.Permissions;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.entity.Player;
-import java.util.logging.Logger;
-import tk.kirlian.permissions.PermissionsMethod;
+import org.bukkit.plugin.Plugin;
 import tk.kirlian.permissions.PermissionsException;
+import tk.kirlian.permissions.PermissionsMethod;
+
+import java.util.logging.Logger;
 
 /**
  * Permissions handler that uses Permissions by TheYeti.
  * @see PermissionsMethod
  */
 public class TheYetiPermissions implements PermissionsMethod {
-    private Plugin plugin;
     private PermissionHandler permissionHandler;
     private Logger log;
     private String prefix;
 
     public TheYetiPermissions(Plugin plugin, Logger log, String prefix) {
-        this.plugin = plugin;
         this.log = log;
         this.prefix = prefix;
         Plugin permissionsPlugin = plugin.getServer().getPluginManager().getPlugin("Permissions");

@@ -1,17 +1,14 @@
 package tk.kirlian.duckshop;
 
-import java.util.Arrays;
-import java.util.Queue;
-import java.util.LinkedList;
-import org.bukkit.entity.Player;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.logging.Logger;
-import tk.kirlian.duckshop.errors.*;
-import tk.kirlian.duckshop.signs.*;
-import tk.kirlian.duckshop.trading.*;
 
 public class DuckShopCommand implements CommandExecutor {
     public static final String COMMAND_NAME = "duckshop";

@@ -1,10 +1,11 @@
 package tk.kirlian.util;
 
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.World;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Functions to convert Locations to Strings and vice versa.

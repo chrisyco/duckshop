@@ -17,7 +17,6 @@ public class Inventories {
      * @return The amount left over.
      */
     public static int removeItem(Inventory inventory, ItemStack delItem) {
-        int maxStackSize = Material.getMaterial(delItem.getTypeId()).getMaxStackSize();
         int toDelete = delItem.getAmount();
 
         for(int i = 0; i != inventory.getSize(); ++i) {

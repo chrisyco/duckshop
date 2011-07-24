@@ -1,13 +1,12 @@
 package tk.kirlian.duckshop.items;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.SafeConstructor;
 import tk.kirlian.util.Pair;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A database of Minecraft items and their data values and names.
@@ -20,6 +19,7 @@ public class ItemDB {
     private Map<Pair<Integer, Short>, ItemDefinition> byIdDamagePair;
     private Map<String, ItemDefinition> byAlias;
 
+    @SuppressWarnings("unchecked")
     private ItemDB() {
         byIdDamagePair = new HashMap<Pair<Integer, Short>, ItemDefinition>();
         byAlias = new HashMap<String, ItemDefinition>();
@@ -59,6 +59,7 @@ public class ItemDB {
         return instance;
     }
 
+    @SuppressWarnings("unchecked")
     private static ItemDefinition fromMap(Integer typeId, Short durability, Map<String, Object> map) {
         String canonicalName = (String) map.get("canonical_name");
         String shortName = (String) map.get("short_name");

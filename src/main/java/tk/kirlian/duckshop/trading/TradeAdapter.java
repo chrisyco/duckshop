@@ -1,14 +1,16 @@
 package tk.kirlian.duckshop.trading;
 
 import tk.kirlian.duckshop.DuckShop;
-import tk.kirlian.duckshop.items.*;
+import tk.kirlian.duckshop.items.Item;
+import tk.kirlian.duckshop.items.Money;
+import tk.kirlian.duckshop.items.TangibleItem;
 
 /**
  * An object representing something which can trade -- whether it be a
  * seller, a buyer, or a global sign.
  */
 public abstract class TradeAdapter {
-    protected DuckShop plugin;
+    protected final DuckShop plugin;
 
     /**
      * Create a new TradeAdapter instance.

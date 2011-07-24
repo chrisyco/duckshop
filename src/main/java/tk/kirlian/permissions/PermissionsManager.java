@@ -1,10 +1,12 @@
 package tk.kirlian.permissions;
 
+import org.bukkit.plugin.Plugin;
+import tk.kirlian.permissions.methods.OpsOnlyPermissions;
+import tk.kirlian.permissions.methods.TheYetiPermissions;
+import tk.kirlian.util.priority.PriorityComparator;
+
 import java.util.PriorityQueue;
 import java.util.logging.Logger;
-import org.bukkit.plugin.Plugin;
-import tk.kirlian.util.priority.PriorityComparator;
-import tk.kirlian.permissions.methods.*;
 
 public class PermissionsManager {
     private PriorityQueue<PermissionsMethod> queue;
@@ -42,8 +44,8 @@ public class PermissionsManager {
     public void rehash() {
         PermissionsMethod[] items = (PermissionsMethod[]) queue.toArray();
         queue.clear();
-        for(int i = 0; i < items.length; ++i) {
-            queue.offer(items[i]);
+        for (PermissionsMethod item : items) {
+            queue.offer(item);
         }
     }
 }

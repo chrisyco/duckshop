@@ -12,11 +12,9 @@ import tk.kirlian.protection.ProtectionMethod;
  * @see <a href="http://forums.bukkit.org/threads/4336/">Lockette</a>
  */
 public class LocketteMethod implements ProtectionMethod {
-    private Plugin plugin;
     private Lockette lockette;
 
     public LocketteMethod(Plugin plugin) {
-        this.plugin = plugin;
         Plugin lockettePlugin = plugin.getServer().getPluginManager().getPlugin("Lockette");
         if(lockettePlugin != null && lockettePlugin instanceof Lockette) {
             this.lockette = (Lockette)lockettePlugin;

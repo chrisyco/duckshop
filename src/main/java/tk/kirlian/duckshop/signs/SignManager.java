@@ -1,20 +1,14 @@
 package tk.kirlian.duckshop.signs;
 
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.Location;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Properties;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-
 import tk.kirlian.duckshop.DuckShop;
-import java.util.logging.Logger;
 import tk.kirlian.util.Locations;
+
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.logging.Logger;
 
 /**
  * Keeps track of chest locations, among other things.

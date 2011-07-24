@@ -2,13 +2,10 @@ package tk.kirlian.duckshop.items;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import java.util.List;
-import java.util.LinkedList;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
+import tk.kirlian.duckshop.errors.InvalidSyntaxException;
 
-import tk.kirlian.duckshop.*;
-import tk.kirlian.duckshop.errors.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Represents a tangible item, rather than money.
@@ -21,9 +18,9 @@ public class TangibleItem extends Item {
     private static final Pattern tangibleItemPattern = Pattern.compile("(\\d+)\\s+([A-Za-z_]+|\\d+)\\s*(\\d*)");
     private static final ItemDB itemDB = ItemDB.getInstance();
 
-    private int itemId;
-    private int amount;
-    private short damage;
+    private final int itemId;
+    private final int amount;
+    private final short damage;
 
     /**
      * Create a new TangibleItem instance.
@@ -50,6 +47,8 @@ public class TangibleItem extends Item {
 
     /**
      * Parse a TangibleItem from a String.
+     *
+     * @throws InvalidSyntaxException if the item cannot be parsed.
      */
     public static TangibleItem fromString(final String itemString)
       throws InvalidSyntaxException {
@@ -124,7 +123,6 @@ public class TangibleItem extends Item {
      */
     public ItemStack[] toItemStackArray() {
         int maxStackSize = Material.getMaterial(itemId).getMaxStackSize();
-        int leftover = amount;
         ItemStack[] stacks;
         int quotient = amount / maxStackSize;
         if(amount % maxStackSize == 0) {

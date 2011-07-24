@@ -12,7 +12,7 @@ public interface Prioritizable {
     /**
      * Decide if this particular object is available.
      * <p>
-     * If it is not available, the object will never be returned by {@link PriorityManager#getBest()}.
+     * If it is not available, the object should not be used.
      */
     public boolean isAvailable();
 }

@@ -1,13 +1,12 @@
 package tk.kirlian.duckshop;
 
-import com.nijikokun.register.payment.Method;
 import com.nijikokun.register.payment.Methods;
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.event.server.ServerListener;
+import tk.kirlian.util.DummyEconomy;
 
 import java.util.logging.Logger;
-import tk.kirlian.util.DummyEconomy;
 
 /**
  * Listens for events such as loading and unloading another plugin.

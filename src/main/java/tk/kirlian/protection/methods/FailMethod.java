@@ -11,11 +11,6 @@ import tk.kirlian.protection.ProtectionMethod;
  * This should be used for testing only.
  */
 public class FailMethod implements ProtectionMethod {
-    private Plugin plugin;
-
-    public FailMethod(Plugin plugin) {
-        this.plugin = plugin;
-    }
 
     @Override
     public boolean isEnabled() {

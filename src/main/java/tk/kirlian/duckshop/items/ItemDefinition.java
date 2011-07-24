@@ -1,16 +1,17 @@
 package tk.kirlian.duckshop.items;
 
-import java.util.Collection;
-import java.util.Set;
-import java.util.HashSet;
 import tk.kirlian.util.Pair;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 public class ItemDefinition {
-    private Integer id;
-    private Short damage;
-    private String canonicalName;
-    private String shortName;
-    private Set<String> aliases;
+    private final Integer id;
+    private final Short damage;
+    private final String canonicalName;
+    private final String shortName;
+    private final Set<String> aliases;
 
     public ItemDefinition(Integer id, Short damage, String canonicalName, String shortName, Collection<String> aliases) {
         this.id = id;

@@ -2,9 +2,10 @@ package tk.kirlian.permissions.methods;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import java.util.logging.Logger;
-import tk.kirlian.permissions.PermissionsMethod;
 import tk.kirlian.permissions.PermissionsException;
+import tk.kirlian.permissions.PermissionsMethod;
+
+import java.util.logging.Logger;
 
 /**
  * A fallback permissions handler that only lets admins do anything.

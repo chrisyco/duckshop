@@ -2,15 +2,16 @@ package tk.kirlian.duckshop.trading;
 
 import com.nijikokun.register.payment.Method.MethodAccount;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.entity.Player;
-import java.util.Map;
-
 import tk.kirlian.duckshop.DuckShop;
-import tk.kirlian.duckshop.items.*;
+import tk.kirlian.duckshop.items.Money;
+import tk.kirlian.duckshop.items.TangibleItem;
 import tk.kirlian.util.DummyEconomy;
 import tk.kirlian.util.Inventories;
+
+import java.util.Map;
 
 /**
  * TradeAdapter that works with things that have inventories -- such as

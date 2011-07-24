@@ -1,8 +1,8 @@
 package tk.kirlian.util;
 
 import com.nijikokun.register.payment.Method;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.Server;
+import org.bukkit.plugin.Plugin;
 
 /**
  * A dummy economy plugin.
@@ -14,7 +14,7 @@ import org.bukkit.Server;
  * e.g. adding a non-zero amount.
  */
 public class DummyEconomy implements Method {
-    private static DummyEconomy instance = new DummyEconomy();
+    private static final DummyEconomy instance = new DummyEconomy();
 
     /**
      * Used to check if a player exists.
@@ -77,8 +77,6 @@ public class DummyEconomy implements Method {
     }
 
     public class DummyAccount implements MethodAccount {
-        private String name;
-
         public DummyAccount() {
         }
 
