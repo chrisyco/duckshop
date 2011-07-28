@@ -106,7 +106,7 @@
             <configuration>
               <artifactSet>
                 <includes>
-                  <include>com.iconomy:register</include>
+                  <include>com.nijikokun:register</include>
                 </includes>
               </artifactSet>
             </configuration>
