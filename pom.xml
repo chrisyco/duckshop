@@ -4,7 +4,7 @@
 
   <groupId>tk.kirlian</groupId>
   <artifactId>duckshop</artifactId>
-  <version>17</version>
+  <version>18</version>
   <packaging>jar</packaging>
 
   <name>DuckShop</name>

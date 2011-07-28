@@ -4,6 +4,15 @@
 
 ..
 
+18
+==
+
+* Implemented LWC support! Yay!
+
+* Updated Register to support iConomy 6.
+
+* Corrected 'soup' to 'stew' (thanks Kingbobson).
+
 17
 ==
 
