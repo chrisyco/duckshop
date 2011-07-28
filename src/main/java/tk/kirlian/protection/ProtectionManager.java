@@ -4,6 +4,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import tk.kirlian.protection.methods.LocketteMethod;
+import tk.kirlian.protection.methods.LWCMethod;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,6 +19,7 @@ public class ProtectionManager {
         this.methods = new LinkedList<ProtectionMethod>();
         // vvv Add methods below vvv
         registerMethod(new LocketteMethod(plugin));
+        registerMethod(new LWCMethod(plugin));
         //registerMethod(new FailMethod()); // Testing only
         // ^^^ Add methods above ^^^
     }

@@ -59,6 +59,14 @@
       <scope>compile</scope>
     </dependency>
 
+    <!-- Hidendra's LWC -->
+    <dependency>
+      <groupId>com.griefcraft</groupId>
+      <artifactId>lwc</artifactId>
+      <version>3.30</version>
+      <scope>compile</scope>
+    </dependency>
+
     <!-- sk89q's dummy Permissions compatibility layer -->
     <dependency>
       <groupId>com.sk89q</groupId>
