@@ -281,11 +281,11 @@
   canonical_name: Rose
   short_name: rflower
 39:
-  aliases: [brownmushroom, mushroom, bmushroom, bmshrm]
+  aliases: [brownmushroom, bmushroom, mushroom, brownmshrm, bmshrm, mshrm]
   canonical_name: Brown Mushroom
   short_name: bmshrm
 40:
-  aliases: [redmushroom, rmushroom, rmshrm]
+  aliases: [redmushroom, rmushroom, redmshrm, rmshrm]
   canonical_name: Red Mushroom
   short_name: rmshrm
 41:
@@ -660,9 +660,9 @@
   canonical_name: Bowl
   short_name: bowl
 282:
-  aliases: [mushroomsoup, soup]
-  canonical_name: Mushroom Soup
-  short_name: soup
+  aliases: [mushroomstew, mshrmstew, stew, mushroomsoup, mshrmsoup, soup]
+  canonical_name: Mushroom Stew
+  short_name: stew
 283:
   aliases: [goldsword, gsword]
   canonical_name: Gold Sword
