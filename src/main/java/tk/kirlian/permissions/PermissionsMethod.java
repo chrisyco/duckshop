@@ -19,7 +19,8 @@ public interface PermissionsMethod extends Prioritizable {
 
     /**
      * Throw a {@link PermissionsException} if a player doesn't have permission to do this.
+     *
+     * @throws PermissionsException if the player doesn't have permission.
      */
-    @SuppressWarnings({"JavaDoc"})
     public void throwIfCannot(Player player, String permission) throws PermissionsException;
 }

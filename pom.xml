@@ -45,9 +45,9 @@
 
     <!-- Nijikokun's Register -->
     <dependency>
-      <groupId>com.iconomy</groupId>
+      <groupId>com.nijikokun</groupId>
       <artifactId>register</artifactId>
-      <version>git3368c57b</version>
+      <version>g0841d6b</version>
       <scope>compile</scope>
     </dependency>
 

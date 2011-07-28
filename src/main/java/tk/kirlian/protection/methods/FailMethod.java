@@ -2,7 +2,6 @@ package tk.kirlian.protection.methods;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import tk.kirlian.protection.ProtectionMethod;
 
 /**
