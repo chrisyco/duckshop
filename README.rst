@@ -20,6 +20,9 @@ You should also install `Permissions 3`_. If Permissions is not
 installed, it would default to ops only for everything, which isn't very
 useful.
 
+Since version 19, DuckShop also supports LWC_ and Lockette_ for chest
+protection. Users would only be able to sell from chests that they own.
+
 Permissions Nodes
 -----------------
 
@@ -165,6 +168,8 @@ Building
    from the ``target`` directory to your CraftBukkit plugins folder and
    set it up as above.
 
+.. _LWC: http://forums.bukkit.org/threads/967/
+.. _Lockette: http://forums.bukkit.org/threads/4336/
 .. _Bukkit: http://www.bukkit.org/
 .. _JDK: http://www.oracle.com/technetwork/java/javase/downloads/index.html
 .. _Maven: http://maven.apache.org/

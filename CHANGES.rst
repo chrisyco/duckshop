@@ -4,6 +4,13 @@
 
 ..
 
+19
+==
+
+* Fixed crash when chest protection plugin not loaded.
+
+* Fixed missing dependency error that stopped it from compiling.
+
 18
 ==
 
