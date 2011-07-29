@@ -68,7 +68,7 @@ public class ProtectionManager {
      */
     public boolean canAccess(String playerName, Block block) {
         for(ProtectionMethod method : methods) {
-            if(!method.canAccess(playerName, block)) {
+            if(method.isEnabled() && !method.canAccess(playerName, block)) {
                 return false;
             }
         }
