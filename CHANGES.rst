@@ -4,6 +4,14 @@
 
 ..
 
+20
+==
+
+* Added permissions check when linking signs. Now, players must have the
+  appropriate ``DuckShop.create.*`` permission to link a sign.
+
+* Global signs can no longer be connected to chests.
+
 19
 ==
 

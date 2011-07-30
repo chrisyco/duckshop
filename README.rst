@@ -145,6 +145,10 @@ To connect a sign to a chest, type ``/duckshop link``. Then follow the
 on-screen instructions to complete the link. Links are saved
 automatically, so you only need to connect it once.
 
+Chest linking uses the same permissions nodes as placing signs, so to
+link your own signs, you need the ``DuckShop.create.personal``
+permission.
+
 .. note::
    If you have chest protection enabled and you've connected to a locked
    chest, it will fail only when you try to use the sign, not when you
