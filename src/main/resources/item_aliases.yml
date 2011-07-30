@@ -507,7 +507,7 @@
   canonical_name: Pumpkin
   short_name: pumpkin
 87:
-  aliases: [netherrack, netherrock, netherstone, hellrock, hellstone, bloodrock, bloodstone]
+  aliases: [netherrack, netherrock, netherstone, hellrock, hellstone, bloodrock, bloodstone, nrack, nrock, nstone]
   canonical_name: Netherrack
   short_name: nrack
 88:
@@ -515,7 +515,7 @@
   canonical_name: Soul Sand
   short_name: ssand
 89:
-  aliases: [glowstone, glowstoneblock, glowstoneblk, gstone, lightstone]
+  aliases: [glowstone, gstone, lightstone, lstone]
   canonical_name: Glowstone
   short_name: gstone
 90:
