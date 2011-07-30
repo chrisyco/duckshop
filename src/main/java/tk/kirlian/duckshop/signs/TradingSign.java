@@ -200,10 +200,15 @@ public class TradingSign {
     /**
      * Called before the player starts linking the sign.
      *
+     * @throws UnsupportedOperationException if this is a global sign
      * @throws PermissionsException if the player doesn't have permission to
      *         link this sign.
      */
-    public void preSetChestLocation(Player linkingPlayer) throws PermissionsException {
+    public void preSetChestLocation(Player linkingPlayer)
+      throws UnsupportedOperationException, PermissionsException {
+        if(isGlobal()) {
+            throw new UnsupportedOperationException("global signs cannot be connected to chests");
+        }
         plugin.permissions.getBest().throwIfCannot(linkingPlayer, "create." + getActionType(linkingPlayer));
     }
 

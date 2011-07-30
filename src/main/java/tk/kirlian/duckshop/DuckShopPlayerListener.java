@@ -104,9 +104,11 @@ public class DuckShopPlayerListener extends PlayerListener {
             if(sign != null) {
                 try {
                     sign.preSetChestLocation(player);
-                } catch (PermissionsException ex) {
+                } catch(UnsupportedOperationException ex) {
+                    player.sendMessage("Global signs don't need to be connected to chests.");
+                    sign = null;
+                } catch(PermissionsException ex) {
                     player.sendMessage("You don't have permission to link this sign.");
-                    player.sendMessage("Try another sign, or type \"/duckshop cancel\" to quit.");
                     sign = null;
                 }
             }
@@ -115,6 +117,9 @@ public class DuckShopPlayerListener extends PlayerListener {
                 player.sendMessage("Now left click a chest to connect it.");
                 player.sendMessage("Or left click another sign if that's not the right one.");
                 playerLinkSign.put(player, sign);
+            // If there were problems, prompt the user again
+            } else {
+                player.sendMessage("Try another sign, or type \"/duckshop cancel\" to quit.");
             }
         }
     }
