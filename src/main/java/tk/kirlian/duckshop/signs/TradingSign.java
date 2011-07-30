@@ -190,14 +190,30 @@ public class TradingSign {
         return "TradingSign: Global=" + global + "; " + sellerToBuyer + "; " + buyerToSeller + "; Chest=" + (chestLocation != null ? Locations.toString(chestLocation) : "<null>");
     }
 
-    public Location getSignLocation() {
-        return signLocation;
-    }
-
+    /**
+     * Get the location of the chest for this sign.
+     */
     public Location getChestLocation() {
         return SignManager.getInstance(plugin).getChestLocation(signLocation);
     }
 
+    /**
+     * Called before the player starts linking the sign.
+     *
+     * @throws PermissionsException if the player doesn't have permission to
+     *         link this sign.
+     */
+    public void preSetChestLocation(Player linkingPlayer) throws PermissionsException {
+        plugin.permissions.getBest().throwIfCannot(linkingPlayer, "create." + getActionType(linkingPlayer));
+    }
+
+    /**
+     * Set the location of the chest for this sign.
+     * <p>
+     * If the chest location is set interactively, be sure to call
+     * {@link #preSetChestLocation(Player)} to make sure the player has
+     * permission first.
+     */
     public void setChestLocation(Location chestLocation) {
         SignManager.getInstance(plugin).setChestLocation(signLocation, chestLocation);
     }
@@ -206,7 +222,7 @@ public class TradingSign {
      * Called when the sign is destroyed.
      *
      * @throws PermissionsException if player is not allowed to break
-     *         another player's sign.
+     *         the sign.
      */
     public void destroy(Player breakingPlayer) throws PermissionsException {
         plugin.permissions.getBest().throwIfCannot(breakingPlayer, "break." + getActionType(breakingPlayer));

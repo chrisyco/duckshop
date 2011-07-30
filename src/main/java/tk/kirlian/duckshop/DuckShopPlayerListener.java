@@ -88,6 +88,7 @@ public class DuckShopPlayerListener extends PlayerListener {
     private void markSign(Player player, Block block, Sign state) {
         if(playerStartedLink.containsKey(player)) {
             TradingSign sign = null;
+            // Parse and validate the sign
             try {
                 sign = new TradingSign(plugin,
                                        null, // There is no placingPlayer as the sign is being marked, not placed.
@@ -99,6 +100,17 @@ public class DuckShopPlayerListener extends PlayerListener {
                 // See above note on placingPlayer
                 throw new RuntimeException(ex);
             }
+            // Check if the player can link the sign first
+            if(sign != null) {
+                try {
+                    sign.preSetChestLocation(player);
+                } catch (PermissionsException ex) {
+                    player.sendMessage("You don't have permission to link this sign.");
+                    player.sendMessage("Try another sign, or type \"/duckshop cancel\" to quit.");
+                    sign = null;
+                }
+            }
+            // If there aren't any problems, proceed to the next step
             if(sign != null) {
                 player.sendMessage("Now left click a chest to connect it.");
                 player.sendMessage("Or left click another sign if that's not the right one.");
