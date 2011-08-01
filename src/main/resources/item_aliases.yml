@@ -913,7 +913,7 @@
   canonical_name: Egg
   short_name: egg
 345:
-  aliases: [compass, cmpass, compss, cmpss]
+  aliases: [compass]
   canonical_name: Compass
   short_name: compass
 346:

@@ -4,6 +4,13 @@
 
 ..
 
+21
+==
+
+* Fixed item names Netherrack, Green Music Disc and Gold Music Disc.
+
+* Added unit tests.
+
 20
 ==
 
