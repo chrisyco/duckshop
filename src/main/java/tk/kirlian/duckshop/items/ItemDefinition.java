@@ -35,6 +35,17 @@ public class ItemDefinition {
 
     public Set<String> getAliases() { return aliases; }
 
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof ItemDefinition) {
+            ItemDefinition other = (ItemDefinition) o;
+            return this.getKey().equals(other.getKey());
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public String toString() {
         return id + "," + damage + ": " + canonicalName + " (" + shortName + ")";
     }

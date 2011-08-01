@@ -48,6 +48,7 @@
     2:
       aliases: [darksapling, redsapling, sprucesapling, pinesapling, dsapling, rsapling, ssapling, psapling]
       canonical_name: Spruce/Pine Sapling
+      short_name: psapling
 7:
   aliases: [bedrock, bdrock, brock, adminium]
   canonical_name: Bedrock
@@ -77,15 +78,15 @@
   canonical_name: Gravel
   short_name: gravel
 14:
-  aliases: [goldore, gldore, gore]
+  aliases: [goldore, gore]
   canonical_name: Gold Ore
   short_name: goldore
 15:
-  aliases: [ironore, irnore, iore]
+  aliases: [ironore, iore]
   canonical_name: Iron Ore
   short_name: ironore
 16:
-  aliases: [coalore, clore, core]
+  aliases: [coalore, core]
   canonical_name: Coal Ore
   short_name: coalore
 17:
@@ -1033,14 +1034,14 @@
   canonical_name: Map
   short_name: map
 359:
-  aliases: [shear, ishear, clipper]
+  aliases: [shear, ironshear, ishear, clipper]
   canonical_name: Shears
   short_name: shears
 2256:
-  aliases: [goldmusicdisc, golddisc, gdisc]
+  aliases: [goldmusicdisc, golddisc]
   canonical_name: Gold Music Disc
-  short_name: godisc
+  short_name: golddisc
 2257:
   aliases: [greenmusicdisc, greendisc]
   canonical_name: Green Music Disc
-  short_name: grdisc
+  short_name: greendisc

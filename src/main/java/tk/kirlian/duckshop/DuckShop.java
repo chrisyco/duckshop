@@ -47,7 +47,7 @@ public class DuckShop extends JavaPlugin {
 
         // Load the ItemDB beforehand, so if it fails, it fails now, and
         // not in the obscure depths of the sign handling code :)
-        ItemDB itemDB = ItemDB.getInstance();
+        ItemDB itemDB = ItemDB.getDefault();
 
         // Register events
         PluginManager pm = getServer().getPluginManager();

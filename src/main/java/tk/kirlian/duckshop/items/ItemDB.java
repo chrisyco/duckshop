@@ -4,9 +4,11 @@ import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.SafeConstructor;
 import tk.kirlian.util.Pair;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * A database of Minecraft items and their data values and names.
@@ -15,18 +17,21 @@ import java.util.Map;
  * <code>item_aliases.yml</code>.
  */
 public class ItemDB {
-    private static ItemDB instance;
+    private static ItemDB instance = ItemDB.fromResourcePath("/item_aliases.yml");
     private Map<Pair<Integer, Short>, ItemDefinition> byIdDamagePair;
     private Map<String, ItemDefinition> byAlias;
 
+    /**
+     * Read an ItemDB instance from an InputStream.
+     */
     @SuppressWarnings("unchecked")
-    private ItemDB() {
+    public ItemDB(InputStream stream) {
         byIdDamagePair = new HashMap<Pair<Integer, Short>, ItemDefinition>();
         byAlias = new HashMap<String, ItemDefinition>();
         Yaml yaml = new Yaml(new SafeConstructor());
         // This is absolutely disgusting :D
         Map<Integer, Map<String, Object>> document =
-            (Map<Integer, Map<String, Object>>) yaml.load(getClass().getResourceAsStream("/item_aliases.yml"));
+            (Map<Integer, Map<String, Object>>) yaml.load(stream);
 
         for(Map.Entry<Integer, Map<String, Object>> entry : document.entrySet()) {
             Integer id = entry.getKey();
@@ -50,12 +55,16 @@ public class ItemDB {
     }
 
     /**
-     * Get an instance of this class, or create it if none exists.
+     * Create an ItemDB instance from a resource.
      */
-    public static ItemDB getInstance() {
-        if(instance == null) {
-            instance = new ItemDB();
-        }
+    public static ItemDB fromResourcePath(String resourcePath) {
+        return new ItemDB(ItemDB.class.getResourceAsStream(resourcePath));
+    }
+
+    /**
+     * Get the default item database.
+     */
+    public static ItemDB getDefault() {
         return instance;
     }
 
@@ -78,12 +87,28 @@ public class ItemDB {
     }
 
     /**
+     * Return the set of all the keys that can be passed to {@link #getItemById(Pair)}
+     */
+    public Set<Pair<Integer, Short>> getDataValuesSet() {
+        return byIdDamagePair.keySet();
+    }
+
+    /**
+     * Get the ItemDefinition corresponding to this (ID, durability) pair.
+     *
+     * @return an ItemDefinition if found, otherwise null.
+     */
+    public ItemDefinition getItemById(final Pair<Integer, Short> idPair) {
+        return byIdDamagePair.get(idPair);
+    }
+
+    /**
      * Get the ItemDefinition which has this data value.
      *
      * @return an ItemDefinition if found, otherwise null.
      */
     public ItemDefinition getItemById(final Integer typeId, final Short durability) {
-        return byIdDamagePair.get(new Pair<Integer, Short>(typeId, durability));
+        return getItemById(new Pair<Integer, Short>(typeId, durability));
     }
 
     /**
