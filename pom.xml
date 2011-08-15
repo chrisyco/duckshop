@@ -29,8 +29,8 @@
 
     <!-- Don't use this too often, as XA21X pays for every megabyte -->
     <repository>
-      <id>xa21x-repo</id>
-      <url>http://xlipse.thruhere.net/~chris/repo</url>
+      <id>allele-repo</id>
+      <url>http://allele.tk/repo</url>
     </repository>
   </repositories>
 
