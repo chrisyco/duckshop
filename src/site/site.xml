@@ -1,0 +1,9 @@
+<project>
+    <body>
+        <links>
+            <item name="Bukkit Forums" href="http://forums.bukkit.org/threads/26532/" />
+            <item name="GitHub" href="https://github.com/chrisyco/duckshop" />
+        </links>
+        <menu ref="reports" />
+    </body>
+</project>
