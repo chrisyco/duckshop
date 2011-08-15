@@ -4,7 +4,7 @@
 
   <groupId>tk.allele</groupId>
   <artifactId>duckshop</artifactId>
-  <version>21</version>
+  <version>22</version>
   <packaging>jar</packaging>
 
   <name>DuckShop</name>
@@ -115,6 +115,7 @@
           </execution>
         </executions>
       </plugin>
+      <!-- Site generator -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>

@@ -4,6 +4,13 @@
 
 ..
 
+22
+==
+
+* Use more specific messages if trade could not be completed -- e.g.
+  "There is not enough space for 6 fish" rather than a generic "Oh noes!
+  Cannot trade!"
+
 21
 ==
 
