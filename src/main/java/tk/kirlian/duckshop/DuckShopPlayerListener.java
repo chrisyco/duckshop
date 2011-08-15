@@ -8,10 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerListener;
-import tk.kirlian.duckshop.errors.CannotTradeException;
-import tk.kirlian.duckshop.errors.ChestProtectionException;
-import tk.kirlian.duckshop.errors.InvalidChestException;
-import tk.kirlian.duckshop.errors.InvalidSyntaxException;
+import tk.kirlian.duckshop.errors.*;
 import tk.kirlian.duckshop.signs.TradingSign;
 import tk.kirlian.permissions.PermissionsException;
 
@@ -74,8 +71,23 @@ public class DuckShopPlayerListener extends PlayerListener {
                 player.sendMessage("Invalid chest. Make sure it is connected properly.");
             } catch(ChestProtectionException ex) {
                 player.sendMessage("The owner of the sign doesn't have access to the connected chest.");
-            } catch(CannotTradeException ex) {
-                player.sendMessage("Oh noes! Cannot trade!");
+            } catch(TradingException ex) {
+                if(ex instanceof TooMuchException) {
+                    if(player.equals(ex.getPlayer())) {
+                        player.sendMessage("You don't have enough space for " + ex.getItem() + ".");
+                    } else {
+                        player.sendMessage("The sign owner doesn't have enough space for " + ex.getItem() + ".");
+                    }
+                } else if(ex instanceof TooLittleException) {
+                    if(player.equals(ex.getPlayer())) {
+                        player.sendMessage("You need " + ex.getItem() + " to trade.");
+                    } else {
+                        player.sendMessage("The sign owner doesn't have " + ex.getItem() + ".");
+                    }
+                } else {
+                    player.sendMessage("Oh noes! Cannot trade!");
+                    plugin.log.warning("Unknown TradingException: " + ex.getClass().getName());
+                }
             } catch(PermissionsException ex) {
                 player.sendMessage("You're not allowed to use this for some reason.");
             }

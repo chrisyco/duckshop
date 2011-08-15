@@ -11,7 +11,6 @@ import tk.kirlian.duckshop.errors.InvalidChestException;
  * Extends the InventoryAdapter to support chests.
  * @see InventoryAdapter
  */
-@SuppressWarnings({"JavaDoc"})
 public class ChestInventoryAdapter extends InventoryAdapter {
     private void initialize(String ownerName, Chest chest)
       throws ChestProtectionException {

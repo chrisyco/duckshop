@@ -3,10 +3,7 @@ package tk.kirlian.duckshop.signs;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import tk.kirlian.duckshop.DuckShop;
-import tk.kirlian.duckshop.errors.CannotTradeException;
-import tk.kirlian.duckshop.errors.ChestProtectionException;
-import tk.kirlian.duckshop.errors.InvalidChestException;
-import tk.kirlian.duckshop.errors.InvalidSyntaxException;
+import tk.kirlian.duckshop.errors.*;
 import tk.kirlian.duckshop.items.Item;
 import tk.kirlian.duckshop.trading.ChestInventoryAdapter;
 import tk.kirlian.duckshop.trading.GlobalSignAdapter;
@@ -145,38 +142,44 @@ public class TradingSign {
      * Attempt to trade with another TradeAdapter.
      *
      * @throws InvalidChestException if the chest is invalid (duh)
-     * @throws CannotTradeException if any party doesn't have enough to trade
+     * @throws tk.kirlian.duckshop.errors.TradingException if any party doesn't have enough to trade
      * @throws ChestProtectionException if the chest is protected
      */
-    public void tradeWith(final TradeAdapter buyerAdapter)
-      throws InvalidChestException, CannotTradeException, ChestProtectionException {
+    public void tradeWith(final Player buyer, final TradeAdapter buyerAdapter)
+      throws InvalidChestException, TradingException, ChestProtectionException {
         final TradeAdapter sellerAdapter = getAdapter();
-        // ARGH!!!
-        if(sellerAdapter.canAddItem(buyerToSeller) &&
-           sellerAdapter.canSubtractItem(sellerToBuyer) &&
-           buyerAdapter.canAddItem(sellerToBuyer) &&
-           buyerAdapter.canSubtractItem(buyerToSeller)) {
-            sellerAdapter.addItem(buyerToSeller);
-            sellerAdapter.subtractItem(sellerToBuyer);
-            buyerAdapter.addItem(sellerToBuyer);
-            buyerAdapter.subtractItem(buyerToSeller);
-        } else {
-            throw new CannotTradeException();
+        // Check each combination
+        if(!sellerAdapter.canAddItem(buyerToSeller)) {
+            throw new TooMuchException(null, buyerToSeller);
         }
+        if(!sellerAdapter.canSubtractItem(sellerToBuyer)) {
+            throw new TooLittleException(null, sellerToBuyer);
+        }
+        if(!buyerAdapter.canAddItem(sellerToBuyer)) {
+            throw new TooMuchException(buyer, sellerToBuyer);
+        }
+        if(!buyerAdapter.canSubtractItem(buyerToSeller)) {
+            throw new TooLittleException(buyer, buyerToSeller);
+        }
+        // If all is well, do the actual trade
+        sellerAdapter.addItem(buyerToSeller);
+        sellerAdapter.subtractItem(sellerToBuyer);
+        buyerAdapter.addItem(sellerToBuyer);
+        buyerAdapter.subtractItem(buyerToSeller);
     }
 
     /**
      * Attempt to trade with a Player.
      *
      * @throws InvalidChestException if the chest is invalid (duh)
-     * @throws CannotTradeException if any party doesn't have enough to trade
+     * @throws tk.kirlian.duckshop.errors.TradingException if any party doesn't have enough to trade
      * @throws ChestProtectionException if the chest is protected
      * @throws PermissionsException if the player doesn't have "use" permissions
      */
     public void tradeWith(final Player buyer)
-      throws InvalidChestException, CannotTradeException, ChestProtectionException, PermissionsException {
+      throws InvalidChestException, TradingException, ChestProtectionException, PermissionsException {
         plugin.permissions.getBest().throwIfCannot(buyer, "use." + getActionType(buyer));
-        tradeWith(new PlayerInventoryAdapter(plugin, buyer.getName()));
+        tradeWith(buyer, new PlayerInventoryAdapter(plugin, buyer.getName()));
     }
 
     /**
