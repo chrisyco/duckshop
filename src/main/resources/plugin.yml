@@ -1,5 +1,5 @@
 name: ${pom.name}
-main: tk.kirlian.duckshop.DuckShop
+main: tk.allele.duckshop.DuckShop
 version: ${pom.version}
 author: Chris Wong
 description: Create fully automated shops with signs!
