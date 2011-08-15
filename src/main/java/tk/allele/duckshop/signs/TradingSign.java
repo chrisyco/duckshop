@@ -11,6 +11,7 @@ import tk.allele.duckshop.trading.PlayerInventoryAdapter;
 import tk.allele.duckshop.trading.TradeAdapter;
 import tk.allele.permissions.PermissionsException;
 import tk.allele.util.Locations;
+import tk.allele.util.StringTools;
 
 import java.util.logging.Logger;
 
@@ -55,13 +56,15 @@ public class TradingSign {
                     throw new InvalidSyntaxException();
                 }
             // Otherwise, use the name written on the sign
-            } else {
+            } else if(StringTools.isValidUsername(lines[0])) {
                 this.ownerName = lines[0];
                 // Normalize the name to use correct capitalization
                 Player owner = plugin.getServer().getPlayer(ownerName);
                 if(owner != null) {
                     this.ownerName = owner.getName();
                 }
+            } else {
+                throw new InvalidSyntaxException();
             }
         }
 

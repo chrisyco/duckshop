@@ -2,11 +2,15 @@ package tk.allele.util;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Some simple tools for manipulating strings.
  */
 public class StringTools {
+    private static final Pattern usernamePattern = Pattern.compile("\\w+");
+
     private StringTools() {}
 
     /**
@@ -15,8 +19,8 @@ public class StringTools {
      * @return The concatenation of the items in the collection,
      * separated by the delimiter.
      */
-    public static String join(Iterable<? extends Object> list, String separator) {
-        Iterator<? extends Object> iter;
+    public static String join(Iterable<?> list, String separator) {
+        Iterator<?> iter;
         if(list == null) {
             return "";
         } else {
@@ -31,4 +35,12 @@ public class StringTools {
         }
         return buffer.toString();
     }
+
+    /**
+     * Test whether a string is a valid username.
+     */
+   public static boolean isValidUsername(String username) {
+       Matcher usernameMatcher = usernamePattern.matcher(username);
+       return usernameMatcher.matches();
+   }
 }
