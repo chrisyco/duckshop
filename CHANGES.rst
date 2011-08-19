@@ -4,6 +4,13 @@
 
 ..
 
+23
+==
+
+* Check if first line actually contains a valid username.
+
+* Fixed build error.
+
 22
 ==
 
