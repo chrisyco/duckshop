@@ -8,8 +8,8 @@ import org.bukkit.inventory.ItemStack;
 import tk.allele.duckshop.DuckShop;
 import tk.allele.duckshop.items.Money;
 import tk.allele.duckshop.items.TangibleItem;
+import tk.allele.inventory.Inventories;
 import tk.allele.util.DummyEconomy;
-import tk.allele.util.Inventories;
 
 import java.util.Map;
 
@@ -153,9 +153,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
             throw new IllegalArgumentException("Inventory full");
         } else {
             Map<Integer, ItemStack> leftover = inventory.addItem(addItem.toItemStackArray());
-            if(leftover.size() > 0) {
-                throw new RuntimeException(leftover.size() + " items disappeared!");
-            }
+            assert leftover.isEmpty();
         }
     }
 
@@ -165,9 +163,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
             throw new IllegalArgumentException("Inventory empty");
         } else {
             int leftover = Inventories.removeItem(inventory, subItem.toItemStack());
-            if(leftover > 0) {
-                throw new RuntimeException(leftover + " items disappeared!");
-            }
+            assert leftover == 0;
         }
     }
 }

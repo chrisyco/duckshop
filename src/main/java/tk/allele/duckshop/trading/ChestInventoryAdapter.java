@@ -6,6 +6,7 @@ import org.bukkit.block.Chest;
 import tk.allele.duckshop.DuckShop;
 import tk.allele.duckshop.errors.ChestProtectionException;
 import tk.allele.duckshop.errors.InvalidChestException;
+import tk.allele.inventory.Inventories;
 
 /**
  * Extends the InventoryAdapter to support chests.
@@ -15,7 +16,7 @@ public class ChestInventoryAdapter extends InventoryAdapter {
     private void initialize(String ownerName, Chest chest)
       throws ChestProtectionException {
         setPlayerName(ownerName);
-        setInventory(chest.getInventory());
+        setInventory(Inventories.getInventoryForChest(chest));
 
         if(!plugin.protection.canAccess(ownerName, chest.getBlock())) {
             throw new ChestProtectionException();
