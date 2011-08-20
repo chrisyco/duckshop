@@ -21,12 +21,14 @@ public class SignManager {
     private DuckShop plugin;
     private Logger log;
     private Map<Location, Location> chestLocations;
+    private Map<Location, Boolean> chestIsConnected;
     private File propertiesFile;
 
     private SignManager(DuckShop plugin) {
         this.plugin = plugin;
         this.log = plugin.log;
         this.chestLocations = new HashMap<Location, Location>();
+        this.chestIsConnected = new HashMap<Location, Boolean>();
         this.propertiesFile = new File(plugin.getDataFolder(), CHESTS_FILE_NAME);
         load();
     }
@@ -55,13 +57,25 @@ public class SignManager {
      */
     public void setChestLocation(Location signLocation, Location chestLocation) {
         chestLocations.put(signLocation, chestLocation);
+        chestIsConnected.put(chestLocation, Boolean.TRUE);
     }
 
     /**
      * Removes the location of the Chest connected with a Sign, if present.
      */
     public void removeChestLocation(Location signLocation) {
+        Location chestLocation = getChestLocation(signLocation);
+        if(chestLocation != null) {
+            chestIsConnected.remove(chestLocation);
+        }
         chestLocations.remove(signLocation);
+    }
+
+    /**
+     * Return whether a chest is connected to a sign.
+     */
+    public boolean isChestConnected(Location chestLocation) {
+        return chestIsConnected.containsKey(chestLocation);
     }
 
     /**
@@ -80,7 +94,7 @@ public class SignManager {
             for(Map.Entry<Object, Object> entry : properties.entrySet()) {
                 Location signLocation = Locations.parseLocation(plugin.getServer(), (String)entry.getKey());
                 Location chestLocation = Locations.parseLocation(plugin.getServer(), (String)entry.getValue());
-                chestLocations.put(signLocation, chestLocation);
+                setChestLocation(signLocation, chestLocation);
                 ++entriesLoaded;
             }
             log.info("Loaded " + entriesLoaded + " chest link(s).");

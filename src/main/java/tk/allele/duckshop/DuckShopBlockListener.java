@@ -1,11 +1,13 @@
 package tk.allele.duckshop;
 
 import org.bukkit.block.Block;
+import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.SignChangeEvent;
 import tk.allele.duckshop.errors.InvalidSyntaxException;
+import tk.allele.duckshop.signs.SignManager;
 import tk.allele.duckshop.signs.TradingSign;
 import tk.allele.permissions.PermissionsException;
 
@@ -72,6 +74,10 @@ public class DuckShopBlockListener extends BlockListener {
                     event.setCancelled(true);
                     event.getPlayer().sendMessage("You can't break this!");
                 }
+            }
+        } else if(block.getState() instanceof Chest) {
+            if(SignManager.getInstance(plugin).isChestConnected(block.getLocation())) {
+                event.getPlayer().sendMessage("Warning: This chest is used by a DuckShop sign. The sign will no longer work unless the chest is replaced.");
             }
         }
     }
