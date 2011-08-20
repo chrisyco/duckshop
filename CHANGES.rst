@@ -4,6 +4,14 @@
 
 ..
 
+24
+==
+
+* Added support for double chests. If a sign is connected to one half of
+  the chest, the plugin will automatically find the other half.
+
+* Added warning when a connected chest is broken.
+
 23
 ==
 
