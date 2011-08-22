@@ -4,6 +4,13 @@
 
 ..
 
+25
+==
+
+* Fixed ArrayIndexOutOfBounds when using double chests.
+
+* Added version command.
+
 24
 ==
 
