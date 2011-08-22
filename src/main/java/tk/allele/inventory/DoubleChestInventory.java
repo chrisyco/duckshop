@@ -47,7 +47,7 @@ public class DoubleChestInventory implements Inventory {
         if(i < inventoryA.getSize()) {
             inventoryA.setItem(i, itemStack);
         } else {
-            inventoryB.setItem(i, itemStack);
+            inventoryB.setItem(i - inventoryA.getSize(), itemStack);
         }
     }
 
