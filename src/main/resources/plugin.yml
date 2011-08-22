@@ -8,3 +8,5 @@ commands:
         description: Do various things with signs.
         usage: |
                /<command> link - link a sign with a chest.
+               /<command> cancel - cancel a link in progress.
+               /<command> version - check the version.

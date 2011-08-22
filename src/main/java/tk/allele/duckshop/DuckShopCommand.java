@@ -4,6 +4,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginDescriptionFile;
+import tk.allele.util.StringTools;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -40,6 +42,10 @@ public class DuckShopCommand implements CommandExecutor {
                 } else {
                     sender.sendMessage(plugin.getDescription().getName() + ": Only players can use this command.");
                 }
+                return true;
+            } else if(action.compareToIgnoreCase("version") == 0) {
+                PluginDescriptionFile desc = plugin.getDescription();
+                sender.sendMessage(desc.getName() + " version " + desc.getVersion() + " (" + StringTools.join(plugin.getDescription().getAuthors(), ", ") + ")");
                 return true;
             } else {
                 return false;
