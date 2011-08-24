@@ -101,7 +101,8 @@ public class SignManager {
         } catch(FileNotFoundException ex) {
             log.warning("Chest link file does not exist. This is probably the first time you've used this plugin.");
         } catch(IOException ex) {
-            log.warning("Could not load chest link file.");
+            ex.printStackTrace();
+            log.severe("Could not load chest link file.");
         }
     }
 
