@@ -123,8 +123,23 @@
               <artifactSet>
                 <includes>
                   <include>com.nijikokun:register</include>
+                  <include>com.sk89q:worldguard</include>
                 </includes>
               </artifactSet>
+              <filters>
+                <filter>
+                  <artifact>com.nijikokun:register</artifact>
+                  <excludes>
+                    <exclude>com/nijikokun/register/example/**</exclude>
+                  </excludes>
+                </filter>
+                <filter>
+                  <artifact>com.sk89q:worldguard</artifact>
+                  <includes>
+                    <include>com/sk89q/worldguard/LocalPlayer.class</include>
+                  </includes>
+                </filter>
+              </filters>
             </configuration>
           </execution>
         </executions>
