@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import tk.allele.protection.methods.LocketteMethod;
 import tk.allele.protection.methods.LWCMethod;
+import tk.allele.protection.methods.WorldGuardMethod;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class ProtectionManager {
         // vvv Add methods below vvv
         registerMethod(new LocketteMethod(plugin));
         registerMethod(new LWCMethod(plugin));
+        registerMethod(new WorldGuardMethod(plugin));
         //registerMethod(new FailMethod()); // Testing only
         // ^^^ Add methods above ^^^
     }
@@ -80,7 +82,7 @@ public class ProtectionManager {
      */
     public boolean canAccess(Player player, Block block) {
         for(ProtectionMethod method : methods) {
-            if(!method.canAccess(player, block)) {
+            if(method.isEnabled() && !method.canAccess(player, block)) {
                 return false;
             }
         }

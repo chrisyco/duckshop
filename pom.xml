@@ -77,6 +77,20 @@
       <scope>compile</scope>
     </dependency>
 
+    <dependency>
+      <groupId>com.sk89q</groupId>
+      <artifactId>worldguard</artifactId>
+      <version>5.2.2</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sk89q</groupId>
+      <artifactId>worldedit</artifactId>
+      <version>4.6</version>
+      <scope>compile</scope>
+    </dependency>
+
     <!-- sk89q's dummy Permissions compatibility layer -->
     <dependency>
       <groupId>com.sk89q</groupId>
