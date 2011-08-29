@@ -4,6 +4,11 @@
 
 ..
 
+26
+==
+
+* Added WorldGuard support.
+
 25
 ==
 
