@@ -36,16 +36,18 @@ public class DuckShopPlayerListener extends PlayerListener {
         if(!event.isCancelled()) {
             Player player = event.getPlayer();
             Block block = event.getClickedBlock();
-            BlockState state = block.getState();
-            // Right click sign --> Trade
-            if(event.getAction() == Action.RIGHT_CLICK_BLOCK && state instanceof Sign) {
-                event.setCancelled(useSign(player, block, (Sign)state));
-            // Left clicks are used for linking signs and chests
-            } else if(event.getAction() == Action.LEFT_CLICK_BLOCK) {
-                if(state instanceof Sign) {
-                    markSign(player, block, (Sign)state);
-                } else if(state instanceof Chest) {
-                    markChest(player, block);
+            if(block != null) {
+                BlockState state = block.getState();
+                // Right click sign --> Trade
+                if(event.getAction() == Action.RIGHT_CLICK_BLOCK && state instanceof Sign) {
+                    event.setCancelled(useSign(player, block, (Sign)state));
+                // Left clicks are used for linking signs and chests
+                } else if(event.getAction() == Action.LEFT_CLICK_BLOCK) {
+                    if(state instanceof Sign) {
+                        markSign(player, block, (Sign)state);
+                    } else if(state instanceof Chest) {
+                        markChest(player, block);
+                    }
                 }
             }
         }
