@@ -4,6 +4,11 @@
 
 ..
 
+27
+==
+
+* Fixed NullPointerException if a player clicks air.
+
 26
 ==
 
