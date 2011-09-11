@@ -1,8 +1,7 @@
 package tk.allele.permissions;
 
 import org.bukkit.plugin.Plugin;
-import tk.allele.permissions.methods.OpsOnlyPermissions;
-import tk.allele.permissions.methods.TheYetiPermissions;
+import tk.allele.permissions.methods.*;
 import tk.allele.util.priority.PriorityComparator;
 
 import java.util.PriorityQueue;
@@ -15,6 +14,7 @@ public class PermissionsManager {
         queue = new PriorityQueue<PermissionsMethod>(4, new PriorityComparator());
         /* vvv Add new methods below vvv */
         registerMethod(new OpsOnlyPermissions(plugin, log));
+        registerMethod(new BukkitPermissions(plugin, log, prefix));
         registerMethod(new TheYetiPermissions(plugin, log, prefix));
         /* ^^^ Add new providers above ^^^ */
     }

@@ -4,7 +4,7 @@
 
   <groupId>tk.allele</groupId>
   <artifactId>duckshop</artifactId>
-  <version>26</version>
+  <version>superperms-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>DuckShop</name>

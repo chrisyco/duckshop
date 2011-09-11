@@ -5,8 +5,71 @@ author: Chris Wong
 description: Create fully automated shops with signs!
 commands:
     duckshop:
-        description: Do various things with signs.
+        description: DuckShop -- make shops using signs!
         usage: |
                /<command> link - link a sign with a chest.
                /<command> cancel - cancel a link in progress.
                /<command> version - check the version.
+
+permissions:
+
+    duckshop.*:
+        description: Gives access to all DuckShop actions
+        children:
+            duckshop.version: true
+            duckshop.use.*: true
+            duckshop.create.*: true
+            duckshop.break.*: true
+
+    duckshop.version:
+        description: Check the currently used version of DuckShop
+        default: true
+
+    duckshop.break.*:
+        description: Break any sign
+        children:
+            duckshop.break.personal: true
+            duckshop.break.global: true
+            duckshop.break.other: true
+    duckshop.use.*:
+        description: Use any sign
+        children:
+            duckshop.use.personal: true
+            duckshop.use.global: true
+            duckshop.use.other: true
+    duckshop.create.*:
+        description: Create or link any sign
+        children:
+            duckshop.create.personal: true
+            duckshop.create.global: true
+            duckshop.create.other: true
+
+    duckshop.break.personal:
+        description: Break their own signs
+        default: true
+    duckshop.break.global:
+        description: Break signs owned by the server
+        default: op
+    duckshop.break.other:
+        description: Break other players' signs
+        default: op
+
+    duckshop.use.personal:
+        description: Use their own signs
+        default: true
+    duckshop.use.global:
+        description: Use signs owned by the server
+        default: true
+    duckshop.use.other:
+        description: Use other players' signs
+        default: true
+
+    duckshop.create.personal:
+        description: Create or link their own signs
+        default: true
+    duckshop.create.global:
+        description: Create or link signs owned by the server
+        default: op
+    duckshop.create.other:
+        description: Create or link other players' signs
+        default: op
