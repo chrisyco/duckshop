@@ -22,7 +22,7 @@ public class BukkitPermissions implements PermissionsMethod {
         this.log = log;
         this.prefix = prefix;
         try {
-            Player.class.getMethod("hasPermission");
+            Player.class.getMethod("hasPermission", String.class);
             this.hasSuperperms = true;
         } catch (NoSuchMethodException e) {
             this.hasSuperperms = false;

@@ -9,6 +9,10 @@ import java.util.logging.Logger;
 
 /**
  * A fallback permissions handler that only lets admins do anything.
+ * <p>
+ * This should only be needed on CraftBukkit builds before Superperms was
+ * introduced, i.e. before build 1000.
+ *
  * @see PermissionsMethod
  */
 public class OpsOnlyPermissions implements PermissionsMethod {
