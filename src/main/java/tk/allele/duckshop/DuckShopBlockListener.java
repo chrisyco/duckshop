@@ -73,6 +73,8 @@ public class DuckShopBlockListener extends BlockListener {
                 } catch(PermissionsException ex) {
                     event.setCancelled(true);
                     event.getPlayer().sendMessage("You can't break this!");
+                    // Fixes the sign ending up blank
+                    event.getBlock().getState().update();
                 }
             }
         } else if(block.getState() instanceof Chest) {
