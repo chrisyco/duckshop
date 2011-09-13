@@ -27,8 +27,6 @@ public class TheYetiPermissions implements PermissionsMethod {
             if (permissionsPlugin != null) {
                 this.permissionHandler = ((Permissions) permissionsPlugin).getHandler();
                 log.info("Permissions plugin detected!");
-            } else {
-                log.warning("Permissions system not found.");
             }
         }
     }

@@ -8,40 +8,45 @@ import tk.allele.permissions.PermissionsMethod;
 import java.util.logging.Logger;
 
 /**
- * A fallback permissions handler that only lets admins do anything.
- * <p>
- * This should only be needed on CraftBukkit builds before Superperms was
- * introduced, i.e. before build 1000.
- *
- * @see PermissionsMethod
+ * Adapter for Bukkit's Superperms.
+ * @see tk.allele.permissions.PermissionsMethod
  */
-public class OpsOnlyPermissions implements PermissionsMethod {
-    private Plugin plugin;
-    private Logger log;
+public class BukkitPermissions implements PermissionsMethod {
+    Plugin plugin;
+    Logger log;
+    String prefix;
+    boolean hasSuperperms;
 
-    public OpsOnlyPermissions(Plugin plugin, Logger log) {
+    public BukkitPermissions(Plugin plugin, Logger log, String prefix) {
         this.plugin = plugin;
         this.log = log;
+        this.prefix = prefix;
+        try {
+            Player.class.getMethod("hasPermission", String.class);
+            this.hasSuperperms = true;
+        } catch (NoSuchMethodException e) {
+            this.hasSuperperms = false;
+        }
     }
 
     @Override
     public String toString() {
-        return "OpsOnly";
+        return "Superperms";
     }
 
     @Override
     public int getPriority() {
-        return 100;
+        return 99;
     }
 
     @Override
     public boolean isAvailable() {
-        return true;
+        return hasSuperperms;
     }
 
     @Override
     public boolean playerHasPermission(Player player, String permission) {
-        return player.isOp();
+        return player.hasPermission(prefix + permission);
     }
 
     @Override

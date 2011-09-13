@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * A Bukkit plugin that allows fully automated shops using signs!
  */
 public class DuckShop extends JavaPlugin {
-    private static final String PERMISSIONS_PREFIX = "DuckShop.";
+    private static final String PERMISSIONS_PREFIX = "duckshop.";
 
     private DuckShopBlockListener blockListener;
     private DuckShopServerListener serverListener;
