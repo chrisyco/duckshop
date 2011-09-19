@@ -20,15 +20,14 @@ import java.util.logging.Logger;
  * Listens for player events -- such as clicking a sign.
  */
 public class DuckShopPlayerListener extends PlayerListener {
-    private final DuckShop plugin;
-    private final Logger log;
+    final DuckShop plugin;
+    final Logger log;
+    final LinkState linkState;
 
-    public Map<Player, Boolean> playerStartedLink = new HashMap<Player, Boolean>();
-    private Map<Player, TradingSign> playerLinkSign = new HashMap<Player, TradingSign>();
-
-    public DuckShopPlayerListener(DuckShop plugin) {
+    public DuckShopPlayerListener(DuckShop plugin, LinkState linkState) {
         this.log = plugin.log;
         this.plugin = plugin;
+        this.linkState = linkState;
     }
 
     @Override
@@ -100,7 +99,7 @@ public class DuckShopPlayerListener extends PlayerListener {
     }
 
     private void markSign(Player player, Block block, Sign state) {
-        if(playerStartedLink.containsKey(player)) {
+        if(linkState.hasStartedLink(player)) {
             TradingSign sign = null;
             // Parse and validate the sign
             try {
@@ -130,7 +129,7 @@ public class DuckShopPlayerListener extends PlayerListener {
             if(sign != null) {
                 player.sendMessage("Now left click a chest to connect it.");
                 player.sendMessage("Or left click another sign if that's not the right one.");
-                playerLinkSign.put(player, sign);
+                linkState.markSign(player, sign);
             // If there were problems, prompt the user again
             } else {
                 player.sendMessage("Try another sign, or type \"/duckshop cancel\" to quit.");
@@ -139,16 +138,9 @@ public class DuckShopPlayerListener extends PlayerListener {
     }
 
     private void markChest(Player player, Block block) {
-        if(playerLinkSign.containsKey(player)) {
-            TradingSign sign = playerLinkSign.get(player);
-            sign.setChestLocation(block.getLocation());
+        if(linkState.hasMarkedSign(player)) {
+            linkState.markChest(player, block.getLocation());
             player.sendMessage("Sign connected successfully.");
-            cancelLink(player);
         }
-    }
-
-    public void cancelLink(Player player) {
-        playerStartedLink.remove(player);
-        playerLinkSign.remove(player);
     }
 }
