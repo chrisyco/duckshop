@@ -1,4 +1,4 @@
-package tk.allele.util;
+package tk.allele.economy;
 
 import com.nijikokun.register.payment.Method;
 import org.bukkit.Server;
@@ -38,6 +38,10 @@ public class DummyEconomy implements Method {
 
     public String getVersion() {
         return "0";
+    }
+
+    public int fractionalDigits() {
+        return 0;
     }
 
     public String format(double amount) {

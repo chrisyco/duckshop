@@ -57,7 +57,7 @@
     <dependency>
       <groupId>com.nijikokun</groupId>
       <artifactId>register</artifactId>
-      <version>g0841d6b</version>
+      <version>2.1</version>
       <scope>compile</scope>
     </dependency>
 

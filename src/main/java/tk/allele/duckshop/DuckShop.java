@@ -8,6 +8,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import tk.allele.duckshop.items.ItemDB;
 import tk.allele.duckshop.signs.SignManager;
+import tk.allele.economy.RegisterServerListener;
 import tk.allele.permissions.PermissionsManager;
 import tk.allele.permissions.PermissionsMethod;
 import tk.allele.protection.ProtectionManager;
@@ -25,7 +26,7 @@ public class DuckShop extends JavaPlugin {
 
     private DuckShopBlockListener blockListener;
     private DuckShopPlayerListener playerListener;
-    private DuckShopServerListener serverListener;
+    private RegisterServerListener serverListener;
     private CommandDispatcher commandListener;
     private SignManager signManager;
 
@@ -75,7 +76,7 @@ public class DuckShop extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
         blockListener = new DuckShopBlockListener(this);
         playerListener = new DuckShopPlayerListener(this, linkState);
-        serverListener = new DuckShopServerListener(this);
+        serverListener = new RegisterServerListener(this, new DuckShopEconomyPluginListener(this));
         pm.registerEvent(Event.Type.BLOCK_PLACE, blockListener, Event.Priority.Normal, this);
         pm.registerEvent(Event.Type.BLOCK_DAMAGE, blockListener, Event.Priority.Normal, this);
         pm.registerEvent(Event.Type.BLOCK_BREAK, blockListener, Event.Priority.Normal, this);

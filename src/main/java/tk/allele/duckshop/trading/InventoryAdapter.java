@@ -8,8 +8,8 @@ import org.bukkit.inventory.ItemStack;
 import tk.allele.duckshop.DuckShop;
 import tk.allele.duckshop.items.Money;
 import tk.allele.duckshop.items.TangibleItem;
+import tk.allele.economy.DummyEconomy;
 import tk.allele.inventory.Inventories;
-import tk.allele.util.DummyEconomy;
 
 import java.util.Map;
 
