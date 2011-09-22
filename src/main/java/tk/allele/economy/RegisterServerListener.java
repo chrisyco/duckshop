@@ -8,8 +8,6 @@ import org.bukkit.event.server.ServerListener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
-import java.util.logging.Logger;
-
 /**
  * Listens for when an economy plugin is loaded or unloaded.
  */

@@ -5,10 +5,7 @@ import org.yaml.snakeyaml.constructor.SafeConstructor;
 import tk.allele.util.Pair;
 
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * A database of Minecraft items and their data values and names.

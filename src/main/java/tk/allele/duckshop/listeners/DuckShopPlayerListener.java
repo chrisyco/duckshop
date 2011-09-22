@@ -1,9 +1,6 @@
 package tk.allele.duckshop.listeners;
 
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.Chest;
-import org.bukkit.block.Sign;
+import org.bukkit.block.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.Action;
@@ -16,8 +13,6 @@ import tk.allele.duckshop.errors.*;
 import tk.allele.duckshop.signs.TradingSign;
 import tk.allele.permissions.PermissionsException;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Logger;
 
 /**

@@ -9,8 +9,6 @@ import tk.allele.util.StringTools;
 import tk.allele.util.commands.Command;
 import tk.allele.util.commands.CommandContext;
 
-import java.util.List;
-
 /**
  * Implements the DuckShop version command.
  */

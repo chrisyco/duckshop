@@ -1,11 +1,9 @@
 package tk.allele.duckshop;
 
 import org.bukkit.Location;
-import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import tk.allele.duckshop.signs.SignManager;
 import tk.allele.duckshop.signs.TradingSign;
-import tk.allele.permissions.PermissionsException;
 import tk.allele.permissions.PermissionsManager;
 
 import java.util.HashMap;

@@ -3,8 +3,8 @@ package tk.allele.protection;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import tk.allele.protection.methods.LocketteMethod;
 import tk.allele.protection.methods.LWCMethod;
+import tk.allele.protection.methods.LocketteMethod;
 import tk.allele.protection.methods.WorldGuardMethod;
 
 import java.util.LinkedList;

@@ -1,11 +1,7 @@
 package tk.allele.util.commands;
 
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import tk.allele.permissions.PermissionsException;
-import tk.allele.permissions.PermissionsManager;
-
-import java.util.List;
 
 /**
  * A custom command class that uses Allele's permissions manager.

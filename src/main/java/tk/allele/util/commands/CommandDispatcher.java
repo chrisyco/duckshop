@@ -2,7 +2,6 @@ package tk.allele.util.commands;
 
 import org.bukkit.command.CommandSender;
 import tk.allele.permissions.PermissionsException;
-import tk.allele.permissions.PermissionsManager;
 
 import java.util.*;
 

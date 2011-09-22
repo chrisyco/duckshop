@@ -3,8 +3,6 @@ package tk.allele.duckshop;
 import com.nijikokun.register.payment.Method;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.Event;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import tk.allele.duckshop.items.ItemDB;
 import tk.allele.duckshop.listeners.*;
