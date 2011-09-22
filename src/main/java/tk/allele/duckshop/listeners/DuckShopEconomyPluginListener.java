@@ -1,6 +1,7 @@
-package tk.allele.duckshop;
+package tk.allele.duckshop.listeners;
 
 import com.nijikokun.register.payment.Method;
+import tk.allele.duckshop.DuckShop;
 import tk.allele.economy.DummyEconomy;
 import tk.allele.economy.EconomyPluginListener;
 

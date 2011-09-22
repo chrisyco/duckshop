@@ -1,13 +1,17 @@
-package tk.allele.duckshop;
+package tk.allele.duckshop.listeners;
 
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerListener;
+import org.bukkit.plugin.PluginManager;
+import tk.allele.duckshop.DuckShop;
+import tk.allele.duckshop.LinkState;
 import tk.allele.duckshop.errors.*;
 import tk.allele.duckshop.signs.TradingSign;
 import tk.allele.permissions.PermissionsException;
@@ -28,6 +32,12 @@ public class DuckShopPlayerListener extends PlayerListener {
         this.log = plugin.log;
         this.plugin = plugin;
         this.linkState = linkState;
+
+        register(plugin.getServer().getPluginManager());
+    }
+
+    private void register(PluginManager pm) {
+        pm.registerEvent(Event.Type.PLAYER_INTERACT, this, Event.Priority.Normal, plugin);
     }
 
     @Override

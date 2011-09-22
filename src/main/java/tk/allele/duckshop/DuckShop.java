@@ -7,6 +7,7 @@ import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import tk.allele.duckshop.items.ItemDB;
+import tk.allele.duckshop.listeners.*;
 import tk.allele.duckshop.signs.SignManager;
 import tk.allele.economy.RegisterServerListener;
 import tk.allele.permissions.PermissionsManager;
@@ -24,9 +25,6 @@ import java.util.logging.Logger;
 public class DuckShop extends JavaPlugin {
     private static final String PERMISSIONS_PREFIX = "duckshop.";
 
-    private DuckShopBlockListener blockListener;
-    private DuckShopPlayerListener playerListener;
-    private RegisterServerListener serverListener;
     private CommandDispatcher commandListener;
     private SignManager signManager;
 
@@ -73,17 +71,9 @@ public class DuckShop extends JavaPlugin {
         LinkState linkState = new LinkState(signManager, permissions);
 
         // Register events
-        PluginManager pm = getServer().getPluginManager();
-        blockListener = new DuckShopBlockListener(this);
-        playerListener = new DuckShopPlayerListener(this, linkState);
-        serverListener = new RegisterServerListener(this, new DuckShopEconomyPluginListener(this));
-        pm.registerEvent(Event.Type.BLOCK_PLACE, blockListener, Event.Priority.Normal, this);
-        pm.registerEvent(Event.Type.BLOCK_DAMAGE, blockListener, Event.Priority.Normal, this);
-        pm.registerEvent(Event.Type.BLOCK_BREAK, blockListener, Event.Priority.Normal, this);
-        pm.registerEvent(Event.Type.SIGN_CHANGE, blockListener, Event.Priority.High, this);
-        pm.registerEvent(Event.Type.PLAYER_INTERACT, playerListener, Event.Priority.Normal, this);
-        pm.registerEvent(Event.Type.PLUGIN_ENABLE, serverListener, Event.Priority.Normal, this);
-        pm.registerEvent(Event.Type.PLUGIN_DISABLE, serverListener, Event.Priority.Normal, this);
+        new DuckShopBlockListener(this);
+        new DuckShopPlayerListener(this, linkState);
+        new RegisterServerListener(this, new DuckShopEconomyPluginListener(this));
 
         // Register commands
         commandListener = new DuckShopCommand(this, linkState);

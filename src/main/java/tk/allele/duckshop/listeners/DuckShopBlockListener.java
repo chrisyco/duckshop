@@ -1,11 +1,14 @@
-package tk.allele.duckshop;
+package tk.allele.duckshop.listeners;
 
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
+import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.SignChangeEvent;
+import org.bukkit.plugin.PluginManager;
+import tk.allele.duckshop.DuckShop;
 import tk.allele.duckshop.errors.InvalidSyntaxException;
 import tk.allele.duckshop.signs.SignManager;
 import tk.allele.duckshop.signs.TradingSign;
@@ -23,6 +26,15 @@ public class DuckShopBlockListener extends BlockListener {
     public DuckShopBlockListener(DuckShop plugin) {
         this.log = plugin.log;
         this.plugin = plugin;
+
+        register(plugin.getServer().getPluginManager());
+    }
+
+    private void register(PluginManager pm) {
+        pm.registerEvent(Event.Type.BLOCK_PLACE, this, Event.Priority.Normal, plugin);
+        pm.registerEvent(Event.Type.BLOCK_DAMAGE, this, Event.Priority.Normal, plugin);
+        pm.registerEvent(Event.Type.BLOCK_BREAK, this, Event.Priority.Normal, plugin);
+        pm.registerEvent(Event.Type.SIGN_CHANGE, this, Event.Priority.Low, plugin);
     }
 
     @Override
@@ -50,6 +62,7 @@ public class DuckShopBlockListener extends BlockListener {
         }
     }
 
+    @Override
     public void onBlockBreak(BlockBreakEvent event) {
         if(event.isCancelled()) return;
         Block block = event.getBlock();

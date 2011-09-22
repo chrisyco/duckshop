@@ -1,6 +1,7 @@
 package tk.allele.economy;
 
 import com.nijikokun.register.payment.Methods;
+import org.bukkit.event.Event;
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.event.server.ServerListener;
@@ -19,6 +20,9 @@ public class RegisterServerListener extends ServerListener {
     public RegisterServerListener(Plugin plugin, EconomyPluginListener listener) {
         this.manager = plugin.getServer().getPluginManager();
         this.listener = listener;
+
+        manager.registerEvent(Event.Type.PLUGIN_ENABLE, this, Event.Priority.Normal, plugin);
+        manager.registerEvent(Event.Type.PLUGIN_DISABLE, this, Event.Priority.Normal, plugin);
     }
 
     @Override
