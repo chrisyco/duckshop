@@ -3,6 +3,8 @@ package tk.allele.duckshop.items;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import tk.allele.duckshop.errors.InvalidSyntaxException;
+import tk.allele.itemdb.ItemDB;
+import tk.allele.itemdb.ItemDefinition;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,6 +19,7 @@ public class TangibleItem extends Item {
      */
     private static final Pattern tangibleItemPattern = Pattern.compile("(\\d+)\\s+([A-Za-z_]+|\\d+)\\s*(\\d*)");
     private static final ItemDB itemDB = ItemDB.getDefault();
+    private static final int MAX_LENGTH = 15;
 
     private final int itemId;
     private final int amount;
@@ -64,12 +67,12 @@ public class TangibleItem extends Item {
                 itemId = Integer.parseInt(itemName);
             } catch(NumberFormatException ex) {
                 // If it isn't an integer, treat it as an item name
-                ItemDefinition itemDfn = itemDB.getItemByAlias(itemName);
+                ItemDefinition itemDfn = itemDB.getItemByName(itemName);
                 if(itemDfn == null) {
                     throw new InvalidSyntaxException();
                 } else {
                     itemId = itemDfn.getId();
-                    damage = itemDfn.getDamage();
+                    damage = itemDfn.getDurability();
                 }
             }
             // If there's another number after that, it's a damage value
@@ -162,19 +165,23 @@ public class TangibleItem extends Item {
 
     @Override
     public String toString() {
-        StringBuilder buffer = new StringBuilder(15);
+        StringBuilder buffer = new StringBuilder(MAX_LENGTH);
+
+        // Append the amount
         buffer.append(Integer.toString(amount));
         buffer.append(" ");
+
         ItemDefinition itemDfn = itemDB.getItemById(itemId, damage);
         if(itemDfn != null) {
             // If there is a specific name for this, use it
-            buffer.append(itemDfn.getShortName());
+            buffer.append(itemDfn.getNameOfLength(MAX_LENGTH - buffer.length()));
         } else {
             // Otherwise, use the generic name + damage value
             itemDfn = itemDB.getItemById(itemId, (short)0);
             if(itemDfn != null) {
-                buffer.append(itemDfn.getShortName());
-                buffer.append(Short.toString(damage));
+                String damageString = Short.toString(damage);
+                buffer.append(itemDfn.getNameOfLength(MAX_LENGTH - buffer.length() - damageString.length()));
+                buffer.append(damageString);
             } else {
                 // If there isn't even a generic name, just use the ID
                 buffer.append(Integer.toString(itemId));
@@ -184,6 +191,7 @@ public class TangibleItem extends Item {
                 }
             }
         }
+
         return buffer.toString();
     }
 }
