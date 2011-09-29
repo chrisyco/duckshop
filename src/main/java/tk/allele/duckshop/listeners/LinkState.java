@@ -1,4 +1,4 @@
-package tk.allele.duckshop;
+package tk.allele.duckshop.listeners;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

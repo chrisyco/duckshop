@@ -1,7 +1,6 @@
 package tk.allele.duckshop.listeners;
 
 import tk.allele.duckshop.DuckShop;
-import tk.allele.duckshop.LinkState;
 import tk.allele.duckshop.commands.CancelCommand;
 import tk.allele.duckshop.commands.LinkCommand;
 import tk.allele.duckshop.commands.VersionCommand;

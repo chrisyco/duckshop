@@ -2,7 +2,7 @@ package tk.allele.duckshop.commands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import tk.allele.duckshop.LinkState;
+import tk.allele.duckshop.listeners.LinkState;
 import tk.allele.permissions.PermissionsException;
 import tk.allele.util.commands.Command;
 import tk.allele.util.commands.CommandContext;

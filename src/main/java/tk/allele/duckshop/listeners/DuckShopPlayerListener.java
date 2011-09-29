@@ -8,7 +8,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.plugin.PluginManager;
 import tk.allele.duckshop.DuckShop;
-import tk.allele.duckshop.LinkState;
 import tk.allele.duckshop.errors.*;
 import tk.allele.duckshop.signs.TradingSign;
 import tk.allele.permissions.PermissionsException;
