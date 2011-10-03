@@ -5,7 +5,7 @@ import org.bukkit.inventory.ItemStack;
 /**
  * Specifies an item using its type ID and damage value.
  */
-public class ItemSpecifier {
+public class ItemSpecifier implements Comparable<ItemSpecifier> {
     final int typeId;
     final short durability;
 
@@ -27,16 +27,29 @@ public class ItemSpecifier {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object thatObject) {
+        if (this == thatObject) return true;
+        if (thatObject == null || getClass() != thatObject.getClass()) return false;
 
-        ItemSpecifier that = (ItemSpecifier) o;
+        ItemSpecifier that = (ItemSpecifier) thatObject;
 
         if (typeId != that.typeId) return false;
         if (durability != that.durability) return false;
 
         return true;
+    }
+
+    @Override
+    public int compareTo(ItemSpecifier that) {
+        if(this == that) return 0;
+
+        int dTypeId = this.typeId - that.typeId;
+        if(dTypeId != 0) return dTypeId;
+
+        int dDurability = this.durability - that.durability;
+        if(dDurability != 0) return dDurability;
+
+        return 0;
     }
 
     @Override

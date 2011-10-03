@@ -4,7 +4,7 @@ import tk.allele.util.StringLengthComparator;
 
 import java.util.*;
 
-public class ItemDefinition {
+public class ItemDefinition implements Comparable<ItemDefinition> {
     final int id;
     final short durability;
     final String canonicalName;
@@ -22,7 +22,7 @@ public class ItemDefinition {
     /**
      * Get an ItemSpecifier that represents this item.
      */
-    public ItemSpecifier getKey() {
+    public ItemSpecifier getSpecifier() {
         return new ItemSpecifier(id, durability);
     }
 
@@ -65,13 +65,22 @@ public class ItemDefinition {
     public SortedSet<String> getAliases() { return aliases; }
 
     @Override
-    public boolean equals(Object o) {
-        if(o instanceof ItemDefinition) {
-            ItemDefinition other = (ItemDefinition) o;
-            return this.getKey().equals(other.getKey());
-        } else {
-            return false;
-        }
+    public boolean equals(Object thatObject) {
+        if (this == thatObject) return true;
+        if (thatObject == null || getClass() != thatObject.getClass()) return false;
+
+        ItemDefinition that = (ItemDefinition) thatObject;
+        return this.getSpecifier().equals(that.getSpecifier());
+    }
+
+    @Override
+    public int compareTo(ItemDefinition that) {
+        return this.getSpecifier().compareTo(that.getSpecifier());
+    }
+
+    @Override
+    public int hashCode() {
+        return getSpecifier().hashCode();
     }
 
     @Override

@@ -1,92 +1,62 @@
 Block: [Blk]
+Stationary: [Still, S]
+Burning: [B]
+Glowing: [G, Glow]
 
-Stone: [S, Stn, SmoothStn, SmoothStone]
+# ==============
+# Natural Blocks
+# ==============
+
 Grass: [GrassDirt, GrassyDirt]
+Stone: [S, Stn, SmoothStn, SmoothStone]
 Cobblestone: [C, Cbl, Cobble]
 Sand: [S]
+Sandstone: [SStone]
 Bedrock: [BRock, Adminium]
-Lapis: [L]
-Lazuli: ['', L]
-Stationary: [Still, S]
-TNT: [Explosive, Dynamite, Bomb]
+Snow: [SnowDirt, WinterDirt]
+Ice: [SolidWater, FrozenWater]
+Web: [Cobweb]
 Moss: [M, Mossy]
-MossStone: [Moss]
 Obsidian: [Obsdn]
 Monster: [M, Mob]
 Spawner: [Spawn]
-Burning: [B]
-Snow: [SnowDirt, WinterDirt]
-Ice: [SolidWater, FrozenWater]
+Iron: [I, Irn]
+Gold: [G]
+Diamond: [D, Dmd, Dmnd, SuperCompressedCoal]
+IronIngot: [Iron]
+GoldIngot: [Gold]
+Lapis: [L, LapisLazuli]
+
+# ======
+# Nether
+# ======
+
 Netherrack: [NRack]
 Soul: [S, Slow, Quick, Nether]
 Glowstone: [GStone, LStone, Lightstone]
-JackOLantern: [Lantern, PumpkinLight]
 
-####################
-###### TREES #######
-####################
+# ===================
+# Manufactured Blocks
+# ===================
 
-Wooden: [W, Wood]
-Wood: [W, Wooden]
-Planks: [Plank]
-WoodenPlanks: [Plank, Planks]
-Leaves: [Branches, Foliage, Shrubbery]
-Generic: [Oak]
-Redwood: [Spruce, Pine, Dark, Red]
-Birch: [White]
-
-####################
-#### BUILDINGS #####
-####################
-
-Crafting: [Craft]
 Workbench: [Table]
+Smooth: ['']
 Stairs: [Stair]
 Double: [Dbl]
-Step: [Slab, Slb]
+Step: [Slab]
 Trapdoor: [TDoor, Hatch]
+TNT: [Explosive, Dynamite, Bomb]
+JackOLantern: [Lantern, PumpkinLight]
+Soil: [Farmland, TillDirt, TilledDirt, DirtWithBenefits]
 
-####################
-##### REDSTONE #####
-####################
-
-Redstone: [R, Red]
-Glowing: [G, Glow]
-NoteBlock: [Note]
-Storage: [S]
-Powered: [P, G, Gold]
-Minecart: [MCart, Cart]
-Detector: [D, R, Red, Redstone]
-Sticky: [S]
-Piston: [Pstn]
-Plate: [P, PPlate, PressurePlate]
-Button: [Btn]
-StoneButton: [Button, Btn]
-Jukebox: [MusicBox, iPod]
-Record: [Disc]
-
-####################
-#### SCENERY & #####
-#### DECORATION ####
-####################
-Cobweb: [Web]
-
-Long: [L, T, Tall]
-Dead: [D]
-Normal: ['']
-Fern: []
-Like: ['']
-Bush: [Shrub]
-
-YellowFlower: [Dandelion, Dandy]
-RedRose: [Rose, RedFlower]
-Flower: [Flwr]
-Mushroom: [Mshrm]
-Cactus: [Cacti, Saguaro]
-SugarCane: [Cane, Reed]
-Pumpkin: [Buttercup]
+# ============
+# Wool and Dye
+# ============
 
 Wool: [Cloth, Sheephair]
+BlackInkSack: [InkSack, InkSac]
+Ink: [Dye]
+Sack: ['', Sac]
 Light: [L]
 White: [W, Whte]
 Orange: [O, Orng]
@@ -104,20 +74,77 @@ Black: [Blck]
 
 Painting: [Picture, Pic]
 
-MonsterEggs: [NinetySeven]
+# ==========
+# Mechanisms
+# ==========
 
-####################
-####### ORES #######
-####################
+Redstone: [R, Red]
+NoteBlock: [Note]
+Detector: [D, R, Red, Redstone]
+Sticky: [S]
+Piston: [Pstn]
+Plate: [P, PPlate, PressurePlate]
+Button: [Btn]
+StoneButton: [Button, Btn]
+Jukebox: [MusicBox, iPod]
+Record: [Disc]
 
-Iron: [I, Irn]
-Diamond: [D, Dmd, Dmnd, SuperCompressedCoal]
-IronIngot: [Iron]
-GoldIngot: [Gold]
+# ======
+# Plants
+# ======
 
-####################
-###### TOOLS #######
-####################
+Long: [L, T, Tall]
+Dead: [D]
+Normal: ['']
+Fern: []
+Like: ['']
+Bush: [Shrub]
+
+YellowFlower: [Dandelion, Dandy]
+RedRose: [Rose, RedFlower]
+Flower: [Flwr]
+Mushroom: [Mshrm]
+Cactus: [Cacti, Saguaro]
+SugarCane: [Cane, Reed]
+Pumpkin: [Buttercup]
+
+# =====
+# Trees
+# =====
+
+Wood: [W, Wooden, Plank, Planks, WoodenPlank, WoodenPlanks]
+Wooden: [W, Wood]
+Leaves: [Branches, Foliage, Shrubbery]
+Generic: [Oak]
+Redwood: [Spruce, Pine, Dark, Red]
+Birch: [White]
+
+# =============
+# Raw Materials
+# =============
+
+Charcoal: [CCoal]
+Leather: [Cowskin]
+Slimeball: [Slime]
+Enderpearl: [Pearl]
+
+# ====
+# Food
+# ====
+
+Golden: [G, Gold]
+MushroomStew: [Stew]
+Raw: ['', R]
+Cooked: [C, Cook]
+Grilled: [C, Cook, Cooked]
+Porkchop: [Pork]
+Egg: [UnbornChicken]
+Cookie: [Biscuit]
+Seeds: [Seed]
+
+# =====
+# Tools
+# =====
 
 Shovel: [Spade]
 Pickaxe: [Pick]
@@ -127,30 +154,31 @@ Flint: [Flnt]
 And: ['', N]
 Steel: [Stl]
 
+Bucket: [Bkt]
+FishingRod: [Fishrod, Rod]
+Shears: [Shear, Clipper]
+
+Clock: [Watch]
+
+# =================
+# Weapons and Armor
+# =================
+
 Helmet: [Cap, Helm]
 Chestplate: [Chest, Tunic]
 Leggings: [Leg, Legs, Pant, Pants]
 Boots: [Boot]
 
-Bucket: [Bkt]
-FishingRod: [Fishrod, Rod]
-Clock: [Watch]
-Shears: [Shear, Clipper]
+# ========
+# Vehicles
+# ========
 
-####################
-# PLANT AND ANIMAL #
-##### PRODUCTS #####
-####################
+Storage: [S]
+Powered: [P, G, Gold]
+Minecart: [MCart, Cart]
 
-Soil: [Farmland, TillDirt, TilledDirt, DirtWithBenefits]
-Apple: []
-MushroomStew: [Stew]
-Raw: ['', R]
-Cooked: [C, Cook]
-Grilled: [C, Cook, Cooked]
-Porkchop: [Pork]
-Leather: [Cowskin]
-Slimeball: [Slime]
-Egg: [UnbornChicken]
-Cookie: [Biscuit]
-Enderpearl: [Pearl]
+# ==========
+# Miscellany
+# ==========
+
+MonsterEggs: [NinetySeven]

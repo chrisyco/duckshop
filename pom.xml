@@ -53,6 +53,14 @@
       <scope>compile</scope>
     </dependency>
 
+    <!-- Custom annotations -->
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <version>1.3.9</version>
+      <scope>compile</scope>
+    </dependency>
+
     <!-- Nijikokun's Register -->
     <dependency>
       <groupId>com.nijikokun</groupId>
