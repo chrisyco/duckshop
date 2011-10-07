@@ -1,9 +1,13 @@
 package tk.allele.duckshop.items;
 
+import info.somethingodd.bukkit.OddItem.OddItem;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import tk.allele.duckshop.errors.InvalidSyntaxException;
 
+import java.lang.reflect.Field;
+import java.util.Map;
+import java.util.NavigableSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,7 +20,7 @@ public class TangibleItem extends Item {
      * space, then the item name, then an optional durability value.
      */
     private static final Pattern tangibleItemPattern = Pattern.compile("(\\d+)\\s+([A-Za-z_]+|\\d+)\\s*(\\d*)");
-    private static final ItemDB itemDB = ItemDB.getDefault();
+    private static final int NAME_LENGTH = 10;
 
     private final int itemId;
     private final int amount;
@@ -51,37 +55,44 @@ public class TangibleItem extends Item {
      * @throws InvalidSyntaxException if the item cannot be parsed.
      */
     public static TangibleItem fromString(final String itemString)
-      throws InvalidSyntaxException {
+            throws InvalidSyntaxException {
         Matcher matcher = tangibleItemPattern.matcher(itemString);
         if(matcher.matches()) {
+
             // Group 1 is definitely an integer, since it was matched with "\d+"
             int amount = Integer.parseInt(matcher.group(1));
             String itemName = matcher.group(2);
             int itemId;
             short damage = 0;
+
             // Try parsing it as an item ID first
             try {
                 itemId = Integer.parseInt(itemName);
             } catch(NumberFormatException ex) {
                 // If it isn't an integer, treat it as an item name
-                ItemDefinition itemDfn = itemDB.getItemByAlias(itemName);
-                if(itemDfn == null) {
+                ItemStack itemDfn;
+                try {
+                    itemDfn = OddItem.getItemStack(itemName);
+                } catch(IllegalArgumentException ex2) {
                     throw new InvalidSyntaxException();
-                } else {
-                    itemId = itemDfn.getId();
-                    damage = itemDfn.getDamage();
                 }
+
+                itemId = itemDfn.getTypeId();
+                damage = itemDfn.getDurability();
             }
+
             // If there's another number after that, it's a damage value
             try {
                 damage = Short.parseShort(matcher.group(3));
             } catch(NumberFormatException ex) {
                 // Do nothing -- keep the damage value from the code above
             }
+
             // Check if it's actually a real item
             if(Material.getMaterial(itemId) == null) {
                 throw new InvalidSyntaxException();
             }
+
             // Create the object!
             return new TangibleItem(itemId, amount, damage, itemString);
         } else {
@@ -140,13 +151,13 @@ public class TangibleItem extends Item {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if(obj instanceof TangibleItem) {
-            TangibleItem other = (TangibleItem)obj;
-            return (this.itemId == other.itemId && this.damage == other.damage);
-        } else if(obj instanceof ItemStack) {
-            ItemStack other = (ItemStack)obj;
-            return (this.itemId == other.getTypeId() && this.damage == other.getDurability());
+    public boolean equals(Object thatObj) {
+        if(thatObj instanceof TangibleItem) {
+            TangibleItem that = (TangibleItem) thatObj;
+            return (this.itemId == that.itemId && this.damage == that.damage);
+        } else if(thatObj instanceof ItemStack) {
+            ItemStack that = (ItemStack) thatObj;
+            return (this.itemId == that.getTypeId() && this.damage == that.getDurability());
         } else {
             return false;
         }
@@ -160,20 +171,62 @@ public class TangibleItem extends Item {
         return hash;
     }
 
+    @SuppressWarnings("unchecked")
+    private static NavigableSet<String> getAliasesById(int itemId, short damage) {
+        Field itemsField;
+        try {
+            itemsField = OddItem.class.getField("items");
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+
+        itemsField.setAccessible(true);
+
+        Map<String, NavigableSet<String>> items;
+        try {
+            items = (Map<String, NavigableSet<String>>) itemsField.get(null);
+        } catch(IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        NavigableSet<String> result;
+        if((result = items.get(itemId + ";" + damage)) != null) {
+            return result;
+        } else if(damage == 0 && (result = items.get(Integer.toString(itemId))) != null) {
+            return result;
+        } else {
+            return null;
+        }
+    }
+
+    private static String getBestName(NavigableSet<String> aliases) {
+        String currentName = null;
+        for(String name : aliases) {
+            if(name.length() <= NAME_LENGTH) {
+                if(currentName != null && currentName.length() == NAME_LENGTH) {
+                    break;
+                } else {
+                    currentName = name;
+                }
+            }
+        }
+        return currentName;
+    }
+
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder(15);
         buffer.append(Integer.toString(amount));
         buffer.append(" ");
-        ItemDefinition itemDfn = itemDB.getItemById(itemId, damage);
-        if(itemDfn != null) {
+        NavigableSet<String> aliases = getAliasesById(itemId, damage);
+        if(aliases != null) {
             // If there is a specific name for this, use it
-            buffer.append(itemDfn.getShortName());
+            buffer.append(getBestName(aliases));
         } else {
             // Otherwise, use the generic name + damage value
-            itemDfn = itemDB.getItemById(itemId, (short)0);
-            if(itemDfn != null) {
-                buffer.append(itemDfn.getShortName());
+            aliases = getAliasesById(itemId, (short) 0);
+            if(aliases != null) {
+                buffer.append(getBestName(aliases));
                 buffer.append(Short.toString(damage));
             } else {
                 // If there isn't even a generic name, just use the ID

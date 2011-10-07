@@ -4,7 +4,6 @@ import com.nijikokun.register.payment.Method;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
-import tk.allele.duckshop.items.ItemDB;
 import tk.allele.duckshop.listeners.*;
 import tk.allele.duckshop.signs.SignManager;
 import tk.allele.economy.RegisterServerListener;
@@ -45,10 +44,6 @@ public class DuckShop extends JavaPlugin {
                 log.warning("Could not create data folder. Stuff may fail later.");
             }
         }
-
-        // Load the ItemDB beforehand, so if it fails, it fails now, and
-        // not in the obscure depths of the sign handling code :)
-        ItemDB itemDB = ItemDB.getDefault();
 
         // Initialize the sign manager
         signManager = SignManager.getInstance(this);
