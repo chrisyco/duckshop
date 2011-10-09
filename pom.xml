@@ -63,7 +63,7 @@
     <dependency>
       <groupId>com.nijikokun</groupId>
       <artifactId>register</artifactId>
-      <version>2.1</version>
+      <version>1.5</version>
       <scope>compile</scope>
     </dependency>
 
@@ -142,18 +142,18 @@
               </artifactSet>
               <filters>
                 <filter>
-                  <artifact>com.nijikokun:register</artifact>
-                  <excludes>
-                    <exclude>com/nijikokun/register/example/**</exclude>
-                  </excludes>
-                </filter>
-                <filter>
                   <artifact>com.sk89q:worldguard</artifact>
                   <includes>
                     <include>com/sk89q/worldguard/LocalPlayer.class</include>
                   </includes>
                 </filter>
               </filters>
+              <relocations>
+                <relocation>
+                  <pattern>com.nijikokun.register</pattern>
+                  <shadedPattern>${project.groupId}.${project.artifactId}.hidden.com.nijikokun.register</shadedPattern>
+                </relocation>
+              </relocations>
             </configuration>
           </execution>
         </executions>

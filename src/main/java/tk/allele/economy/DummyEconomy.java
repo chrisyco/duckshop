@@ -64,6 +64,14 @@ public class DummyEconomy implements Method {
         return false;
     }
 
+    public boolean createAccount(String s) {
+        return false;
+    }
+
+    public boolean createAccount(String s, Double aDouble) {
+        return false;
+    }
+
     public MethodAccount getAccount(String name) {
         return new DummyAccount();
     }
