@@ -4,6 +4,23 @@
 
 ..
 
+30-rc-1
+=======
+
+* Superperms support.
+
+* Made permissions nodes lowercase (DuckShop.use.* -> duckshop.use.*)
+
+* iConomy 6 support.
+
+* Fixed conflict with other plugins that use Register.
+
+* Fix sign ending up blank if player tries to break it.
+
+* Uses OddItem for item names.
+
+* Added logo.
+
 27
 ==
 
