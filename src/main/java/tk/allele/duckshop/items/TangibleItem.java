@@ -175,7 +175,7 @@ public class TangibleItem extends Item {
     private static NavigableSet<String> getAliasesById(int itemId, short damage) {
         Field itemsField;
         try {
-            itemsField = OddItem.class.getField("items");
+            itemsField = OddItem.class.getDeclaredField("items");
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
