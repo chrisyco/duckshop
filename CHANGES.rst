@@ -4,6 +4,11 @@
 
 ..
 
+30-rc-2
+=======
+
+* Fixed NoSuchFieldException.
+
 30-rc-1
 =======
 
