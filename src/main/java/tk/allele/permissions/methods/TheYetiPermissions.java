@@ -14,20 +14,20 @@ import java.util.logging.Logger;
  * @see PermissionsMethod
  */
 public class TheYetiPermissions implements PermissionsMethod {
-    private PermissionHandler permissionHandler;
-    private Logger log;
-    private String prefix;
+    final PermissionHandler permissionHandler;
+    final Logger log;
+    final String prefix;
 
     public TheYetiPermissions(Plugin plugin, Logger log, String prefix) {
         this.log = log;
         this.prefix = prefix;
         Plugin permissionsPlugin = plugin.getServer().getPluginManager().getPlugin("Permissions");
 
-        if (this.permissionHandler == null) {
-            if (permissionsPlugin != null) {
-                this.permissionHandler = ((Permissions) permissionsPlugin).getHandler();
-                log.info("Permissions plugin detected!");
-            }
+        if(permissionsPlugin != null && permissionsPlugin instanceof Permissions) {
+            this.permissionHandler = ((Permissions) permissionsPlugin).getHandler();
+            log.info("Permissions plugin detected!");
+        } else {
+            this.permissionHandler = null;
         }
     }
 

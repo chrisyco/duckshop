@@ -88,7 +88,7 @@ public class DummyEconomy implements Method {
         server = plugin.getServer();
     }
 
-    public class DummyAccount implements MethodAccount {
+    public static class DummyAccount implements MethodAccount {
         public DummyAccount() {
         }
 

@@ -37,15 +37,4 @@ public class PermissionsManager {
             return method;
         }
     }
-
-    /**
-     * Reorder the queue, if anything has changed since the last rehash.
-     */
-    public void rehash() {
-        PermissionsMethod[] items = (PermissionsMethod[]) queue.toArray();
-        queue.clear();
-        for (PermissionsMethod item : items) {
-            queue.offer(item);
-        }
-    }
 }
