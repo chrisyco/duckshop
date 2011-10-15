@@ -9,6 +9,7 @@ softdepend: [Permissions, LWC, Lockette]
 commands:
     duckshop:
         description: DuckShop -- make shops using signs!
+        aliases: [ds, shop]
         usage: |
                /<command> link - link a sign with a chest.
                /<command> cancel - cancel a link in progress.
