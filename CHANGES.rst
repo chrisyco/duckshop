@@ -4,6 +4,12 @@
 
 ..
 
+30
+==
+
+* Fixed bug with names transmogrifying into beautiful but incorrect numbers with
+  semicolons. The horror!
+
 30-rc-2
 =======
 
