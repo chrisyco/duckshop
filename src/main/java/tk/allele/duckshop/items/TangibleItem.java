@@ -173,6 +173,9 @@ public class TangibleItem extends Item {
 
     @SuppressWarnings("unchecked")
     private static NavigableSet<String> getAliasesById(int itemId, short damage) {
+        // This is absolutely horrible! XO
+
+        // Get the field containing the map
         Field itemsField;
         try {
             itemsField = OddItem.class.getDeclaredField("items");
@@ -180,8 +183,10 @@ public class TangibleItem extends Item {
             throw new RuntimeException(e);
         }
 
+        // Make the field public
         itemsField.setAccessible(true);
 
+        // Get the map containing the item
         Map<String, NavigableSet<String>> items;
         try {
             items = (Map<String, NavigableSet<String>>) itemsField.get(null);
@@ -189,6 +194,7 @@ public class TangibleItem extends Item {
             throw new RuntimeException(e);
         }
 
+        // Grab that item from the map
         NavigableSet<String> result;
         if((result = items.get(itemId + ";" + damage)) != null) {
             return result;
@@ -200,17 +206,25 @@ public class TangibleItem extends Item {
     }
 
     private static String getBestName(NavigableSet<String> aliases) {
-        String currentName = null;
         for(String name : aliases) {
-            if(name.length() <= NAME_LENGTH) {
-                if(currentName != null && currentName.length() == NAME_LENGTH) {
-                    break;
-                } else {
-                    currentName = name;
-                }
+            // Skip names which are too long or have digits
+            if(name.length() <= NAME_LENGTH && !name.matches(".*[0-9].*")) {
+                return name;
             }
         }
-        return currentName;
+        return null;
+    }
+
+    private static String getBestNameForId(int itemId, short damage) {
+        NavigableSet<String> aliases = getAliasesById(itemId, damage);
+        if(aliases != null) {
+            String name = getBestName(aliases);
+            if(name != null) {
+                return name; // We have a name!
+            }
+        }
+        // Fall through
+        return null;
     }
 
     @Override
@@ -218,15 +232,15 @@ public class TangibleItem extends Item {
         StringBuilder buffer = new StringBuilder(15);
         buffer.append(Integer.toString(amount));
         buffer.append(" ");
-        NavigableSet<String> aliases = getAliasesById(itemId, damage);
-        if(aliases != null) {
+        String name = getBestNameForId(itemId, damage);
+        if(name != null) {
             // If there is a specific name for this, use it
-            buffer.append(getBestName(aliases));
+            buffer.append(name);
         } else {
             // Otherwise, use the generic name + damage value
-            aliases = getAliasesById(itemId, (short) 0);
-            if(aliases != null) {
-                buffer.append(getBestName(aliases));
+            name = getBestNameForId(itemId, (short) 0);
+            if(name != null) {
+                buffer.append(name);
                 buffer.append(Short.toString(damage));
             } else {
                 // If there isn't even a generic name, just use the ID
