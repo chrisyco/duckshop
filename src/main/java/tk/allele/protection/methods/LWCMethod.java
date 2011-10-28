@@ -2,7 +2,9 @@ package tk.allele.protection.methods;
 
 import com.griefcraft.lwc.LWC;
 import com.griefcraft.lwc.LWCPlugin;
+import com.griefcraft.model.AccessRight;
 import com.griefcraft.model.Protection;
+import com.griefcraft.model.ProtectionTypes;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -35,15 +37,39 @@ public class LWCMethod implements ProtectionMethod {
         return "LWC";
     }
 
+    // Ripped off <https://github.com/Hidendra/LWC/blob/master/src/main/java/com/griefcraft/lwc/LWC.java#L340>
+    private boolean canAccessProtection(String playerName, Protection protection) {
+        switch(protection.getType()) {
+            case ProtectionTypes.PUBLIC:
+                return true;
+
+            case ProtectionTypes.PASSWORD:
+                return lwc.getMemoryDatabase().hasAccess(playerName, protection);
+
+            case ProtectionTypes.PRIVATE:
+                if(playerName.equalsIgnoreCase(protection.getOwner())) {
+                    return true;
+                }
+
+                if(protection.getAccess(AccessRight.PLAYER, playerName) >= 0) {
+                    return true;
+                }
+
+                return false;
+
+            default:
+                return false;
+        }
+    }
+
     @Override
     public boolean canAccess(String playerName, Block block) {
         // Use getProtectionSet() to grab both parts of a double chest
         List<Block> blocksProtected = lwc.getProtectionSet(block.getWorld(), block.getX(), block.getY(), block.getZ());
         for(Block chestBlock : blocksProtected) {
             Protection protection = lwc.findProtection(chestBlock);
-            // Check if the player is the owner
-            if(protection != null) {
-                return protection.getOwner().equalsIgnoreCase(playerName);
+            if(protection != null && !canAccessProtection(playerName, protection)) {
+                return false;
             }
         }
         // If none of the blocks are protected, anyone can access it
