@@ -87,7 +87,7 @@
     <dependency>
       <groupId>com.griefcraft</groupId>
       <artifactId>lwc</artifactId>
-      <version>3.30</version>
+      <version>3.53</version>
       <scope>compile</scope>
     </dependency>
 
