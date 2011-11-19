@@ -37,8 +37,8 @@ public class DuckShop extends JavaPlugin {
         log = CustomLogger.getLogger(getDescription().getName());
 
         // I don't know where to put this, so it's going here!
-        if(!getDataFolder().isDirectory()) {
-            if(getDataFolder().mkdirs()) {
+        if (!getDataFolder().isDirectory()) {
+            if (getDataFolder().mkdirs()) {
                 log.info("Created data folder.");
             } else {
                 log.warning("Could not create data folder. Stuff may fail later.");
@@ -55,7 +55,7 @@ public class DuckShop extends JavaPlugin {
 
         // Initialize chest protection
         protection = new ProtectionManager(this);
-        if(protection.isEnabled()) {
+        if (protection.isEnabled()) {
             log.info("Using " + StringTools.join(protection.getEnabledMethods(), ", ") + " for chest protection.");
         } else {
             log.info("No chest protection found.");
@@ -72,8 +72,7 @@ public class DuckShop extends JavaPlugin {
         commandListener = new DuckShopCommand(this, linkState);
 
         final String version = getDescription().getVersion();
-        log.info("Version " + version + " enabled. " +
-                 "No viruses, honest!");
+        log.info("Version " + version + " enabled. No viruses, honest!");
     }
 
     @Override
@@ -84,8 +83,7 @@ public class DuckShop extends JavaPlugin {
     @Override
     public void onDisable() {
         final String version = getDescription().getVersion();
-        log.info("Version " + version + " disabled. " +
-                 "Have a nice day!");
+        log.info("Version " + version + " disabled. Have a nice day!");
         signManager.store();
     }
 }

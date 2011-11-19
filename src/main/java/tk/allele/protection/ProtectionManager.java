@@ -45,8 +45,8 @@ public class ProtectionManager {
      */
     public List<ProtectionMethod> getEnabledMethods() {
         List<ProtectionMethod> enabledMethods = new LinkedList<ProtectionMethod>();
-        for(ProtectionMethod method : methods) {
-            if(method.isEnabled()) {
+        for (ProtectionMethod method : methods) {
+            if (method.isEnabled()) {
                 enabledMethods.add(method);
             }
         }
@@ -57,8 +57,8 @@ public class ProtectionManager {
      * Return whether any of the protection methods are enabled.
      */
     public boolean isEnabled() {
-        for(ProtectionMethod method : methods) {
-            if(method.isEnabled()) {
+        for (ProtectionMethod method : methods) {
+            if (method.isEnabled()) {
                 return true;
             }
         }
@@ -69,8 +69,8 @@ public class ProtectionManager {
      * Return whether a player with this name can access a block.
      */
     public boolean canAccess(String playerName, Block block) {
-        for(ProtectionMethod method : methods) {
-            if(method.isEnabled() && !method.canAccess(playerName, block)) {
+        for (ProtectionMethod method : methods) {
+            if (method.isEnabled() && !method.canAccess(playerName, block)) {
                 return false;
             }
         }
@@ -81,8 +81,8 @@ public class ProtectionManager {
      * Return whether a player can access a block.
      */
     public boolean canAccess(Player player, Block block) {
-        for(ProtectionMethod method : methods) {
-            if(method.isEnabled() && !method.canAccess(player, block)) {
+        for (ProtectionMethod method : methods) {
+            if (method.isEnabled() && !method.canAccess(player, block)) {
                 return false;
             }
         }

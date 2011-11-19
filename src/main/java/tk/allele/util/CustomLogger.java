@@ -22,7 +22,7 @@ public class CustomLogger extends Logger {
 
     public static CustomLogger getLogger(String name) {
         CustomLogger logger = loggers.get(name);
-        if(logger == null) {
+        if (logger == null) {
             logger = new CustomLogger(name);
             loggers.put(name, logger);
         }

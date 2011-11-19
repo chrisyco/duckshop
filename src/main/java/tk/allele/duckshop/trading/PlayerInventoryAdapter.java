@@ -5,6 +5,7 @@ import tk.allele.duckshop.items.TangibleItem;
 
 /**
  * Extends the InventoryAdapter to support players.
+ *
  * @see InventoryAdapter
  */
 public class PlayerInventoryAdapter extends InventoryAdapter {

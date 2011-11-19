@@ -21,7 +21,7 @@ public class LinkCommand extends Command {
 
     @Override
     public void execute(CommandSender sender, CommandContext context) throws CommandException, PermissionsException {
-        if(sender instanceof Player) {
+        if (sender instanceof Player) {
             linkState.startLink((Player) sender);
             sender.sendMessage("Left click on a sign to link it.");
         } else {

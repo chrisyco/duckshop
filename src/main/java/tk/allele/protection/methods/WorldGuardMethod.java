@@ -70,7 +70,7 @@ public class WorldGuardMethod implements ProtectionMethod {
 
     public WorldGuardMethod(Plugin plugin) {
         Plugin worldGuard = plugin.getServer().getPluginManager().getPlugin("WorldGuard");
-        if(worldGuard != null && worldGuard instanceof WorldGuardPlugin) {
+        if (worldGuard != null && worldGuard instanceof WorldGuardPlugin) {
             this.worldGuard = (WorldGuardPlugin) worldGuard;
         }
     }

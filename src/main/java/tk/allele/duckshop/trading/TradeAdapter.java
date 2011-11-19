@@ -20,40 +20,40 @@ public abstract class TradeAdapter {
     }
 
     public final boolean canAddItem(Item item) {
-        if(item instanceof Money) {
-            return canAddMoney((Money)item);
-        } else if(item instanceof TangibleItem) {
-            return canAddTangibleItem((TangibleItem)item);
+        if (item instanceof Money) {
+            return canAddMoney((Money) item);
+        } else if (item instanceof TangibleItem) {
+            return canAddTangibleItem((TangibleItem) item);
         } else {
             throw new IllegalArgumentException("unknown Item type");
         }
     }
 
     public final boolean canSubtractItem(Item item) {
-        if(item instanceof Money) {
-            return canSubtractMoney((Money)item);
-        } else if(item instanceof TangibleItem) {
-            return canSubtractTangibleItem((TangibleItem)item);
+        if (item instanceof Money) {
+            return canSubtractMoney((Money) item);
+        } else if (item instanceof TangibleItem) {
+            return canSubtractTangibleItem((TangibleItem) item);
         } else {
             throw new IllegalArgumentException("unknown Item type");
         }
     }
 
     public final void addItem(Item item) {
-        if(item instanceof Money) {
-            addMoney((Money)item);
-        } else if(item instanceof TangibleItem) {
-            addTangibleItem((TangibleItem)item);
+        if (item instanceof Money) {
+            addMoney((Money) item);
+        } else if (item instanceof TangibleItem) {
+            addTangibleItem((TangibleItem) item);
         } else {
             throw new IllegalArgumentException("unknown Item type");
         }
     }
 
     public final void subtractItem(Item item) {
-        if(item instanceof Money) {
-            subtractMoney((Money)item);
-        } else if(item instanceof TangibleItem) {
-            subtractTangibleItem((TangibleItem)item);
+        if (item instanceof Money) {
+            subtractMoney((Money) item);
+        } else if (item instanceof TangibleItem) {
+            subtractTangibleItem((TangibleItem) item);
         } else {
             throw new IllegalArgumentException("unknown Item type");
         }
@@ -81,11 +81,14 @@ public abstract class TradeAdapter {
     public abstract boolean canSubtractTangibleItem(TangibleItem tangibleItem);
 
     public abstract void addMoney(Money money)
-        throws IllegalArgumentException;
+            throws IllegalArgumentException;
+
     public abstract void subtractMoney(Money money)
-        throws IllegalArgumentException;
+            throws IllegalArgumentException;
+
     public abstract void addTangibleItem(TangibleItem tangibleItem)
-        throws IllegalArgumentException;
+            throws IllegalArgumentException;
+
     public abstract void subtractTangibleItem(TangibleItem tangibleItem)
-        throws IllegalArgumentException;
+            throws IllegalArgumentException;
 }

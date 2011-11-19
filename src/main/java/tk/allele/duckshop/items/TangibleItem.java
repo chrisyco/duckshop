@@ -57,7 +57,7 @@ public class TangibleItem extends Item {
     public static TangibleItem fromString(final String itemString)
             throws InvalidSyntaxException {
         Matcher matcher = tangibleItemPattern.matcher(itemString);
-        if(matcher.matches()) {
+        if (matcher.matches()) {
 
             // Group 1 is definitely an integer, since it was matched with "\d+"
             int amount = Integer.parseInt(matcher.group(1));
@@ -68,12 +68,12 @@ public class TangibleItem extends Item {
             // Try parsing it as an item ID first
             try {
                 itemId = Integer.parseInt(itemName);
-            } catch(NumberFormatException ex) {
+            } catch (NumberFormatException ex) {
                 // If it isn't an integer, treat it as an item name
                 ItemStack itemDfn;
                 try {
                     itemDfn = OddItem.getItemStack(itemName);
-                } catch(IllegalArgumentException ex2) {
+                } catch (IllegalArgumentException ex2) {
                     throw new InvalidSyntaxException();
                 }
 
@@ -84,12 +84,12 @@ public class TangibleItem extends Item {
             // If there's another number after that, it's a damage value
             try {
                 damage = Short.parseShort(matcher.group(3));
-            } catch(NumberFormatException ex) {
+            } catch (NumberFormatException ex) {
                 // Do nothing -- keep the damage value from the code above
             }
 
             // Check if it's actually a real item
-            if(Material.getMaterial(itemId) == null) {
+            if (Material.getMaterial(itemId) == null) {
                 throw new InvalidSyntaxException();
             }
 
@@ -136,15 +136,15 @@ public class TangibleItem extends Item {
         int maxStackSize = Material.getMaterial(itemId).getMaxStackSize();
         ItemStack[] stacks;
         int quotient = amount / maxStackSize;
-        if(amount % maxStackSize == 0) {
+        if (amount % maxStackSize == 0) {
             stacks = new ItemStack[quotient];
         } else {
             // If it cannot be divided evenly, the last cell will
             // contain the part left over
-            stacks = new ItemStack[quotient+1];
+            stacks = new ItemStack[quotient + 1];
             stacks[quotient] = new ItemStack(itemId, amount % maxStackSize, damage);
         }
-        for(int i = 0; i < quotient; ++i) {
+        for (int i = 0; i < quotient; ++i) {
             stacks[i] = new ItemStack(itemId, maxStackSize, damage);
         }
         return stacks;
@@ -152,10 +152,10 @@ public class TangibleItem extends Item {
 
     @Override
     public boolean equals(Object thatObj) {
-        if(thatObj instanceof TangibleItem) {
+        if (thatObj instanceof TangibleItem) {
             TangibleItem that = (TangibleItem) thatObj;
             return (this.itemId == that.itemId && this.damage == that.damage);
-        } else if(thatObj instanceof ItemStack) {
+        } else if (thatObj instanceof ItemStack) {
             ItemStack that = (ItemStack) thatObj;
             return (this.itemId == that.getTypeId() && this.damage == that.getDurability());
         } else {
@@ -190,15 +190,15 @@ public class TangibleItem extends Item {
         Map<String, NavigableSet<String>> items;
         try {
             items = (Map<String, NavigableSet<String>>) itemsField.get(null);
-        } catch(IllegalAccessException e) {
+        } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
 
         // Grab that item from the map
         NavigableSet<String> result;
-        if((result = items.get(itemId + ";" + damage)) != null) {
+        if ((result = items.get(itemId + ";" + damage)) != null) {
             return result;
-        } else if(damage == 0 && (result = items.get(Integer.toString(itemId))) != null) {
+        } else if (damage == 0 && (result = items.get(Integer.toString(itemId))) != null) {
             return result;
         } else {
             return null;
@@ -206,9 +206,9 @@ public class TangibleItem extends Item {
     }
 
     private static String getBestName(NavigableSet<String> aliases) {
-        for(String name : aliases) {
+        for (String name : aliases) {
             // Skip names which are too long or have digits
-            if(name.length() <= NAME_LENGTH && !name.matches(".*[0-9].*")) {
+            if (name.length() <= NAME_LENGTH && !name.matches(".*[0-9].*")) {
                 return name;
             }
         }
@@ -217,9 +217,9 @@ public class TangibleItem extends Item {
 
     private static String getBestNameForId(int itemId, short damage) {
         NavigableSet<String> aliases = getAliasesById(itemId, damage);
-        if(aliases != null) {
+        if (aliases != null) {
             String name = getBestName(aliases);
-            if(name != null) {
+            if (name != null) {
                 return name; // We have a name!
             }
         }
@@ -233,19 +233,19 @@ public class TangibleItem extends Item {
         buffer.append(Integer.toString(amount));
         buffer.append(" ");
         String name = getBestNameForId(itemId, damage);
-        if(name != null) {
+        if (name != null) {
             // If there is a specific name for this, use it
             buffer.append(name);
         } else {
             // Otherwise, use the generic name + damage value
             name = getBestNameForId(itemId, (short) 0);
-            if(name != null) {
+            if (name != null) {
                 buffer.append(name);
                 buffer.append(Short.toString(damage));
             } else {
                 // If there isn't even a generic name, just use the ID
                 buffer.append(Integer.toString(itemId));
-                if(damage != 0) {
+                if (damage != 0) {
                     buffer.append(" ");
                     buffer.append(Short.toString(damage));
                 }

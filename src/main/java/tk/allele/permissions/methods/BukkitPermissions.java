@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 /**
  * Adapter for Bukkit's Superperms.
+ *
  * @see tk.allele.permissions.PermissionsMethod
  */
 public class BukkitPermissions implements PermissionsMethod {
@@ -51,8 +52,8 @@ public class BukkitPermissions implements PermissionsMethod {
 
     @Override
     public void throwIfCannot(Player player, String permission)
-      throws PermissionsException {
-        if(!playerHasPermission(player, permission)) {
+            throws PermissionsException {
+        if (!playerHasPermission(player, permission)) {
             throw new PermissionsException(player, permission);
         }
     }

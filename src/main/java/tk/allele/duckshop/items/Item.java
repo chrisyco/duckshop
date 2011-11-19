@@ -33,11 +33,11 @@ public abstract class Item implements Serializable {
      * @throws InvalidSyntaxException if the item cannot be parsed.
      */
     public static Item fromString(final String itemString)
-      throws InvalidSyntaxException {
+            throws InvalidSyntaxException {
         // Call the subclasses' parsers, returning the first one that works
         try {
             return TangibleItem.fromString(itemString);
-        } catch(InvalidSyntaxException ex) {
+        } catch (InvalidSyntaxException ex) {
             return Money.fromString(itemString);
         }
     }

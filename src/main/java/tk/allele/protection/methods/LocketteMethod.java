@@ -16,8 +16,8 @@ public class LocketteMethod implements ProtectionMethod {
 
     public LocketteMethod(Plugin plugin) {
         Plugin lockettePlugin = plugin.getServer().getPluginManager().getPlugin("Lockette");
-        if(lockettePlugin != null && lockettePlugin instanceof Lockette) {
-            this.lockette = (Lockette)lockettePlugin;
+        if (lockettePlugin != null && lockettePlugin instanceof Lockette) {
+            this.lockette = (Lockette) lockettePlugin;
         }
     }
 
@@ -33,7 +33,7 @@ public class LocketteMethod implements ProtectionMethod {
 
     @Override
     public boolean canAccess(String playerName, Block block) {
-        if(lockette != null) {
+        if (lockette != null) {
             String ownerName = Lockette.getProtectedOwner(block);
             return (ownerName == null || ownerName.equalsIgnoreCase(playerName));
         } else {

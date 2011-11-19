@@ -7,6 +7,7 @@ public class InvalidSyntaxException extends DuckShopException {
     public InvalidSyntaxException() {
         super();
     }
+
     public InvalidSyntaxException(String message) {
         super(message);
     }

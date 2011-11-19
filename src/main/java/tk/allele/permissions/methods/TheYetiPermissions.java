@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 /**
  * Permissions handler that uses Permissions by TheYeti.
+ *
  * @see PermissionsMethod
  */
 public class TheYetiPermissions implements PermissionsMethod {
@@ -23,7 +24,7 @@ public class TheYetiPermissions implements PermissionsMethod {
         this.prefix = prefix;
         Plugin permissionsPlugin = plugin.getServer().getPluginManager().getPlugin("Permissions");
 
-        if(permissionsPlugin != null && permissionsPlugin instanceof Permissions) {
+        if (permissionsPlugin != null && permissionsPlugin instanceof Permissions) {
             this.permissionHandler = ((Permissions) permissionsPlugin).getHandler();
             log.info("Permissions plugin detected!");
         } else {
@@ -53,8 +54,8 @@ public class TheYetiPermissions implements PermissionsMethod {
 
     @Override
     public void throwIfCannot(Player player, String permission)
-      throws PermissionsException {
-        if(!playerHasPermission(player, permission)) {
+            throws PermissionsException {
+        if (!playerHasPermission(player, permission)) {
             throw new PermissionsException(player, permission);
         }
     }

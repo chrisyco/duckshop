@@ -7,6 +7,7 @@ public class DuckShopException extends Exception {
     public DuckShopException() {
         super();
     }
+
     public DuckShopException(String message) {
         super(message);
     }

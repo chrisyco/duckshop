@@ -11,26 +11,27 @@ import java.util.regex.Pattern;
 public class StringTools {
     private static final Pattern usernamePattern = Pattern.compile("\\w+");
 
-    private StringTools() {}
+    private StringTools() {
+    }
 
     /**
      * Join a {@link Collection} of objects into a single String.
      *
      * @return The concatenation of the items in the collection,
-     * separated by the delimiter.
+     *         separated by the delimiter.
      */
     public static String join(Iterable<?> list, String separator) {
         Iterator<?> iter;
-        if(list == null) {
+        if (list == null) {
             return "";
         } else {
             iter = list.iterator();
-            if(!iter.hasNext()) {
+            if (!iter.hasNext()) {
                 return "";
             }
         }
         StringBuilder buffer = new StringBuilder(String.valueOf(iter.next()));
-        while(iter.hasNext()) {
+        while (iter.hasNext()) {
             buffer.append(separator).append(iter.next());
         }
         return buffer.toString();
@@ -39,8 +40,8 @@ public class StringTools {
     /**
      * Test whether a string is a valid username.
      */
-   public static boolean isValidUsername(String username) {
-       Matcher usernameMatcher = usernamePattern.matcher(username);
-       return usernameMatcher.matches();
-   }
+    public static boolean isValidUsername(String username) {
+        Matcher usernameMatcher = usernamePattern.matcher(username);
+        return usernameMatcher.matches();
+    }
 }

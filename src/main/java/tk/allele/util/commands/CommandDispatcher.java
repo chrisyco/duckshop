@@ -3,7 +3,10 @@ package tk.allele.util.commands;
 import org.bukkit.command.CommandSender;
 import tk.allele.permissions.PermissionsException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Keeps track of commands.
@@ -23,7 +26,7 @@ public class CommandDispatcher extends Command implements org.bukkit.command.Com
     }
 
     public void registerCommand(Command command) {
-        if(!commandMap.containsKey(command.getName())) {
+        if (!commandMap.containsKey(command.getName())) {
             commandMap.put(command.getName(), command);
         } else {
             throw new IllegalStateException("command name " + command.getName() + " already taken");
@@ -33,7 +36,7 @@ public class CommandDispatcher extends Command implements org.bukkit.command.Com
     @Override
     public void execute(CommandSender sender, CommandContext context) throws CommandException, PermissionsException {
         Command command = commandMap.get(context.getArguments().get(0));
-        if(command != null) {
+        if (command != null) {
             command.execute(sender, context.shift(1));
         } else {
             throw new CommandException(this, context);

@@ -10,15 +10,16 @@ import tk.allele.inventory.Inventories;
 
 /**
  * Extends the InventoryAdapter to support chests.
+ *
  * @see InventoryAdapter
  */
 public class ChestInventoryAdapter extends InventoryAdapter {
     private void initialize(String ownerName, Chest chest)
-      throws ChestProtectionException {
+            throws ChestProtectionException {
         setPlayerName(ownerName);
         setInventory(Inventories.getInventoryForChest(chest));
 
-        if(!plugin.protection.canAccess(ownerName, chest.getBlock())) {
+        if (!plugin.protection.canAccess(ownerName, chest.getBlock())) {
             throw new ChestProtectionException();
         }
     }
@@ -29,7 +30,7 @@ public class ChestInventoryAdapter extends InventoryAdapter {
      * @throws ChestProtectionException if the chest is protected
      */
     public ChestInventoryAdapter(DuckShop plugin, String ownerName, Chest chest)
-      throws ChestProtectionException {
+            throws ChestProtectionException {
         super(plugin);
         initialize(ownerName, chest);
     }
@@ -37,15 +38,15 @@ public class ChestInventoryAdapter extends InventoryAdapter {
     /**
      * Create an instance of this adapter.
      *
-     * @throws InvalidChestException if the location doesn't point to a chest
+     * @throws InvalidChestException    if the location doesn't point to a chest
      * @throws ChestProtectionException if the chest is protected
      */
     public ChestInventoryAdapter(DuckShop plugin, String ownerName, Location chestLocation)
-      throws InvalidChestException, ChestProtectionException {
+            throws InvalidChestException, ChestProtectionException {
         super(plugin);
         BlockState state = chestLocation.getBlock().getState();
-        if(state instanceof Chest) {
-            initialize(ownerName, (Chest)state);
+        if (state instanceof Chest) {
+            initialize(ownerName, (Chest) state);
         } else {
             throw new InvalidChestException();
         }

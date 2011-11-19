@@ -1,7 +1,9 @@
 package tk.allele.permissions;
 
 import org.bukkit.plugin.Plugin;
-import tk.allele.permissions.methods.*;
+import tk.allele.permissions.methods.BukkitPermissions;
+import tk.allele.permissions.methods.OpsOnlyPermissions;
+import tk.allele.permissions.methods.TheYetiPermissions;
 import tk.allele.util.priority.PriorityComparator;
 
 import java.util.PriorityQueue;
@@ -31,7 +33,7 @@ public class PermissionsManager {
      */
     public PermissionsMethod getBest() {
         PermissionsMethod method = queue.peek();
-        if(method == null || !method.isAvailable()) {
+        if (method == null || !method.isAvailable()) {
             return null;
         } else {
             return method;

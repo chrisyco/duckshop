@@ -13,12 +13,13 @@ import java.util.regex.Pattern;
 public class Locations {
     private static final String integerRegex = "([+-]?\\d+)";
     private static final Pattern locationRegex = Pattern.compile(
-        "\\s*" + "((.+?)\\s*:)?" +
-        "\\s*" + integerRegex + "\\s*" + "," +
-        "\\s*" + integerRegex + "\\s*" + "," +
-        "\\s*" + integerRegex + "\\s*");
+            "\\s*" + "((.+?)\\s*:)?" +
+                    "\\s*" + integerRegex + "\\s*" + "," +
+                    "\\s*" + integerRegex + "\\s*" + "," +
+                    "\\s*" + integerRegex + "\\s*");
 
-    private Locations() {}
+    private Locations() {
+    }
 
     /**
      * Try to parse a {@link Location} object in the form "WorldName:X,Y,Z".
@@ -27,12 +28,12 @@ public class Locations {
      */
     public static Location parseLocation(final Server server, final String locationString) {
         Matcher matcher = locationRegex.matcher(locationString);
-        if(matcher.matches()) {
+        if (matcher.matches()) {
             World world = null;
-            if(matcher.group(1) != null) {
+            if (matcher.group(1) != null) {
                 world = server.getWorld(matcher.group(2));
             }
-            if(world == null) {
+            if (world == null) {
                 throw new IllegalArgumentException("Invalid world name");
             }
             int x = Integer.parseInt(matcher.group(3));
@@ -50,7 +51,7 @@ public class Locations {
      */
     public static String toString(Location location) {
         StringBuilder s = new StringBuilder(32);
-        if(location.getWorld() != null) {
+        if (location.getWorld() != null) {
             s.append(location.getWorld().getName());
             s.append(":");
         }

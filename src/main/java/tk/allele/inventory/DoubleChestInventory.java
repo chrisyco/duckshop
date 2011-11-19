@@ -35,7 +35,7 @@ public class DoubleChestInventory implements Inventory {
 
     @Override
     public ItemStack getItem(int i) {
-        if(i < inventoryA.getSize()) {
+        if (i < inventoryA.getSize()) {
             return inventoryA.getItem(i);
         } else {
             return inventoryB.getItem(i - inventoryA.getSize());
@@ -44,7 +44,7 @@ public class DoubleChestInventory implements Inventory {
 
     @Override
     public void setItem(int i, ItemStack itemStack) {
-        if(i < inventoryA.getSize()) {
+        if (i < inventoryA.getSize()) {
             inventoryA.setItem(i, itemStack);
         } else {
             inventoryB.setItem(i - inventoryA.getSize(), itemStack);
@@ -54,7 +54,7 @@ public class DoubleChestInventory implements Inventory {
     @Override
     public HashMap<Integer, ItemStack> addItem(ItemStack... itemStacks) {
         HashMap<Integer, ItemStack> leftoverMap = inventoryA.addItem(itemStacks);
-        if(leftoverMap.isEmpty()) {
+        if (leftoverMap.isEmpty()) {
             return leftoverMap;
         } else {
             ItemStack[] leftover = leftoverMap.values().toArray(new ItemStack[itemStacks.length]);
@@ -65,7 +65,7 @@ public class DoubleChestInventory implements Inventory {
     @Override
     public HashMap<Integer, ItemStack> removeItem(ItemStack... itemStacks) {
         HashMap<Integer, ItemStack> leftoverMap = inventoryA.removeItem(itemStacks);
-        if(leftoverMap.isEmpty()) {
+        if (leftoverMap.isEmpty()) {
             return leftoverMap;
         } else {
             ItemStack[] leftover = leftoverMap.values().toArray(new ItemStack[itemStacks.length]);
@@ -80,7 +80,7 @@ public class DoubleChestInventory implements Inventory {
 
     @Override
     public void setContents(ItemStack[] itemStacks) {
-        if(itemStacks.length != getSize()) {
+        if (itemStacks.length != getSize()) {
             throw new IllegalArgumentException("Invalid inventory size; expected " + getSize());
         } else {
             ItemStack[] arrayA = Arrays.copyOf(itemStacks, inventoryA.getSize());
@@ -139,12 +139,12 @@ public class DoubleChestInventory implements Inventory {
     public int first(int materialId) {
         // Search the first inventory
         int index = inventoryA.first(materialId);
-        if(index != -1) {
+        if (index != -1) {
             return index;
         } else {
             // If it's not in the first, try the second
             index = inventoryB.first(materialId);
-            if(index != -1) {
+            if (index != -1) {
                 return getSize() + index;
             } else {
                 return index;
@@ -156,12 +156,12 @@ public class DoubleChestInventory implements Inventory {
     public int first(Material material) {
         // Search the first inventory
         int index = inventoryA.first(material);
-        if(index != -1) {
+        if (index != -1) {
             return index;
         } else {
             // If it's not in the first, try the second
             index = inventoryB.first(material);
-            if(index != -1) {
+            if (index != -1) {
                 return getSize() + index;
             } else {
                 return index;
@@ -173,12 +173,12 @@ public class DoubleChestInventory implements Inventory {
     public int first(ItemStack itemStack) {
         // Search the first inventory
         int index = inventoryA.first(itemStack);
-        if(index != -1) {
+        if (index != -1) {
             return index;
         } else {
             // If it's not in the first, try the second
             index = inventoryB.first(itemStack);
-            if(index != -1) {
+            if (index != -1) {
                 return getSize() + index;
             } else {
                 return index;
@@ -189,11 +189,11 @@ public class DoubleChestInventory implements Inventory {
     @Override
     public int firstEmpty() {
         int index = inventoryA.firstEmpty();
-        if(index != -1) {
+        if (index != -1) {
             return index;
         } else {
             index = inventoryB.firstEmpty();
-            if(index != -1) {
+            if (index != -1) {
                 return getSize() + index;
             } else {
                 return index;
@@ -221,7 +221,7 @@ public class DoubleChestInventory implements Inventory {
 
     @Override
     public void clear(int index) {
-        if(index < inventoryA.getSize()) {
+        if (index < inventoryA.getSize()) {
             inventoryA.clear(index);
         } else {
             inventoryB.clear(index - inventoryA.getSize());

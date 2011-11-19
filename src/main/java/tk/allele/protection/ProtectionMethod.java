@@ -11,14 +11,17 @@ public interface ProtectionMethod {
      * Return whether this method is enabled.
      */
     public boolean isEnabled();
+
     /**
      * Get the human-readable name of this method.
      */
     public String toString();
+
     /**
      * Return whether a player with this name can access a block.
      */
     public boolean canAccess(String playerName, Block block);
+
     /**
      * Return whether a player can access a block.
      */

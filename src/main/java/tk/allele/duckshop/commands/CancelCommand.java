@@ -21,7 +21,7 @@ public class CancelCommand extends Command {
 
     @Override
     public void execute(CommandSender sender, CommandContext context) throws CommandException, PermissionsException {
-        if(sender instanceof Player) {
+        if (sender instanceof Player) {
             linkState.cancelLink((Player) sender);
             sender.sendMessage("Linking cancelled.");
         } else {

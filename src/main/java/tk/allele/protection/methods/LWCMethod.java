@@ -23,7 +23,7 @@ public class LWCMethod implements ProtectionMethod {
 
     public LWCMethod(Plugin plugin) {
         Plugin lwcPlugin = plugin.getServer().getPluginManager().getPlugin("LWC");
-        if(lwcPlugin != null && lwcPlugin instanceof LWCPlugin) {
+        if (lwcPlugin != null && lwcPlugin instanceof LWCPlugin) {
             lwc = ((LWCPlugin) lwcPlugin).getLWC();
         }
     }
@@ -60,16 +60,16 @@ public class LWCMethod implements ProtectionMethod {
         } else {
             // LWC 4 uses an enum
             String typeStr = type.toString();
-            if (typeStr.equals("PUBLIC"))   return 0;
+            if (typeStr.equals("PUBLIC")) return 0;
             if (typeStr.equals("PASSWORD")) return 1;
-            if (typeStr.equals("PRIVATE"))  return 2;
+            if (typeStr.equals("PRIVATE")) return 2;
             else return -1;
         }
     }
 
     // Ripped off <https://github.com/Hidendra/LWC/blob/master/src/main/java/com/griefcraft/lwc/LWC.java#L340>
     private boolean canAccessProtection(String playerName, Protection protection) {
-        switch(getProtectionType(protection)) {
+        switch (getProtectionType(protection)) {
             case ProtectionTypes.PUBLIC:
                 return true;
 
@@ -77,11 +77,11 @@ public class LWCMethod implements ProtectionMethod {
                 return lwc.getMemoryDatabase().hasAccess(playerName, protection);
 
             case ProtectionTypes.PRIVATE:
-                if(playerName.equalsIgnoreCase(protection.getOwner())) {
+                if (playerName.equalsIgnoreCase(protection.getOwner())) {
                     return true;
                 }
 
-                if(protection.getAccess(AccessRight.PLAYER, playerName) >= 0) {
+                if (protection.getAccess(AccessRight.PLAYER, playerName) >= 0) {
                     return true;
                 }
 
@@ -96,9 +96,9 @@ public class LWCMethod implements ProtectionMethod {
     public boolean canAccess(String playerName, Block block) {
         // Use getProtectionSet() to grab both parts of a double chest
         List<Block> blocksProtected = lwc.getProtectionSet(block.getWorld(), block.getX(), block.getY(), block.getZ());
-        for(Block chestBlock : blocksProtected) {
+        for (Block chestBlock : blocksProtected) {
             Protection protection = lwc.findProtection(chestBlock);
-            if(protection != null && !canAccessProtection(playerName, protection)) {
+            if (protection != null && !canAccessProtection(playerName, protection)) {
                 return false;
             }
         }

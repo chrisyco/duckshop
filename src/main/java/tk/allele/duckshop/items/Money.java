@@ -51,12 +51,12 @@ public class Money extends Item {
      * @throws InvalidSyntaxException if the string cannot be parsed.
      */
     public static Money fromString(final String itemString)
-      throws InvalidSyntaxException {
-        if(nothingAliases.contains(itemString.toLowerCase())) {
+            throws InvalidSyntaxException {
+        if (nothingAliases.contains(itemString.toLowerCase())) {
             return new Money(0.0);
         } else {
             Matcher matcher = moneyPattern.matcher(itemString);
-            if(matcher.matches()) {
+            if (matcher.matches()) {
                 double amount = Double.parseDouble(matcher.group(1));
                 return new Money(amount);
             } else {
@@ -74,8 +74,8 @@ public class Money extends Item {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Money) {
-            Money other = (Money)obj;
+        if (obj instanceof Money) {
+            Money other = (Money) obj;
             return (this.amount == other.amount);
         } else {
             return false;
@@ -84,12 +84,12 @@ public class Money extends Item {
 
     @Override
     public int hashCode() {
-        return (int)(amount * 100);
+        return (int) (amount * 100);
     }
 
     @Override
     public String toString() {
-        if(amount == 0.0) {
+        if (amount == 0.0) {
             return "nothing";
         } else {
             return "$" + amount;

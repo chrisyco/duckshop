@@ -97,7 +97,7 @@ public class DummyEconomy implements Method {
         }
 
         public boolean set(double amount) {
-            if(amount != 0.0) {
+            if (amount != 0.0) {
                 throw new UnsupportedOperationException();
             } else {
                 return true;
@@ -105,7 +105,7 @@ public class DummyEconomy implements Method {
         }
 
         public boolean add(double amount) {
-            if(amount != 0.0) {
+            if (amount != 0.0) {
                 throw new UnsupportedOperationException();
             } else {
                 return true;
@@ -117,7 +117,7 @@ public class DummyEconomy implements Method {
         }
 
         public boolean multiply(double amount) {
-            if(amount != 1.0 && amount != 0.0) {
+            if (amount != 1.0 && amount != 0.0) {
                 throw new UnsupportedOperationException();
             } else {
                 return true;

@@ -46,8 +46,8 @@ public class OpsOnlyPermissions implements PermissionsMethod {
 
     @Override
     public void throwIfCannot(Player player, String permission)
-      throws PermissionsException {
-        if(!playerHasPermission(player, permission)) {
+            throws PermissionsException {
+        if (!playerHasPermission(player, permission)) {
             throw new PermissionsException(player, permission);
         }
     }

@@ -25,15 +25,15 @@ public class RegisterServerListener extends ServerListener {
 
     @Override
     public void onPluginDisable(PluginDisableEvent event) {
-        if(Methods.hasMethod() && Methods.checkDisabled(event.getPlugin())) {
+        if (Methods.hasMethod() && Methods.checkDisabled(event.getPlugin())) {
             listener.onDisable();
         }
     }
 
     @Override
     public void onPluginEnable(PluginEnableEvent event) {
-        if(!Methods.hasMethod()) {
-            if(Methods.setMethod(manager)) {
+        if (!Methods.hasMethod()) {
+            if (Methods.setMethod(manager)) {
                 listener.onEnable(Methods.getMethod());
             }
         }
