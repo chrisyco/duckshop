@@ -36,7 +36,7 @@
     <!-- Don't use this too often, as XA21X pays for every megabyte -->
     <repository>
       <id>allele-repo</id>
-      <url>http://www.allele.tk/repo</url>
+      <url>http://repo.allele.tk</url>
     </repository>
   </repositories>
 
