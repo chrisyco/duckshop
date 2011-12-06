@@ -106,8 +106,8 @@ public class TradingSign {
         } else {
             lines[0] = ownerName;
         }
-        lines[1] = sellerToBuyer.toString();
-        lines[2] = buyerToSeller.toString();
+        lines[1] = sellerToBuyer.getOriginalString();
+        lines[2] = buyerToSeller.getOriginalString();
         lines[3] = "";
     }
 
@@ -151,23 +151,23 @@ public class TradingSign {
             throws InvalidChestException, TradingException, ChestProtectionException {
         final TradeAdapter sellerAdapter = getAdapter();
         // Check each combination
-        if (!sellerAdapter.canAddItem(buyerToSeller)) {
+        if (!buyerToSeller.canAddTo(sellerAdapter)) {
             throw new TooMuchException(null, buyerToSeller);
         }
-        if (!sellerAdapter.canSubtractItem(sellerToBuyer)) {
+        if (!sellerToBuyer.canTakeFrom(sellerAdapter)) {
             throw new TooLittleException(null, sellerToBuyer);
         }
-        if (!buyerAdapter.canAddItem(sellerToBuyer)) {
+        if (!sellerToBuyer.canAddTo(buyerAdapter)) {
             throw new TooMuchException(buyer, sellerToBuyer);
         }
-        if (!buyerAdapter.canSubtractItem(buyerToSeller)) {
+        if (!buyerToSeller.canTakeFrom(buyerAdapter)) {
             throw new TooLittleException(buyer, buyerToSeller);
         }
         // If all is well, do the actual trade
-        sellerAdapter.addItem(buyerToSeller);
-        sellerAdapter.subtractItem(sellerToBuyer);
-        buyerAdapter.addItem(sellerToBuyer);
-        buyerAdapter.subtractItem(buyerToSeller);
+        buyerToSeller.addTo(sellerAdapter);
+        sellerToBuyer.takeFrom(sellerAdapter);
+        sellerToBuyer.addTo(buyerAdapter);
+        buyerToSeller.takeFrom(buyerAdapter);
     }
 
     /**

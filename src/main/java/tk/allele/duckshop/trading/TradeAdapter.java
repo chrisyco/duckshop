@@ -19,46 +19,6 @@ public abstract class TradeAdapter {
         this.plugin = plugin;
     }
 
-    public final boolean canAddItem(Item item) {
-        if (item instanceof Money) {
-            return canAddMoney((Money) item);
-        } else if (item instanceof TangibleItem) {
-            return canAddTangibleItem((TangibleItem) item);
-        } else {
-            throw new IllegalArgumentException("unknown Item type");
-        }
-    }
-
-    public final boolean canSubtractItem(Item item) {
-        if (item instanceof Money) {
-            return canSubtractMoney((Money) item);
-        } else if (item instanceof TangibleItem) {
-            return canSubtractTangibleItem((TangibleItem) item);
-        } else {
-            throw new IllegalArgumentException("unknown Item type");
-        }
-    }
-
-    public final void addItem(Item item) {
-        if (item instanceof Money) {
-            addMoney((Money) item);
-        } else if (item instanceof TangibleItem) {
-            addTangibleItem((TangibleItem) item);
-        } else {
-            throw new IllegalArgumentException("unknown Item type");
-        }
-    }
-
-    public final void subtractItem(Item item) {
-        if (item instanceof Money) {
-            subtractMoney((Money) item);
-        } else if (item instanceof TangibleItem) {
-            subtractTangibleItem((TangibleItem) item);
-        } else {
-            throw new IllegalArgumentException("unknown Item type");
-        }
-    }
-
     /**
      * Despite what some people think, it's actually possible to have
      * too much money.

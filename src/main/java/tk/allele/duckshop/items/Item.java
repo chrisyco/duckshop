@@ -1,13 +1,24 @@
 package tk.allele.duckshop.items;
 
 import tk.allele.duckshop.errors.InvalidSyntaxException;
+import tk.allele.duckshop.trading.TradeAdapter;
 
+import javax.annotation.Nullable;
 import java.io.Serializable;
+import java.util.*;
 
 /**
- * Represents an item to be traded.
+ * Represents something that can be traded.
  */
 public abstract class Item implements Serializable {
+    /**
+     * The set of words that mean "nothing".
+     * <p>
+     * <b>Implementation note</b>: We use a LinkedHashSet here because
+     * {@code Nothing.toString()} depends on the ordering of the aliases.
+     */
+    protected static final Set<String> nothingAliases = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList("nothing", "free")));
+
     private final String itemString;
 
     /**
@@ -16,15 +27,8 @@ public abstract class Item implements Serializable {
      * The item string is not parsed; it is simply kept so it can be
      * later retrieved by {@link #getOriginalString()}.
      */
-    protected Item(final String itemString) {
+    protected Item(@Nullable final String itemString) {
         this.itemString = itemString;
-    }
-
-    /**
-     * Create a new Item instance.
-     */
-    protected Item() {
-        this("");
     }
 
     /**
@@ -36,9 +40,13 @@ public abstract class Item implements Serializable {
             throws InvalidSyntaxException {
         // Call the subclasses' parsers, returning the first one that works
         try {
-            return TangibleItem.fromString(itemString);
-        } catch (InvalidSyntaxException ex) {
-            return Money.fromString(itemString);
+            return Nothing.fromString(itemString);
+        } catch (InvalidSyntaxException _ex) {
+            try {
+                return TangibleItem.fromString(itemString);
+            } catch (InvalidSyntaxException _ey) {
+                return Money.fromString(itemString);
+            }
         }
     }
 
@@ -51,8 +59,17 @@ public abstract class Item implements Serializable {
      * The resulting String is not guaranteed to be valid.
      */
     public String getOriginalString() {
-        return itemString;
+        if (itemString == null) {
+            return toString();
+        } else {
+            return itemString;
+        }
     }
+
+    public abstract boolean canAddTo(TradeAdapter adapter);
+    public abstract boolean canTakeFrom(TradeAdapter adapter);
+    public abstract void addTo(TradeAdapter adapter);
+    public abstract void takeFrom(TradeAdapter adapter);
 
     /**
      * Create a normalized human readable representation of this object.
