@@ -86,7 +86,8 @@ public abstract class InventoryAdapter extends TradeAdapter {
 
     @Override
     public boolean canAddMoney(Money money) {
-        return !(account instanceof DummyEconomy.DummyAccount);
+        // This is absolutely disgusting
+        return (money.getAmount() == 0.0 || !(account instanceof DummyEconomy.DummyAccount));
     }
 
     @Override

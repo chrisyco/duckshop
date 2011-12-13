@@ -15,7 +15,7 @@ public abstract class Item implements Serializable {
      * The set of words that mean "nothing".
      * <p>
      * <b>Implementation note</b>: We use a LinkedHashSet here because
-     * {@code Nothing.toString()} depends on the ordering of the aliases.
+     * {@code Money.toString()} depends on the ordering of the aliases.
      */
     protected static final Set<String> nothingAliases = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList("nothing", "free")));
 
@@ -40,13 +40,9 @@ public abstract class Item implements Serializable {
             throws InvalidSyntaxException {
         // Call the subclasses' parsers, returning the first one that works
         try {
-            return Nothing.fromString(itemString);
-        } catch (InvalidSyntaxException _ex) {
-            try {
-                return TangibleItem.fromString(itemString);
-            } catch (InvalidSyntaxException _ey) {
-                return Money.fromString(itemString);
-            }
+            return TangibleItem.fromString(itemString);
+        } catch (InvalidSyntaxException ex) {
+            return Money.fromString(itemString);
         }
     }
 

@@ -4,9 +4,6 @@ import tk.allele.duckshop.errors.InvalidSyntaxException;
 import tk.allele.duckshop.trading.TradeAdapter;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,16 +23,9 @@ public class Money extends Item {
      * <p>
      * The item string is not parsed; it is simply kept so it can be
      * later retrieved by {@link #getOriginalString()}.
-     *
-     * @throws IllegalArgumentException if the amount is zero.
      */
     public Money(final double amount, @Nullable final String itemString) {
         super(itemString);
-
-        if (amount == 0.0) {
-            throw new IllegalArgumentException("amount must != 0");
-        }
-
         this.amount = amount;
     }
 
@@ -53,18 +43,18 @@ public class Money extends Item {
      *
      * @throws InvalidSyntaxException if the string cannot be parsed.
      */
-    public static Item fromString(final String itemString)
+    public static Money fromString(final String itemString)
             throws InvalidSyntaxException {
-        Matcher matcher = moneyPattern.matcher(itemString);
-        if (matcher.matches()) {
-            double amount = Double.parseDouble(matcher.group(1));
-            if (amount == 0.0) {
-                return new Nothing(itemString);
-            } else {
-                return new Money(amount, itemString);
-            }
+        if (nothingAliases.contains(itemString.toLowerCase())) {
+            return new Money(0.0, itemString);
         } else {
-            throw new InvalidSyntaxException();
+            Matcher matcher = moneyPattern.matcher(itemString);
+            if (matcher.matches()) {
+                double amount = Double.parseDouble(matcher.group(1));
+                return new Money(amount, itemString);
+            } else {
+                throw new InvalidSyntaxException();
+            }
         }
     }
 
@@ -107,11 +97,17 @@ public class Money extends Item {
 
     @Override
     public int hashCode() {
-        return (int) (amount * 100);
+        // See <http://docs.oracle.com/javase/6/docs/api/java/lang/Double.html#hashCode()>
+        long v = Double.doubleToLongBits(amount);
+        return (int) (v ^ (v >>> 32));
     }
 
     @Override
     public String toString() {
-        return "$" + amount;
+        if (amount == 0.0) {
+            return nothingAliases.iterator().next();
+        } else {
+            return "$" + amount;
+        }
     }
 }

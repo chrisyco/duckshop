@@ -33,16 +33,9 @@ public class TangibleItem extends Item {
      * <p>
      * The item string is not parsed; it is simply kept so it can be
      * later retrieved by {@link #getOriginalString()}.
-     *
-     * @throws IllegalArgumentException if the amount is zero.
      */
     public TangibleItem(final int itemId, final int amount, final short damage, @Nullable final String itemString) {
         super(itemString);
-
-        if (amount == 0) {
-            throw new IllegalArgumentException("amount must != 0");
-        }
-
         this.itemId = itemId;
         this.amount = amount;
         this.damage = damage;
@@ -62,7 +55,7 @@ public class TangibleItem extends Item {
      *
      * @throws InvalidSyntaxException if the item cannot be parsed.
      */
-    public static Item fromString(final String itemString)
+    public static TangibleItem fromString(final String itemString)
             throws InvalidSyntaxException {
         Matcher matcher = tangibleItemPattern.matcher(itemString);
         if (matcher.matches()) {
@@ -101,12 +94,8 @@ public class TangibleItem extends Item {
                 throw new InvalidSyntaxException();
             }
 
-            if (amount == 0) {
-                return new Nothing(itemString);
-            } else {
-                // Create the object!
-                return new TangibleItem(itemId, amount, damage, itemString);
-            }
+            // Create the object!
+            return new TangibleItem(itemId, amount, damage, itemString);
         } else {
             throw new InvalidSyntaxException();
         }
