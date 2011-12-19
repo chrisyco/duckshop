@@ -185,7 +185,7 @@ public class TradingSign {
     }
 
     /**
-     * Create a human-readable representation of this TradingSign.
+     * Create a human-readable representation of this TradingSign, for debugging.
      * <p>
      * Do not use this for updating the actual sign; to do this, use
      * updateSign() and writeToStringArray().

@@ -18,20 +18,20 @@ public class GlobalSignAdapter extends TradeAdapter {
         super(plugin);
     }
 
-    public boolean canAddMoney(Money money) {
-        return true;
+    public int countAddMoney(Money money) {
+        return Integer.MAX_VALUE;
     }
 
-    public boolean canSubtractMoney(Money money) {
-        return true;
+    public int countSubtractMoney(Money money) {
+        return Integer.MAX_VALUE;
     }
 
-    public boolean canAddTangibleItem(TangibleItem tangibleItem) {
-        return true;
+    public int countAddTangibleItem(TangibleItem tangibleItem) {
+        return Integer.MAX_VALUE;
     }
 
-    public boolean canSubtractTangibleItem(TangibleItem tangibleItem) {
-        return true;
+    public int countSubtractTangibleItem(TangibleItem tangibleItem) {
+        return Integer.MAX_VALUE;
     }
 
     public void addMoney(Money money) {

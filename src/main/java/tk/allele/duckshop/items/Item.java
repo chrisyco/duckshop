@@ -62,8 +62,22 @@ public abstract class Item implements Serializable {
         }
     }
 
-    public abstract boolean canAddTo(TradeAdapter adapter);
-    public abstract boolean canTakeFrom(TradeAdapter adapter);
+    /**
+     * Return whether this item can be added to the adapter.
+     */
+    public boolean canAddTo(TradeAdapter adapter) {
+        return countAddTo(adapter) > 0;
+    }
+
+    /**
+     * Return whether this item can be subtracted from the adapter.
+     */
+    public boolean canTakeFrom(TradeAdapter adapter) {
+        return countTakeFrom(adapter) > 0;
+    }
+
+    public abstract int countAddTo(TradeAdapter adapter);
+    public abstract int countTakeFrom(TradeAdapter adapter);
     public abstract void addTo(TradeAdapter adapter);
     public abstract void takeFrom(TradeAdapter adapter);
 
