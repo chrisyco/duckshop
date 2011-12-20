@@ -54,7 +54,6 @@ public class DuckShopBlockListener extends BlockListener {
             event.getPlayer().sendMessage("I'm sorry, " + event.getPlayer().getName() + ". I'm afraid I can't do that.");
         }
         if (sign != null) {
-            sign.writeToStringArray(event.getLines());
             event.getPlayer().sendMessage("Created sign successfully.");
             if (!sign.isGlobal()) {
                 event.getPlayer().sendMessage("Type \"/duckshop link\" to connect this sign with a chest.");
