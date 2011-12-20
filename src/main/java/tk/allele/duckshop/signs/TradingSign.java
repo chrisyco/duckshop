@@ -13,6 +13,7 @@ import tk.allele.permissions.PermissionsException;
 import tk.allele.util.Locations;
 import tk.allele.util.StringTools;
 
+import javax.annotation.Nullable;
 import java.util.logging.Logger;
 
 /**
@@ -27,14 +28,22 @@ public class TradingSign {
     private Item sellerToBuyer, buyerToSeller;
 
     /**
-     * Create a new TradingSign instance. The placing player may be null
-     * if unknown.
+     * Create a new TradingSign instance.
+     *
+     * @param plugin        the DuckShop plugin.
+     * @param placingPlayer the player who placed the sign. May be null
+     *                      if the sign is being used, not placed.
+     * @param signLocation  the location of the sign.
+     * @param lines         the contents of the sign, as a four-element
+     *                      array. The contents of this array may be
+     *                      overwritten with status messages etc.
      *
      * @throws InvalidSyntaxException if the lines cannot be parsed.
      * @throws PermissionsException   if the syntax is valid, but the
-     *                                placing player does not have the required permissions.
+     *                                placing player does not have the
+     *                                required permissions.
      */
-    public TradingSign(DuckShop plugin, Player placingPlayer, Location signLocation, String[] lines)
+    public TradingSign(DuckShop plugin, @Nullable Player placingPlayer, Location signLocation, String[] lines)
             throws InvalidSyntaxException, PermissionsException {
         this.plugin = plugin;
         this.log = plugin.log;
@@ -77,6 +86,9 @@ public class TradingSign {
         if (placingPlayer != null) {
             plugin.permissions.getBest().throwIfCannot(placingPlayer, "create." + getActionType(placingPlayer));
         }
+
+        // Update the sign
+        writeToStringArray(lines);
     }
 
     /**
@@ -108,7 +120,16 @@ public class TradingSign {
         }
         lines[1] = sellerToBuyer.getOriginalString();
         lines[2] = buyerToSeller.getOriginalString();
-        lines[3] = "";
+
+        TradeAdapter adapter;
+        try {
+            adapter = getAdapter();
+        } catch (InvalidChestException e) {
+            adapter = null;
+        } catch (ChestProtectionException e) {
+            adapter = null;
+        }
+        lines[3] = FillOMeter.generateStatusLine(adapter, sellerToBuyer);
     }
 
     /**
@@ -185,7 +206,7 @@ public class TradingSign {
     }
 
     /**
-     * Create a human-readable representation of this TradingSign.
+     * Create a human-readable representation of this TradingSign, for debugging.
      * <p>
      * Do not use this for updating the actual sign; to do this, use
      * updateSign() and writeToStringArray().

@@ -85,19 +85,27 @@ public abstract class InventoryAdapter extends TradeAdapter {
     }
 
     @Override
-    public boolean canAddMoney(Money money) {
+    public int countAddMoney(Money money) {
         // This is absolutely disgusting
-        return (money.getAmount() == 0.0 || !(account instanceof DummyEconomy.DummyAccount));
+        if (!(account instanceof DummyEconomy.DummyAccount) || money.getAmount() == 0.0) {
+            return Integer.MAX_VALUE;
+        } else {
+            return 0;
+        }
     }
 
     @Override
-    public boolean canSubtractMoney(Money money) {
-        return account.hasEnough(money.getAmount());
+    public int countSubtractMoney(Money money) {
+        if (money.getAmount() == 0.0) {
+            return Integer.MAX_VALUE;
+        } else {
+            return (int) (account.balance() / money.getAmount());
+        }
     }
 
     @Override
     public void addMoney(Money money) throws IllegalArgumentException {
-        if (!canAddMoney(money)) {
+        if (countAddMoney(money) <= 0) {
             throw new IllegalArgumentException("Too much money");
         } else {
             account.add(money.getAmount());
@@ -106,7 +114,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
 
     @Override
     public void subtractMoney(Money money) throws IllegalArgumentException {
-        if (!canSubtractMoney(money)) {
+        if (countSubtractMoney(money) <= 0) {
             throw new IllegalArgumentException("Not enough money");
         } else {
             account.subtract(money.getAmount());
@@ -114,7 +122,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
     }
 
     @Override
-    public boolean canAddTangibleItem(TangibleItem addItem) {
+    public int countAddTangibleItem(TangibleItem addItem) {
         int total = 0;
         int size = inventory.getSize();
         int maxStackSize = Material.getMaterial(addItem.getItemId()).getMaxStackSize();
@@ -126,15 +134,12 @@ public abstract class InventoryAdapter extends TradeAdapter {
             } else if (invItem.getType() == Material.AIR) {
                 total += maxStackSize;
             }
-            if (total >= addItem.getAmount()) {
-                return true;
-            }
         }
-        return false;
+        return total / addItem.getAmount();
     }
 
     @Override
-    public boolean canSubtractTangibleItem(TangibleItem subItem) {
+    public int countSubtractTangibleItem(TangibleItem subItem) {
         int total = 0;
         int size = inventory.getSize();
         ItemStack invItem;
@@ -142,17 +147,14 @@ public abstract class InventoryAdapter extends TradeAdapter {
             invItem = inventory.getItem(i);
             if (invItem.getTypeId() == subItem.getItemId() && invItem.getDurability() == subItem.getDamage()) {
                 total += invItem.getAmount();
-                if (total >= subItem.getAmount()) {
-                    return true;
-                }
             }
         }
-        return false;
+        return total / subItem.getAmount();
     }
 
     @Override
     public void addTangibleItem(TangibleItem addItem) throws IllegalArgumentException {
-        if (!canAddTangibleItem(addItem)) {
+        if (countAddTangibleItem(addItem) <= 0) {
             throw new IllegalArgumentException("Inventory full");
         } else {
             Map<Integer, ItemStack> leftover = inventory.addItem(addItem.toItemStackArray());
@@ -162,7 +164,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
 
     @Override
     public void subtractTangibleItem(TangibleItem subItem) throws IllegalArgumentException {
-        if (!canSubtractTangibleItem(subItem)) {
+        if (countSubtractTangibleItem(subItem) <= 0) {
             throw new IllegalArgumentException("Inventory empty");
         } else {
             int leftover = Inventories.removeItem(inventory, subItem.toItemStack());

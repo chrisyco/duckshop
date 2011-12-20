@@ -102,13 +102,13 @@ public class TangibleItem extends Item {
     }
 
     @Override
-    public boolean canAddTo(TradeAdapter adapter) {
-        return adapter.canAddTangibleItem(this);
+    public int countAddTo(TradeAdapter adapter) {
+        return adapter.countAddTangibleItem(this);
     }
 
     @Override
-    public boolean canTakeFrom(TradeAdapter adapter) {
-        return adapter.canSubtractTangibleItem(this);
+    public int countTakeFrom(TradeAdapter adapter) {
+        return adapter.countSubtractTangibleItem(this);
     }
 
     @Override

@@ -59,13 +59,13 @@ public class Money extends Item {
     }
 
     @Override
-    public boolean canAddTo(TradeAdapter adapter) {
-        return adapter.canAddMoney(this);
+    public int countAddTo(TradeAdapter adapter) {
+        return adapter.countAddMoney(this);
     }
 
     @Override
-    public boolean canTakeFrom(TradeAdapter adapter) {
-        return adapter.canSubtractMoney(this);
+    public int countTakeFrom(TradeAdapter adapter) {
+        return adapter.countSubtractMoney(this);
     }
 
     @Override

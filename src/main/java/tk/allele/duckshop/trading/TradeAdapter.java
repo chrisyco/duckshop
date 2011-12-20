@@ -1,7 +1,6 @@
 package tk.allele.duckshop.trading;
 
 import tk.allele.duckshop.DuckShop;
-import tk.allele.duckshop.items.Item;
 import tk.allele.duckshop.items.Money;
 import tk.allele.duckshop.items.TangibleItem;
 
@@ -20,25 +19,32 @@ public abstract class TradeAdapter {
     }
 
     /**
-     * Despite what some people think, it's actually possible to have
-     * too much money.
+     * Return the number of times the amount of money can be added to this adapter.
+     * 
+     * @return the number, or {@link Integer#MAX_VALUE} if infinite.
      */
-    public abstract boolean canAddMoney(Money money);
+    public abstract int countAddMoney(Money money);
 
     /**
-     * Figure out whether the target of this adapter has enough money or not.
+     * Return the number of times the amount of money can be subtracted from this adapter.
+     *
+     * @return the number, or {@link Integer#MAX_VALUE} if infinite.
      */
-    public abstract boolean canSubtractMoney(Money money);
+    public abstract int countSubtractMoney(Money money);
 
     /**
-     * Return true if the inventory has enough space, otherwise false.
+     * Return the number of times the item can be added to this adapter.
+     *
+     * @return the number, or {@link Integer#MAX_VALUE} if infinite.
      */
-    public abstract boolean canAddTangibleItem(TangibleItem tangibleItem);
+    public abstract int countAddTangibleItem(TangibleItem tangibleItem);
 
     /**
-     * Is there enough?
+     * Return the number of times the item can be subtracted from this adapter.
+     *
+     * @return the number, or {@link Integer#MAX_VALUE} if infinite.
      */
-    public abstract boolean canSubtractTangibleItem(TangibleItem tangibleItem);
+    public abstract int countSubtractTangibleItem(TangibleItem tangibleItem);
 
     public abstract void addMoney(Money money)
             throws IllegalArgumentException;
