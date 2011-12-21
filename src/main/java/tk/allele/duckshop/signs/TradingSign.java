@@ -13,6 +13,7 @@ import tk.allele.permissions.PermissionsException;
 import tk.allele.util.Locations;
 import tk.allele.util.StringTools;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.logging.Logger;
 
@@ -28,23 +29,46 @@ public class TradingSign {
     private Item sellerToBuyer, buyerToSeller;
 
     /**
-     * Create a new TradingSign instance.
+     * Create a TradingSign instance, as the sign is being <em>placed</em>.
      *
      * @param plugin        the DuckShop plugin.
-     * @param placingPlayer the player who placed the sign. May be null
-     *                      if the sign is being used, not placed.
+     * @param placingPlayer the player who placed the sign.
      * @param signLocation  the location of the sign.
      * @param lines         the contents of the sign, as a four-element
-     *                      array. The contents of this array may be
-     *                      overwritten with status messages etc.
+     *                      array.
      *
      * @throws InvalidSyntaxException if the lines cannot be parsed.
      * @throws PermissionsException   if the syntax is valid, but the
      *                                placing player does not have the
      *                                required permissions.
      */
-    public TradingSign(DuckShop plugin, @Nullable Player placingPlayer, Location signLocation, String[] lines)
+    public TradingSign(DuckShop plugin, @Nonnull Player placingPlayer, Location signLocation, String[] lines)
             throws InvalidSyntaxException, PermissionsException {
+        // Initialize the object
+        initialize(plugin, placingPlayer, signLocation, lines);
+
+        // Do permissions check at the end, after trying to parse
+        // So players who don't have permissions can still place non-trading signs
+        plugin.permissions.getBest().throwIfCannot(placingPlayer, "create." + getActionType(placingPlayer));
+    }
+
+    /**
+     * Create a TradingSign instance, as the sign is being <em>used</em>.
+     *
+     * @param plugin        the DuckShop plugin.
+     * @param signLocation  the location of the sign.
+     * @param lines         the contents of the sign, as a four-element
+     *                      array.
+     *
+     * @throws InvalidSyntaxException if the lines cannot be parsed.
+     */
+    public TradingSign(DuckShop plugin, Location signLocation, String[] lines)
+            throws InvalidSyntaxException {
+        initialize(plugin, null, signLocation, lines);
+    }
+
+    private void initialize(DuckShop plugin, @Nullable Player placingPlayer, Location signLocation, String[] lines)
+            throws InvalidSyntaxException {
         this.plugin = plugin;
         this.log = plugin.log;
         this.signLocation = signLocation;
@@ -80,15 +104,6 @@ public class TradingSign {
         // Parse the two middle lines
         sellerToBuyer = Item.fromString(lines[1]);
         buyerToSeller = Item.fromString(lines[2]);
-
-        // Do permissions check at the end, after trying to parse
-        // So players who don't have permissions can still place non-trading signs
-        if (placingPlayer != null) {
-            plugin.permissions.getBest().throwIfCannot(placingPlayer, "create." + getActionType(placingPlayer));
-        }
-
-        // Update the sign
-        writeToStringArray(lines);
     }
 
     /**

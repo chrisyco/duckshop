@@ -1,8 +1,10 @@
 package tk.allele.duckshop.listeners;
 
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockListener;
@@ -40,10 +42,13 @@ public class DuckShopBlockListener extends BlockListener {
     @Override
     public void onSignChange(SignChangeEvent event) {
         if (event.isCancelled()) return;
+
+        Player player = event.getPlayer();
+
         TradingSign sign = null;
         try {
             sign = new TradingSign(plugin,
-                    event.getPlayer(),
+                    player,
                     event.getBlock().getLocation(),
                     event.getLines());
         } catch (InvalidSyntaxException ex) {
@@ -51,12 +56,14 @@ public class DuckShopBlockListener extends BlockListener {
         } catch (PermissionsException ex) {
             // Science fiction allusions FTW
             event.setCancelled(true);
-            event.getPlayer().sendMessage("I'm sorry, " + event.getPlayer().getName() + ". I'm afraid I can't do that.");
+            player.sendMessage("I'm sorry, " + player.getName() + ". I'm afraid I can't do that.");
         }
+
         if (sign != null) {
-            event.getPlayer().sendMessage("Created sign successfully.");
+            sign.writeToStringArray(event.getLines());
+            player.sendMessage("Created sign successfully.");
             if (!sign.isGlobal()) {
-                event.getPlayer().sendMessage("Type \"/duckshop link\" to connect this sign with a chest.");
+                player.sendMessage("Type \"/duckshop link\" to connect this sign with a chest.");
             }
         }
     }
@@ -64,34 +71,34 @@ public class DuckShopBlockListener extends BlockListener {
     @Override
     public void onBlockBreak(BlockBreakEvent event) {
         if (event.isCancelled()) return;
+
+        Player player = event.getPlayer();
         Block block = event.getBlock();
-        if (block.getState() instanceof Sign) {
+        BlockState state = (block != null ? block.getState() : null);
+
+        if (state instanceof Sign) {
             TradingSign sign = null;
             try {
                 sign = new TradingSign(plugin,
-                        null,
                         block.getLocation(),
-                        ((Sign) block.getState()).getLines());
+                        ((Sign) state).getLines());
             } catch (InvalidSyntaxException ex) {
                 // Do nothing!
-            } catch (PermissionsException ex) {
-                // This shouldn't happen, as there shouldn't be a
-                // PermissionsException until sign.destroy() below.
-                throw new RuntimeException(ex);
             }
+
             if (sign != null) {
                 try {
-                    sign.destroy(event.getPlayer());
+                    sign.destroy(player);
                 } catch (PermissionsException ex) {
                     event.setCancelled(true);
-                    event.getPlayer().sendMessage("You can't break this!");
+                    player.sendMessage("You can't break this!");
                     // Fixes the sign ending up blank
-                    event.getBlock().getState().update();
+                    state.update();
                 }
             }
-        } else if (block.getState() instanceof Chest) {
+        } else if (state instanceof Chest) {
             if (SignManager.getInstance(plugin).isChestConnected(block.getLocation())) {
-                event.getPlayer().sendMessage("Warning: This chest is used by a DuckShop sign. The sign will no longer work unless the chest is replaced.");
+                player.sendMessage("Warning: This chest is used by a DuckShop sign. The sign will no longer work unless the chest is replaced.");
             }
         }
     }

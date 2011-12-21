@@ -6,7 +6,6 @@ import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.plugin.PluginManager;
@@ -39,40 +38,56 @@ public class DuckShopPlayerListener extends PlayerListener {
 
     @Override
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (!event.isCancelled()) {
-            Player player = event.getPlayer();
-            Block block = event.getClickedBlock();
-            if (block != null) {
-                BlockState state = block.getState();
-                // Right click sign --> Trade
-                if (event.getAction() == Action.RIGHT_CLICK_BLOCK && state instanceof Sign) {
-                    event.setCancelled(useSign(player, block, (Sign) state));
-                    // Left clicks are used for linking signs and chests
-                } else if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
-                    if (state instanceof Sign) {
-                        markSign(player, block, (Sign) state);
-                    } else if (state instanceof Chest) {
-                        markChest(player, block);
+        if (event.isCancelled()) return;
+
+        Player player = event.getPlayer();
+        Block block = event.getClickedBlock();
+        BlockState state = (block != null ? block.getState() : null);
+
+        switch (event.getAction()) {
+            // Right clicks start a trade
+            case RIGHT_CLICK_BLOCK:
+                if (state instanceof Sign) {
+                    if (useSign(player, block, (Sign) state)) {
+                        event.setCancelled(true);
                     }
                 }
-            }
+                break;
+
+            // Left clicks are used for linking signs and chests
+            case LEFT_CLICK_BLOCK:
+                if (state instanceof Sign) {
+                    if (handleLeftClickSign(player, block, (Sign) state)) {
+                        event.setCancelled(true);
+                    }
+                } else if (state instanceof Chest) {
+                    if (markChest(player, block)) {
+                        event.setCancelled(true);
+                    }
+                }
+                break;
         }
     }
 
+    /**
+     * Handle a right click event on a sign.
+     *
+     * @return true if the event was handled, otherwise false.
+     */
     private boolean useSign(Player player, Block block, Sign state) {
         TradingSign sign = null;
+
+        // Parse and validate the sign
         try {
             sign = new TradingSign(plugin,
-                    null, // There is no placingPlayer as the sign is being used, not placed
                     block.getLocation(),
                     state.getLines());
         } catch (InvalidSyntaxException ex) {
             // Do nothing!
-        } catch (PermissionsException ex) {
-            // See above note on placingPlayer
-            throw new RuntimeException(ex);
         }
+
         if (sign != null) {
+            // Go through with the trade, telling the player if it does not work
             try {
                 sign.tradeWith(player);
             } catch (InvalidChestException ex) {
@@ -94,60 +109,93 @@ public class DuckShopPlayerListener extends PlayerListener {
                     }
                 } else {
                     player.sendMessage("Oh noes! Cannot trade!");
-                    plugin.log.warning("Unknown TradingException: " + ex.getClass().getName());
+                    plugin.log.severe("Unknown TradingException: " + ex.getClass().getName());
                 }
             } catch (PermissionsException ex) {
                 player.sendMessage("You're not allowed to use this for some reason.");
             }
+
+            // Update the sign's status
+            sign.writeToStringArray(state.getLines());
+            state.update();
+
+            // Cancel the event
             return true;
         } else {
             return false;
         }
     }
 
-    private void markSign(Player player, Block block, Sign state) {
+    /**
+     * Handle a left click event on a sign.
+     *
+     * @return true if a link was started, otherwise false.
+     */
+    private boolean handleLeftClickSign(Player player, Block block, Sign state) {
+        TradingSign sign = null;
+
+        // Parse and validate the sign
+        try {
+            sign = new TradingSign(plugin,
+                    block.getLocation(),
+                    state.getLines());
+        } catch (InvalidSyntaxException ex) {
+            // Do nothing
+        }
+
+        boolean linkedSuccessfully = false;
+
         if (linkState.hasStartedLink(player)) {
-            TradingSign sign = null;
-            // Parse and validate the sign
-            try {
-                sign = new TradingSign(plugin,
-                        null, // There is no placingPlayer as the sign is being marked, not placed.
-                        block.getLocation(),
-                        state.getLines());
-            } catch (InvalidSyntaxException ex) {
+            // If it isn't valid, tell the user
+            if (sign == null) {
                 player.sendMessage("That's not a valid trading sign.");
-            } catch (PermissionsException ex) {
-                // See above note on placingPlayer
-                throw new RuntimeException(ex);
-            }
-            // Check if the player can link the sign first
-            if (sign != null) {
+            } else {
+                // Check if the player can link the sign first
+                boolean canLinkSign = true;
                 try {
                     sign.preSetChestLocation(player);
                 } catch (UnsupportedOperationException ex) {
                     player.sendMessage("Global signs don't need to be connected to chests.");
-                    sign = null;
+                    canLinkSign = false;
                 } catch (PermissionsException ex) {
                     player.sendMessage("You don't have permission to link this sign.");
-                    sign = null;
+                    canLinkSign = false;
+                }
+
+                // If we can link the sign, lead the user to the next step
+                if (canLinkSign) {
+                    player.sendMessage("Now left click a chest to connect it.");
+                    player.sendMessage("Or left click another sign if that's not the right one.");
+                    linkState.markSign(player, sign);
+                    linkedSuccessfully = true;
+                } else {
+                    // Otherwise, prompt the user again
+                    player.sendMessage("Try another sign, or type \"/duckshop cancel\" to quit.");
                 }
             }
-            // If there aren't any problems, proceed to the next step
-            if (sign != null) {
-                player.sendMessage("Now left click a chest to connect it.");
-                player.sendMessage("Or left click another sign if that's not the right one.");
-                linkState.markSign(player, sign);
-                // If there were problems, prompt the user again
-            } else {
-                player.sendMessage("Try another sign, or type \"/duckshop cancel\" to quit.");
-            }
         }
+
+        // Let the user update a sign's status by clicking on it
+        if (sign != null) {
+            sign.writeToStringArray(state.getLines());
+            state.update();
+        }
+
+        return linkedSuccessfully;
     }
 
-    private void markChest(Player player, Block block) {
+    /**
+     * Complete a link to this chest, if possible.
+     *
+     * @return true if the link was completed, false otherwise.
+     */
+    private boolean markChest(Player player, Block block) {
         if (linkState.hasMarkedSign(player)) {
             linkState.markChest(player, block.getLocation());
             player.sendMessage("Sign connected successfully.");
+            return true;
+        } else {
+            return false;
         }
     }
 }
