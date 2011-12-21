@@ -4,6 +4,23 @@
 
 ..
 
+31
+==
+
+* Updated to work with LWC 4. (`#12`_)
+
+* Works with CraftBukkit 1.0.1 (`#16`_)
+
+* DuckShop no longer clobbers the contents of your signs.
+
+* Changed to AGPL license.
+
+* Added the Fill-O-Meter (tm). (`#15`_)
+
+.. _#12: http://dev.bukkit.org/server-mods/duckshop/tickets/12/
+.. _#15: http://dev.bukkit.org/server-mods/duckshop/tickets/15/
+.. _#16: http://dev.bukkit.org/server-mods/duckshop/tickets/16/
+
 30
 ==
 
