@@ -37,7 +37,6 @@ public class FillOMeter {
      */
     public static String generateStatusLine(@Nullable TradeAdapter seller, Item sellerToBuyer) {
         final int transLeft = (seller != null ? sellerToBuyer.countTakeFrom(seller) : INVALID_ADAPTER);
-        System.err.println(seller + " blah " + transLeft);
         return getChatColor(transLeft) + getMessage(transLeft);
     }
 
