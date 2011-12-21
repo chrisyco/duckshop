@@ -49,15 +49,13 @@ public class FillOMeter {
             case INVALID_ADAPTER:
                 return ChatColor.DARK_PURPLE;
             case 0:
-                return ChatColor.DARK_RED;
             case 1:
-                return ChatColor.RED;
             case 2:
-                return ChatColor.GOLD;
+                return ChatColor.DARK_RED;
             case 3:
-                return ChatColor.YELLOW;
             case 4:
-                return ChatColor.DARK_GREEN;
+            case 5:
+                return ChatColor.YELLOW;
         }
 
         if (transLeft <= STATUS_LENGTH) {
