@@ -1,42 +1,32 @@
 package tk.allele.permissions;
 
-import org.bukkit.plugin.Plugin;
-import tk.allele.permissions.methods.BukkitPermissions;
-import tk.allele.permissions.methods.OpsOnlyPermissions;
-import tk.allele.permissions.methods.TheYetiPermissions;
-import tk.allele.util.priority.PriorityComparator;
-
-import java.util.PriorityQueue;
-import java.util.logging.Logger;
+import net.milkbowl.vault.permission.Permission;
+import org.bukkit.entity.Player;
 
 public class PermissionsManager {
-    private PriorityQueue<PermissionsMethod> queue;
+    final Permission method;
+    final String prefix;
 
-    public PermissionsManager(Plugin plugin, Logger log, String prefix) {
-        queue = new PriorityQueue<PermissionsMethod>(4, new PriorityComparator());
-        /* vvv Add new methods below vvv */
-        registerMethod(new OpsOnlyPermissions(plugin, log));
-        registerMethod(new BukkitPermissions(plugin, log, prefix));
-        registerMethod(new TheYetiPermissions(plugin, log, prefix));
-        /* ^^^ Add new providers above ^^^ */
-    }
-
-    public void registerMethod(PermissionsMethod method) {
-        queue.offer(method);
+    public PermissionsManager(Permission method, String prefix) {
+        this.method = method;
+        this.prefix = prefix;
     }
 
     /**
-     * Get the PermissionsMethod with the lowest priority that is available.
-     *
-     * @return the best PermissionsMethod, or if there are no available
-     *         methods, null.
+     * Decide whether a player has permission to do something.
      */
-    public PermissionsMethod getBest() {
-        PermissionsMethod method = queue.peek();
-        if (method == null || !method.isAvailable()) {
-            return null;
-        } else {
-            return method;
+    public boolean has(Player player, String permission) {
+        return method.has(player, prefix + permission);
+    }
+
+    /**
+     * Throw a {@link PermissionsException} if a player doesn't have permission to do this.
+     *
+     * @throws PermissionsException if the player doesn't have permission.
+     */
+    public void throwIfCannot(Player player, String permission) throws PermissionsException {
+        if (!has(player, permission)) {
+            throw new PermissionsException(player, prefix + permission);
         }
     }
 }

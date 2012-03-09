@@ -4,7 +4,7 @@
 
   <groupId>tk.allele</groupId>
   <artifactId>duckshop</artifactId>
-  <version>31</version>
+  <version>32-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>DuckShop</name>
@@ -18,7 +18,7 @@
     <!-- Repository for Bukkit -->
     <repository>
       <id>bukkit-repo</id>
-      <url>http://repo.bukkit.org/artifactory/repo</url>
+      <url>http://repo.bukkit.org/content/repositories/releases</url>
     </repository>
 
     <!-- sk89q's repository -->
@@ -30,10 +30,9 @@
     <!-- Repository for OddItem -->
     <repository>
       <id>somethingodd-repo</id>
-      <url>http://repo.somethingodd.info</url>
+      <url>http://repo.somethingodd.info/content/groups/somethingodd/</url>
     </repository>
 
-    <!-- Don't use this too often, as XA21X pays for every megabyte -->
     <repository>
       <id>allele-repo</id>
       <url>http://repo.allele.tk</url>
@@ -55,23 +54,15 @@
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>1.2.3-R0.1</version>
       <scope>compile</scope>
     </dependency>
 
-    <!-- Nijikokun's Register -->
+    <!-- Milkbowl's Vault -->
     <dependency>
-      <groupId>com.nijikokun</groupId>
-      <artifactId>register</artifactId>
-      <version>1.5</version>
-      <scope>compile</scope>
-    </dependency>
-
-    <!-- Gordon Pettey's OddItem -->
-    <dependency>
-      <groupId>info.somethingodd.bukkit</groupId>
-      <artifactId>OddItem</artifactId>
-      <version>0.8</version>
+      <groupId>net.milkbowl</groupId>
+      <artifactId>vault</artifactId>
+      <version>1.2.12</version>
       <scope>compile</scope>
     </dependency>
 
@@ -87,7 +78,7 @@
     <dependency>
       <groupId>com.griefcraft</groupId>
       <artifactId>lwc</artifactId>
-      <version>3.53</version>
+      <version>4.0.9</version>
       <scope>compile</scope>
     </dependency>
 
@@ -95,15 +86,7 @@
     <dependency>
       <groupId>com.sk89q</groupId>
       <artifactId>worldguard</artifactId>
-      <version>5.3</version>
-      <scope>compile</scope>
-    </dependency>
-
-    <!-- sk89q's dummy Permissions compatibility layer -->
-    <dependency>
-      <groupId>com.sk89q</groupId>
-      <artifactId>dummypermscompat</artifactId>
-      <version>1.2</version>
+      <version>5.4</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>

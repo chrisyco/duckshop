@@ -49,7 +49,7 @@ public class TradingSign {
 
         // Do permissions check at the end, after trying to parse
         // So players who don't have permissions can still place non-trading signs
-        plugin.permissions.getBest().throwIfCannot(placingPlayer, "create." + getActionType(placingPlayer));
+        plugin.permissions.throwIfCannot(placingPlayer, "create." + getActionType(placingPlayer));
     }
 
     /**
@@ -216,7 +216,7 @@ public class TradingSign {
      */
     public void tradeWith(final Player buyer)
             throws InvalidChestException, TradingException, ChestProtectionException, PermissionsException {
-        plugin.permissions.getBest().throwIfCannot(buyer, "use." + getActionType(buyer));
+        plugin.permissions.throwIfCannot(buyer, "use." + getActionType(buyer));
         tradeWith(buyer, new PlayerInventoryAdapter(plugin, buyer.getName()));
     }
 
@@ -250,7 +250,7 @@ public class TradingSign {
         if (isGlobal()) {
             throw new UnsupportedOperationException("global signs cannot be connected to chests");
         }
-        plugin.permissions.getBest().throwIfCannot(linkingPlayer, "create." + getActionType(linkingPlayer));
+        plugin.permissions.throwIfCannot(linkingPlayer, "create." + getActionType(linkingPlayer));
     }
 
     /**
@@ -271,7 +271,7 @@ public class TradingSign {
      *                              the sign.
      */
     public void destroy(Player breakingPlayer) throws PermissionsException {
-        plugin.permissions.getBest().throwIfCannot(breakingPlayer, "break." + getActionType(breakingPlayer));
+        plugin.permissions.throwIfCannot(breakingPlayer, "break." + getActionType(breakingPlayer));
         SignManager.getInstance(plugin).removeChestLocation(signLocation);
     }
 }

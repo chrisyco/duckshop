@@ -5,44 +5,31 @@ import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.SignChangeEvent;
-import org.bukkit.plugin.PluginManager;
 import tk.allele.duckshop.DuckShop;
 import tk.allele.duckshop.errors.InvalidSyntaxException;
 import tk.allele.duckshop.signs.SignManager;
 import tk.allele.duckshop.signs.TradingSign;
 import tk.allele.permissions.PermissionsException;
 
-import java.util.logging.Logger;
-
 /**
  * Listens for block events -- like placing a sign.
  */
-public class DuckShopBlockListener extends BlockListener {
+public class DuckShopBlockListener implements Listener {
     private final DuckShop plugin;
-    private final Logger log;
 
     public DuckShopBlockListener(DuckShop plugin) {
-        this.log = plugin.log;
         this.plugin = plugin;
 
-        register(plugin.getServer().getPluginManager());
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    private void register(PluginManager pm) {
-        pm.registerEvent(Event.Type.BLOCK_PLACE, this, Event.Priority.Normal, plugin);
-        pm.registerEvent(Event.Type.BLOCK_DAMAGE, this, Event.Priority.Normal, plugin);
-        pm.registerEvent(Event.Type.BLOCK_BREAK, this, Event.Priority.Normal, plugin);
-        pm.registerEvent(Event.Type.SIGN_CHANGE, this, Event.Priority.Low, plugin);
-    }
-
-    @Override
+    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
     public void onSignChange(SignChangeEvent event) {
-        if (event.isCancelled()) return;
-
         Player player = event.getPlayer();
 
         TradingSign sign = null;
@@ -68,10 +55,8 @@ public class DuckShopBlockListener extends BlockListener {
         }
     }
 
-    @Override
+    @EventHandler(ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event) {
-        if (event.isCancelled()) return;
-
         Player player = event.getPlayer();
         Block block = event.getBlock();
         BlockState state = (block != null ? block.getState() : null);

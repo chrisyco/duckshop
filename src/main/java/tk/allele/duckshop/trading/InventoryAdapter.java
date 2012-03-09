@@ -1,6 +1,5 @@
 package tk.allele.duckshop.trading;
 
-import com.nijikokun.register.payment.Method.MethodAccount;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -29,11 +28,6 @@ public abstract class InventoryAdapter extends TradeAdapter {
      * The name of the player that receives and pays any money required by this adapter.
      */
     private String playerName;
-
-    /**
-     * The Account associated with the player.
-     */
-    private MethodAccount account;
 
     /**
      * Creates a new InventoryAdapter instance.
@@ -72,7 +66,6 @@ public abstract class InventoryAdapter extends TradeAdapter {
      */
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
-        this.account = plugin.economyMethod.getAccount(playerName);
     }
 
     /**
@@ -87,7 +80,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
     @Override
     public int countAddMoney(Money money) {
         // This is absolutely disgusting
-        if (!(account instanceof DummyEconomy.DummyAccount) || money.getAmount() == 0.0) {
+        if (!plugin.economyMethod.getName().equals(DummyEconomy.NAME)) {
             return Integer.MAX_VALUE;
         } else {
             return 0;
@@ -99,7 +92,8 @@ public abstract class InventoryAdapter extends TradeAdapter {
         if (money.getAmount() == 0.0) {
             return Integer.MAX_VALUE;
         } else {
-            return (int) (account.balance() / money.getAmount());
+            double balance = plugin.economyMethod.getBalance(playerName);
+            return (int) (balance / money.getAmount());
         }
     }
 
@@ -108,7 +102,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
         if (countAddMoney(money) <= 0) {
             throw new IllegalArgumentException("Too much money");
         } else {
-            account.add(money.getAmount());
+            plugin.economyMethod.depositPlayer(playerName, money.getAmount());
         }
     }
 
@@ -117,7 +111,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
         if (countSubtractMoney(money) <= 0) {
             throw new IllegalArgumentException("Not enough money");
         } else {
-            account.subtract(money.getAmount());
+            plugin.economyMethod.withdrawPlayer(playerName, money.getAmount());
         }
     }
 

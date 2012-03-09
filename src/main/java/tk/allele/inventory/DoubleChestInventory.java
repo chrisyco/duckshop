@@ -2,11 +2,13 @@ package tk.allele.inventory;
 
 import org.bukkit.Material;
 import org.bukkit.block.Chest;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Implements an abstraction to double chests.
@@ -232,5 +234,33 @@ public class DoubleChestInventory implements Inventory {
     public void clear() {
         inventoryA.clear();
         inventoryB.clear();
+    }
+
+    @Override
+    public List<HumanEntity> getViewers() {
+        return inventoryA.getViewers();
+    }
+
+    @Override
+    public String getTitle() {
+        return inventoryA.getTitle();
+    }
+
+    @Override
+    public InventoryType getType() {
+        return inventoryA.getType();
+    }
+
+    @Override
+    public InventoryHolder getHolder() {
+        return inventoryA.getHolder();
+    }
+
+    @Override
+    public ListIterator<ItemStack> iterator() {
+        List<ItemStack> items = new ArrayList<ItemStack>(getSize());
+        Collections.addAll(items, inventoryA.getContents());
+        Collections.addAll(items, inventoryB.getContents());
+        return items.listIterator();
     }
 }

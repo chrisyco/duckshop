@@ -1,8 +1,10 @@
 package tk.allele.economy;
 
-import com.nijikokun.register.payment.Method;
-import org.bukkit.Server;
-import org.bukkit.plugin.Plugin;
+import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.economy.EconomyResponse;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A dummy economy plugin.
@@ -13,139 +15,116 @@ import org.bukkit.plugin.Plugin;
  * the caller tries to do anything that involves modifying the account
  * e.g. adding a non-zero amount.
  */
-public class DummyEconomy implements Method {
-    private static final DummyEconomy instance = new DummyEconomy();
+public class DummyEconomy implements Economy {
+    public static final DummyEconomy INSTANCE = new DummyEconomy();
+    public static final String NAME = "__dummy__";
 
-    /**
-     * Used to check if a player exists.
-     */
-    private Server server;
+    private static final EconomyResponse RESPONSE = new EconomyResponse(0, 0, EconomyResponse.ResponseType.FAILURE, "Economy plugin not detected");
 
-    private DummyEconomy() {
+    private DummyEconomy() {}
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
-    public static DummyEconomy getInstance() {
-        return instance;
-    }
-
-    public Object getPlugin() {
-        return null;
-    }
-
+    @Override
     public String getName() {
-        return "DummyEconomy";
+        return NAME;
     }
 
-    public String getVersion() {
-        return "0";
+    @Override
+    public boolean hasBankSupport() {
+        return false;
     }
 
-    public int fractionalDigits() {
+    @Override
+    public String format(double v) {
+        return Double.toString(v);
+    }
+
+    @Override
+    public String currencyNamePlural() {
+        return "non-existent dollars";
+    }
+
+    @Override
+    public String currencyNameSingular() {
+        return "non-existent dollar";
+    }
+
+    @Override
+    public boolean hasAccount(String s) {
+        return true;
+    }
+
+    @Override
+    public double getBalance(String s) {
         return 0;
     }
 
-    public String format(double amount) {
-        return "nothing";
+    @Override
+    public boolean has(String s, double v) {
+        return getBalance(s) >= v;
     }
 
-    public boolean hasBanks() {
-        return false;
+    @Override
+    public EconomyResponse withdrawPlayer(String s, double v) {
+        return RESPONSE;
     }
 
-    public boolean hasBank(String bank) {
-        return false;
+    @Override
+    public EconomyResponse depositPlayer(String s, double v) {
+        return RESPONSE;
     }
 
-    public boolean hasAccount(String name) {
-        return (server != null && server.getPlayer(name) != null);
+    @Override
+    public EconomyResponse createBank(String s, String s1) {
+        return RESPONSE;
     }
 
-    public boolean hasBankAccount(String bank, String name) {
-        return false;
+    @Override
+    public EconomyResponse deleteBank(String s) {
+        return RESPONSE;
     }
 
-    public boolean createAccount(String s) {
-        return false;
+    @Override
+    public EconomyResponse bankBalance(String s) {
+        return RESPONSE;
     }
 
-    public boolean createAccount(String s, Double aDouble) {
-        return false;
+    @Override
+    public EconomyResponse bankHas(String s, double v) {
+        return RESPONSE;
     }
 
-    public MethodAccount getAccount(String name) {
-        return new DummyAccount();
+    @Override
+    public EconomyResponse bankWithdraw(String s, double v) {
+        return RESPONSE;
     }
 
-    public MethodBankAccount getBankAccount(String bank, String name) {
-        return null;
+    @Override
+    public EconomyResponse bankDeposit(String s, double v) {
+        return RESPONSE;
     }
 
-    public boolean isCompatible(Plugin plugin) {
-        return false; // Should this be true?
+    @Override
+    public EconomyResponse isBankOwner(String s, String s1) {
+        return RESPONSE;
     }
 
-    public void setPlugin(Plugin plugin) {
-        server = plugin.getServer();
+    @Override
+    public EconomyResponse isBankMember(String s, String s1) {
+        return RESPONSE;
     }
 
-    public static class DummyAccount implements MethodAccount {
-        public DummyAccount() {
-        }
+    @Override
+    public List<String> getBanks() {
+        return Collections.emptyList();
+    }
 
-        public double balance() {
-            return 0.0;
-        }
-
-        public boolean set(double amount) {
-            if (amount != 0.0) {
-                throw new UnsupportedOperationException();
-            } else {
-                return true;
-            }
-        }
-
-        public boolean add(double amount) {
-            if (amount != 0.0) {
-                throw new UnsupportedOperationException();
-            } else {
-                return true;
-            }
-        }
-
-        public boolean subtract(double amount) {
-            return set(amount);
-        }
-
-        public boolean multiply(double amount) {
-            if (amount != 1.0 && amount != 0.0) {
-                throw new UnsupportedOperationException();
-            } else {
-                return true;
-            }
-        }
-
-        public boolean divide(double amount) {
-            return multiply(amount);
-        }
-
-        public boolean hasEnough(double amount) {
-            return (this.balance() >= amount);
-        }
-
-        public boolean hasOver(double amount) {
-            return (this.balance() > amount);
-        }
-
-        public boolean hasUnder(double amount) {
-            return (this.balance() < amount);
-        }
-
-        public boolean isNegative() {
-            return (this.balance() < 0);
-        }
-
-        public boolean remove() {
-            return false;
-        }
+    @Override
+    public boolean createPlayerAccount(String s) {
+        return true;
     }
 }

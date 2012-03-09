@@ -1,17 +1,17 @@
 package tk.allele.duckshop;
 
-import com.nijikokun.register.payment.Method;
+import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import tk.allele.duckshop.listeners.*;
 import tk.allele.duckshop.signs.SignManager;
-import tk.allele.economy.RegisterServerListener;
 import tk.allele.permissions.PermissionsManager;
-import tk.allele.permissions.PermissionsMethod;
 import tk.allele.protection.ProtectionManager;
 import tk.allele.util.CustomLogger;
 import tk.allele.util.StringTools;
+import tk.allele.util.VaultAdapter;
 import tk.allele.util.commands.CommandDispatcher;
 
 import java.util.logging.Logger;
@@ -26,7 +26,7 @@ public class DuckShop extends JavaPlugin {
     private SignManager signManager;
 
     public Logger log;
-    public Method economyMethod; // Needed by various inventory adapters
+    public Economy economyMethod; // Needed by various inventory adapters
     public ProtectionManager protection; // Needed by ChestInventoryAdapter
     public PermissionsManager permissions; // Needed by TradingSign
 
@@ -48,10 +48,12 @@ public class DuckShop extends JavaPlugin {
         // Initialize the sign manager
         signManager = SignManager.getInstance(this);
 
+        // Initialize economy
+        economyMethod = VaultAdapter.getEconomyAdapter(getServer().getServicesManager());
+
         // Initialize Permissions
-        permissions = new PermissionsManager(this, log, PERMISSIONS_PREFIX);
-        PermissionsMethod permissionsMethod = permissions.getBest();
-        log.info("Using " + permissionsMethod + " for permissions.");
+        Permission permissionsMethod = VaultAdapter.getPermissionsAdapter(getServer().getServicesManager());
+        permissions = new PermissionsManager(permissionsMethod, PERMISSIONS_PREFIX);
 
         // Initialize chest protection
         protection = new ProtectionManager(this);
@@ -66,7 +68,6 @@ public class DuckShop extends JavaPlugin {
         // Register events
         new DuckShopBlockListener(this);
         new DuckShopPlayerListener(this, linkState);
-        new RegisterServerListener(this, new DuckShopEconomyPluginListener(this));
 
         // Register commands
         commandListener = new DuckShopCommand(this, linkState);

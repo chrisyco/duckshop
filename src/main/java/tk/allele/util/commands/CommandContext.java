@@ -35,7 +35,7 @@ public class CommandContext {
         return args;
     }
 
-    public CommandContext shift(int offset) {
-        return new CommandContext(input, index + offset);
+    public CommandContext shift() {
+        return new CommandContext(input, index + 1);
     }
 }

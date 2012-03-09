@@ -5,10 +5,9 @@ import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerListener;
-import org.bukkit.plugin.PluginManager;
 import tk.allele.duckshop.DuckShop;
 import tk.allele.duckshop.errors.*;
 import tk.allele.duckshop.signs.TradingSign;
@@ -19,7 +18,7 @@ import java.util.logging.Logger;
 /**
  * Listens for player events -- such as clicking a sign.
  */
-public class DuckShopPlayerListener extends PlayerListener {
+public class DuckShopPlayerListener implements Listener {
     final DuckShop plugin;
     final Logger log;
     final LinkState linkState;
@@ -29,17 +28,11 @@ public class DuckShopPlayerListener extends PlayerListener {
         this.plugin = plugin;
         this.linkState = linkState;
 
-        register(plugin.getServer().getPluginManager());
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    private void register(PluginManager pm) {
-        pm.registerEvent(Event.Type.PLAYER_INTERACT, this, Event.Priority.Normal, plugin);
-    }
-
-    @Override
+    @EventHandler(ignoreCancelled = true)
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.isCancelled()) return;
-
         Player player = event.getPlayer();
         Block block = event.getClickedBlock();
         BlockState state = (block != null ? block.getState() : null);

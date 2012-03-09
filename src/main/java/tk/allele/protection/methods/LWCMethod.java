@@ -2,15 +2,12 @@ package tk.allele.protection.methods;
 
 import com.griefcraft.lwc.LWC;
 import com.griefcraft.lwc.LWCPlugin;
-import com.griefcraft.model.AccessRight;
 import com.griefcraft.model.Protection;
-import com.griefcraft.model.ProtectionTypes;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import tk.allele.protection.ProtectionMethod;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -38,58 +35,14 @@ public class LWCMethod implements ProtectionMethod {
         return "LWC";
     }
 
-    // LWC 3 and 4 return different types for getType(), so handle them both
-    private static int getProtectionType(Protection protection) {
-        Method getType;
-        try {
-            getType = Protection.class.getDeclaredMethod("getType");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        Object type;
-        try {
-            type = getType.invoke(protection);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        if (type instanceof Integer) {
-            // LWC 3 uses integers
-            return (Integer) type;
-        } else {
-            // LWC 4 uses an enum
-            String typeStr = type.toString();
-            if (typeStr.equals("PUBLIC")) return 0;
-            if (typeStr.equals("PASSWORD")) return 1;
-            if (typeStr.equals("PRIVATE")) return 2;
-            else return -1;
-        }
-    }
-
-    // Ripped off <https://github.com/Hidendra/LWC/blob/master/src/main/java/com/griefcraft/lwc/LWC.java#L340>
     private boolean canAccessProtection(String playerName, Protection protection) {
-        switch (getProtectionType(protection)) {
-            case ProtectionTypes.PUBLIC:
-                return true;
-
-            case ProtectionTypes.PASSWORD:
-                return lwc.getMemoryDatabase().hasAccess(playerName, protection);
-
-            case ProtectionTypes.PRIVATE:
-                if (playerName.equalsIgnoreCase(protection.getOwner())) {
-                    return true;
-                }
-
-                if (protection.getAccess(AccessRight.PLAYER, playerName) >= 0) {
-                    return true;
-                }
-
-                return false;
-
-            default:
-                return false;
+        if (protection.getType() == Protection.Type.PUBLIC) {
+            return true;
         }
+        if (playerName.equalsIgnoreCase(protection.getOwner())) {
+            return true;
+        }
+        return false;
     }
 
     @Override
