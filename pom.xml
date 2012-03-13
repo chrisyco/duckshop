@@ -132,7 +132,6 @@
             <configuration>
               <artifactSet>
                 <includes>
-                  <include>com.nijikokun:register</include>
                   <include>com.sk89q:worldguard</include>
                 </includes>
               </artifactSet>
@@ -144,12 +143,6 @@
                   </includes>
                 </filter>
               </filters>
-              <relocations>
-                <relocation>
-                  <pattern>com.nijikokun.register</pattern>
-                  <shadedPattern>${project.groupId}.${project.artifactId}.hidden.com.nijikokun.register</shadedPattern>
-                </relocation>
-              </relocations>
             </configuration>
           </execution>
         </executions>
