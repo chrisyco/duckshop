@@ -53,6 +53,11 @@ public class Inventories {
         for (int i = 0; i != inventory.getSize(); ++i) {
             ItemStack invItem = inventory.getItem(i);
 
+            // Skip if the slot is empty
+            if (invItem == null) {
+                continue;
+            }
+
             // Check if this is the right kind of item
             if (invItem.getTypeId() == delItem.getTypeId() &&
                     invItem.getDurability() == delItem.getDurability()) {

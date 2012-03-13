@@ -123,10 +123,10 @@ public abstract class InventoryAdapter extends TradeAdapter {
         ItemStack invItem;
         for (int i = 0; i < size; ++i) {
             invItem = inventory.getItem(i);
-            if (invItem.getTypeId() == addItem.getItemId() && invItem.getDurability() == addItem.getDamage()) {
-                total += maxStackSize - invItem.getAmount();
-            } else if (invItem.getType() == Material.AIR) {
+            if (invItem == null || invItem.getType() == Material.AIR) {
                 total += maxStackSize;
+            } else if (invItem.getTypeId() == addItem.getItemId() && invItem.getDurability() == addItem.getDamage()) {
+                total += Math.max(0, maxStackSize - invItem.getAmount());
             }
         }
         return total / addItem.getAmount();
@@ -139,7 +139,7 @@ public abstract class InventoryAdapter extends TradeAdapter {
         ItemStack invItem;
         for (int i = 0; i < size; ++i) {
             invItem = inventory.getItem(i);
-            if (invItem.getTypeId() == subItem.getItemId() && invItem.getDurability() == subItem.getDamage()) {
+            if (invItem != null && invItem.getTypeId() == subItem.getItemId() && invItem.getDurability() == subItem.getDamage()) {
                 total += invItem.getAmount();
             }
         }
