@@ -17,7 +17,7 @@
   <repositories>
     <!-- Repository for Bukkit -->
     <repository>
-      <id>bukkit-repo</id>
+      <id>bukkit-releases</id>
       <url>http://repo.bukkit.org/content/repositories/releases</url>
     </repository>
 
@@ -30,7 +30,7 @@
     <!-- Repository for OddItem -->
     <repository>
       <id>somethingodd-repo</id>
-      <url>http://repo.somethingodd.info/content/groups/somethingodd/</url>
+      <url>http://repo.somethingodd.info/content/groups/public/</url>
     </repository>
 
     <repository>
@@ -55,6 +55,14 @@
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
       <version>1.2.3-R0.1</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- petteyg's OddItem -->
+    <dependency>
+      <groupId>info.somethingodd</groupId>
+      <artifactId>odditem</artifactId>
+      <version>0.9.1</version>
       <scope>compile</scope>
     </dependency>
 

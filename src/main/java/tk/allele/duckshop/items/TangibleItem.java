@@ -1,6 +1,6 @@
 package tk.allele.duckshop.items;
 
-import info.somethingodd.bukkit.OddItem.OddItem;
+import info.somethingodd.OddItem.OddItem;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import tk.allele.duckshop.errors.InvalidSyntaxException;
@@ -8,6 +8,7 @@ import tk.allele.duckshop.trading.TradeAdapter;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.Map;
 import java.util.NavigableSet;
 import java.util.regex.Matcher;
@@ -192,44 +193,10 @@ public class TangibleItem extends Item {
         return hash;
     }
 
-    @SuppressWarnings("unchecked")
-    private static NavigableSet<String> getAliasesById(int itemId, short damage) {
-        // This is absolutely horrible! XO
-
-        // Get the field containing the map
-        Field itemsField;
-        try {
-            itemsField = OddItem.class.getDeclaredField("items");
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        }
-
-        // Make the field public
-        itemsField.setAccessible(true);
-
-        // Get the map containing the item
-        Map<String, NavigableSet<String>> items;
-        try {
-            items = (Map<String, NavigableSet<String>>) itemsField.get(null);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-
-        // Grab that item from the map
-        NavigableSet<String> result;
-        if ((result = items.get(itemId + ";" + damage)) != null) {
-            return result;
-        } else if (damage == 0 && (result = items.get(Integer.toString(itemId))) != null) {
-            return result;
-        } else {
-            return null;
-        }
-    }
-
-    private static String getBestName(NavigableSet<String> aliases) {
+    private static String getBestName(Collection<String> aliases) {
         for (String name : aliases) {
-            // Skip names which are too long or have digits
-            if (name.length() <= NAME_LENGTH && !name.matches(".*[0-9].*")) {
+            // Skip names which are too long
+            if (name.length() <= NAME_LENGTH) {
                 return name;
             }
         }
@@ -237,15 +204,14 @@ public class TangibleItem extends Item {
     }
 
     private static String getBestNameForId(int itemId, short damage) {
-        NavigableSet<String> aliases = getAliasesById(itemId, damage);
-        if (aliases != null) {
-            String name = getBestName(aliases);
-            if (name != null) {
-                return name; // We have a name!
-            }
+        String name;
+        try {
+            name = getBestName(OddItem.getAliases(new ItemStack(itemId, 1, damage)));
+        } catch (IllegalArgumentException ex) {
+            // Fall through
+            name = null;
         }
-        // Fall through
-        return null;
+        return name;
     }
 
     @Override
