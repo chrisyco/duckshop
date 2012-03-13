@@ -7,10 +7,7 @@ import tk.allele.duckshop.errors.InvalidSyntaxException;
 import tk.allele.duckshop.trading.TradeAdapter;
 
 import javax.annotation.Nullable;
-import java.lang.reflect.Field;
 import java.util.Collection;
-import java.util.Map;
-import java.util.NavigableSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
