@@ -80,7 +80,8 @@ public abstract class InventoryAdapter extends TradeAdapter {
     @Override
     public int countAddMoney(Money money) {
         // This is absolutely disgusting
-        if (!plugin.economyMethod.getName().equals(DummyEconomy.NAME)) {
+        if (money.getAmount() == 0.0 ||
+                !plugin.economyMethod.getName().equals(DummyEconomy.NAME)) {
             return Integer.MAX_VALUE;
         } else {
             return 0;
