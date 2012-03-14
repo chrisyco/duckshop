@@ -17,7 +17,7 @@ public class ChestInventoryAdapter extends InventoryAdapter {
     private void initialize(String ownerName, Chest chest)
             throws ChestProtectionException {
         setPlayerName(ownerName);
-        setInventory(Inventories.getInventoryForChest(chest));
+        setInventory(chest.getInventory());
 
         if (!plugin.protection.canAccess(ownerName, chest.getBlock())) {
             throw new ChestProtectionException();

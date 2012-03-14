@@ -1,8 +1,5 @@
 package tk.allele.inventory;
 
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.block.Chest;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -10,36 +7,7 @@ import org.bukkit.inventory.ItemStack;
  * Miscellaneous inventory utility methods that aren't implemented in Bukkit.
  */
 public class Inventories {
-    private static final BlockFace[] chestFaces = {BlockFace.EAST, BlockFace.NORTH, BlockFace.WEST, BlockFace.SOUTH};
-
-    private Inventories() {
-    }
-
-    public static Chest findNeighboringChest(Chest baseChest) {
-        Block base = baseChest.getBlock();
-        for (BlockFace blockFace : chestFaces) {
-            Block neighbor = base.getRelative(blockFace);
-            if (neighbor.getState() instanceof Chest) {
-                return (Chest) neighbor.getState();
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Return either the chest's own Inventory or a DoubleChestInventory,
-     * depending on whether there are other chests next to it.
-     */
-    public static Inventory getInventoryForChest(Chest baseChest) {
-        Chest neighboringChest = findNeighboringChest(baseChest);
-        // If there is a neighboring chest, combine the two chests into one
-        if (neighboringChest != null) {
-            return new DoubleChestInventory(baseChest, neighboringChest);
-            // Otherwise, just use the chest's inventory directly
-        } else {
-            return baseChest.getInventory();
-        }
-    }
+    private Inventories() {}
 
     /**
      * Remove an item from the inventory, taking into account durability
