@@ -1,0 +1,59 @@
+html {
+  background: #ff9;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+div#container {
+  max-width: 50em;
+  margin: 0 auto;
+  font: 100%/150% Georgia, serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: #f30;
+}
+
+a:visited {
+  color: #d80;
+}
+
+a:hover, a:active {
+  color: #fa0;
+}
+
+header {
+  position: relative;
+  min-height: 4em;
+  margin-bottom: 1em;
+  padding: 0 1em;
+  background: white;
+  border: 2px solid #ff3;
+}
+
+header h1 {
+  margin: 0.5em 0 0;
+  line-height: 100%;
+}
+
+header h1 img {
+  position: absolute;
+  left: -2.8em;
+  top: -2px;
+  width: 2em;
+  height: 2em;
+  border: 2px solid #ff3;
+}
+
+div#main {
+  padding: 0 1em;
+  background: white;
+  border: 2px solid #ff3;
+}

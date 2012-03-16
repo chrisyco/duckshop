@@ -1,0 +1,3 @@
+baseurl: /duckshop
+pygments: true
+markdown: rdiscount
