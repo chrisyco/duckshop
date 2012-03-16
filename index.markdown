@@ -18,13 +18,12 @@ Install
 
 * [Installation](install)
 * [Permissions](install/permissions)
-* [Upgrading](install/upgrading) &ndash; read this if you're upgrading from an older version of DuckShop.
 
 
 Use
 ---
 
-* **[Quick start](use/quick-start)**
+* **[Quick start](use)**
 * [Examples](use/examples)
 * [Sign format](use/sign-format)
 * [Chest linking](use/chest-linking)
