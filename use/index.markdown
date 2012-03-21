@@ -28,3 +28,15 @@ People learn best by doing, so let's begin by doing stuff!
 
 5. The sign should be working now.
    Right click the sign to get a free stack of cobblestone.
+
+
+Now what?
+---------
+
+This just scratched the surface of what DuckShop can do.
+For more info, take a look at the rest of the [documentation][], especially the [examples][].
+
+Happy trading!
+
+[documentation]: {{ site.baseurl }}
+[examples]: {{ site.baseurl }}/use/examples
