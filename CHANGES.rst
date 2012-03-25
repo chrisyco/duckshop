@@ -4,6 +4,20 @@
 
 ..
 
+32
+==
+
+* Ported to CraftBukkit 1.2 and OddItem 1.9.1.
+
+* Now uses Vault for economy and permissions.
+
+* Accepts item names with digits and hyphens. (`#25`_)
+
+* Fixed item duplication bug on CB 1.2. (`#27`_)
+
+.. _#25: http://dev.bukkit.org/server-mods/duckshop/tickets/25/
+.. _#27: http://dev.bukkit.org/server-mods/duckshop/tickets/27/
+
 31
 ==
 
