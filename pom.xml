@@ -8,7 +8,7 @@
   <packaging>jar</packaging>
 
   <name>DuckShop</name>
-  <url>http://allele.tk/</url>
+  <url>http://allele.tk/duckshop/</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -54,7 +54,7 @@
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
-      <version>1.2.3-R0.1</version>
+      <version>1.2.3-R0.2</version>
       <scope>compile</scope>
     </dependency>
 
@@ -94,7 +94,7 @@
     <dependency>
       <groupId>com.sk89q</groupId>
       <artifactId>worldguard</artifactId>
-      <version>5.4</version>
+      <version>5.5.1</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
