@@ -18,6 +18,21 @@ That's it. :P
 [Vault]: http://dev.bukkit.org/server-mods/vault/
 
 
+Required plugins
+----------------
+
+### OddItem ###
+
+[OddItem][] is used for matching item names to IDs. Just pop it in your plugins folder and it should work.
+
+
+### Vault ###
+
+DuckShop uses [Vault][] for economy support. Unless your economy plugin is very obscure, it is likely to be supported.
+
+**If you don't have an economy plugin**: install Vault anyway. You will still be able to trade items, but obviously money will not work.
+
+
 Optional bits and pieces
 ------------------------
 
@@ -26,16 +41,9 @@ Depending on how you use it, you may need these extra plugins installed too.
 
 ### Permissions ###
 
-Installing a permissions plugin is optional. If you don't install one, the plugin would simply give users the default permissions.
+Installing a permissions plugin is optional. If you don't install one, the plugin would simply give users reasonable defaults.
 
 For permissions settings, see the [permissions reference]({{ site.baseurl }}/install/permissions).
-
-
-### Economy ###
-
-DuckShop uses [Vault][] for economy support. Unless your economy plugin is very obscure, it is likely it is supported.
-
-If an economy plugin isn't installed, you can still trade items normally, but obviously money will not work.
 
 
 ### Chest Protection ###
