@@ -59,7 +59,7 @@ div#main {
 }
 
 div#main h2 {
-  margin-top: 1.5em;
+  margin-top: 2.5em;
   border-bottom: 2px solid #ff3;
 }
 
@@ -68,6 +68,7 @@ div#main h2:first-child {
 }
 
 div#main h3 {
+  margin-top: 2em;
   margin-bottom: 0.5em;
   font-size: 112.5%;
 }
