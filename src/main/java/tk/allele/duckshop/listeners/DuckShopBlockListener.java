@@ -12,7 +12,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.SignChangeEvent;
 import tk.allele.duckshop.DuckShop;
 import tk.allele.duckshop.errors.InvalidSyntaxException;
-import tk.allele.duckshop.signs.SignManager;
+import tk.allele.duckshop.signs.ChestLinkManager;
 import tk.allele.duckshop.signs.TradingSign;
 import tk.allele.permissions.PermissionsException;
 
@@ -82,7 +82,7 @@ public class DuckShopBlockListener implements Listener {
                 }
             }
         } else if (state instanceof Chest) {
-            if (SignManager.getInstance(plugin).isChestConnected(block.getLocation())) {
+            if (ChestLinkManager.getInstance(plugin).isChestConnected(block.getLocation())) {
                 player.sendMessage("Warning: This chest is used by a DuckShop sign. The sign will no longer work unless the chest is replaced.");
             }
         }

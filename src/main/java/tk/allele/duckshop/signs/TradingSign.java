@@ -235,7 +235,7 @@ public class TradingSign {
      * Get the location of the chest for this sign.
      */
     public Location getChestLocation() {
-        return SignManager.getInstance(plugin).getChestLocation(signLocation);
+        return ChestLinkManager.getInstance(plugin).getChestLocation(signLocation);
     }
 
     /**
@@ -261,7 +261,7 @@ public class TradingSign {
      * permission first.
      */
     public void setChestLocation(Location chestLocation) {
-        SignManager.getInstance(plugin).setChestLocation(signLocation, chestLocation);
+        ChestLinkManager.getInstance(plugin).setChestLocation(signLocation, chestLocation);
     }
 
     /**
@@ -272,6 +272,6 @@ public class TradingSign {
      */
     public void destroy(Player breakingPlayer) throws PermissionsException {
         plugin.permissions.throwIfCannot(breakingPlayer, "break." + getActionType(breakingPlayer));
-        SignManager.getInstance(plugin).removeChestLocation(signLocation);
+        ChestLinkManager.getInstance(plugin).removeChestLocation(signLocation);
     }
 }

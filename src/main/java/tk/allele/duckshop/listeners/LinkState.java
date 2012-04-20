@@ -2,7 +2,7 @@ package tk.allele.duckshop.listeners;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import tk.allele.duckshop.signs.SignManager;
+import tk.allele.duckshop.signs.ChestLinkManager;
 import tk.allele.duckshop.signs.TradingSign;
 import tk.allele.permissions.PermissionsManager;
 
@@ -13,12 +13,12 @@ import java.util.Map;
  * Holds the state of any chest links in progress.
  */
 public class LinkState {
-    final SignManager manager;
+    final ChestLinkManager manager;
     final PermissionsManager permissions;
     final Map<Player, Boolean> playerStartedLink = new HashMap<Player, Boolean>();
     final Map<Player, TradingSign> playerLinkSign = new HashMap<Player, TradingSign>();
 
-    public LinkState(SignManager manager, PermissionsManager permissions) {
+    public LinkState(ChestLinkManager manager, PermissionsManager permissions) {
         this.manager = manager;
         this.permissions = permissions;
     }

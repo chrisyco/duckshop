@@ -11,12 +11,12 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 /**
- * Keeps track of chest locations, among other things.
+ * Keeps track of chest locations.
  */
-public class SignManager {
+public class ChestLinkManager {
     private final static String CHESTS_FILE_NAME = "chests.properties";
     private final static String CHESTS_FILE_COMMENT = "This file is used internally to store sign-chest links.\nFormat is signLocation=chestLocation\nDo not edit unless you know what you are doing.";
-    private static SignManager instance;
+    private static ChestLinkManager instance;
 
     private DuckShop plugin;
     private Logger log;
@@ -24,7 +24,7 @@ public class SignManager {
     private Map<Location, Boolean> chestIsConnected;
     private File propertiesFile;
 
-    private SignManager(DuckShop plugin) {
+    private ChestLinkManager(DuckShop plugin) {
         this.plugin = plugin;
         this.log = plugin.log;
         this.chestLocations = new HashMap<Location, Location>();
@@ -36,9 +36,9 @@ public class SignManager {
     /**
      * Return an instance, or create it if it does not exist.
      */
-    public static SignManager getInstance(DuckShop plugin) {
+    public static ChestLinkManager getInstance(DuckShop plugin) {
         if (instance == null) {
-            instance = new SignManager(plugin);
+            instance = new ChestLinkManager(plugin);
         }
         return instance;
     }
@@ -83,6 +83,7 @@ public class SignManager {
      */
     public void load() {
         try {
+            // Load the properties file
             FileInputStream in = new FileInputStream(propertiesFile);
             Properties properties = new Properties();
             try {
@@ -90,6 +91,8 @@ public class SignManager {
             } finally {
                 in.close();
             }
+
+            // Parse each entry and record it in the map
             int entriesLoaded = 0;
             for (Map.Entry<Object, Object> entry : properties.entrySet()) {
                 Location signLocation = Locations.parseLocation(plugin.getServer(), (String) entry.getKey());
@@ -97,6 +100,7 @@ public class SignManager {
                 setChestLocation(signLocation, chestLocation);
                 ++entriesLoaded;
             }
+
             log.info("Loaded " + entriesLoaded + " chest link(s).");
         } catch (FileNotFoundException ex) {
             log.warning("Chest link file does not exist. This is probably the first time you've used this plugin.");
@@ -111,18 +115,24 @@ public class SignManager {
      */
     public void store() {
         try {
+            // Open the properties file
             FileOutputStream out = new FileOutputStream(propertiesFile);
             Properties properties = new Properties();
+
+            // Serialize each entry and add it to the properties object
             int entriesStored = 0;
             for (Map.Entry<Location, Location> entry : chestLocations.entrySet()) {
                 properties.setProperty(Locations.toString(entry.getKey()), Locations.toString(entry.getValue()));
                 ++entriesStored;
             }
+
+            // Write out the entries
             try {
                 properties.store(out, CHESTS_FILE_COMMENT);
             } finally {
                 out.close();
             }
+
             log.info("Stored " + entriesStored + " chest link(s).");
         } catch (IOException ex) {
             ex.printStackTrace();

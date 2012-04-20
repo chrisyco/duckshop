@@ -6,7 +6,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import tk.allele.duckshop.listeners.*;
-import tk.allele.duckshop.signs.SignManager;
+import tk.allele.duckshop.signs.ChestLinkAutosaveTask;
+import tk.allele.duckshop.signs.ChestLinkManager;
 import tk.allele.permissions.PermissionsManager;
 import tk.allele.protection.ProtectionManager;
 import tk.allele.util.CustomLogger;
@@ -23,7 +24,7 @@ public class DuckShop extends JavaPlugin {
     private static final String PERMISSIONS_PREFIX = "duckshop.";
 
     private CommandDispatcher commandListener;
-    private SignManager signManager;
+    private ChestLinkManager chestLinkManager;
 
     public Logger log;
     public Economy economyMethod; // Needed by various inventory adapters
@@ -46,7 +47,8 @@ public class DuckShop extends JavaPlugin {
         }
 
         // Initialize the sign manager
-        signManager = SignManager.getInstance(this);
+        chestLinkManager = ChestLinkManager.getInstance(this);
+        new ChestLinkAutosaveTask(this, chestLinkManager);
 
         // Initialize economy
         economyMethod = VaultAdapter.getEconomyAdapter(getServer().getServicesManager());
@@ -63,7 +65,7 @@ public class DuckShop extends JavaPlugin {
             log.info("No chest protection found.");
         }
 
-        LinkState linkState = new LinkState(signManager, permissions);
+        LinkState linkState = new LinkState(chestLinkManager, permissions);
 
         // Register events
         new DuckShopBlockListener(this);
@@ -85,6 +87,6 @@ public class DuckShop extends JavaPlugin {
     public void onDisable() {
         final String version = getDescription().getVersion();
         log.info("Version " + version + " disabled. Have a nice day!");
-        signManager.store();
+        chestLinkManager.store();
     }
 }
