@@ -34,7 +34,7 @@ public class CommandDispatcher extends Command implements org.bukkit.command.Com
     }
 
     @Override
-    public void execute(CommandSender sender, CommandContext context) throws CommandException, PermissionsException {
+    public void execute(CommandSenderPlus sender, CommandContext context) throws CommandException, PermissionsException {
         Command command = commandMap.get(context.getArguments().get(0));
         if (command != null) {
             command.execute(sender, context.shift());
@@ -45,6 +45,7 @@ public class CommandDispatcher extends Command implements org.bukkit.command.Com
 
     @Override
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
+        CommandSenderPlus senderPlus = new CommandSenderPlus(sender);
         try {
             // CommandContext constructor expects the label to be the first
             // element of the list
@@ -53,11 +54,11 @@ public class CommandDispatcher extends Command implements org.bukkit.command.Com
             input.addAll(Arrays.asList(args));
 
             // Now execute the command
-            execute(sender, new CommandContext(input));
+            execute(senderPlus, new CommandContext(input));
         } catch (CommandException e) {
-            sender.sendMessage(e.toString());
+            senderPlus.error("Invalid command.");
         } catch (PermissionsException e) {
-            sender.sendMessage("I'm sorry, " + sender.getName() + ". I'm afraid I can't do that.");
+            senderPlus.error("I'm sorry, " + sender.getName() + ". I'm afraid I can't do that.");
         }
         return true;
     }

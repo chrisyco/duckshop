@@ -12,6 +12,7 @@ import tk.allele.duckshop.DuckShop;
 import tk.allele.duckshop.errors.*;
 import tk.allele.duckshop.signs.TradingSign;
 import tk.allele.permissions.PermissionsException;
+import tk.allele.util.commands.CommandSenderPlus;
 
 import java.util.logging.Logger;
 
@@ -68,6 +69,7 @@ public class DuckShopPlayerListener implements Listener {
      * @return true if the event was handled, otherwise false.
      */
     private boolean useSign(Player player, Block block, Sign state) {
+        CommandSenderPlus playerPlus = new CommandSenderPlus(player);
         TradingSign sign = null;
 
         // Parse and validate the sign
@@ -84,28 +86,28 @@ public class DuckShopPlayerListener implements Listener {
             try {
                 sign.tradeWith(player);
             } catch (InvalidChestException ex) {
-                player.sendMessage("Invalid chest. Make sure it is connected properly.");
+                playerPlus.error("Invalid chest. Make sure it is connected properly.");
             } catch (ChestProtectionException ex) {
-                player.sendMessage("The owner of the sign doesn't have access to the connected chest.");
+                playerPlus.error("The owner of the sign doesn't have access to the connected chest.");
             } catch (TradingException ex) {
                 if (ex instanceof TooMuchException) {
                     if (player.equals(ex.getPlayer())) {
-                        player.sendMessage("You don't have enough space for " + ex.getItem() + ".");
+                        playerPlus.error("You don't have enough space for " + ex.getItem() + ".");
                     } else {
-                        player.sendMessage("The sign owner doesn't have enough space for " + ex.getItem() + ".");
+                        playerPlus.error("The sign owner doesn't have enough space for " + ex.getItem() + ".");
                     }
                 } else if (ex instanceof TooLittleException) {
                     if (player.equals(ex.getPlayer())) {
-                        player.sendMessage("You need " + ex.getItem() + " to trade.");
+                        playerPlus.error("You need " + ex.getItem() + " to trade.");
                     } else {
-                        player.sendMessage("The sign owner doesn't have " + ex.getItem() + ".");
+                        playerPlus.error("The sign owner doesn't have " + ex.getItem() + ".");
                     }
                 } else {
-                    player.sendMessage("Oh noes! Cannot trade!");
+                    playerPlus.error("Oh noes! Cannot trade!");
                     plugin.log.severe("Unknown TradingException: " + ex.getClass().getName());
                 }
             } catch (PermissionsException ex) {
-                player.sendMessage("You're not allowed to use this for some reason.");
+                playerPlus.error("You're not allowed to use this for some reason.");
             }
 
             // Update the sign's status
@@ -125,6 +127,7 @@ public class DuckShopPlayerListener implements Listener {
      * @return true if a link was started, otherwise false.
      */
     private boolean handleLeftClickSign(Player player, Block block, Sign state) {
+        CommandSenderPlus playerPlus = new CommandSenderPlus(player);
         TradingSign sign = null;
 
         // Parse and validate the sign
@@ -141,29 +144,29 @@ public class DuckShopPlayerListener implements Listener {
         if (linkState.hasStartedLink(player)) {
             // If it isn't valid, tell the user
             if (sign == null) {
-                player.sendMessage("That's not a valid trading sign.");
+                playerPlus.error("That's not a valid trading sign.");
             } else {
                 // Check if the player can link the sign first
                 boolean canLinkSign = true;
                 try {
                     sign.preSetChestLocation(player);
                 } catch (UnsupportedOperationException ex) {
-                    player.sendMessage("Global signs don't need to be connected to chests.");
+                    playerPlus.error("Global signs don't need to be connected to chests.");
                     canLinkSign = false;
                 } catch (PermissionsException ex) {
-                    player.sendMessage("You don't have permission to link this sign.");
+                    playerPlus.error("You don't have permission to link this sign.");
                     canLinkSign = false;
                 }
 
                 // If we can link the sign, lead the user to the next step
                 if (canLinkSign) {
-                    player.sendMessage("Now left click a chest to connect it.");
-                    player.sendMessage("Or left click another sign if that's not the right one.");
+                    playerPlus.action("Now left click a chest to connect it.");
+                    playerPlus.action("Or left click another sign if that's not the right one.");
                     linkState.markSign(player, sign);
                     linkedSuccessfully = true;
                 } else {
                     // Otherwise, prompt the user again
-                    player.sendMessage("Try another sign, or type \"/duckshop cancel\" to quit.");
+                    playerPlus.action("Try another sign, or type \"/duckshop cancel\" to quit.");
                 }
             }
         }
@@ -185,7 +188,7 @@ public class DuckShopPlayerListener implements Listener {
     private boolean markChest(Player player, Block block) {
         if (linkState.hasMarkedSign(player)) {
             linkState.markChest(player, block.getLocation());
-            player.sendMessage("Sign connected successfully.");
+            (new CommandSenderPlus(player)).info("Sign connected successfully.");
             return true;
         } else {
             return false;

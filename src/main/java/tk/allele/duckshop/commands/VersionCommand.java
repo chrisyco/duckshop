@@ -1,6 +1,5 @@
 package tk.allele.duckshop.commands;
 
-import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.PluginDescriptionFile;
 import tk.allele.duckshop.DuckShop;
 import tk.allele.permissions.PermissionsException;
@@ -8,6 +7,7 @@ import tk.allele.permissions.PermissionsManager;
 import tk.allele.util.StringTools;
 import tk.allele.util.commands.Command;
 import tk.allele.util.commands.CommandContext;
+import tk.allele.util.commands.CommandSenderPlus;
 
 /**
  * Implements the DuckShop version command.
@@ -24,8 +24,8 @@ public class VersionCommand extends Command {
     }
 
     @Override
-    public void execute(CommandSender sender, CommandContext context)
+    public void execute(CommandSenderPlus sender, CommandContext context)
             throws PermissionsException {
-        sender.sendMessage(pdf.getName() + " version " + pdf.getVersion() + " (" + StringTools.join(pdf.getAuthors(), ", ") + ")");
+        sender.info(pdf.getName() + " version " + pdf.getVersion() + " (" + StringTools.join(pdf.getAuthors(), ", ") + ")");
     }
 }

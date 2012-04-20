@@ -1,6 +1,5 @@
 package tk.allele.util.commands;
 
-import org.bukkit.command.CommandSender;
 import tk.allele.permissions.PermissionsException;
 
 /**
@@ -31,5 +30,5 @@ public abstract class Command {
         this.description = description;
     }
 
-    public abstract void execute(CommandSender sender, CommandContext context) throws CommandException, PermissionsException;
+    public abstract void execute(CommandSenderPlus sender, CommandContext context) throws CommandException, PermissionsException;
 }

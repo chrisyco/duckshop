@@ -15,6 +15,7 @@ import tk.allele.duckshop.errors.InvalidSyntaxException;
 import tk.allele.duckshop.signs.ChestLinkManager;
 import tk.allele.duckshop.signs.TradingSign;
 import tk.allele.permissions.PermissionsException;
+import tk.allele.util.commands.CommandSenderPlus;
 
 /**
  * Listens for block events -- like placing a sign.
@@ -31,6 +32,7 @@ public class DuckShopBlockListener implements Listener {
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
     public void onSignChange(SignChangeEvent event) {
         Player player = event.getPlayer();
+        CommandSenderPlus playerPlus = new CommandSenderPlus(player);
 
         TradingSign sign = null;
         try {
@@ -43,14 +45,14 @@ public class DuckShopBlockListener implements Listener {
         } catch (PermissionsException ex) {
             // Science fiction allusions FTW
             event.setCancelled(true);
-            player.sendMessage("I'm sorry, " + player.getName() + ". I'm afraid I can't do that.");
+            playerPlus.error("I'm sorry, " + player.getName() + ". I'm afraid I can't do that.");
         }
 
         if (sign != null) {
             sign.writeToStringArray(event.getLines());
-            player.sendMessage("Created sign successfully.");
+            playerPlus.info("Created sign successfully.");
             if (!sign.isGlobal()) {
-                player.sendMessage("Type \"/duckshop link\" to connect this sign with a chest.");
+                playerPlus.action("Type \"/duckshop link\" to connect this sign with a chest.");
             }
         }
     }
@@ -58,6 +60,7 @@ public class DuckShopBlockListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
+        CommandSenderPlus playerPlus = new CommandSenderPlus(player);
         Block block = event.getBlock();
         BlockState state = (block != null ? block.getState() : null);
 
@@ -76,14 +79,14 @@ public class DuckShopBlockListener implements Listener {
                     sign.destroy(player);
                 } catch (PermissionsException ex) {
                     event.setCancelled(true);
-                    player.sendMessage("You can't break this!");
+                    playerPlus.error("You can't break this!");
                     // Fixes the sign ending up blank
                     state.update();
                 }
             }
         } else if (state instanceof Chest) {
             if (ChestLinkManager.getInstance(plugin).isChestConnected(block.getLocation())) {
-                player.sendMessage("Warning: This chest is used by a DuckShop sign. The sign will no longer work unless the chest is replaced.");
+                playerPlus.warning("Warning: This chest is used by a DuckShop sign. The sign will no longer work unless the chest is replaced.");
             }
         }
     }
